@@ -3,25 +3,28 @@
 import { Component, useCallback, useEffect, useMemo, useState } from 'react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import { List, LocateFixed, Map as MapIcon, X } from 'lucide-react';
+import { List, LocateFixed, Map as MapIcon, SlidersHorizontal, X } from 'lucide-react';
 import {
   Button,
   buttonVariants,
   Callout,
+  Chip,
+  ChipGroup,
   EmptyState,
   Field,
   SearchInput,
   Select,
   Skeleton,
-  Switch,
 } from '@demogar/mola-ui';
 import { ErrorState, Loading } from '@/components/states';
 import { useApi } from '@/lib/use-api';
-import { centerTypeLabel, fold, hasCoords, haversineKm, provinceLabel } from '@/lib/public-format';
+import { centerTypeLabel, fold, hasCoords, haversineKm, itemLabel, provinceLabel } from '@/lib/public-format';
 import { CENTER_TYPES_FALLBACK } from '@/lib/public-schedule';
 import type { PublicCenter, PublicMeta } from '@/lib/public-types';
 import { CenterCard } from './center-card';
+import { ItemPicker } from './item-picker';
 import { isOpenNow, useNow } from './open-status';
+import { UrgentNow } from './urgent-now';
 
 const CenterMap = dynamic(() => import('./center-map'), {
   ssr: false,
@@ -68,6 +71,11 @@ class MapBoundary extends Component<{ children: React.ReactNode; onRetry: () => 
   }
 }
 
+/**
+ * Portada. El orden de lectura es el orden de decisión de quien quiere ayudar: qué tengo para dar
+ * (artículos con conteos), qué es lo más urgente, y recién después dónde y cuándo (filtros y lista).
+ * Todos los conteos salen de la misma lista pública, así que siempre cuadran con lo que se ve abajo.
+ */
 export function PublicHome({
   initialCenters,
   initialMeta,
@@ -95,6 +103,7 @@ export function PublicHome({
   const [onlyOpen, setOnlyOpen] = useState(false);
   const now = useNow();
   const [query, setQuery] = useState('');
+  const [moreOpen, setMoreOpen] = useState((initialType ?? ALL) !== ALL);
   const [geo, setGeo] = useState<Geo>({ state: 'off' });
   const [showMap, setShowMap] = useState(false);
   const [mapKey, setMapKey] = useState(0);
@@ -143,27 +152,46 @@ export function PublicHome({
 
   const origin = useMemo(() => (geo.state === 'on' ? { lat: geo.lat, lng: geo.lng } : null), [geo]);
 
-  const results = useMemo(() => {
-    if (!centers) return [];
-    const q = fold(query.trim());
-    const filtered = centers.filter((c) => {
-      if (province !== ALL && c.province !== province) return false;
-      if (item !== ALL && !c.needs.some((n) => n.item === item && n.level !== 'ENOUGH')) return false;
+  // Un solo filtro con «huecos»: los conteos de artículos ignoran el artículo elegido y los de provincia
+  // ignoran la provincia elegida, para que cada botón diga cuántos centros quedarían al tocarlo.
+  const passes = useCallback(
+    (c: PublicCenter, skip: 'item' | 'province' | null) => {
+      if (skip !== 'province' && province !== ALL && c.province !== province) return false;
+      if (skip !== 'item' && item !== ALL && !c.needs.some((n) => n.item === item && n.level !== 'ENOUGH'))
+        return false;
       if (ctype !== ALL && c.centerType !== ctype) return false;
       if (onlyOpen && isOpenNow(c, now) !== true) return false;
+      const q = fold(query.trim());
       if (q && !fold(`${c.name} ${c.district} ${c.community}`).includes(q)) return false;
       return true;
-    });
-    const rows = filtered.map((c) => ({
-      c,
-      km: origin && hasCoords(c) ? haversineKm(origin, { lat: c.lat as number, lng: c.lng as number }) : null,
-    }));
+    },
+    [province, item, ctype, onlyOpen, now, query],
+  );
+
+  const poolForItems = useMemo(() => (centers ?? []).filter((c) => passes(c, 'item')), [centers, passes]);
+  const provinceCounts = useMemo(() => {
+    const counts = new Map<string, number>();
+    for (const c of centers ?? []) {
+      if (!counts.has(c.province)) counts.set(c.province, 0);
+      if (passes(c, 'province')) counts.set(c.province, (counts.get(c.province) ?? 0) + 1);
+    }
+    return counts;
+  }, [centers, passes]);
+
+  const results = useMemo(() => {
+    if (!centers) return [];
+    const rows = centers
+      .filter((c) => passes(c, null))
+      .map((c) => ({
+        c,
+        km: origin && hasCoords(c) ? haversineKm(origin, { lat: c.lat as number, lng: c.lng as number }) : null,
+      }));
     if (origin) {
       // Orden estable: los que tienen coordenadas por distancia; los que no, al final en el orden de la API.
       rows.sort((a, b) => (a.km == null ? 1 : 0) - (b.km == null ? 1 : 0) || (a.km ?? 0) - (b.km ?? 0));
     }
     return rows;
-  }, [centers, province, item, ctype, onlyOpen, now, query, origin]);
+  }, [centers, passes, origin]);
 
   // Sin provincia elegida ni orden por distancia, la lista se agrupa por provincia en el orden del catálogo.
   const groups = useMemo(() => {
@@ -177,29 +205,12 @@ export function PublicHome({
       .map(([key, rows]) => ({ key, label: provinceLabel(meta, key), rows }));
   }, [province, origin, meta, results]);
 
-  const filtersActive = province !== ALL || item !== ALL || ctype !== ALL || onlyOpen || query.trim() !== '';
-  const clearFilters = () => {
-    setProvince(ALL);
-    setItem(ALL);
-    setCtype(ALL);
-    setOnlyOpen(false);
-    setQuery('');
-  };
-
-  const provinceItems = useMemo(
-    () => [
-      { value: ALL, label: 'Todo el país' },
-      ...Object.entries(meta?.provinces ?? {}).map(([value, label]) => ({ value, label })),
-    ],
-    [meta],
-  );
-  const itemItems = useMemo(
-    () => [
-      { value: ALL, label: 'Cualquier artículo' },
-      ...Object.entries(meta?.items ?? {}).map(([value, label]) => ({ value, label })),
-    ],
-    [meta],
-  );
+  const provinceChips = useMemo(() => {
+    const order = Object.keys(meta?.provinces ?? {});
+    return [...provinceCounts.keys()]
+      .sort((a, b) => order.indexOf(a) - order.indexOf(b))
+      .map((key) => ({ key, label: provinceLabel(meta, key), count: provinceCounts.get(key) ?? 0 }));
+  }, [meta, provinceCounts]);
 
   const typeItems = useMemo(
     () => [
@@ -212,20 +223,35 @@ export function PublicHome({
     [meta],
   );
 
+  const filtersActive = province !== ALL || item !== ALL || ctype !== ALL || onlyOpen || query.trim() !== '';
+  const clearFilters = () => {
+    setProvince(ALL);
+    setItem(ALL);
+    setCtype(ALL);
+    setOnlyOpen(false);
+    setQuery('');
+  };
+
   const loadError = !centers && centersQ.error;
+  const n = results.length;
+  const resultTitle = !centers
+    ? 'Centros de acopio'
+    : `${n === 1 ? '1 centro' : `${n} centros`}${item !== ALL ? ` ${n === 1 ? 'pide' : 'piden'} ${itemLabel(meta, item).toLowerCase()}` : ''}`;
 
   return (
-    <div className="grid gap-6">
-      {/* En pantallas anchas, presentación y filtros comparten la primera franja. */}
-      <div className="grid gap-6 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:items-start lg:gap-8">
-        <section aria-labelledby="hero" className="grid gap-3 lg:content-start">
-          <h1 id="hero" className="font-ui text-3xl font-bold leading-tight text-ink sm:text-4xl">
+    <div className="grid gap-8">
+      {/* 1. Presentación: la pregunta de entrada es qué tienes para dar. */}
+      <section aria-labelledby="hero" className="grid gap-4 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] lg:gap-8">
+        <div className="grid gap-3 lg:content-start">
+          <p className="text-xs font-bold uppercase tracking-wide text-ink-danger">
             Dónde llevar donaciones y qué necesitan hoy
+          </p>
+          <h1 id="hero" className="font-ui text-3xl font-bold leading-tight text-ink sm:text-4xl">
+            ¿Qué quieres donar?
           </h1>
-          <p className="max-w-2xl text-ink-2">
-            Centros de acopio de todo Panamá tras el terremoto. La información la mantiene la comunidad:{' '}
-            <strong className="text-ink">confirma con el centro antes de ir</strong>. Aquí solo se piden artículos,
-            nunca dinero.
+          <p className="max-w-2xl leading-relaxed text-ink-2">
+            Escoge lo que tienes y te mostramos qué centros lo necesitan hoy en todo Panamá. La información la mantiene
+            la comunidad: <strong className="text-ink">confirma con el centro antes de ir</strong>.
           </p>
           <div className="flex flex-wrap gap-2">
             <Link href="/publicar" className={`${buttonVariants({ variant: 'primary' })} no-underline`}>
@@ -235,54 +261,87 @@ export function PublicHome({
               Cómo funciona
             </Link>
           </div>
-          <Callout tone="warn" title="Hay gente aprovechándose de la emergencia" headingLevel={2}>
-            Dona solo por canales verificados: instituciones, municipios, juntas comunales, iglesias y organizaciones
-            con nombre. Entrega en mano, nunca dinero, y si algo no cuadra, repórtalo.{' '}
-            <Link href="/como-funciona#juega-vivo">Cómo evitar el «juega vivo»</Link>
-          </Callout>
-        </section>
+        </div>
+        <Callout tone="warn" title="Nadie aquí te pedirá dinero" headingLevel={2}>
+          Solo artículos, entregados en mano y por canales verificados: instituciones, municipios, juntas comunales,
+          iglesias y organizaciones con nombre. Si algo no cuadra, repórtalo.{' '}
+          <Link href="/como-funciona#juega-vivo">Cómo evitar el «juega vivo»</Link>
+        </Callout>
+      </section>
 
-        <section aria-labelledby="filtros" className="grid gap-3 bg-cloth-shade p-4">
-          <h2 id="filtros" className="sr-only">
-            Filtros
+      {/* 2. Lo que piden los centros: artículos con conteos; tocar uno filtra todo lo demás. */}
+      <section aria-labelledby="piden" className="grid gap-4">
+        <div className="grid gap-1">
+          <h2 id="piden" className="font-ui text-xl font-bold text-ink">
+            Lo que piden los centros{province !== ALL ? ` en ${provinceLabel(meta, province)}` : ''}
           </h2>
-          <div className="grid gap-3 md:grid-cols-2">
-            <Select
-              label="Provincia o comarca"
-              items={provinceItems}
-              value={province}
-              onValueChange={(v) => setProvince(v ?? ALL)}
-              disabled={!meta}
-            />
-            <Select
-              label="¿Qué quieres donar?"
-              items={itemItems}
-              value={item}
-              onValueChange={(v) => setItem(v ?? ALL)}
-              disabled={!meta}
-            />
-            <Select label="Tipo de lugar" items={typeItems} value={ctype} onValueChange={(v) => setCtype(v ?? ALL)} />
-            <Field label="Buscar" hint="Nombre, distrito o comunidad">
-              {(c) => (
-                <SearchInput
-                  {...c}
-                  value={query}
-                  onChange={(e) => setQuery(e.target.value)}
-                  onClear={() => setQuery('')}
-                  clearLabel="Borrar búsqueda"
-                  placeholder="Ej.: Tonosí"
-                  autoComplete="off"
-                />
-              )}
-            </Field>
+          <p className="text-sm text-ink-2">Toca un artículo para ver solo los centros que lo necesitan.</p>
+        </div>
+        {centers && meta ? (
+          <ItemPicker meta={meta} pool={poolForItems} value={item} onChange={setItem} />
+        ) : (
+          <Skeleton className="h-40 w-full" aria-label="Cargando artículos…" />
+        )}
+      </section>
+
+      {/* 3. Urgente ahora: solo se muestra si algún centro marcó algo como urgente con estos filtros. */}
+      {centers && <UrgentNow centers={results.map((r) => r.c)} meta={meta} item={item} />}
+
+      {/* 4. Dónde y cuándo: filtros y lista. */}
+      <section aria-labelledby="resultados" className="grid gap-5">
+        <div className="flex flex-wrap items-end justify-between gap-x-4 gap-y-2">
+          <div className="grid gap-1">
+            <h2 id="resultados" aria-live="polite" className="font-ui text-2xl font-bold text-ink">
+              {resultTitle}
+            </h2>
+            <p className="text-sm text-ink-2">
+              {origin
+                ? 'Ordenados por distancia. Tu ubicación no sale de tu teléfono.'
+                : 'Urgentes primero, luego los confirmados más recientemente.'}
+            </p>
           </div>
-          <Switch
-            label="Abierto ahora"
-            description="Según el horario que publicó cada centro (hora de Panamá)."
-            checked={onlyOpen}
-            onCheckedChange={setOnlyOpen}
-          />
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+          <Button
+            variant="ghost"
+            icon={showMap ? <List aria-hidden="true" /> : <MapIcon aria-hidden="true" />}
+            aria-pressed={showMap}
+            onClick={() => setShowMap((v) => !v)}
+            disabled={!centers}
+          >
+            {showMap ? 'Ocultar mapa' : 'Ver mapa'}
+          </Button>
+        </div>
+
+        <div className="grid gap-4 bg-cloth-shade p-4">
+          <ChipGroup legend="Provincia o comarca" className="flex flex-wrap gap-2">
+            <Chip
+              type="radio"
+              name="provincia"
+              value={ALL}
+              checked={province === ALL}
+              onChange={() => setProvince(ALL)}
+              count={centers ? [...provinceCounts.values()].reduce((a, b) => a + b, 0) : undefined}
+            >
+              Todo Panamá
+            </Chip>
+            {provinceChips.map((p) => (
+              <Chip
+                key={p.key}
+                type="radio"
+                name="provincia"
+                value={p.key}
+                checked={province === p.key}
+                onChange={() => setProvince(p.key)}
+                count={p.count}
+              >
+                {p.label}
+              </Chip>
+            ))}
+          </ChipGroup>
+
+          <div className="flex flex-wrap items-center gap-2">
+            <Chip type="checkbox" name="abierto" checked={onlyOpen} onChange={(e) => setOnlyOpen(e.target.checked)}>
+              Abierto ahora
+            </Chip>
             {geo.state === 'on' ? (
               <Button variant="secondary" icon={<X aria-hidden="true" />} onClick={() => setGeo({ state: 'off' })}>
                 Quitar «cerca de mí»
@@ -297,50 +356,51 @@ export function PublicHome({
                 Cerca de mí
               </Button>
             )}
-            <span className="text-sm text-ink-2">Tu ubicación no sale de tu teléfono.</span>
+            <Button
+              variant="ghost"
+              icon={<SlidersHorizontal aria-hidden="true" />}
+              aria-expanded={moreOpen}
+              aria-controls="mas-filtros"
+              onClick={() => setMoreOpen((v) => !v)}
+            >
+              {moreOpen ? 'Menos filtros' : 'Más filtros'}
+            </Button>
+            {filtersActive && (
+              <Button variant="ghost" icon={<X aria-hidden="true" />} onClick={clearFilters}>
+                Quitar filtros
+              </Button>
+            )}
           </div>
+
+          {moreOpen && (
+            <div id="mas-filtros" className="grid gap-3 md:grid-cols-2">
+              <Field label="Buscar" hint="Nombre, distrito o comunidad">
+                {(c) => (
+                  <SearchInput
+                    {...c}
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    onClear={() => setQuery('')}
+                    clearLabel="Borrar búsqueda"
+                    placeholder="Ej.: Tonosí"
+                    autoComplete="off"
+                  />
+                )}
+              </Field>
+              <Select label="Tipo de lugar" items={typeItems} value={ctype} onValueChange={(v) => setCtype(v ?? ALL)} />
+            </div>
+          )}
+
           {geo.state === 'error' && (
             <p role="alert" className="text-sm text-ink-warn">
               {geo.message}
             </p>
           )}
-        </section>
-      </div>
-
-      <section aria-labelledby="resultados" className="grid gap-4">
-        <div className="flex flex-wrap items-center justify-between gap-2">
-          <h2 id="resultados" className="font-ui text-xl font-bold">
-            Centros de acopio
-          </h2>
-          <Button
-            variant="ghost"
-            icon={showMap ? <List aria-hidden="true" /> : <MapIcon aria-hidden="true" />}
-            aria-pressed={showMap}
-            onClick={() => setShowMap((v) => !v)}
-            disabled={!centers}
-          >
-            {showMap ? 'Ocultar mapa' : 'Ver mapa'}
-          </Button>
-        </div>
-
-        <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-          <p aria-live="polite" className="text-sm text-ink-2">
-            {centers &&
-              (results.length === 1 ? '1 centro' : `${results.length} centros`) +
-                (origin ? ', ordenados por distancia' : '') +
-                (groups && groups.length > 1 ? ` en ${groups.length} provincias o comarcas` : '') +
-                (filtersActive ? ' con estos filtros' : '')}
-          </p>
-          {centers && filtersActive && results.length > 0 && (
-            <Button
-              variant="ghost"
-              size="sm"
-              icon={<X aria-hidden="true" />}
-              className="min-h-11"
-              onClick={clearFilters}
-            >
-              Quitar filtros
-            </Button>
+          {onlyOpen && (
+            <p className="text-sm text-ink-2">
+              «Abierto ahora» usa el horario que publicó cada centro (hora de Panamá). Los que no publicaron horario
+              quedan fuera.
+            </p>
           )}
         </div>
 
@@ -366,7 +426,7 @@ export function PublicHome({
             </div>
           )}
 
-          <div className="grid gap-4 lg:col-start-1 lg:row-start-1">
+          <div className="grid gap-6 lg:col-start-1 lg:row-start-1">
             {loadError ? (
               <ErrorState error={centersQ.error!} onRetry={centersQ.reload} />
             ) : !centers ? (
@@ -374,19 +434,26 @@ export function PublicHome({
             ) : results.length === 0 ? (
               <EmptyState
                 variant={filtersActive ? 'no-results' : 'empty'}
-                title="Aún no hay centros en esta zona"
-                description="¿Conoces uno? Publícalo: solo necesitas tu correo."
+                title={filtersActive ? 'Ningún centro coincide con estos filtros' : 'Aún no hay centros publicados'}
+                description={
+                  filtersActive
+                    ? 'Prueba otra provincia o quita «Abierto ahora»: muchos centros no han publicado horario.'
+                    : '¿Conoces uno? Publícalo: solo necesitas tu correo.'
+                }
                 headingLevel={3}
                 actions={
                   <>
-                    <Link href="/publicar" className={`${buttonVariants({ variant: 'primary' })} no-underline`}>
-                      Publicar un centro
-                    </Link>
                     {filtersActive && (
-                      <Button variant="secondary" onClick={clearFilters}>
+                      <Button variant="primary" onClick={clearFilters}>
                         Quitar filtros
                       </Button>
                     )}
+                    <Link
+                      href="/publicar"
+                      className={`${buttonVariants({ variant: filtersActive ? 'secondary' : 'primary' })} no-underline`}
+                    >
+                      Publicar un centro
+                    </Link>
                   </>
                 }
               />
