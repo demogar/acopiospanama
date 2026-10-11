@@ -85,8 +85,8 @@
     "address": "Planta baja del edificio Hatillo, sede de la Alcaldía de Panamá, Avenida Cuba, Calidonia",
     "lat": 8.9708527,
     "lng": -79.534231,
-    "schedule": { "SAT": { "open": "08:00", "close": "18:00" } },
-    "hoursNote": "Jornada anunciada para el sábado 10 de octubre (8:00 a. m. a 6:00 p. m.). Confirma si sigue recibiendo.",
+    "schedule": { "SAT": { "open": "08:00", "close": "18:00" }, "SUN": { "open": "08:00", "close": "18:00" } },
+    "hoursNote": "Sábado 10 y domingo 11 de octubre, de 8:00 a. m. a 6:00 p. m. (el domingo, confirmado en persona). Confirma si sigue recibiendo los próximos días.",
     "notes": "Reciben alimentos no perecederos, agua, leche en polvo y fórmula, higiene personal y sanitaria, pañales de niño y adulto, materiales de primeros auxilios, útiles escolares y alimento para mascotas. Por ahora no reciben ropa.",
     "needs": [
       { "item": "FOOD", "level": "NEEDED" },
