@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.3.0](https://github.com/demogar/acopiospanama/compare/v0.2.1...v0.3.0) (2026-10-11)
+
+
+### Novedades
+
+* **web:** aviso de independencia en el pie, páginas internas alineadas y enlaces en las notas ([#26](https://github.com/demogar/acopiospanama/issues/26)) ([18c9cc2](https://github.com/demogar/acopiospanama/commit/18c9cc202dd0a3f0e87ea17682e565b22b080481))
+* **web:** SEO, imágenes para compartir, analítica propia (Medama) y franja de emergencias ([#29](https://github.com/demogar/acopiospanama/issues/29)) ([9c1dbd0](https://github.com/demogar/acopiospanama/commit/9c1dbd0e5b16fa97be5e6493441e93464a5c0a66))
+
+
+### Correcciones
+
+* **web:** correo de contacto en la página de privacidad ([#28](https://github.com/demogar/acopiospanama/issues/28)) ([ce5cde2](https://github.com/demogar/acopiospanama/commit/ce5cde28a3aee950a6e17eeaab5601159359a31a))
+
 ## [0.2.1](https://github.com/demogar/acopiospanama/compare/v0.2.0...v0.2.1) (2026-10-11)
 
 

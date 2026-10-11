@@ -1,6 +1,6 @@
 {
   "name": "@acopio/api",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "private": true,
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
