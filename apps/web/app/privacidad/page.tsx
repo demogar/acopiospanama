@@ -1,12 +1,13 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SiteFrame } from '@/components/site-frame';
 import { Prose } from '@/components/public/prose';
+import { pageMeta } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Privacidad · Acopio Panamá',
+export const metadata = pageMeta({
+  title: 'Privacidad',
   description: 'Qué datos se publican, cuáles se guardan, por cuánto tiempo y cómo pedir que se borren.',
-};
+  path: '/privacidad',
+});
 
 /** Correo para solicitudes sobre datos (borrado, consultas). */
 const CONTACT_EMAIL = 'acopiospanama@demogar.com';
@@ -95,9 +96,22 @@ export default function Privacidad() {
             tu conexión como cualquier sitio web, pero no tu ubicación ni qué centro miras. Los botones «Cómo llegar»,
             «Waze» y «WhatsApp» abren esos servicios, con sus propias reglas de privacidad.
           </p>
+        </section>
+
+        <section>
+          <h2>Cuánta gente usa el sitio</h2>
           <p>
-            No usamos analítica, publicidad ni cookies de terceros. La única cookie es la de tu sesión, si entras para
-            administrar un centro.
+            Para saber si el directorio sirve y qué páginas se consultan usamos una analítica propia,{' '}
+            <a href="https://oss.medama.io" rel="noopener noreferrer">
+              Medama
+            </a>
+            , de código abierto y en un servidor nuestro. Cuenta visitas por página <strong>sin cookies</strong> y sin
+            identificadores personales; no se comparte con nadie ni sirve para publicidad. Si la bloqueas, el sitio
+            funciona igual.
+          </p>
+          <p>
+            No hay publicidad ni cookies de terceros. La única cookie es la de tu sesión, si entras para administrar un
+            centro.
           </p>
         </section>
 

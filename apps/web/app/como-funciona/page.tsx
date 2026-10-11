@@ -1,13 +1,14 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SiteFrame } from '@/components/site-frame';
 import { Prose } from '@/components/public/prose';
+import { pageMeta } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Cómo funciona · Acopio Panamá',
+export const metadata = pageMeta({
+  title: 'Cómo funciona',
   description:
     'Cómo se mantiene al día el directorio de centros de acopio: confirmaciones, reportes y reglas automáticas.',
-};
+  path: '/como-funciona',
+});
 
 export default function ComoFunciona() {
   return (

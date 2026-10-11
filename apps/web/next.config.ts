@@ -12,6 +12,8 @@ const config: NextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
   productionBrowserSourceMaps: false,
+  // Fuentes de las imágenes para compartir (`lib/og.tsx`): que lleguen al `standalone` pase lo que pase.
+  outputFileTracingIncludes: { '/*': ['./assets/fonts/*'] },
   async rewrites() {
     return [{ source: '/api/:path*', destination: `${api}/api/:path*` }];
   },

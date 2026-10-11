@@ -38,8 +38,9 @@ Estas reglas protegen a la gente que usa el directorio. Un PR que las rompa no s
 - **Privacidad:** los correos nunca son públicos. Los teléfonos y nombres de contacto solo se publican con
   consentimiento expreso. La ubicación del usuario («cerca de mí») nunca sale del navegador. No se guardan IPs:
   se usa un identificador diario cifrado.
-- **Sin rastreadores:** nada de analítica de terceros, píxeles ni fuentes o scripts externos. La CSP es estricta;
-  si un cambio la toca, explícalo.
+- **Sin rastreadores:** nada de analítica de terceros, píxeles ni fuentes o scripts externos. La única excepción es
+  la analítica propia (Medama, autoalojada, sin cookies ni identificadores personales; se apaga con
+  `ANALYTICS_HOST=`). La CSP es estricta; si un cambio la toca, explícalo.
 - **Antifraude:** las fichas no pueden pedir dinero. No se debilita ese filtro sin una alternativa mejor.
 - **Auto-mantenimiento:** se prefieren reglas automáticas a tareas manuales de moderación.
 - **Base de datos:** los cambios van en una migración nueva (`apps/api/migrations/00N_*.sql`); nunca se editan

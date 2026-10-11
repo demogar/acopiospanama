@@ -30,6 +30,16 @@ const VERSION = process.env.NEXT_PUBLIC_APP_VERSION;
 const navLink =
   'inline-flex min-h-11 items-center px-2 text-sm font-semibold text-ink no-underline hover:underline focus-visible:shadow-[var(--focus-ring)] focus-visible:outline-none';
 
+/** Líneas de emergencia de Panamá. Van arriba de todo porque el directorio no atiende emergencias. */
+const EMERGENCY_LINES = [
+  { label: 'Asistencia médica', number: '911', tel: '911' },
+  { label: 'SINAPROC', number: '520-4429', tel: '+5075204429' },
+  { label: 'Bomberos', number: '103', tel: '103' },
+];
+
+const emergencyLink =
+  'font-mono font-bold text-white underline decoration-white/60 underline-offset-2 hover:decoration-white';
+
 export function SiteFrame({ title, subtitle, back, actions, width = 'page', children }: SiteFrameProps) {
   const max = WIDTHS[width];
   return (
@@ -40,6 +50,19 @@ export function SiteFrame({ title, subtitle, back, actions, width = 'page', chil
       >
         Saltar al contenido
       </a>
+      <aside aria-label="Emergencias" className="bg-rojo text-white">
+        <p className={`${SITE} flex flex-wrap items-center gap-x-3 gap-y-0.5 py-1.5 text-sm leading-snug`}>
+          <strong className="font-semibold">¿Emergencia?</strong>
+          {EMERGENCY_LINES.map((l) => (
+            <span key={l.tel} className="whitespace-nowrap">
+              {l.label}:{' '}
+              <a href={`tel:${l.tel}`} className={emergencyLink}>
+                {l.number}
+              </a>
+            </span>
+          ))}
+        </p>
+      </aside>
       <header className="border-b border-keyline bg-cloth-pale">
         <div className={`${SITE} flex flex-wrap items-center justify-between gap-x-3 gap-y-1 py-1`}>
           <Link
@@ -97,13 +120,7 @@ export function SiteFrame({ title, subtitle, back, actions, width = 'page', chil
               Privacidad
             </Link>
           </nav>
-          <p>
-            ¿Emergencia? Llama al{' '}
-            <a href="tel:911" className="font-semibold text-ink">
-              911
-            </a>
-            . Este directorio no atiende emergencias.
-          </p>
+          <p>Este directorio no atiende emergencias: usa las líneas de arriba.</p>
         </div>
         <p className={`${SITE} max-w-none pb-3 text-xs leading-relaxed text-ink-2`}>
           Acopio Panamá es una iniciativa comunitaria e independiente para la respuesta al terremoto del 9 de octubre de

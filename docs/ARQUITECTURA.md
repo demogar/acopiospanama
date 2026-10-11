@@ -49,7 +49,7 @@ el centro con un POST, para que los antivirus de correo no lo activen solos.
 - Moderación con segundo factor TOTP obligatorio. Las acciones sensibles exigen confirmar de nuevo el código.
   Tras 10 códigos incorrectos, el segundo factor se bloquea 15 minutos.
 - Autorización en el servidor en cada solicitud. Lo que no corresponde responde 404.
-- CSP con nonce y sin recursos externos, salvo las teselas del mapa. Cookies `__Host-` HttpOnly; protección CSRF
+- CSP con nonce y sin recursos externos, salvo las teselas del mapa y el script de la analítica propia (Medama, sin cookies). Cookies `__Host-` HttpOnly; protección CSRF
   con cabecera y verificación del origen.
 - Auditoría de solo inserción, con identificadores y sin textos personales.
 - Retención automática: cuentas sin verificar, 1 día; confirmaciones, 30 días; reportes, 90 días; centros

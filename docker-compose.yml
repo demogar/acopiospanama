@@ -67,7 +67,10 @@ services:
     environment:
       TZ: America/Panama
       API_INTERNAL_URL: http://api:3001
+      APP_ORIGIN: ${APP_ORIGIN:?Define APP_ORIGIN (https://tu-dominio)}
       MAP_TILE_HOST: ${MAP_TILE_HOST:-https://tile.openstreetmap.org}
+      # Analítica propia (Medama). Vacío (ANALYTICS_HOST=) la desactiva.
+      ANALYTICS_HOST: ${ANALYTICS_HOST-https://stats.demogar.software}
       NODE_OPTIONS: --max-old-space-size=256
     read_only: true
     tmpfs: ['/tmp', '/app/apps/web/.next/cache']
