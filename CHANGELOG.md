@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.0](https://github.com/demogar/acopiospanama/compare/v0.7.1...v0.8.0) (2026-10-11)
+
+
+### Novedades
+
+* **web:** crédito «Iniciativa de Demóstenes García» en el pie ([#43](https://github.com/demogar/acopiospanama/issues/43)) ([ebb4ed2](https://github.com/demogar/acopiospanama/commit/ebb4ed2bf47e8cfd3988047ef7ab78d01429d6cc))
+
 ## [0.7.1](https://github.com/demogar/acopiospanama/compare/v0.7.0...v0.7.1) (2026-10-11)
 
 
