@@ -66,23 +66,22 @@ export function CenterCard({
 
       <NeedsSummary center={center} meta={meta} highlight={highlightItem} />
 
-      <footer className="mt-auto grid gap-3 border-t border-keyline-soft pt-4">
+      <footer className="mt-auto flex flex-wrap items-center justify-between gap-x-4 gap-y-3 border-t border-keyline-soft pt-4">
         <FreshnessLine center={center} />
-        <div className="grid grid-cols-2 gap-2">
+        <div className="flex gap-2">
           <a
             href={dir.google}
             target="_blank"
             rel="noopener noreferrer"
-            className={`${buttonVariants({ variant: 'secondary' })} no-underline`}
+            className={`${buttonVariants({ variant: 'secondary' })} px-4 no-underline`}
           >
             <Navigation aria-hidden="true" className="size-4" />
             Cómo llegar
             <span className="sr-only"> a {center.name}</span>
             <NewTab label="se abre en Google Maps" />
           </a>
-          <Link href={`/c/${center.slug}`} className={`${buttonVariants({ variant: 'primary' })} no-underline`}>
-            Ver centro
-            <span className="sr-only">: {center.name}</span>
+          <Link href={`/c/${center.slug}`} className={`${buttonVariants({ variant: 'primary' })} px-4 no-underline`}>
+            Ver<span className="sr-only"> {center.name}</span>
           </Link>
         </div>
       </footer>

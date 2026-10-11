@@ -33,6 +33,9 @@ const CenterMap = dynamic(() => import('./center-map'), {
 
 const ALL = 'ALL';
 
+/** Los filtros se leen como botones, no como etiquetas: negrita y tinta plena, como en el diseño. */
+const CHIP = 'font-bold text-ink';
+
 type Geo =
   | { state: 'off' }
   | { state: 'locating' }
@@ -232,6 +235,17 @@ export function PublicHome({
     setQuery('');
   };
 
+  // Qué filtros hay puestos, en una línea, junto a «Quitar filtros».
+  const filterSummary = [
+    item !== ALL && itemLabel(meta, item),
+    province !== ALL && provinceLabel(meta, province),
+    ctype !== ALL && centerTypeLabel(meta, ctype),
+    onlyOpen && 'abiertos ahora',
+    query.trim() !== '' && `«${query.trim()}»`,
+  ]
+    .filter(Boolean)
+    .join(' · ');
+
   const loadError = !centers && centersQ.error;
   const n = results.length;
   const resultTitle = !centers
@@ -241,7 +255,10 @@ export function PublicHome({
   return (
     <div className="grid gap-8">
       {/* 1. Presentación: la pregunta de entrada es qué tienes para dar. */}
-      <section aria-labelledby="hero" className="grid gap-4 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] lg:gap-8">
+      <section
+        aria-labelledby="hero"
+        className="grid gap-5 lg:grid-cols-[minmax(0,7fr)_minmax(0,4fr)] lg:items-start lg:gap-8"
+      >
         <div className="grid gap-3 lg:content-start">
           <p className="text-xs font-bold uppercase tracking-wide text-ink-danger">
             Dónde llevar donaciones y qué necesitan hoy
@@ -262,11 +279,20 @@ export function PublicHome({
             </Link>
           </div>
         </div>
-        <Callout tone="warn" title="Nadie aquí te pedirá dinero" headingLevel={2}>
-          Solo artículos, entregados en mano y por canales verificados: instituciones, municipios, juntas comunales,
-          iglesias y organizaciones con nombre. Si algo no cuadra, repórtalo.{' '}
-          <Link href="/como-funciona#juega-vivo">Cómo evitar el «juega vivo»</Link>
-        </Callout>
+        {/* Aviso corto y plano, como en el diseño: un campo dorado con una marca, sin franja ni icono. */}
+        <aside aria-labelledby="aviso-dinero" className="grid gap-2 bg-oro-soft p-5">
+          <h2 id="aviso-dinero" className="flex items-center gap-2 font-ui text-base font-bold text-ink">
+            <span aria-hidden="true" className="inline-block size-2.5 shrink-0 bg-warn" />
+            Nadie aquí te pedirá dinero
+          </h2>
+          <p className="text-sm leading-relaxed text-ink-2">
+            Solo artículos, entregados en mano por canales verificados. Si un centro pide transferencias o Yappy,
+            repórtalo desde su ficha.
+          </p>
+          <Link href="/como-funciona#juega-vivo" className="justify-self-start text-sm font-bold text-ink">
+            Cómo evitar el «juega vivo»
+          </Link>
+        </aside>
       </section>
 
       {/* 2. Lo que piden los centros: artículos con conteos; tocar uno filtra todo lo demás. */}
@@ -311,11 +337,12 @@ export function PublicHome({
           </Button>
         </div>
 
-        <div className="grid gap-4 bg-cloth-shade p-4">
-          <ChipGroup legend="Provincia o comarca" className="flex flex-wrap gap-2">
+        <div className="grid gap-4">
+          <ChipGroup legend="Provincia o comarca" hideLegend>
             <Chip
               type="radio"
               size="comfortable"
+              className={CHIP}
               name="provincia"
               value={ALL}
               checked={province === ALL}
@@ -329,6 +356,7 @@ export function PublicHome({
                 key={p.key}
                 type="radio"
                 size="comfortable"
+                className={CHIP}
                 name="provincia"
                 value={p.key}
                 checked={province === p.key}
@@ -340,49 +368,13 @@ export function PublicHome({
             ))}
           </ChipGroup>
 
-          <div className="flex flex-wrap items-center gap-2">
-            <Chip
-              type="checkbox"
-              size="comfortable"
-              name="abierto"
-              checked={onlyOpen}
-              onChange={(e) => setOnlyOpen(e.target.checked)}
+          {/* Buscador y tipo siempre en el DOM: en el teléfono se pliegan tras «Más filtros». */}
+          <div className="flex flex-wrap items-end gap-3">
+            <Field
+              id="filtro-buscar"
+              label="Buscar"
+              className={`min-w-0 flex-[1_1_16rem] ${moreOpen ? '' : 'max-md:hidden'}`}
             >
-              Abierto ahora
-            </Chip>
-            {geo.state === 'on' ? (
-              <Button variant="secondary" icon={<X aria-hidden="true" />} onClick={() => setGeo({ state: 'off' })}>
-                Quitar «cerca de mí»
-              </Button>
-            ) : (
-              <Button
-                variant="secondary"
-                icon={<LocateFixed aria-hidden="true" />}
-                loading={geo.state === 'locating'}
-                onClick={locate}
-              >
-                Cerca de mí
-              </Button>
-            )}
-            <Button
-              variant="ghost"
-              icon={<SlidersHorizontal aria-hidden="true" />}
-              aria-expanded={moreOpen}
-              aria-controls="mas-filtros"
-              onClick={() => setMoreOpen((v) => !v)}
-            >
-              {moreOpen ? 'Menos filtros' : 'Más filtros'}
-            </Button>
-            {filtersActive && (
-              <Button variant="ghost" icon={<X aria-hidden="true" />} onClick={clearFilters}>
-                Quitar filtros
-              </Button>
-            )}
-          </div>
-
-          {/* Siempre en el DOM (oculto) para que `aria-controls` apunte a algo real. */}
-          <div id="mas-filtros" hidden={!moreOpen} className="grid gap-3 md:grid-cols-2">
-            <Field label="Buscar" hint="Nombre, distrito o comunidad">
               {(c) => (
                 <SearchInput
                   {...c}
@@ -390,14 +382,63 @@ export function PublicHome({
                   onChange={(e) => setQuery(e.target.value)}
                   onClear={() => setQuery('')}
                   clearLabel="Borrar búsqueda"
-                  placeholder="Ej.: Tonosí"
+                  placeholder="Nombre, distrito o comunidad"
                   autoComplete="off"
                 />
               )}
             </Field>
-            <Select label="Tipo de lugar" items={typeItems} value={ctype} onValueChange={(v) => setCtype(v ?? ALL)} />
+            <div id="filtro-tipo" className={`min-w-0 flex-[0_1_14rem] ${moreOpen ? '' : 'max-md:hidden'}`}>
+              <Select label="Tipo de lugar" items={typeItems} value={ctype} onValueChange={(v) => setCtype(v ?? ALL)} />
+            </div>
+            <Chip
+              type="checkbox"
+              size="comfortable"
+              className={CHIP}
+              name="abierto"
+              checked={onlyOpen}
+              onChange={(e) => setOnlyOpen(e.target.checked)}
+            >
+              <span aria-hidden="true" className="size-2 shrink-0 bg-verde" />
+              Abierto ahora
+            </Chip>
+            <Chip
+              type="checkbox"
+              size="comfortable"
+              className={CHIP}
+              name="cerca"
+              checked={geo.state === 'on'}
+              disabled={geo.state === 'locating'}
+              onChange={(e) => (e.target.checked ? locate() : setGeo({ state: 'off' }))}
+            >
+              <LocateFixed aria-hidden="true" />
+              {geo.state === 'locating' ? 'Buscando tu ubicación…' : 'Cerca de mí'}
+            </Chip>
+            <Button
+              variant="ghost"
+              className="md:hidden"
+              icon={<SlidersHorizontal aria-hidden="true" />}
+              aria-expanded={moreOpen}
+              aria-controls="filtro-buscar filtro-tipo"
+              onClick={() => setMoreOpen((v) => !v)}
+            >
+              {moreOpen ? 'Menos filtros' : 'Más filtros'}
+            </Button>
           </div>
 
+          {filtersActive && (
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-ink-2">
+              <span>{filterSummary}</span>
+              <Button
+                variant="ghost"
+                size="sm"
+                icon={<X aria-hidden="true" />}
+                className="min-h-11"
+                onClick={clearFilters}
+              >
+                Quitar filtros
+              </Button>
+            </div>
+          )}
           {geo.state === 'error' && (
             <p role="alert" className="text-sm text-ink-warn">
               {geo.message}
