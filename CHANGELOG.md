@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.10.0](https://github.com/demogar/acopiospanama/compare/v0.9.0...v0.10.0) (2026-10-11)
+
+
+### Novedades
+
+* **web:** página de accesibilidad y mejoras a11y sobre la portada rediseñada ([#48](https://github.com/demogar/acopiospanama/issues/48)) ([72018da](https://github.com/demogar/acopiospanama/commit/72018daaeccd134d9a4e6b7e2457833a1184bd80))
+
 ## [0.9.0](https://github.com/demogar/acopiospanama/compare/v0.8.0...v0.9.0) (2026-10-11)
 
 
