@@ -12,12 +12,16 @@ export function CenterCard({
   meta,
   distanceKm,
   highlightItem,
+  headingLevel = 3,
 }: {
   center: PublicCenter;
   meta: PublicMeta | null;
   distanceKm?: number | null;
   highlightItem?: string | null;
+  /** 4 cuando la tarjeta va bajo un encabezado de provincia. */
+  headingLevel?: 3 | 4;
 }) {
+  const Heading = headingLevel === 4 ? 'h4' : 'h3';
   const urgent = center.needs.some((n) => n.level === 'URGENT');
   return (
     <article
@@ -32,14 +36,14 @@ export function CenterCard({
           </Badge>
           <StatusBadges center={center} />
         </div>
-        <h3 className="font-ui text-lg font-bold leading-snug text-ink">
+        <Heading className="font-ui text-lg font-bold leading-snug text-ink">
           <Link
             href={`/c/${center.slug}`}
             className="text-ink no-underline after:absolute after:inset-0 after:content-[''] hover:underline focus-visible:outline-none"
           >
             {center.name}
           </Link>
-        </h3>
+        </Heading>
         <p className="text-sm text-ink-2">
           {organizerLabel(meta, center.organizerType)}
           {center.organizerName && center.organizerName !== center.name ? ` · ${center.organizerName}` : ''}

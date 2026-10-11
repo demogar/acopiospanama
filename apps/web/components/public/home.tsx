@@ -17,7 +17,7 @@ import {
 } from '@demogar/mola-ui';
 import { ErrorState, Loading } from '@/components/states';
 import { useApi } from '@/lib/use-api';
-import { centerTypeLabel, fold, hasCoords, haversineKm } from '@/lib/public-format';
+import { centerTypeLabel, fold, hasCoords, haversineKm, provinceLabel } from '@/lib/public-format';
 import { CENTER_TYPES_FALLBACK } from '@/lib/public-schedule';
 import type { PublicCenter, PublicMeta } from '@/lib/public-types';
 import { CenterCard } from './center-card';
@@ -141,7 +141,7 @@ export function PublicHome({
     );
   }, []);
 
-  const origin = geo.state === 'on' ? { lat: geo.lat, lng: geo.lng } : null;
+  const origin = useMemo(() => (geo.state === 'on' ? { lat: geo.lat, lng: geo.lng } : null), [geo]);
 
   const results = useMemo(() => {
     if (!centers) return [];
@@ -164,6 +164,18 @@ export function PublicHome({
     }
     return rows;
   }, [centers, province, item, ctype, onlyOpen, now, query, origin]);
+
+  // Sin provincia elegida ni orden por distancia, la lista se agrupa por provincia en el orden del catálogo.
+  const groups = useMemo(() => {
+    if (province !== ALL || origin) return null;
+    const order = Object.keys(meta?.provinces ?? {});
+    const rank = (k: string) => (order.includes(k) ? order.indexOf(k) : order.length);
+    const byProvince = new Map<string, typeof results>();
+    for (const r of results) byProvince.set(r.c.province, [...(byProvince.get(r.c.province) ?? []), r]);
+    return [...byProvince.entries()]
+      .sort(([a], [b]) => rank(a) - rank(b) || a.localeCompare(b))
+      .map(([key, rows]) => ({ key, label: provinceLabel(meta, key), rows }));
+  }, [province, origin, meta, results]);
 
   const filtersActive = province !== ALL || item !== ALL || ctype !== ALL || onlyOpen || query.trim() !== '';
   const clearFilters = () => {
@@ -316,6 +328,7 @@ export function PublicHome({
             {centers &&
               (results.length === 1 ? '1 centro' : `${results.length} centros`) +
                 (origin ? ', ordenados por distancia' : '') +
+                (groups && groups.length > 1 ? ` en ${groups.length} provincias o comarcas` : '') +
                 (filtersActive ? ' con estos filtros' : '')}
           </p>
           {centers && filtersActive && results.length > 0 && (
@@ -377,20 +390,23 @@ export function PublicHome({
                   </>
                 }
               />
+            ) : groups ? (
+              groups.map((g) => (
+                <section key={g.key} aria-labelledby={`prov-${g.key}`} className="grid gap-3">
+                  <h3
+                    id={`prov-${g.key}`}
+                    className="flex flex-wrap items-baseline gap-x-2 border-b border-keyline pb-1 font-ui text-base font-bold text-ink"
+                  >
+                    {g.label}
+                    <span className="text-sm font-normal text-ink-2">
+                      {g.rows.length === 1 ? '1 centro' : `${g.rows.length} centros`}
+                    </span>
+                  </h3>
+                  <CenterList rows={g.rows} meta={meta} item={item} showMap={showMap} headingLevel={4} />
+                </section>
+              ))
             ) : (
-              <ul
-                className={
-                  showMap
-                    ? 'grid gap-3 md:grid-cols-2 2xl:grid-cols-3'
-                    : 'grid gap-3 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4'
-                }
-              >
-                {results.map(({ c, km }) => (
-                  <li key={c.id} className="grid">
-                    <CenterCard center={c} meta={meta} distanceKm={km} highlightItem={item !== ALL ? item : null} />
-                  </li>
-                ))}
-              </ul>
+              <CenterList rows={results} meta={meta} item={item} showMap={showMap} />
             )}
             {origin && results.some((r) => r.km == null) && (
               <p className="text-sm text-ink-2">Los centros sin ubicación en el mapa aparecen al final.</p>
@@ -399,5 +415,41 @@ export function PublicHome({
         </div>
       </section>
     </div>
+  );
+}
+
+function CenterList({
+  rows,
+  meta,
+  item,
+  showMap,
+  headingLevel,
+}: {
+  rows: { c: PublicCenter; km: number | null }[];
+  meta: PublicMeta | null;
+  item: string;
+  showMap: boolean;
+  headingLevel?: 3 | 4;
+}) {
+  return (
+    <ul
+      className={
+        showMap
+          ? 'grid gap-3 md:grid-cols-2 2xl:grid-cols-3'
+          : 'grid gap-3 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4'
+      }
+    >
+      {rows.map(({ c, km }) => (
+        <li key={c.id} className="grid">
+          <CenterCard
+            center={c}
+            meta={meta}
+            distanceKm={km}
+            highlightItem={item !== ALL ? item : null}
+            headingLevel={headingLevel}
+          />
+        </li>
+      ))}
+    </ul>
   );
 }
