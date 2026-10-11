@@ -1,0 +1,162 @@
+[
+  {
+    "name": "Defensoría del Pueblo (sede principal)",
+    "centerType": "ACOPIO",
+    "organizerType": "GOBIERNO",
+    "organizerName": "Defensoría del Pueblo",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Pueblo Nuevo",
+    "address": "Sede principal de la Defensoría del Pueblo, PH Los Toneles, Vía España con Avenida Fernández de Córdoba (al lado de Dimar y Torre Gate), Pueblo Nuevo",
+    "lat": 8.998,
+    "lng": -79.5198,
+    "schedule": {
+      "MON": { "open": "07:00", "close": "18:00" },
+      "TUE": { "open": "07:00", "close": "18:00" },
+      "WED": { "open": "07:00", "close": "18:00" },
+      "THU": { "open": "07:00", "close": "18:00" },
+      "FRI": { "open": "07:00", "close": "18:00" },
+      "SAT": { "open": "07:00", "close": "18:00" },
+      "SUN": { "open": "07:00", "close": "18:00" }
+    },
+    "hoursNote": "Anunciado a partir del domingo 11 de octubre, de 7:00 a. m. a 6:00 p. m.; no publicaron hasta cuándo. La Defensoría recomienda confirmar horarios antes de ir.",
+    "notes": "Piden agua embotellada, pañales de adulto y de niño, comida seca, insumos hospitalarios, leche para infantes, linternas, ventiladores, carpas y sillas. La Defensoría también recibe en el COE de Aguadulce y en la Estación N.° 7 de Bomberos del aeropuerto de Penonomé.",
+    "needs": [
+      { "item": "WATER", "level": "NEEDED", "note": "Agua embotellada" },
+      { "item": "BABY", "level": "NEEDED", "note": "Pañales de niño y adulto, leche para infantes" },
+      { "item": "FOOD", "level": "NEEDED", "note": "Comida seca" },
+      { "item": "FIRST_AID", "level": "NEEDED", "note": "Insumos hospitalarios" },
+      { "item": "LIGHTS", "level": "NEEDED", "note": "Linternas" },
+      { "item": "TARPS", "level": "NEEDED", "note": "Carpas" }
+    ],
+    "source": {
+      "title": "Sitio oficial de la Defensoría del Pueblo (también Telemetro, 11 de octubre)",
+      "url": "https://www.defensoria.gob.pa/defensoria-despliega-recorrido-por-la-provincia-de-cocle-tras-terremoto/",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Estación N.° 7 de Bomberos (aeropuerto de Penonomé)",
+    "centerType": "ACOPIO",
+    "organizerType": "GOBIERNO",
+    "organizerName": "Defensoría del Pueblo y Benemérito Cuerpo de Bomberos",
+    "province": "COCLE",
+    "district": "Penonomé",
+    "community": "Penonomé",
+    "address": "Estación N.° 7 del Benemérito Cuerpo de Bomberos, en el aeródromo de Penonomé (Calle Las Lajas)",
+    "lat": 8.5006162,
+    "lng": -80.3607105,
+    "schedule": {},
+    "hoursNote": "Horario no publicado: confirma antes de ir.",
+    "notes": "Punto de recepción de la Defensoría del Pueblo en Coclé. Piden agua embotellada, pañales de adulto y de niño, comida seca, insumos hospitalarios, leche para infantes, linternas, ventiladores, carpas y sillas.",
+    "needs": [
+      { "item": "WATER", "level": "NEEDED", "note": "Agua embotellada" },
+      { "item": "BABY", "level": "NEEDED", "note": "Pañales de niño y adulto, leche para infantes" },
+      { "item": "FOOD", "level": "NEEDED", "note": "Comida seca" },
+      { "item": "FIRST_AID", "level": "NEEDED", "note": "Insumos hospitalarios" },
+      { "item": "LIGHTS", "level": "NEEDED", "note": "Linternas" },
+      { "item": "TARPS", "level": "NEEDED", "note": "Carpas" }
+    ],
+    "source": {
+      "title": "Sitio oficial de la Defensoría del Pueblo",
+      "url": "https://www.defensoria.gob.pa/defensoria-despliega-recorrido-por-la-provincia-de-cocle-tras-terremoto/",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Arzobispado de Panamá (Cáritas Arquidiocesana)",
+    "centerType": "ACOPIO",
+    "organizerType": "IGLESIA",
+    "organizerName": "Cáritas Arquidiocesana de Panamá",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "San Francisco",
+    "address": "Arzobispado de Panamá, Calle Primera Sur, Carrasquilla",
+    "lat": 8.9999751,
+    "lng": -79.5156947,
+    "schedule": {
+      "MON": { "open": "08:30", "close": "15:30" },
+      "TUE": { "open": "08:30", "close": "15:30" },
+      "WED": { "open": "08:30", "close": "15:30" },
+      "THU": { "open": "08:30", "close": "15:30" },
+      "FRI": { "open": "08:30", "close": "15:30" }
+    },
+    "hoursNote": "Del lunes 12 al viernes 16 de octubre, de 8:30 a. m. a 3:30 p. m.",
+    "notes": "Campaña de Solidaridad por Panamá de Cáritas. Reciben agua, alimentos no perecederos, insumos de primeros auxilios, higiene personal de adultos y niños y comida para perros y gatos. No reciben ropa. Cáritas también recibe en el gimnasio de la USMA, en la parroquia Inmaculada Concepción (Altos de San Francisco, La Chorrera) y en la parroquia Nuestra Señora del Carmen (Juan Díaz).",
+    "needs": [
+      { "item": "WATER", "level": "NEEDED" },
+      { "item": "FOOD", "level": "NEEDED" },
+      { "item": "FIRST_AID", "level": "NEEDED" },
+      { "item": "HYGIENE", "level": "NEEDED", "note": "De adultos y niños" },
+      { "item": "PET_FOOD", "level": "NEEDED", "note": "Perros y gatos" },
+      { "item": "CLOTHES", "level": "ENOUGH" }
+    ],
+    "source": {
+      "title": "Arquidiócesis de Panamá",
+      "url": "https://arquidiocesisdepanama.org/caritas-arquidiocesana-inicia-campana-de-solidaridad-para-apoyar-a-familias-afectadas-por-el-sismo-en-panama/",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "APEDE (sede central)",
+    "centerType": "ACOPIO",
+    "organizerType": "ONG",
+    "organizerName": "Asociación Panameña de Ejecutivos de Empresa (APEDE)",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Calidonia",
+    "address": "Edificio APEDE, Avenida Justo Arosemena y Calle 31 Este, La Exposición",
+    "lat": 8.9672645,
+    "lng": -79.5357079,
+    "schedule": {},
+    "hoursNote": "Reciben el lunes 12 y el martes 13 de octubre; no publicaron las horas. Confirma antes de ir.",
+    "notes": "Para familias de Los Santos, Herrera y Veraguas. Piden alimentos no perecederos y agua (enlatados, leche en polvo, fórmula infantil), higiene personal y pañales, primeros auxilios (gasas, vendas, alcohol, guantes), carpas y sábanas. Llevar todo sellado, vigente y, si se puede, separado por categoría. APEDE también recibe en su sede de Azuero, en Chitré.",
+    "needs": [
+      { "item": "FOOD", "level": "NEEDED", "note": "Enlatados, leche en polvo, fórmula infantil" },
+      { "item": "WATER", "level": "NEEDED" },
+      { "item": "HYGIENE", "level": "NEEDED" },
+      { "item": "BABY", "level": "NEEDED", "note": "Pañales" },
+      { "item": "FIRST_AID", "level": "NEEDED", "note": "Gasas, vendas, alcohol, guantes" },
+      { "item": "TARPS", "level": "NEEDED", "note": "Carpas" },
+      { "item": "BEDDING", "level": "NEEDED", "note": "Sábanas" }
+    ],
+    "source": {
+      "title": "Metro Libre y comunicado de APEDE",
+      "url": "https://www.metrolibre.com/economia/gremios-empresariales-se-unen-para-respaldar-a-familias-afectadas-por-el-sismo-en-azuero-y-veraguas-PP26385192",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Cámara de Comercio de Colón (acopio de la Zona Libre)",
+    "centerType": "ACOPIO",
+    "organizerType": "GOBIERNO",
+    "organizerName": "Zona Libre de Colón",
+    "province": "COLON",
+    "district": "Colón",
+    "community": "Colón",
+    "address": "Cámara de Comercio, Agricultura e Industrias de Colón, Paseo Gorgas entre Calle 9 y Calle 10, frente al puerto Colón 2000",
+    "lat": 9.3595,
+    "lng": -79.8935,
+    "schedule": {
+      "MON": { "open": "10:00", "close": "15:00" },
+      "TUE": { "open": "10:00", "close": "15:00" },
+      "WED": { "open": "10:00", "close": "15:00" },
+      "THU": { "open": "10:00", "close": "15:00" },
+      "FRI": { "open": "10:00", "close": "15:00" },
+      "SAT": { "open": "10:00", "close": "15:00" },
+      "SUN": { "open": "10:00", "close": "15:00" }
+    },
+    "hoursNote": "Anunciado de 10:00 a. m. a 3:00 p. m. a partir del fin de semana del 10 y 11 de octubre; no publicaron hasta cuándo. Confirma antes de ir.",
+    "notes": "Reciben alimentos secos, ropa en buen estado, artículos de higiene personal y otros insumos de primera necesidad.",
+    "needs": [
+      { "item": "FOOD", "level": "NEEDED", "note": "Alimentos secos" },
+      { "item": "CLOTHES", "level": "NEEDED", "note": "En buen estado" },
+      { "item": "HYGIENE", "level": "NEEDED" }
+    ],
+    "source": {
+      "title": "Crítica, Día a Día y Panamá América",
+      "url": "https://www.critica.com.pa/nacional/colon-zlc-activa-centro-de-acopio-para-familias-afectadas-por-sismo-517828",
+      "date": "2026-10-10"
+    }
+  }
+]
