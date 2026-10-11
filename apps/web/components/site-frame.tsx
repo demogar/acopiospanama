@@ -14,16 +14,24 @@ export interface SiteFrameProps {
   subtitle?: React.ReactNode;
   back?: { href: string; label: string };
   actions?: React.ReactNode;
-  /** Ancho del contenido: `page` (por defecto, ~ 64rem) o `prose` (~ 42rem, para textos). */
-  width?: 'page' | 'prose';
+  /**
+   * Ancho del contenido: `prose` (~ 48rem, textos y formularios), `page` (por defecto, ~ 72rem)
+   * o `wide` (el ancho del sitio, ~ 100rem, para el directorio).
+   */
+  width?: 'page' | 'prose' | 'wide';
   children: React.ReactNode;
 }
+
+/** Ancho del sitio (cabecera, pie y páginas `wide`) y márgenes laterales según la pantalla. */
+const SITE = 'mx-auto w-full max-w-[100rem] px-4 sm:px-6 lg:px-8';
+const WIDTHS = { prose: 'max-w-3xl', page: 'max-w-6xl', wide: 'max-w-[100rem]' } as const;
+const VERSION = process.env.NEXT_PUBLIC_APP_VERSION;
 
 const navLink =
   'inline-flex min-h-11 items-center px-2 text-sm font-semibold text-ink no-underline hover:underline focus-visible:shadow-[var(--focus-ring)] focus-visible:outline-none';
 
 export function SiteFrame({ title, subtitle, back, actions, width = 'page', children }: SiteFrameProps) {
-  const max = width === 'prose' ? 'max-w-2xl' : 'max-w-5xl';
+  const max = WIDTHS[width];
   return (
     <div className="flex min-h-dvh flex-col">
       <a
@@ -33,7 +41,7 @@ export function SiteFrame({ title, subtitle, back, actions, width = 'page', chil
         Saltar al contenido
       </a>
       <header className="border-b border-keyline bg-cloth-pale">
-        <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-x-3 gap-y-1 px-4 py-1">
+        <div className={`${SITE} flex flex-wrap items-center justify-between gap-x-3 gap-y-1 py-1`}>
           <Link
             href="/"
             className="inline-flex min-h-11 items-center gap-2 font-ui text-lg font-bold text-ink no-underline"
@@ -52,7 +60,7 @@ export function SiteFrame({ title, subtitle, back, actions, width = 'page', chil
         </div>
       </header>
 
-      <main id="contenido" className={`mx-auto w-full ${max} flex-1 px-4 pb-12 pt-4`}>
+      <main id="contenido" className={`mx-auto w-full ${max} flex-1 px-4 pb-12 pt-4 sm:px-6 lg:px-8 lg:pt-6`}>
         {back && (
           <Link
             href={back.href}
@@ -75,7 +83,9 @@ export function SiteFrame({ title, subtitle, back, actions, width = 'page', chil
       </main>
 
       <footer className="border-t border-keyline bg-cloth-shade">
-        <div className="mx-auto flex max-w-5xl flex-col gap-2 px-4 py-4 text-sm text-ink-2 sm:flex-row sm:items-center sm:justify-between">
+        <div
+          className={`${SITE} flex flex-col gap-2 py-4 text-sm text-ink-2 sm:flex-row sm:items-center sm:justify-between`}
+        >
           <nav aria-label="Información" className="-ms-2 flex flex-wrap gap-1">
             <Link href="/como-funciona" className={navLink}>
               Cómo funciona
@@ -92,6 +102,19 @@ export function SiteFrame({ title, subtitle, back, actions, width = 'page', chil
             . Este directorio no atiende emergencias.
           </p>
         </div>
+        {VERSION && (
+          <p className={`${SITE} pb-3 text-xs text-ink-2`}>
+            <a
+              href="https://github.com/demogar/acopiospanama"
+              className="text-ink-2 no-underline hover:underline"
+              rel="noopener noreferrer"
+            >
+              Código abierto
+            </a>
+            {' · '}
+            <span className="font-mono">v{VERSION}</span>
+          </p>
+        )}
       </footer>
     </div>
   );

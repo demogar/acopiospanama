@@ -204,88 +204,91 @@ export function PublicHome({
 
   return (
     <div className="grid gap-6">
-      <section aria-labelledby="hero" className="grid gap-3">
-        <h1 id="hero" className="font-ui text-3xl font-bold leading-tight text-ink sm:text-4xl">
-          Dónde llevar donaciones y qué necesitan hoy
-        </h1>
-        <p className="max-w-2xl text-ink-2">
-          Centros de acopio de todo Panamá tras el terremoto. La información la mantiene la comunidad:{' '}
-          <strong className="text-ink">confirma con el centro antes de ir</strong>. Aquí solo se piden artículos, nunca
-          dinero.
-        </p>
-        <div className="flex flex-wrap gap-2">
-          <Link href="/publicar" className={`${buttonVariants({ variant: 'primary' })} no-underline`}>
-            Publicar un centro
-          </Link>
-          <Link href="/como-funciona" className={`${buttonVariants({ variant: 'ghost' })} no-underline`}>
-            Cómo funciona
-          </Link>
-        </div>
-      </section>
-
-      <section aria-labelledby="filtros" className="grid gap-3 bg-cloth-shade p-4">
-        <h2 id="filtros" className="sr-only">
-          Filtros
-        </h2>
-        <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
-          <Select
-            label="Provincia o comarca"
-            items={provinceItems}
-            value={province}
-            onValueChange={(v) => setProvince(v ?? ALL)}
-            disabled={!meta}
-          />
-          <Select
-            label="¿Qué quieres donar?"
-            items={itemItems}
-            value={item}
-            onValueChange={(v) => setItem(v ?? ALL)}
-            disabled={!meta}
-          />
-          <Select label="Tipo de lugar" items={typeItems} value={ctype} onValueChange={(v) => setCtype(v ?? ALL)} />
-          <Field label="Buscar" hint="Nombre, distrito o comunidad">
-            {(c) => (
-              <SearchInput
-                {...c}
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                onClear={() => setQuery('')}
-                clearLabel="Borrar búsqueda"
-                placeholder="Ej.: Tonosí"
-                autoComplete="off"
-              />
-            )}
-          </Field>
-        </div>
-        <Switch
-          label="Abierto ahora"
-          description="Según el horario que publicó cada centro (hora de Panamá)."
-          checked={onlyOpen}
-          onCheckedChange={setOnlyOpen}
-        />
-        <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
-          {geo.state === 'on' ? (
-            <Button variant="secondary" icon={<X aria-hidden="true" />} onClick={() => setGeo({ state: 'off' })}>
-              Quitar «cerca de mí»
-            </Button>
-          ) : (
-            <Button
-              variant="secondary"
-              icon={<LocateFixed aria-hidden="true" />}
-              loading={geo.state === 'locating'}
-              onClick={locate}
-            >
-              Cerca de mí
-            </Button>
-          )}
-          <span className="text-sm text-ink-2">Tu ubicación no sale de tu teléfono.</span>
-        </div>
-        {geo.state === 'error' && (
-          <p role="alert" className="text-sm text-ink-warn">
-            {geo.message}
+      {/* En pantallas anchas, presentación y filtros comparten la primera franja. */}
+      <div className="grid gap-6 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:items-start lg:gap-8">
+        <section aria-labelledby="hero" className="grid gap-3 lg:content-start">
+          <h1 id="hero" className="font-ui text-3xl font-bold leading-tight text-ink sm:text-4xl">
+            Dónde llevar donaciones y qué necesitan hoy
+          </h1>
+          <p className="max-w-2xl text-ink-2">
+            Centros de acopio de todo Panamá tras el terremoto. La información la mantiene la comunidad:{' '}
+            <strong className="text-ink">confirma con el centro antes de ir</strong>. Aquí solo se piden artículos,
+            nunca dinero.
           </p>
-        )}
-      </section>
+          <div className="flex flex-wrap gap-2">
+            <Link href="/publicar" className={`${buttonVariants({ variant: 'primary' })} no-underline`}>
+              Publicar un centro
+            </Link>
+            <Link href="/como-funciona" className={`${buttonVariants({ variant: 'ghost' })} no-underline`}>
+              Cómo funciona
+            </Link>
+          </div>
+        </section>
+
+        <section aria-labelledby="filtros" className="grid gap-3 bg-cloth-shade p-4">
+          <h2 id="filtros" className="sr-only">
+            Filtros
+          </h2>
+          <div className="grid gap-3 md:grid-cols-2">
+            <Select
+              label="Provincia o comarca"
+              items={provinceItems}
+              value={province}
+              onValueChange={(v) => setProvince(v ?? ALL)}
+              disabled={!meta}
+            />
+            <Select
+              label="¿Qué quieres donar?"
+              items={itemItems}
+              value={item}
+              onValueChange={(v) => setItem(v ?? ALL)}
+              disabled={!meta}
+            />
+            <Select label="Tipo de lugar" items={typeItems} value={ctype} onValueChange={(v) => setCtype(v ?? ALL)} />
+            <Field label="Buscar" hint="Nombre, distrito o comunidad">
+              {(c) => (
+                <SearchInput
+                  {...c}
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  onClear={() => setQuery('')}
+                  clearLabel="Borrar búsqueda"
+                  placeholder="Ej.: Tonosí"
+                  autoComplete="off"
+                />
+              )}
+            </Field>
+          </div>
+          <Switch
+            label="Abierto ahora"
+            description="Según el horario que publicó cada centro (hora de Panamá)."
+            checked={onlyOpen}
+            onCheckedChange={setOnlyOpen}
+          />
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+            {geo.state === 'on' ? (
+              <Button variant="secondary" icon={<X aria-hidden="true" />} onClick={() => setGeo({ state: 'off' })}>
+                Quitar «cerca de mí»
+              </Button>
+            ) : (
+              <Button
+                variant="secondary"
+                icon={<LocateFixed aria-hidden="true" />}
+                loading={geo.state === 'locating'}
+                onClick={locate}
+              >
+                Cerca de mí
+              </Button>
+            )}
+            <span className="text-sm text-ink-2">Tu ubicación no sale de tu teléfono.</span>
+          </div>
+          {geo.state === 'error' && (
+            <p role="alert" className="text-sm text-ink-warn">
+              {geo.message}
+            </p>
+          )}
+        </section>
+      </div>
 
       <section aria-labelledby="resultados" className="grid gap-4">
         <div className="flex flex-wrap items-center justify-between gap-2">
@@ -323,47 +326,72 @@ export function PublicHome({
           )}
         </div>
 
-        {showMap && centers && (
-          <MapBoundary key={mapKey} onRetry={() => setMapKey((k) => k + 1)}>
-            <CenterMap centers={results.map((r) => r.c)} meta={meta} tileHost={tileHost} origin={origin} />
-          </MapBoundary>
-        )}
+        {/* Con el mapa abierto, en pantallas anchas va fijo a la derecha de la lista. */}
+        <div
+          className={
+            showMap && centers
+              ? 'grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(22rem,40%)] lg:items-start lg:gap-6'
+              : 'grid gap-4'
+          }
+        >
+          {showMap && centers && (
+            <div className="lg:sticky lg:top-6 lg:col-start-2 lg:row-start-1">
+              <MapBoundary key={mapKey} onRetry={() => setMapKey((k) => k + 1)}>
+                <CenterMap
+                  centers={results.map((r) => r.c)}
+                  meta={meta}
+                  tileHost={tileHost}
+                  origin={origin}
+                  heightClass="h-[min(60vh,420px)] lg:h-[calc(100dvh-8rem)]"
+                />
+              </MapBoundary>
+            </div>
+          )}
 
-        {loadError ? (
-          <ErrorState error={centersQ.error!} onRetry={centersQ.reload} />
-        ) : !centers ? (
-          <Loading label="Cargando centros…" />
-        ) : results.length === 0 ? (
-          <EmptyState
-            variant={filtersActive ? 'no-results' : 'empty'}
-            title="Aún no hay centros en esta zona"
-            description="¿Conoces uno? Publícalo: solo necesitas tu correo."
-            headingLevel={3}
-            actions={
-              <>
-                <Link href="/publicar" className={`${buttonVariants({ variant: 'primary' })} no-underline`}>
-                  Publicar un centro
-                </Link>
-                {filtersActive && (
-                  <Button variant="secondary" onClick={clearFilters}>
-                    Quitar filtros
-                  </Button>
-                )}
-              </>
-            }
-          />
-        ) : (
-          <ul className="grid gap-3 md:grid-cols-2">
-            {results.map(({ c, km }) => (
-              <li key={c.id} className="grid">
-                <CenterCard center={c} meta={meta} distanceKm={km} highlightItem={item !== ALL ? item : null} />
-              </li>
-            ))}
-          </ul>
-        )}
-        {origin && results.some((r) => r.km == null) && (
-          <p className="text-sm text-ink-2">Los centros sin ubicación en el mapa aparecen al final.</p>
-        )}
+          <div className="grid gap-4 lg:col-start-1 lg:row-start-1">
+            {loadError ? (
+              <ErrorState error={centersQ.error!} onRetry={centersQ.reload} />
+            ) : !centers ? (
+              <Loading label="Cargando centros…" />
+            ) : results.length === 0 ? (
+              <EmptyState
+                variant={filtersActive ? 'no-results' : 'empty'}
+                title="Aún no hay centros en esta zona"
+                description="¿Conoces uno? Publícalo: solo necesitas tu correo."
+                headingLevel={3}
+                actions={
+                  <>
+                    <Link href="/publicar" className={`${buttonVariants({ variant: 'primary' })} no-underline`}>
+                      Publicar un centro
+                    </Link>
+                    {filtersActive && (
+                      <Button variant="secondary" onClick={clearFilters}>
+                        Quitar filtros
+                      </Button>
+                    )}
+                  </>
+                }
+              />
+            ) : (
+              <ul
+                className={
+                  showMap
+                    ? 'grid gap-3 md:grid-cols-2 2xl:grid-cols-3'
+                    : 'grid gap-3 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4'
+                }
+              >
+                {results.map(({ c, km }) => (
+                  <li key={c.id} className="grid">
+                    <CenterCard center={c} meta={meta} distanceKm={km} highlightItem={item !== ALL ? item : null} />
+                  </li>
+                ))}
+              </ul>
+            )}
+            {origin && results.some((r) => r.km == null) && (
+              <p className="text-sm text-ink-2">Los centros sin ubicación en el mapa aparecen al final.</p>
+            )}
+          </div>
+        </div>
       </section>
     </div>
   );

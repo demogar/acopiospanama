@@ -15,7 +15,7 @@ export default async function Home({
   const t = typeof sp.t === 'string' && KEY.test(sp.t) ? sp.t : null;
   const [centers, meta] = await Promise.all([getPublicCenters(), getPublicMeta()]);
   return (
-    <SiteFrame>
+    <SiteFrame width="wide">
       <PublicHome
         initialCenters={centers.ok ? centers.data : null}
         initialMeta={meta.ok ? meta.data : null}

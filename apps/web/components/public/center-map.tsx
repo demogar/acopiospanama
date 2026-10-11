@@ -60,11 +60,14 @@ export default function CenterMap({
   meta,
   tileHost,
   origin,
+  heightClass = 'h-[min(60vh,420px)]',
 }: {
   centers: PublicCenter[];
   meta: PublicMeta | null;
   tileHost: string;
   origin: { lat: number; lng: number } | null;
+  /** Clases de altura del mapa (por defecto, 60 % de la pantalla hasta 420 px). */
+  heightClass?: string;
 }) {
   const el = useRef<HTMLDivElement>(null);
   const mapRef = useRef<Leaflet.Map | null>(null);
@@ -156,7 +159,7 @@ export default function CenterMap({
         ref={el}
         role="region"
         aria-label="Mapa de centros de acopio"
-        className="relative z-0 h-[min(60vh,420px)] w-full bg-cloth-shade shadow-cut"
+        className={`relative z-0 w-full bg-cloth-shade shadow-cut ${heightClass}`}
       />
       <ul className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-ink-2" aria-label="Leyenda del mapa">
         <li className="flex items-center gap-1.5">

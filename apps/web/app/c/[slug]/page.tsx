@@ -51,7 +51,7 @@ export default async function CenterPage({ params }: Props) {
   const [c, meta] = await Promise.all([getPublicCenter(slug), getPublicMeta()]);
   if (!c.ok && c.status === 404) notFound();
   return (
-    <SiteFrame back={{ href: '/', label: 'Todos los centros' }} width="prose">
+    <SiteFrame back={{ href: '/', label: 'Todos los centros' }} width="page">
       <CenterDetail slug={slug} initial={c} initialMeta={meta.ok ? meta.data : null} />
     </SiteFrame>
   );

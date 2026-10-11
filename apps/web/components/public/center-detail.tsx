@@ -138,155 +138,160 @@ export function CenterDetail({
   const canConfirm = !closed && center.visibility !== 'REMOVED' && center.visibility !== 'COMMUNITY_HIDDEN';
 
   return (
-    <article className="grid gap-6">
-      <header className="grid gap-2">
-        <div className="flex flex-wrap gap-1.5">
-          <Badge tone="accent" variant="outline">
-            {centerTypeShort(meta, center.centerType)}
-          </Badge>
-          <StatusBadges center={center} />
+    <article className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(20rem,24rem)] lg:gap-x-10">
+      <div className="grid min-w-0 gap-6">
+        <header className="grid gap-2">
+          <div className="flex flex-wrap gap-1.5">
+            <Badge tone="accent" variant="outline">
+              {centerTypeShort(meta, center.centerType)}
+            </Badge>
+            <StatusBadges center={center} />
+          </div>
+          <h1 className="font-ui text-2xl font-bold leading-tight text-ink sm:text-3xl">{center.name}</h1>
+          <p className="text-ink-2">
+            {organizerLabel(meta, center.organizerType)}
+            {center.organizerName && center.organizerName !== center.name ? ` · ${center.organizerName}` : ''}
+          </p>
+          <p className="text-ink">{placeLine(meta, center)}</p>
+          <OpenLine center={center} />
+          <FreshnessLine center={center} />
+        </header>
+
+        <div className="grid gap-3" aria-live="polite">
+          {closed && (
+            <Callout tone="neutral" title="Este centro cerró" headingLevel={2}>
+              Su responsable lo marcó como cerrado. No lleves donaciones aquí.
+            </Callout>
+          )}
+          {center.flagged && (
+            <Callout tone="danger" title="Reportado: verifica antes de ir" headingLevel={2}>
+              Varias personas lo reportaron. Confirma por teléfono antes de ir y nunca envíes dinero.
+            </Callout>
+          )}
+          {(center.visibility === 'STALE' || center.visibility === 'EXPIRED') && (
+            <Callout tone="warn" title="Sin confirmar recientemente" headingLevel={2}>
+              Nadie ha confirmado en los últimos días que siga funcionando. Si puedes, llama o pregunta antes de ir.
+            </Callout>
+          )}
         </div>
-        <h1 className="font-ui text-2xl font-bold leading-tight text-ink sm:text-3xl">{center.name}</h1>
-        <p className="text-ink-2">
-          {organizerLabel(meta, center.organizerType)}
-          {center.organizerName && center.organizerName !== center.name ? ` · ${center.organizerName}` : ''}
-        </p>
-        <p className="text-ink">{placeLine(meta, center)}</p>
-        <OpenLine center={center} />
-        <FreshnessLine center={center} />
-      </header>
 
-      <div className="grid gap-3" aria-live="polite">
-        {closed && (
-          <Callout tone="neutral" title="Este centro cerró" headingLevel={2}>
-            Su responsable lo marcó como cerrado. No lleves donaciones aquí.
-          </Callout>
-        )}
-        {center.flagged && (
-          <Callout tone="danger" title="Reportado: verifica antes de ir" headingLevel={2}>
-            Varias personas lo reportaron. Confirma por teléfono antes de ir y nunca envíes dinero.
-          </Callout>
-        )}
-        {(center.visibility === 'STALE' || center.visibility === 'EXPIRED') && (
-          <Callout tone="warn" title="Sin confirmar recientemente" headingLevel={2}>
-            Nadie ha confirmado en los últimos días que siga funcionando. Si puedes, llama o pregunta antes de ir.
-          </Callout>
-        )}
-      </div>
-
-      <div className="flex flex-wrap gap-2">
-        <a
-          href={dir.google}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`${buttonVariants({ variant: closed ? 'secondary' : 'primary' })} no-underline w-full sm:w-auto h-auto! min-h-11 whitespace-normal! py-2 text-center leading-snug`}
-        >
-          <Navigation aria-hidden="true" className="size-4" />
-          Cómo llegar · Google Maps
-        </a>
-        {dir.waze && (
+        <div className="flex flex-wrap gap-2">
           <a
-            href={dir.waze}
+            href={dir.google}
             target="_blank"
             rel="noopener noreferrer"
-            className={`${buttonVariants({ variant: 'secondary' })} no-underline`}
+            className={`${buttonVariants({ variant: closed ? 'secondary' : 'primary' })} no-underline w-full sm:w-auto h-auto! min-h-11 whitespace-normal! py-2 text-center leading-snug`}
           >
-            Waze
+            <Navigation aria-hidden="true" className="size-4" />
+            Cómo llegar · Google Maps
           </a>
+          {dir.waze && (
+            <a
+              href={dir.waze}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`${buttonVariants({ variant: 'secondary' })} no-underline`}
+            >
+              Waze
+            </a>
+          )}
+        </div>
+
+        {!closed && (
+          <section aria-labelledby="necesidades" className="grid gap-3 bg-cloth-pale p-4 shadow-cut">
+            <h2 id="necesidades" className="font-ui text-xl font-bold">
+              Qué necesitan
+            </h2>
+            <NeedsDetail center={center} meta={meta} />
+          </section>
         )}
+
+        <Callout tone="warn" title="Nunca transfieras dinero a nombre de un centro de esta lista." headingLevel={2}>
+          Aquí solo se piden artículos. Si alguien te pide dinero en nombre de este centro, repórtalo.
+        </Callout>
+
+        <section aria-labelledby="donde" className="grid gap-3">
+          <h2 id="donde" className="font-ui text-xl font-bold">
+            Dónde y cuándo
+          </h2>
+          <dl className="grid gap-3 sm:grid-cols-[10rem_1fr] sm:gap-x-4">
+            {center.address && (
+              <>
+                <dt className="text-sm font-semibold text-ink-2">Dirección</dt>
+                <dd className="-mt-2 sm:mt-0">{center.address}</dd>
+              </>
+            )}
+            <dt className="text-sm font-semibold text-ink-2">Lugar</dt>
+            <dd className="-mt-2 sm:mt-0">{placeLine(meta, center)}</dd>
+            <dt className="text-sm font-semibold text-ink-2">Tipo</dt>
+            <dd className="-mt-2 sm:mt-0">{centerTypeLabel(meta, center.centerType)}</dd>
+          </dl>
+          <div className="grid gap-2">
+            <h3 className="font-ui text-base font-bold">Horario</h3>
+            <ScheduleTable schedule={center.schedule} />
+            {center.hoursNote && <p className="whitespace-pre-line text-ink-2">{center.hoursNote}</p>}
+          </div>
+          {center.notes && (
+            <div>
+              <h3 className="font-ui text-base font-bold">Notas del centro</h3>
+              <p className="mt-1 whitespace-pre-line">{center.notes}</p>
+            </div>
+          )}
+        </section>
+
+        <ContactBlock center={center} />
       </div>
 
-      {!closed && (
-        <section aria-labelledby="necesidades" className="grid gap-3 bg-cloth-pale p-4 shadow-cut">
-          <h2 id="necesidades" className="font-ui text-xl font-bold">
-            Qué necesitan
-          </h2>
-          <NeedsDetail center={center} meta={meta} />
-        </section>
-      )}
-
-      <Callout tone="warn" title="Nunca transfieras dinero a nombre de un centro de esta lista." headingLevel={2}>
-        Aquí solo se piden artículos. Si alguien te pide dinero en nombre de este centro, repórtalo.
-      </Callout>
-
-      <section aria-labelledby="donde" className="grid gap-3">
-        <h2 id="donde" className="font-ui text-xl font-bold">
-          Dónde y cuándo
-        </h2>
-        <dl className="grid gap-3 sm:grid-cols-[10rem_1fr] sm:gap-x-4">
-          {center.address && (
-            <>
-              <dt className="text-sm font-semibold text-ink-2">Dirección</dt>
-              <dd className="-mt-2 sm:mt-0">{center.address}</dd>
-            </>
-          )}
-          <dt className="text-sm font-semibold text-ink-2">Lugar</dt>
-          <dd className="-mt-2 sm:mt-0">{placeLine(meta, center)}</dd>
-          <dt className="text-sm font-semibold text-ink-2">Tipo</dt>
-          <dd className="-mt-2 sm:mt-0">{centerTypeLabel(meta, center.centerType)}</dd>
-        </dl>
-        <div className="grid gap-2">
-          <h3 className="font-ui text-base font-bold">Horario</h3>
-          <ScheduleTable schedule={center.schedule} />
-          {center.hoursNote && <p className="whitespace-pre-line text-ink-2">{center.hoursNote}</p>}
-        </div>
-        {center.notes && (
-          <div>
-            <h3 className="font-ui text-base font-bold">Notas del centro</h3>
-            <p className="mt-1 whitespace-pre-line">{center.notes}</p>
-          </div>
+      {/* En pantallas anchas, confirmar, reportar y compartir quedan siempre a la vista. */}
+      <aside className="grid gap-6 lg:sticky lg:top-6 lg:self-start">
+        {!closed && (
+          <section aria-labelledby="compartir" className="grid gap-3">
+            <h2 id="compartir" className="font-ui text-xl font-bold">
+              Compartir
+            </h2>
+            <ShareActions title={center.name} text={shareText} path={`/c/${center.slug}`} />
+          </section>
         )}
-      </section>
 
-      <ContactBlock center={center} />
-
-      {!closed && (
-        <section aria-labelledby="compartir" className="grid gap-3">
-          <h2 id="compartir" className="font-ui text-xl font-bold">
-            Compartir
+        <section aria-labelledby="comunidad" className="grid gap-3 bg-cloth-shade p-4">
+          <h2 id="comunidad" className="font-ui text-xl font-bold">
+            ¿Fuiste hoy?
           </h2>
-          <ShareActions title={center.name} text={shareText} path={`/c/${center.slug}`} />
-        </section>
-      )}
-
-      <section aria-labelledby="comunidad" className="grid gap-3 bg-cloth-shade p-4">
-        <h2 id="comunidad" className="font-ui text-xl font-bold">
-          ¿Fuiste hoy?
-        </h2>
-        <p className="text-ink-2">
-          Tu confirmación ayuda a que otras personas sepan que este centro sigue funcionando. Es anónima.
-        </p>
-        <div className="flex flex-wrap gap-2">
-          {canConfirm && (
+          <p className="text-ink-2">
+            Tu confirmación ayuda a que otras personas sepan que este centro sigue funcionando. Es anónima.
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {canConfirm && (
+              <Button
+                variant="primary"
+                className="h-auto min-h-11 w-full whitespace-normal py-2 text-center sm:w-auto lg:w-full"
+                icon={<CheckCircle2 aria-hidden="true" />}
+                loading={confirming}
+                disabled={confirmed}
+                onClick={confirm}
+              >
+                {confirmed ? 'Gracias, ya confirmaste' : 'Estuve aquí y sigue funcionando'}
+              </Button>
+            )}
             <Button
-              variant="primary"
-              className="w-full sm:w-auto h-auto min-h-11 whitespace-normal py-2 text-center"
-              icon={<CheckCircle2 aria-hidden="true" />}
-              loading={confirming}
-              disabled={confirmed}
-              onClick={confirm}
+              variant="secondary"
+              className="h-auto min-h-11 w-full whitespace-normal py-2 text-center sm:w-auto lg:w-full"
+              icon={<Flag aria-hidden="true" />}
+              onClick={() => setReportOpen(true)}
+              disabled={reported}
             >
-              {confirmed ? 'Gracias, ya confirmaste' : 'Estuve aquí y sigue funcionando'}
+              {reported ? 'Reporte enviado' : 'Reportar un problema'}
             </Button>
-          )}
-          <Button
-            variant="secondary"
-            className="w-full sm:w-auto h-auto min-h-11 whitespace-normal py-2 text-center"
-            icon={<Flag aria-hidden="true" />}
-            onClick={() => setReportOpen(true)}
-            disabled={reported}
-          >
-            {reported ? 'Reporte enviado' : 'Reportar un problema'}
-          </Button>
-        </div>
-        {loading && <span className="sr-only">Actualizando…</span>}
-      </section>
+          </div>
+          {loading && <span className="sr-only">Actualizando…</span>}
+        </section>
 
-      <p>
-        <Link href="/mis-centros" className="inline-flex min-h-11 items-center font-semibold">
-          ¿Eres responsable? Actualiza este centro
-        </Link>
-      </p>
+        <p>
+          <Link href="/mis-centros" className="inline-flex min-h-11 items-center font-semibold">
+            ¿Eres responsable? Actualiza este centro
+          </Link>
+        </p>
+      </aside>
 
       <ReportDialog
         open={reportOpen}

@@ -7,6 +7,9 @@ ENV NEXT_TELEMETRY_DISABLED=1
 # La web reenvía /api a este destino interno (red de Docker). Se fija en tiempo de construcción.
 ARG API_INTERNAL_URL=http://api:3001
 ENV API_INTERNAL_URL=${API_INTERNAL_URL}
+# Versión que muestra el pie de página («1.2.3+abc1234»). CI la pasa como build-arg.
+ARG APP_VERSION=dev
+ENV NEXT_PUBLIC_APP_VERSION=${APP_VERSION}
 COPY package.json package-lock.json ./
 COPY apps/api/package.json apps/api/
 COPY apps/web/package.json apps/web/
