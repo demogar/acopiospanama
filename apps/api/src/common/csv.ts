@@ -15,7 +15,7 @@ export function toCsv(header: string[], rows: unknown[][]): string {
 
 /** Parser CSV pequeño y estricto (RFC 4180): comillas, comillas dobles escapadas, CRLF/LF. Acepta coma o punto y coma. */
 export function parseCsv(input: string): string[][] {
-  const text = input.replace(/^﻿/, '');
+  const text = input.replace(/^\uFEFF/, '');
   const firstLine = text.split(/\r?\n/, 1)[0] ?? '';
   const sep = (firstLine.match(/;/g)?.length ?? 0) > (firstLine.match(/,/g)?.length ?? 0) ? ';' : ',';
   const rows: string[][] = [];

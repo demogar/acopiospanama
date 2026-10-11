@@ -15,7 +15,9 @@ FROM build AS deps
 RUN npm prune --omit=dev --workspace apps/api --include-workspace-root --no-audit --no-fund && npm cache clean --force
 
 FROM ${NODE_IMAGE} AS runtime
-ENV NODE_ENV=production
+# Versión visible en /api/health: «1.2.3+abc1234». CI la pasa como build-arg.
+ARG APP_VERSION=dev
+ENV NODE_ENV=production APP_VERSION=${APP_VERSION}
 WORKDIR /app
 COPY --from=deps --chown=1000:1000 /app/node_modules ./node_modules
 COPY --from=deps --chown=1000:1000 /app/package.json ./package.json

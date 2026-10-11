@@ -1,6 +1,6 @@
 /* Utilidades de prueba: base de datos real (PostgreSQL), app Nest en un puerto efímero y un cliente con cookies. */
 process.env.NODE_ENV = 'test';
-process.env.DATABASE_URL = process.env.TEST_DATABASE_URL ?? 'postgresql://phrevisa:phrevisa@127.0.0.1:5432/acopio_test';
+process.env.DATABASE_URL = process.env.TEST_DATABASE_URL ?? 'postgresql://acopio:acopio@127.0.0.1:5432/acopio_test';
 process.env.APP_ORIGIN = 'http://localhost:3000';
 process.env.SECRET_KEY = 'test-secret-key-0123456789abcdefghijklmnopqrstuvwxyz';
 process.env.MAIL_MODE = 'outbox';
@@ -90,7 +90,8 @@ export class Client {
     }
     const raw = Buffer.from(await res.arrayBuffer());
     let parsed: unknown = raw.toString('utf8');
-    if (res.headers.get('content-type')?.includes('application/json')) parsed = raw.length ? JSON.parse(raw.toString('utf8')) : null;
+    if (res.headers.get('content-type')?.includes('application/json'))
+      parsed = raw.length ? JSON.parse(raw.toString('utf8')) : null;
     return { status: res.status, body: parsed as T, headers: res.headers, raw };
   }
   get<T = any>(p: string) {
@@ -162,7 +163,10 @@ export function person(env: TestEnv): Client {
   const ip = `203.0.113.${ipSeq++ % 250}`;
   const orig = c.req.bind(c);
   c.req = ((method: string, path: string, body?: unknown, opts: Parameters<Client['req']>[3] = {}) =>
-    orig(method, path, body, { ...opts, headers: { ...(opts.headers ?? {}), 'x-forwarded-for': ip } })) as Client['req'];
+    orig(method, path, body, {
+      ...opts,
+      headers: { ...(opts.headers ?? {}), 'x-forwarded-for': ip },
+    })) as Client['req'];
   return c;
 }
 

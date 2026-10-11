@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.next/
+.test-dist/
+out/
+coverage/
+backups/
+package-lock.json
+CHANGELOG.md
+*.sql
+*.age

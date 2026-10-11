@@ -14,11 +14,22 @@ directorio **más confiable, más rápido y más fácil de usar en un teléfono 
 
 1. Haz un fork y crea una rama desde `main` (`feat/filtro-por-distrito`, `fix/horario-medianoche`…).
 2. Corre el proyecto en local (ver README) y escribe pruebas para lo que cambies en la API (`apps/api/test`).
-3. Abre un PR con la plantilla. La CI corre tipos, pruebas contra PostgreSQL, el build web, la auditoría de
-   dependencias, CodeQL y el build de las imágenes Docker.
-4. Una persona mantenedora revisa. Al fusionar en `main` se publica y se despliega automáticamente.
+3. Antes de abrir el PR: `npm run lint`, `npm run format`, `npm run typecheck` y `npm test`.
+4. Abre un PR con la plantilla. **El título sigue [Conventional Commits](https://www.conventionalcommits.org/es/)**
+   (`feat: filtro por distrito`, `fix: horario que cruza medianoche`, `docs: …`, `chore: …`), porque se convierte
+   en el mensaje del commit al fusionar con _squash_ y de él sale la versión y el registro de cambios.
+   La CI corre lint y formato, tipos, pruebas contra PostgreSQL, el build web, la auditoría de dependencias,
+   CodeQL y el build de las imágenes Docker.
+5. Una persona mantenedora revisa. Al fusionar en `main` se publica y se despliega automáticamente.
 
-Commits pequeños y descriptivos (se aceptan [Conventional Commits](https://www.conventionalcommits.org/es/)).
+Un cambio que rompe compatibilidad (API pública, formato de datos) lleva `!` en el título (`feat!: …`) o un pie
+`BREAKING CHANGE:` en la descripción.
+
+## Versionado
+
+`main` siempre está desplegado. [release-please](https://github.com/googleapis/release-please) agrupa los cambios en
+un PR «chore(release): vX.Y.Z»; al fusionarlo se etiqueta la versión, se publica en GitHub y se escribe el
+[CHANGELOG](CHANGELOG.md). Mientras la versión sea 0.x, los `feat` suben el _minor_ y los `fix` el _patch_.
 
 ## Reglas que no se negocian
 

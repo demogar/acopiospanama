@@ -64,6 +64,20 @@ jobs:
         env:
           NEXT_TELEMETRY_DISABLED: '1'
 
+  lint:
+    name: Lint y formato
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run format:check
+
   audit:
     name: Dependencias
     runs-on: ubuntu-latest
@@ -77,7 +91,7 @@ jobs:
 
   images:
     name: Imágenes Docker (${{ matrix.name }})
-    needs: [api, web, audit]
+    needs: [api, web, lint, audit]
     runs-on: ubuntu-latest
     timeout-minutes: 30
     permissions:
@@ -97,6 +111,9 @@ jobs:
             context: deploy/backup
     steps:
       - uses: actions/checkout@v4
+      - id: version
+        name: Versión (package.json + commit)
+        run: echo "value=$(node -p "require('./package.json').version")+${GITHUB_SHA::7}" >> "$GITHUB_OUTPUT"
       - uses: docker/setup-buildx-action@v3
       - name: Login a GHCR
         if: github.event_name != 'pull_request'
@@ -120,6 +137,8 @@ jobs:
           push: ${{ github.event_name != 'pull_request' && github.ref == 'refs/heads/main' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            APP_VERSION=${{ steps.version.outputs.value }}
           cache-from: type=gha,scope=${{ matrix.name }}
           cache-to: type=gha,mode=max,scope=${{ matrix.name }}
 

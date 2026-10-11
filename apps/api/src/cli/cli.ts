@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import 'reflect-metadata';
 import { parseArgs } from 'node:util';
 import { normalizeEmail } from '../common/crypto';
@@ -50,43 +49,83 @@ async function main() {
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) throw new Error('Falta --email válido');
     };
     const audit = (action: string, objectId: string | null) =>
-      db.insertInto('auditEvents').values({ actorId: null, action, objectType: 'user', objectId, meta: JSON.stringify({}) }).execute();
+      db
+        .insertInto('auditEvents')
+        .values({ actorId: null, action, objectType: 'user', objectId, meta: JSON.stringify({}) })
+        .execute();
     switch (cmd) {
       case 'migrate': {
         const applied = await migrate(db, console.log);
-        console.log(applied.length ? `${applied.length} migración(es) aplicada(s).` : 'La base de datos ya está al día.');
+        console.log(
+          applied.length ? `${applied.length} migración(es) aplicada(s).` : 'La base de datos ya está al día.',
+        );
         break;
       }
       case 'make-admin':
       case 'make-moderator': {
         needEmail();
-        await db.insertInto('users').values({ email }).onConflict((oc) => oc.column('email').doNothing()).execute();
+        await db
+          .insertInto('users')
+          .values({ email })
+          .onConflict((oc) => oc.column('email').doNothing())
+          .execute();
         const set = cmd === 'make-admin' ? { isAdmin: true, isModerator: true } : { isModerator: true };
-        const u = await db.updateTable('users').set(set).where('email', '=', email).returning('id').executeTakeFirstOrThrow();
+        const u = await db
+          .updateTable('users')
+          .set(set)
+          .where('email', '=', email)
+          .returning('id')
+          .executeTakeFirstOrThrow();
         await audit(`cli.${cmd}`, u.id);
-        console.log(`${email}: ${cmd === 'make-admin' ? 'administrador' : 'moderador'}. Al entrar configurará su segundo factor.`);
+        console.log(
+          `${email}: ${cmd === 'make-admin' ? 'administrador' : 'moderador'}. Al entrar configurará su segundo factor.`,
+        );
         break;
       }
       case 'revoke-role': {
         needEmail();
-        const u = await db.updateTable('users').set({ isAdmin: false, isModerator: false }).where('email', '=', email).returning('id').executeTakeFirst();
+        const u = await db
+          .updateTable('users')
+          .set({ isAdmin: false, isModerator: false })
+          .where('email', '=', email)
+          .returning('id')
+          .executeTakeFirst();
         if (!u) throw new Error('Usuario no encontrado');
-        await db.updateTable('sessions').set({ revokedAt: new Date() }).where('userId', '=', u.id).where('revokedAt', 'is', null).execute();
+        await db
+          .updateTable('sessions')
+          .set({ revokedAt: new Date() })
+          .where('userId', '=', u.id)
+          .where('revokedAt', 'is', null)
+          .execute();
         await audit('cli.revoke_role', u.id);
         console.log(`${email}: sin rol de moderación.`);
         break;
       }
       case 'reset-mfa': {
         needEmail();
-        const u = await db.updateTable('users').set({ totpSecretEnc: null, totpEnabledAt: null, totpLastStep: null, recoveryCodes: [] }).where('email', '=', email).returning('id').executeTakeFirst();
+        const u = await db
+          .updateTable('users')
+          .set({ totpSecretEnc: null, totpEnabledAt: null, totpLastStep: null, recoveryCodes: [] })
+          .where('email', '=', email)
+          .returning('id')
+          .executeTakeFirst();
         if (!u) throw new Error('Usuario no encontrado');
-        await db.updateTable('sessions').set({ revokedAt: new Date() }).where('userId', '=', u.id).where('revokedAt', 'is', null).execute();
+        await db
+          .updateTable('sessions')
+          .set({ revokedAt: new Date() })
+          .where('userId', '=', u.id)
+          .where('revokedAt', 'is', null)
+          .execute();
         await audit('cli.reset_mfa', u.id);
         console.log(`Segundo factor restablecido para ${email}.`);
         break;
       }
       case 'revoke-all-sessions': {
-        const r = await db.updateTable('sessions').set({ revokedAt: new Date() }).where('revokedAt', 'is', null).executeTakeFirst();
+        const r = await db
+          .updateTable('sessions')
+          .set({ revokedAt: new Date() })
+          .where('revokedAt', 'is', null)
+          .executeTakeFirst();
         console.log(`${Number(r.numUpdatedRows)} sesión(es) cerrada(s).`);
         break;
       }

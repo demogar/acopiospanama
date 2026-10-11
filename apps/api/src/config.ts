@@ -1,12 +1,12 @@
 import { z } from 'zod';
 
-const bool = z
-  .enum(['true', 'false', '1', '0'])
-  .transform((v) => v === 'true' || v === '1');
+const bool = z.enum(['true', 'false', '1', '0']).transform((v) => v === 'true' || v === '1');
 
 const schema = z
   .object({
     NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
+    // Versión desplegada (la fija el Dockerfile a partir de package.json y el commit). Se expone en /api/health.
+    APP_VERSION: z.string().default('dev'),
     PORT: z.coerce.number().int().positive().default(3001),
     DATABASE_URL: z.string().min(1),
     // Origen público de la web, p. ej. https://revisa.miph.com. Se usa para validar Origin y para enlaces en correos.
@@ -18,9 +18,19 @@ const schema = z
     MAIL_FROM: z.string().default('Acopio Panamá <no-responder@localhost>'),
     COOKIE_SECURE: bool.optional(),
     TRUST_PROXY: z.coerce.number().int().min(0).max(5).default(0),
-    RESIDENT_IDLE_MINUTES: z.coerce.number().int().min(5).max(24 * 60).default(60),
+    RESIDENT_IDLE_MINUTES: z.coerce
+      .number()
+      .int()
+      .min(5)
+      .max(24 * 60)
+      .default(60),
     RESIDENT_MAX_HOURS: z.coerce.number().int().min(1).max(72).default(12),
-    STAFF_IDLE_MINUTES: z.coerce.number().int().min(5).max(24 * 60).default(30),
+    STAFF_IDLE_MINUTES: z.coerce
+      .number()
+      .int()
+      .min(5)
+      .max(24 * 60)
+      .default(30),
     STAFF_MAX_HOURS: z.coerce.number().int().min(1).max(24).default(10),
     STEP_UP_MINUTES: z.coerce.number().int().min(1).max(60).default(10),
     // Permite /api/dev/outbox para ver correos en desarrollo. Nunca en producción.
@@ -35,16 +45,28 @@ const schema = z
         ctx.addIssue({ code: 'custom', message: 'En producción MAIL_MODE debe ser smtp', path: ['MAIL_MODE'] });
       }
       if (c.RELAX_RATE_LIMITS) {
-        ctx.addIssue({ code: 'custom', message: 'RELAX_RATE_LIMITS no se permite en producción', path: ['RELAX_RATE_LIMITS'] });
+        ctx.addIssue({
+          code: 'custom',
+          message: 'RELAX_RATE_LIMITS no se permite en producción',
+          path: ['RELAX_RATE_LIMITS'],
+        });
       }
       if (c.ENABLE_DEV_OUTBOX) {
-        ctx.addIssue({ code: 'custom', message: 'ENABLE_DEV_OUTBOX no se permite en producción', path: ['ENABLE_DEV_OUTBOX'] });
+        ctx.addIssue({
+          code: 'custom',
+          message: 'ENABLE_DEV_OUTBOX no se permite en producción',
+          path: ['ENABLE_DEV_OUTBOX'],
+        });
       }
       if (!c.APP_ORIGIN.startsWith('https://')) {
         ctx.addIssue({ code: 'custom', message: 'En producción APP_ORIGIN debe ser https://', path: ['APP_ORIGIN'] });
       }
       if (c.COOKIE_SECURE === false) {
-        ctx.addIssue({ code: 'custom', message: 'En producción las cookies deben ser Secure', path: ['COOKIE_SECURE'] });
+        ctx.addIssue({
+          code: 'custom',
+          message: 'En producción las cookies deben ser Secure',
+          path: ['COOKIE_SECURE'],
+        });
       }
     }
     if (c.MAIL_MODE === 'smtp' && !c.SMTP_URL) {

@@ -1,11 +1,39 @@
 {
   "name": "acopiospanama",
+  "version": "0.1.0",
   "private": true,
-  "workspaces": ["apps/api", "apps/web"],
+  "description": "Directorio abierto de centros de acopio en Panamá",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/demogar/acopiospanama.git"
+  },
+  "workspaces": [
+    "apps/api",
+    "apps/web"
+  ],
   "scripts": {
     "build": "npm run build -w apps/api && npm run build -w apps/web",
-    "test": "npm run test -w apps/api"
+    "typecheck": "npm run typecheck -w apps/api && npm run typecheck -w apps/web",
+    "test": "npm run test -w apps/api",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "commitlint": "commitlint"
   },
-  "overrides": { "deepmerge-ts": "^8.0.0" },
-  "engines": { "node": ">=22" }
+  "overrides": {
+    "deepmerge-ts": "^8.0.0"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^21.2.3",
+    "@commitlint/config-conventional": "^21.2.3",
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.12.0",
+    "eslint-config-next": "^16.4.0",
+    "prettier": "^3.9.10",
+    "typescript-eslint": "^8.71.1"
+  }
 }

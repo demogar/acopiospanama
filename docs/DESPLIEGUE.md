@@ -20,32 +20,39 @@ Producción hoy: VPS en Hetzner (`46.224.207.173`, Ubuntu, Docker) detrás de Cl
 Todo esto ya está aplicado en `demogar/acopiospanama`; se documenta para poder reproducirlo.
 
 1. Repo público `demogar/acopiospanama`.
-2. *Settings › Rules › Rulesets*: regla «Proteger main» sobre la rama por defecto:
+2. _Settings › Rules › Rulesets_: regla «Proteger main» sobre la rama por defecto:
    - Bloquea borrar la rama y los `push --force`.
    - Exige pull request con los hilos resueltos. Mientras haya un solo mantenedor no exige aprobaciones
      (nadie puede aprobar su propio PR). Cuando haya dos o más, sube a 1 aprobación y activa la revisión
      de Code Owners en la regla.
-   - Exige que pasen los checks `API · tipos y pruebas`, `Web · tipos y build`, `Dependencias`,
-     `Imágenes Docker (api)`, `Imágenes Docker (web)`, `Imágenes Docker (backup)` y `CodeQL`.
+   - Exige que pasen los checks `Lint y formato`, `API · tipos y pruebas`, `Web · tipos y build`, `Dependencias`,
+     `Imágenes Docker (api)`, `Imágenes Docker (web)`, `Imágenes Docker (backup)`, `CodeQL` y `Título del PR`.
      Los nombres de los jobs en `.github/workflows/` deben mantenerse iguales a esta lista.
    - Los administradores pueden saltarse la regla en caso de emergencia. Cuando haya dos o más mantenedores,
-     quita el *bypass* para que nadie fusione sin revisión.
-3. *Settings › Actions › General*:
+     quita el _bypass_ para que nadie fusione sin revisión.
+3. _Settings › Actions › General_:
    - Solo se permiten acciones de GitHub y de creadores verificados (`actions/*`, `github/*`, `docker/*`).
    - Permisos del `GITHUB_TOKEN` de solo lectura por defecto; cada job pide lo que necesita.
    - «Require approval for all external contributors» en los workflows de forks: ningún PR externo ejecuta
      CI hasta que un mantenedor lo apruebe.
-4. *Settings › Environments › production*: solo la rama `main` puede desplegar. Ahí viven el secreto y las
+4. _Settings › Environments › production_: solo la rama `main` puede desplegar. Ahí viven el secreto y las
    variables del despliegue, así que ninguna otra rama los ve:
    - Secret `DEPLOY_SSH_KEY`: clave privada ed25519 cuyo público está en `/home/deploy/.ssh/authorized_keys`.
    - Variables `DEPLOY_HOST` (IP), `DEPLOY_USER` (`deploy`) y `DEPLOY_KNOWN_HOSTS` (salida de
      `ssh-keyscan -t ed25519 IP`, para fijar la huella del servidor).
    - Opcionalmente añade revisores obligatorios para aprobar cada despliegue a mano.
 5. Variable del repositorio `PUBLIC_URL` = `https://acopiospanama.com`: tras desplegar, el job comprueba `/api/health`.
-6. *Settings › Code security*: escaneo de secretos con *push protection*, alertas de Dependabot y
+6. _Settings › Code security_: escaneo de secretos con _push protection_, alertas de Dependabot y
    actualizaciones de seguridad automáticas. `.github/dependabot.yml` actualiza npm, acciones y Docker cada semana.
 7. Las imágenes de GHCR pueden quedarse privadas: el job de despliegue inicia sesión en el servidor con su
    propio `GITHUB_TOKEN` (caduca al terminar) y cierra la sesión al acabar.
+8. _Settings › General › Pull Requests_: solo _squash merge_, con el título del PR como mensaje del commit.
+   Así `main` tiene historia lineal con Conventional Commits, que es lo que lee release-please.
+9. Publicaciones: el workflow `release.yml` corre [release-please](https://github.com/googleapis/release-please) en
+   cada push a `main`. Con el `GITHUB_TOKEN`, el PR de release no dispara la CI (limitación de GitHub) y hay que
+   fusionarlo con el _bypass_ de administrador. Para que la CI corra también en ese PR, crea un token personal
+   _fine-grained_ limitado a este repo con permisos _Contents_ y _Pull requests_ en escritura y guárdalo como
+   secreto `RELEASE_PLEASE_TOKEN`.
 
 ### 2. Servidor
 
@@ -84,11 +91,12 @@ moderadores. Otros comandos: `make-moderator`, `revoke-role`, `reset-mfa`, `rete
 
 ## Volver a una versión anterior
 
-Cada despliegue deja en `.env` la versión exacta (`IMAGE_TAG=sha-…`). Para volver atrás:
+Cada despliegue deja en `.env` la versión exacta (`IMAGE_TAG=sha-…`). Las publicaciones añaden además la etiqueta
+`vX.Y.Z` a esas mismas imágenes, así que puedes volver a cualquier versión publicada por su número:
 
 ```bash
 cd /opt/acopiospanama
-sed -i 's/^IMAGE_TAG=.*/IMAGE_TAG=sha-<commit anterior>/' .env
+sed -i 's/^IMAGE_TAG=.*/IMAGE_TAG=v1.2.3/' .env     # o sha-<commit>
 docker compose up -d
 ```
 

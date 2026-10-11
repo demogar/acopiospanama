@@ -58,10 +58,22 @@ export const text = (max: number) =>
   z
     .string()
     .max(max, `Máximo ${max} caracteres`)
-    .transform((s) => s.replace(/\r\n/g, '\n').replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, '').trim());
+    .transform((s) =>
+      s
+        .replace(/\r\n/g, '\n')
+        // eslint-disable-next-line no-control-regex -- elimina caracteres de control a propósito
+        .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, '')
+        .trim(),
+    );
 
 export const shortText = (max: number) =>
   z
     .string()
     .max(max, `Máximo ${max} caracteres`)
-    .transform((s) => s.replace(/[\u0000-\u001F\u007F]/g, ' ').replace(/\s+/g, ' ').trim());
+    .transform((s) =>
+      s
+        // eslint-disable-next-line no-control-regex -- elimina caracteres de control a propósito
+        .replace(/[\u0000-\u001F\u007F]/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim(),
+    );
