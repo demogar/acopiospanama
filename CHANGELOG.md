@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.10.1](https://github.com/demogar/acopiospanama/compare/v0.10.0...v0.10.1) (2026-10-11)
+
+
+### Correcciones
+
+* **web:** aviso de dinero plano, filtros como en el diseño y «Ver» en las tarjetas ([#49](https://github.com/demogar/acopiospanama/issues/49)) ([84c8ece](https://github.com/demogar/acopiospanama/commit/84c8ece956649e3f0136d661acb90954aad3c0c8))
+
 ## [0.10.0](https://github.com/demogar/acopiospanama/compare/v0.9.0...v0.10.0) (2026-10-11)
 
 
