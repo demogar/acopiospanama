@@ -108,46 +108,46 @@ export function SiteFrame({ title, subtitle, back, actions, width = 'page', chil
         </div>
       </main>
 
-      <footer className="border-t border-keyline bg-cloth-shade">
-        <div
-          className={`${SITE} flex flex-col gap-2 py-4 text-sm text-ink-2 sm:flex-row sm:items-center sm:justify-between`}
-        >
-          <nav aria-label="Información" className="-ms-2 flex flex-wrap gap-1">
+      <footer className="border-t border-keyline bg-cloth-shade text-sm text-ink-2">
+        <div className={`${SITE} flex flex-col gap-6 py-8 md:flex-row md:justify-between md:gap-12`}>
+          <div className="max-w-prose">
+            <p className="inline-flex items-center gap-2 font-ui text-base font-bold text-ink">
+              <span aria-hidden="true" className="inline-block size-3 bg-rojo" />
+              Acopio Panamá
+            </p>
+            <p className="mt-2 leading-relaxed">
+              Iniciativa comunitaria e independiente para la respuesta al terremoto del 9 de octubre de 2026. No es un
+              sitio del Gobierno ni del SINAPROC: la información la publican y confirman las propias personas y
+              organizaciones.
+            </p>
+            <p className="mt-2 leading-relaxed">Este directorio no atiende emergencias: usa las líneas de arriba.</p>
+          </div>
+          <nav aria-label="Información" className="-ms-2 flex flex-wrap gap-x-1 md:flex-col md:items-start md:gap-0">
             <Link href="/como-funciona" className={navLink}>
               Cómo funciona
             </Link>
             <Link href="/privacidad" className={navLink}>
               Privacidad
             </Link>
-          </nav>
-          <p>Este directorio no atiende emergencias: usa las líneas de arriba.</p>
-        </div>
-        <p className={`${SITE} max-w-none pb-3 text-xs leading-relaxed text-ink-2`}>
-          Acopio Panamá es una iniciativa comunitaria e independiente para la respuesta al terremoto del 9 de octubre de
-          2026. No es un sitio del Gobierno ni del SINAPROC: la información la publican y confirman las propias personas
-          y organizaciones. Datos abiertos bajo licencia{' '}
-          <a
-            href="https://creativecommons.org/licenses/by/4.0/deed.es"
-            className="text-ink-2 hover:underline"
-            rel="noopener noreferrer"
-          >
-            CC BY 4.0
-          </a>
-          .
-        </p>
-        {VERSION && (
-          <p className={`${SITE} pb-3 text-xs text-ink-2`}>
-            <a
-              href="https://github.com/demogar/acopiospanama"
-              className="text-ink-2 no-underline hover:underline"
-              rel="noopener noreferrer"
-            >
+            <a href="https://github.com/demogar/acopiospanama" className={navLink} rel="noopener noreferrer">
               Código abierto
             </a>
-            {' · '}
-            <span className="font-mono">v{VERSION}</span>
+          </nav>
+        </div>
+        <div className={`${SITE} flex flex-wrap items-center gap-x-4 gap-y-1 border-t border-keyline py-3 text-xs`}>
+          <p>
+            Datos abiertos bajo licencia{' '}
+            <a
+              href="https://creativecommons.org/licenses/by/4.0/deed.es"
+              className="text-ink-2 hover:underline"
+              rel="noopener noreferrer"
+            >
+              CC BY 4.0
+            </a>
+            .
           </p>
-        )}
+          {VERSION && <p className="font-mono">v{VERSION}</p>}
+        </div>
       </footer>
     </div>
   );
