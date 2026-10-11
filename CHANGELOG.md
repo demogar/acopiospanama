@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1](https://github.com/demogar/acopiospanama/compare/v0.2.0...v0.2.1) (2026-10-11)
+
+
+### Correcciones
+
+* **web:** tema claro siempre, sin seguir el modo oscuro del sistema ([#24](https://github.com/demogar/acopiospanama/issues/24)) ([be3ca8e](https://github.com/demogar/acopiospanama/commit/be3ca8e7403b835a53521b87c846b19183f8e6ce))
+
 ## [0.2.0](https://github.com/demogar/acopiospanama/compare/v0.1.2...v0.2.0) (2026-10-11)
 
 
