@@ -6,6 +6,8 @@
 /* Ajustes propios de Acopio Panamá, sobre los tokens de Mola UI. */
 html {
   -webkit-text-size-adjust: 100%;
+  /* Tema claro fijo (data-theme="light" en <html>): también para controles nativos y barras de scroll. */
+  color-scheme: light;
 }
 body {
   min-height: 100dvh;

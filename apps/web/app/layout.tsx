@@ -16,17 +16,15 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#f4efe6' },
-    { media: '(prefers-color-scheme: dark)', color: '#16130f' },
-  ],
+  themeColor: '#f4efe6',
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   // Lee el nonce para que la página sea dinámica y Next aplique el nonce de la CSP a sus scripts.
   await headers();
+  // Siempre en claro: el directorio se lee mejor así en cualquier teléfono y bajo el sol.
   return (
-    <html lang="es-PA" data-density="spacious">
+    <html lang="es-PA" data-density="spacious" data-theme="light">
       <body className="bg-cloth text-ink font-ui antialiased">
         <Providers>{children}</Providers>
       </body>
