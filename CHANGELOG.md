@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.1](https://github.com/demogar/acopiospanama/compare/v0.7.0...v0.7.1) (2026-10-11)
+
+
+### Correcciones
+
+* **deploy:** despliegue continuo para que publicar no tumbe el sitio ([#41](https://github.com/demogar/acopiospanama/issues/41)) ([33d4389](https://github.com/demogar/acopiospanama/commit/33d438942cd9b4f5310896d039a08536baa20587))
+
 ## [0.7.0](https://github.com/demogar/acopiospanama/compare/v0.6.0...v0.7.0) (2026-10-11)
 
 
