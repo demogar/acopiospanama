@@ -13,6 +13,9 @@ Reglas:
   organización desde «Mis centros».
 - Si el anuncio no da horario, `schedule` va vacío y `hoursNote` lo dice («confirma antes de ir»).
 - Lo que no encaja en los artículos del catálogo (abanicos, útiles escolares…) va en `notes`.
+- Si el anuncio dice **a dónde llega la ayuda**, va en `destinations` (`[{ "province": "HERRERA", "district": "Los Pozos" }]`,
+  con `district` vacío si solo se conoce la provincia) y, en `destinationNote`, cómo llega (quién la lleva, cada
+  cuánto). Es lo que busca quien quiere ayudar a una comunidad concreta, y la señal más útil contra el «juega vivo».
 - El centro queda a nombre del correo indicado en `--email`, que recibe los recordatorios de confirmación.
   Lo ideal es que la organización lo reclame después: desde «Mis centros» se pueden añadir responsables.
 

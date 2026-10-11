@@ -5,6 +5,9 @@
 - **Centro** (`centers`): tipo, organizador, provincia o comarca, distrito, comunidad, dirección, ubicación exacta,
   horario por día (`schedule` en jsonb), contacto público con consentimiento (`contact_consent_at`), notas y estado
   (`PUBLISHED`, `CLOSED` o `REMOVED`).
+- **A dónde llega la ayuda** (`centers.destinations`, jsonb): lista de `{ province, district }` (provincia del
+  catálogo, distrito o comunidad en texto, hasta 10, sin repetidos), y `destination_note` con cómo llega (quién la
+  transporta, cada cuánto). Lista vacía = no indicado; la web lo dice y pide preguntar antes de dejar nada.
 - **Qué aceptan** (`center_needs`): artículo con nivel `URGENT` (urgente), `NEEDED` (aceptan) o `ENOUGH` (ya no aceptan).
 - **Responsables** (`center_managers`): personas con correo verificado que pueden editar. Hay hasta 5 por centro,
   para que no dependa de una sola persona.
@@ -17,16 +20,16 @@
 
 ## Reglas automáticas (`apps/api/src/centers/centers.service.ts` → `computeState`)
 
-| Condición                                                                            | Resultado                                                |
-| ------------------------------------------------------------------------------------ | -------------------------------------------------------- |
-| Última actividad (confirmación de un responsable o de la comunidad) hace más de 72 h | `STALE`: «sin confirmar recientemente», baja en la lista |
-| … hace más de 14 días                                                                | `EXPIRED`: no se lista                                   |
-| Reportes abiertos de 2 o más personas en 72 h                                        | `flagged`: «Reportado: verifica antes de ir»             |
-| 3 o más reportes graves (dinero, falso, cerrado) que superan las confirmaciones      | `COMMUNITY_HIDDEN`: oculto, la ficha responde 410        |
-| Un responsable confirma después del último reporte grave                             | Vuelve a verse, marcado «en disputa»                     |
-| Reporte «publicaron mis datos sin permiso»                                           | El contacto se oculta de inmediato                       |
-| Texto que pide dinero (Yappy, transferencias, cuentas, bancos, números largos)       | No se puede guardar                                      |
-| Texto con enlaces o HTML                                                             | No se puede guardar                                      |
+| Condición                                                                                              | Resultado                                                |
+| ------------------------------------------------------------------------------------------------------ | -------------------------------------------------------- |
+| Última actividad (confirmación de un responsable o de la comunidad) hace más de 72 h                   | `STALE`: «sin confirmar recientemente», baja en la lista |
+| … hace más de 14 días                                                                                  | `EXPIRED`: no se lista                                   |
+| Reportes abiertos de 2 o más personas en 72 h                                                          | `flagged`: «Reportado: verifica antes de ir»             |
+| 3 o más reportes graves (dinero, falso, no llega a donde dice, cerrado) que superan las confirmaciones | `COMMUNITY_HIDDEN`: oculto, la ficha responde 410        |
+| Un responsable confirma después del último reporte grave                                               | Vuelve a verse, marcado «en disputa»                     |
+| Reporte «publicaron mis datos sin permiso»                                                             | El contacto se oculta de inmediato                       |
+| Texto que pide dinero (Yappy, transferencias, cuentas, bancos, números largos)                         | No se puede guardar                                      |
+| Texto con enlaces o HTML                                                                               | No se puede guardar                                      |
 
 El filtro de texto normaliza antes de comparar (NFKC, letras de otros alfabetos que se parecen, espacios
 intercalados como «Y a p p y»), así que no basta con disfrazar la palabra. Los teléfonos panameños sí se

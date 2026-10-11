@@ -17,7 +17,7 @@ import {
 } from '@demogar/mola-ui';
 import { ErrorState, Loading } from '@/components/states';
 import { useApi } from '@/lib/use-api';
-import { centerTypeLabel, fold, hasCoords, haversineKm } from '@/lib/public-format';
+import { centerTypeLabel, destinationsSearchText, fold, hasCoords, haversineKm } from '@/lib/public-format';
 import { CENTER_TYPES_FALLBACK } from '@/lib/public-schedule';
 import type { PublicCenter, PublicMeta } from '@/lib/public-types';
 import { CenterCard } from './center-card';
@@ -74,6 +74,7 @@ export function PublicHome({
   initialProvince,
   initialItem,
   initialType,
+  initialDestination,
   tileHost,
 }: {
   initialCenters: PublicCenter[] | null;
@@ -81,6 +82,8 @@ export function PublicHome({
   initialProvince: string | null;
   initialItem: string | null;
   initialType: string | null;
+  /** Provincia o comarca a la que debe llegar la ayuda (`?d=`). */
+  initialDestination?: string | null;
   tileHost: string;
 }) {
   // Si el servidor ya trajo los datos, no se vuelven a pedir al abrir la página.
@@ -92,6 +95,7 @@ export function PublicHome({
   const [province, setProvince] = useState<string>(initialProvince ?? ALL);
   const [item, setItem] = useState<string>(initialItem ?? ALL);
   const [ctype, setCtype] = useState<string>(initialType ?? ALL);
+  const [dest, setDest] = useState<string>(initialDestination ?? ALL);
   const [onlyOpen, setOnlyOpen] = useState(false);
   const now = useNow();
   const [query, setQuery] = useState('');
@@ -105,7 +109,8 @@ export function PublicHome({
     if (province !== ALL && !meta.provinces[province]) setProvince(ALL);
     if (item !== ALL && !meta.items[item]) setItem(ALL);
     if (ctype !== ALL && !(meta.centerTypes ?? CENTER_TYPES_FALLBACK)[ctype]) setCtype(ALL);
-  }, [meta, province, item, ctype]);
+    if (dest !== ALL && !meta.provinces[dest]) setDest(ALL);
+  }, [meta, province, item, ctype, dest]);
 
   // Refleja provincia y artículo en la URL (no son datos personales). La ubicación y el texto, nunca.
   useEffect(() => {
@@ -116,10 +121,12 @@ export function PublicHome({
     else url.searchParams.delete('i');
     if (ctype !== ALL) url.searchParams.set('t', ctype);
     else url.searchParams.delete('t');
+    if (dest !== ALL) url.searchParams.set('d', dest);
+    else url.searchParams.delete('d');
     const next = url.pathname + (url.searchParams.toString() ? `?${url.searchParams}` : '');
     if (next !== window.location.pathname + window.location.search)
       window.history.replaceState(window.history.state, '', next);
-  }, [province, item, ctype]);
+  }, [province, item, ctype, dest]);
 
   const locate = useCallback(() => {
     if (!('geolocation' in navigator)) {
@@ -150,8 +157,10 @@ export function PublicHome({
       if (province !== ALL && c.province !== province) return false;
       if (item !== ALL && !c.needs.some((n) => n.item === item && n.level !== 'ENOUGH')) return false;
       if (ctype !== ALL && c.centerType !== ctype) return false;
+      if (dest !== ALL && !(c.destinations ?? []).some((d) => d.province === dest)) return false;
       if (onlyOpen && isOpenNow(c, now) !== true) return false;
-      if (q && !fold(`${c.name} ${c.district} ${c.community}`).includes(q)) return false;
+      if (q && !fold(`${c.name} ${c.district} ${c.community} ${destinationsSearchText(meta, c)}`).includes(q))
+        return false;
       return true;
     });
     const rows = filtered.map((c) => ({
@@ -163,13 +172,15 @@ export function PublicHome({
       rows.sort((a, b) => (a.km == null ? 1 : 0) - (b.km == null ? 1 : 0) || (a.km ?? 0) - (b.km ?? 0));
     }
     return rows;
-  }, [centers, province, item, ctype, onlyOpen, now, query, origin]);
+  }, [centers, meta, province, item, ctype, dest, onlyOpen, now, query, origin]);
 
-  const filtersActive = province !== ALL || item !== ALL || ctype !== ALL || onlyOpen || query.trim() !== '';
+  const filtersActive =
+    province !== ALL || item !== ALL || ctype !== ALL || dest !== ALL || onlyOpen || query.trim() !== '';
   const clearFilters = () => {
     setProvince(ALL);
     setItem(ALL);
     setCtype(ALL);
+    setDest(ALL);
     setOnlyOpen(false);
     setQuery('');
   };
@@ -177,6 +188,13 @@ export function PublicHome({
   const provinceItems = useMemo(
     () => [
       { value: ALL, label: 'Todo el país' },
+      ...Object.entries(meta?.provinces ?? {}).map(([value, label]) => ({ value, label })),
+    ],
+    [meta],
+  );
+  const destItems = useMemo(
+    () => [
+      { value: ALL, label: 'Cualquier destino' },
       ...Object.entries(meta?.provinces ?? {}).map(([value, label]) => ({ value, label })),
     ],
     [meta],
@@ -238,6 +256,13 @@ export function PublicHome({
               disabled={!meta}
             />
             <Select
+              label="¿A dónde quieres que llegue?"
+              items={destItems}
+              value={dest}
+              onValueChange={(v) => setDest(v ?? ALL)}
+              disabled={!meta}
+            />
+            <Select
               label="¿Qué quieres donar?"
               items={itemItems}
               value={item}
@@ -245,7 +270,7 @@ export function PublicHome({
               disabled={!meta}
             />
             <Select label="Tipo de lugar" items={typeItems} value={ctype} onValueChange={(v) => setCtype(v ?? ALL)} />
-            <Field label="Buscar" hint="Nombre, distrito o comunidad">
+            <Field label="Buscar" hint="Nombre, distrito, comunidad o destino">
               {(c) => (
                 <SearchInput
                   {...c}
@@ -253,12 +278,18 @@ export function PublicHome({
                   onChange={(e) => setQuery(e.target.value)}
                   onClear={() => setQuery('')}
                   clearLabel="Borrar búsqueda"
-                  placeholder="Ej.: Tonosí"
+                  placeholder="Ej.: Macaracas"
                   autoComplete="off"
                 />
               )}
             </Field>
           </div>
+          {dest !== ALL && (
+            <p className="text-sm text-ink-2">
+              Solo se muestran los centros que indicaron ese destino. Otros también pueden llegar allí: pregunta antes
+              de ir.
+            </p>
+          )}
           <Switch
             label="Abierto ahora"
             description="Según el horario que publicó cada centro (hora de Panamá)."

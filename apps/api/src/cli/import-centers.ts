@@ -53,7 +53,7 @@ export async function importCenters(
 
   const result: ImportResult = { created: [], skipped: [] };
   for (const entry of entries) {
-    const { needs, source, contactConsent: _c, schedule, ...rest } = entry;
+    const { needs, source, contactConsent: _c, schedule, destinations, ...rest } = entry;
     centers.validateNoMoney(rest, needs);
     const consent = contactFields(entry);
     const existing = await db
@@ -76,7 +76,13 @@ export async function importCenters(
       .filter(Boolean)
       .join('\n\n');
     if (notes.length > 600) throw new Error(`${entry.name}: las notas más la fuente superan 600 caracteres`);
-    const fields = { ...rest, ...consent, notes, schedule: JSON.stringify(schedule) };
+    const fields = {
+      ...rest,
+      ...consent,
+      notes,
+      schedule: JSON.stringify(schedule),
+      destinations: JSON.stringify(destinations),
+    };
 
     const center = await db.transaction().execute(async (trx) => {
       const base = slugify(`${fields.name} ${fields.community || fields.district}`) || 'centro';

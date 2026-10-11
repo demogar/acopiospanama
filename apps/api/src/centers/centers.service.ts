@@ -8,7 +8,9 @@ import type { AppConfig } from '../config';
 import type { DB } from '../db/db';
 import type { Center } from '../db/types';
 import {
+  Destination,
   EXPIRE_DAYS,
+  MAX_DESTINATIONS,
   textProblem,
   FLAG_THRESHOLD,
   HIDE_THRESHOLD,
@@ -58,6 +60,34 @@ const phone = z
   .refine((s) => s === '' || s.replace(/\D/g, '').length >= 7, 'Número incompleto')
   .default('');
 
+const foldText = (s: string) =>
+  s
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .trim();
+
+/** A dónde llega la ayuda. Los repetidos (misma provincia y distrito, sin distinguir tildes) se quedan con el primero. */
+export const destinationsSchema = z
+  .array(
+    z
+      .object({
+        province: z.enum(PROVINCE_KEYS, { errorMap: () => ({ message: 'Elige la provincia o comarca' }) }),
+        district: shortText(60).default(''),
+      })
+      .strict(),
+  )
+  .max(MAX_DESTINATIONS, `Indica hasta ${MAX_DESTINATIONS} destinos`)
+  .transform((list) => {
+    const seen = new Set<string>();
+    return list.filter((d) => {
+      const key = `${d.province}|${foldText(d.district)}`;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+  });
+
 export const centerInputSchema = z.object({
   name: shortText(120).refine((s) => s.length >= 3, 'Escribe el nombre del centro'),
   centerType: z.enum(CENTER_TYPE_KEYS, { errorMap: () => ({ message: 'Elige el tipo de centro' }) }),
@@ -77,6 +107,9 @@ export const centerInputSchema = z.object({
   /** El contacto se publica solo si esa persona lo acepta expresamente. */
   contactConsent: z.boolean().default(false),
   notes: text(600).default(''),
+  /** A dónde llega la ayuda y cómo (quién la transporta, cada cuánto). */
+  destinations: destinationsSchema.default([]),
+  destinationNote: shortText(200).default(''),
 });
 
 /** Al publicar, la ubicación exacta es obligatoria (es lo primero que busca quien quiere llevar algo). */
@@ -189,6 +222,8 @@ export interface PublicCenter {
   contactPhone: string;
   contactWhatsapp: string;
   notes: string;
+  destinations: Destination[];
+  destinationNote: string;
   needs: { item: Item; level: NeedLevel; note: string }[];
   confirmations: number;
   lastActivity: string;
@@ -252,8 +287,10 @@ export class CentersService {
       'hoursNote',
       'contactName',
       'notes',
+      'destinationNote',
     ] as const)
       check(k, input[k]);
+    input.destinations?.forEach((d, i) => check(`destinations.${i}.district`, d.district));
     needs.forEach((n, i) => check(`needs.${i}.note`, n.note));
     if (Object.keys(fields).length) {
       throw new ApiError(
@@ -358,6 +395,8 @@ export class CentersService {
         contactPhone: c.contactConsentAt ? c.contactPhone : '',
         contactWhatsapp: c.contactConsentAt ? c.contactWhatsapp : '',
         notes: c.notes,
+        destinations: c.destinations ?? [],
+        destinationNote: c.destinationNote,
         needs: needs
           .filter((n) => n.centerId === c.id)
           .map((n) => ({ item: n.item, level: n.level, note: n.note }))

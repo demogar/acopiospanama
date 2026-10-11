@@ -49,6 +49,21 @@ export default function ComoFunciona() {
             Un <strong>contacto</strong> (nombre, teléfono o WhatsApp) solo se publica si esa persona lo acepta. Se
             puede quitar en cualquier momento editando el centro.
           </p>
+        </section>
+
+        <section>
+          <h2>A dónde llega lo que donas</h2>
+          <p>
+            Cada centro puede indicar <strong>a qué lugares llega la ayuda</strong> que recibe (por ejemplo, Macaracas y
+            Los Pozos) y <strong>cómo llega</strong>: quién la transporta, cada cuánto y a quién se entrega. En la
+            portada puedes filtrar por <strong>«¿A dónde quieres que llegue?»</strong> y buscar por el nombre de la
+            comunidad.
+          </p>
+          <p>
+            Si un centro no lo indica, su ficha lo dice. No significa que sea falso, pero conviene preguntar antes de
+            dejar nada. Si eres responsable, añádelo: es lo primero que mira quien quiere ayudar a una comunidad
+            concreta.
+          </p>
           <p>
             <Link href="/publicar">Publicar un centro</Link>
           </p>
@@ -77,7 +92,8 @@ export default function ComoFunciona() {
           <ul>
             <li>
               Cualquiera puede reportar que un centro cerró, que ya no recibe, que tiene datos equivocados, que pide
-              dinero, que parece falso o que publicaron sus datos sin permiso. El reporte es anónimo.
+              dinero, que parece falso, que las donaciones no llegan a donde dice o que publicaron sus datos sin
+              permiso. El reporte es anónimo.
             </li>
             <li>
               La misma persona cuenta <strong>una sola vez</strong> por centro mientras su reporte siga abierto:
@@ -88,8 +104,9 @@ export default function ComoFunciona() {
               <strong>«Reportado: verifica antes de ir»</strong>.
             </li>
             <li>
-              Si <strong>3 o más personas</strong> reportan algo grave (que cerró, que pide dinero o que es falso) y son
-              más que quienes confirmaron que funciona, el centro <strong>se oculta</strong> solo.
+              Si <strong>3 o más personas</strong> reportan algo grave (que cerró, que pide dinero, que es falso o que
+              las donaciones no llegan a donde dice) y son más que quienes confirmaron que funciona, el centro{' '}
+              <strong>se oculta</strong> solo.
             </li>
             <li>
               Un centro oculto <strong>vuelve a mostrarse</strong> si al menos tantas personas confirman que sigue
@@ -113,6 +130,40 @@ export default function ComoFunciona() {
             <strong>Nunca transfieras dinero a nombre de un centro de esta lista.</strong> Si ves que alguno pide
             dinero, repórtalo. Si quieres donar dinero, hazlo directamente a organizaciones reconocidas.
           </p>
+        </section>
+
+        <section>
+          <h2>Cómo evitar el «juega vivo»</h2>
+          <p>
+            En cada emergencia aparece gente que se aprovecha. Este directorio no puede comprobar a cada centro en
+            persona, pero sí te da señales para decidir:
+          </p>
+          <ul>
+            <li>
+              <strong>Quién lo organiza.</strong> Una junta comunal, un municipio, una iglesia o una fundación con
+              nombre es más fácil de contrastar que un lugar sin organización detrás.
+            </li>
+            <li>
+              <strong>A dónde llega y cómo.</strong> Desconfía si no saben decirte a qué comunidades va la ayuda ni
+              quién la lleva.
+            </li>
+            <li>
+              <strong>Cuándo se confirmó y por cuántas personas.</strong> Un centro con confirmaciones recientes de
+              varias personas es un centro que existe y funciona.
+            </li>
+            <li>
+              <strong>Nunca dinero.</strong> Si te piden dinero, transferencias o Yappy en nombre de un centro de esta
+              lista, no lo des y repórtalo.
+            </li>
+            <li>
+              <strong>Entrega en mano.</strong> Lleva tú la donación al centro y pide que la reciban allí. No la
+              entregues a intermediarios que «pasan a buscarla».
+            </li>
+            <li>
+              <strong>Reporta lo que veas.</strong> Si las donaciones no llegan a donde dice la ficha, repórtalo: con
+              varios reportes el centro se oculta hasta que su responsable lo aclare.
+            </li>
+          </ul>
         </section>
 
         <section>

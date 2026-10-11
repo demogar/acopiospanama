@@ -4,6 +4,7 @@ import { useId } from 'react';
 import { Checkbox, Field, Input, Select, Stack, Textarea } from '@demogar/mola-ui';
 import { type CenterInput, centerTypes, type Meta } from '@/lib/account-types';
 import { DAYS, type Day } from '@/lib/public-schedule';
+import { DestinationsEditor } from './destinations-editor';
 import { LocationField } from './location-field';
 import { ScheduleEditor, scheduleErrors } from './schedule-editor';
 
@@ -26,6 +27,8 @@ export const FIELD_LABELS: Record<string, string> = {
   contactWhatsapp: 'WhatsApp',
   contactConsent: 'Permiso para publicar el contacto',
   notes: 'Notas',
+  destinations: 'A dónde llega la ayuda',
+  destinationNote: 'Cómo llega la ayuda',
 };
 
 export function fieldLabel(k: string): string {
@@ -206,6 +209,37 @@ export function CenterFields({
         </Stack>
       </fieldset>
 
+      <fieldset className="min-w-0" data-field="destinations">
+        <legend className="mb-1 font-semibold text-ink">A dónde llega la ayuda</legend>
+        <p className="mb-3 text-sm text-ink-2">
+          Quien dona quiere saber a qué comunidades va lo que deja aquí. Indica los lugares (puedes poner varios) y,
+          abajo, cómo llega: quién lo transporta, cada cuánto y a quién se entrega.
+        </p>
+        <Stack gap="md">
+          <DestinationsEditor
+            meta={meta}
+            value={value.destinations}
+            onChange={(destinations) => onChange({ destinations })}
+            errors={errors}
+          />
+          <Field
+            data-field="destinationNote"
+            label="Cómo llega (opcional)"
+            hint="Ej.: la parroquia lo lleva en su camión los lunes a la junta comunal de Macaracas."
+            error={errors.destinationNote}
+          >
+            {(c) => (
+              <Input
+                {...c}
+                value={value.destinationNote}
+                maxLength={200}
+                onChange={(e) => onChange({ destinationNote: e.target.value })}
+              />
+            )}
+          </Field>
+        </Stack>
+      </fieldset>
+
       <fieldset className="min-w-0" data-field="schedule">
         <legend className="mb-2 font-semibold text-ink">Horario (opcional)</legend>
         <ScheduleEditor
@@ -350,6 +384,9 @@ export function validateLocal(v: CenterInput): Record<string, string> {
   if (we) e.contactWhatsapp = we;
   if (hasContact(v) && !v.contactConsent)
     e.contactConsent = 'Marca la casilla para publicar el contacto, o borra sus datos';
+  v.destinations.forEach((d, i) => {
+    if (!d.province) e[`destinations.${i}.province`] = 'Elige la provincia o comarca, o quita este destino';
+  });
   return e;
 }
 
@@ -369,5 +406,7 @@ export function toBody(v: CenterInput) {
     contactWhatsapp: v.contactWhatsapp.trim(),
     contactConsent: contact ? v.contactConsent : false,
     notes: v.notes.trim(),
+    destinations: v.destinations.map((d) => ({ province: d.province, district: d.district.trim() })),
+    destinationNote: v.destinationNote.trim(),
   };
 }

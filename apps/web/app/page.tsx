@@ -14,7 +14,7 @@ type Props = { searchParams: Promise<Record<string, string | string[] | undefine
 async function filters(searchParams: Props['searchParams']) {
   const sp = await searchParams;
   const pick = (k: string) => (typeof sp[k] === 'string' && KEY.test(sp[k]) ? sp[k] : null);
-  return { p: pick('p'), i: pick('i'), t: pick('t') };
+  return { p: pick('p'), i: pick('i'), t: pick('t'), d: pick('d') };
 }
 
 /**
@@ -47,7 +47,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
 }
 
 export default async function Home({ searchParams }: Props) {
-  const { p, i, t } = await filters(searchParams);
+  const { p, i, t, d } = await filters(searchParams);
   const [centers, meta] = await Promise.all([getPublicCenters(), getPublicMeta()]);
   return (
     <SiteFrame width="wide">
@@ -58,6 +58,7 @@ export default async function Home({ searchParams }: Props) {
         initialProvince={p}
         initialItem={i}
         initialType={t}
+        initialDestination={d}
         tileHost={mapTileHost()}
       />
     </SiteFrame>

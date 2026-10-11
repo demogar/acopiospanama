@@ -123,6 +123,49 @@ describe('publicar un centro', () => {
     assert.match(list.headers.get('cache-control') ?? '', /public/);
   });
 
+  it('a dónde llega la ayuda: destinos públicos sin repetidos; su texto pasa el mismo filtro; se editan solos', async () => {
+    const c = await login(env, 'destino@x.test');
+    const r = await c.post(
+      '/centers',
+      centerBody({
+        name: 'Acopio con destino',
+        destinations: [
+          { province: 'LOS_SANTOS', district: 'Macaracas' },
+          { province: 'HERRERA', district: 'Los Pozos' },
+          { province: 'LOS_SANTOS', district: 'macaracas ' },
+        ],
+        destinationNote: 'Lo lleva la parroquia cada lunes.',
+      }),
+    );
+    assert.equal(r.status, 201, JSON.stringify(r.body));
+    assert.deepEqual(r.body.destinations, [
+      { province: 'LOS_SANTOS', district: 'Macaracas' },
+      { province: 'HERRERA', district: 'Los Pozos' },
+    ]);
+    assert.equal(r.body.destinationNote, 'Lo lleva la parroquia cada lunes.');
+    const shown = await pub(r.body.slug);
+    assert.equal(shown.body.destinations.length, 2);
+    assert.equal(shown.body.destinationNote, 'Lo lleva la parroquia cada lunes.');
+
+    const badProvince = await c.post('/centers', centerBody({ destinations: [{ province: 'AZUERO', district: '' }] }));
+    assert.equal(badProvince.status, 400);
+    assert.ok(badProvince.body.fields['destinations.0.province']);
+    const money = await c.post('/centers', centerBody({ destinationNote: 'Transferencia a cuenta de ahorros' }));
+    assert.equal(money.status, 400);
+    assert.ok(money.body.fields.destinationNote);
+    const link = await c.post(
+      '/centers',
+      centerBody({ destinations: [{ province: 'HERRERA', district: 'dona en ayuda.com' }] }),
+    );
+    assert.equal(link.status, 400);
+    assert.ok(link.body.fields['destinations.0.district']);
+
+    const edited = await c.patch(`/centers/${r.body.id}`, { destinations: [{ province: 'HERRERA', district: '' }] });
+    assert.equal(edited.status, 200, JSON.stringify(edited.body));
+    assert.deepEqual(edited.body.destinations, [{ province: 'HERRERA', district: '' }]);
+    assert.equal(edited.body.destinationNote, 'Lo lleva la parroquia cada lunes.');
+  });
+
   it('máximo 3 centros nuevos por persona y día', async () => {
     const c = await login(env, 'pub5@x.test');
     for (let i = 0; i < 3; i++) await createCenter(c, { name: `Límite ${i}` });

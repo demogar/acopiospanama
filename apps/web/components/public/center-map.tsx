@@ -8,7 +8,7 @@
 import 'leaflet/dist/leaflet.css';
 import { useEffect, useRef, useState } from 'react';
 import type * as Leaflet from 'leaflet';
-import { centerTypeShort, hasCoords, needsAt, itemLabel } from '@/lib/public-format';
+import { centerTypeShort, destinationsText, hasCoords, needsAt, itemLabel } from '@/lib/public-format';
 import { openStatus } from '@/lib/public-schedule';
 import type { PublicCenter, PublicMeta } from '@/lib/public-types';
 
@@ -47,6 +47,13 @@ function popupContent(c: PublicCenter, meta: PublicMeta | null): HTMLElement {
     o.style.margin = '0 0 4px';
     o.textContent = `${centerTypeShort(meta, c.centerType)} · ${st.label}`;
     root.appendChild(o);
+  }
+  const dest = destinationsText(meta, c);
+  if (dest) {
+    const d = document.createElement('p');
+    d.style.margin = '0 0 4px';
+    d.textContent = `Llega a: ${dest}`;
+    root.appendChild(d);
   }
   const a = document.createElement('a');
   a.href = `/c/${encodeURIComponent(c.slug)}`;

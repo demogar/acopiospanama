@@ -6,6 +6,12 @@ export type CenterType = 'ACOPIO' | 'DISTRIBUCION' | 'COMEDOR' | 'ALBERGUE' | 'M
 export type NeedLevel = 'URGENT' | 'NEEDED' | 'ENOUGH';
 export type Visibility = 'VISIBLE' | 'STALE' | 'EXPIRED' | 'COMMUNITY_HIDDEN' | 'CLOSED' | 'REMOVED';
 
+/** A dónde llega la ayuda: provincia del catálogo y distrito o comunidad (puede ir vacío). */
+export interface PublicDestination {
+  province: string;
+  district: string;
+}
+
 export interface PublicNeed {
   item: string;
   level: NeedLevel;
@@ -34,6 +40,8 @@ export interface PublicCenter {
   contactPhone: string;
   contactWhatsapp: string;
   notes: string;
+  destinations: PublicDestination[];
+  destinationNote: string;
   needs: PublicNeed[];
   confirmations: number;
   lastActivity: string;

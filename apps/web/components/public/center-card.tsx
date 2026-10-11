@@ -1,7 +1,7 @@
 import Link from 'next/link';
-import { MapPin } from 'lucide-react';
+import { MapPin, Truck } from 'lucide-react';
 import { Badge } from '@demogar/mola-ui';
-import { centerTypeShort, formatKm, organizerLabel, placeLine } from '@/lib/public-format';
+import { centerTypeShort, destinationsText, formatKm, organizerLabel, placeLine } from '@/lib/public-format';
 import { OpenLine } from './open-status';
 import type { PublicCenter, PublicMeta } from '@/lib/public-types';
 import { FreshnessLine, StatusBadges } from './freshness';
@@ -19,6 +19,7 @@ export function CenterCard({
   highlightItem?: string | null;
 }) {
   const urgent = center.needs.some((n) => n.level === 'URGENT');
+  const destinations = destinationsText(meta, center);
   return (
     <article
       className={`relative flex flex-col gap-3 bg-cloth-pale p-4 shadow-cut transition-shadow focus-within:shadow-[var(--focus-ring)] hover:shadow-[0_0_0_2px_var(--color-ink)] ${
@@ -54,6 +55,15 @@ export function CenterCard({
           </span>
         </p>
         <OpenLine center={center} />
+        {destinations && (
+          <p className="flex items-start gap-1 text-sm text-ink">
+            <Truck aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-ink-2" />
+            <span>
+              <span className="text-ink-2">Llega a: </span>
+              {destinations}
+            </span>
+          </p>
+        )}
       </div>
       <NeedsSummary center={center} meta={meta} highlight={highlightItem} />
       <FreshnessLine center={center} />

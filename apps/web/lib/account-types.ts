@@ -5,7 +5,13 @@ export type { Schedule };
 
 export type Visibility = 'VISIBLE' | 'STALE' | 'EXPIRED' | 'COMMUNITY_HIDDEN' | 'CLOSED' | 'REMOVED';
 export type NeedLevel = 'URGENT' | 'NEEDED' | 'ENOUGH';
-export type ReportReason = 'CLOSED' | 'NOT_RECEIVING' | 'WRONG_INFO' | 'ASKS_MONEY' | 'FAKE' | 'MY_DATA' | 'OTHER';
+export type ReportReason =
+  'CLOSED' | 'NOT_RECEIVING' | 'WRONG_INFO' | 'ASKS_MONEY' | 'FAKE' | 'DIVERTED' | 'MY_DATA' | 'OTHER';
+
+export interface Destination {
+  province: string;
+  district: string;
+}
 
 export interface Meta {
   provinces: Record<string, string>;
@@ -44,6 +50,8 @@ export interface Center {
   contactPhone: string;
   contactWhatsapp: string;
   notes: string;
+  destinations: Destination[];
+  destinationNote: string;
   needs: Need[];
   confirmations: number;
   lastActivity: string;
@@ -138,6 +146,8 @@ export interface CenterInput {
   contactWhatsapp: string;
   contactConsent: boolean;
   notes: string;
+  destinations: Destination[];
+  destinationNote: string;
 }
 
 export const emptyInput: CenterInput = {
@@ -158,6 +168,8 @@ export const emptyInput: CenterInput = {
   contactWhatsapp: '',
   contactConsent: false,
   notes: '',
+  destinations: [],
+  destinationNote: '',
 };
 
 export function inputFromCenter(c: ManagedCenter): CenterInput {
@@ -179,6 +191,8 @@ export function inputFromCenter(c: ManagedCenter): CenterInput {
     contactWhatsapp: c.contactWhatsapp,
     contactConsent: c.contactConsent,
     notes: c.notes,
+    destinations: c.destinations ?? [],
+    destinationNote: c.destinationNote ?? '',
   };
 }
 
@@ -237,6 +251,10 @@ export const REPORT_FOR_OWNER: Record<ReportReason, { text: string; fix: string 
   FAKE: {
     text: 'no pudieron comprobar que el centro exista',
     fix: 'Añade una referencia clara, el horario y quién lo organiza para que la gente lo encuentre.',
+  },
+  DIVERTED: {
+    text: 'dudan de que las donaciones lleguen a donde dice la ficha',
+    fix: 'Indica a dónde llega la ayuda y cómo (quién la lleva, cada cuánto). Cuanto más claro, menos dudas.',
   },
   MY_DATA: {
     text: 'se publicaron sus datos sin permiso',

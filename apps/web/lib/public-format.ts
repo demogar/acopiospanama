@@ -48,6 +48,34 @@ export function placeLine(
   return parts.filter((p, i) => parts.findIndex((q) => q.toLowerCase() === p.toLowerCase()) === i).join(', ');
 }
 
+/**
+ * Destinos agrupados por provincia: «Macaracas y Los Pozos (Los Santos) · Chitré (Herrera) · Veraguas».
+ * Vacío si el centro no indicó a dónde llega la ayuda.
+ */
+export function destinationsText(meta: PublicMeta | null | undefined, c: Pick<PublicCenter, 'destinations'>): string {
+  const byProvince = new Map<string, string[]>();
+  for (const d of c.destinations ?? []) {
+    const list = byProvince.get(d.province) ?? [];
+    const district = d.district.trim();
+    if (district && !list.some((x) => x.toLowerCase() === district.toLowerCase())) list.push(district);
+    byProvince.set(d.province, list);
+  }
+  return [...byProvince]
+    .map(([province, districts]) => {
+      const name = provinceLabel(meta, province);
+      if (districts.length === 0) return name;
+      const joined =
+        districts.length === 1 ? districts[0] : `${districts.slice(0, -1).join(', ')} y ${districts.at(-1)}`;
+      return `${joined} (${name})`;
+    })
+    .join(' · ');
+}
+
+/** Texto plano de los destinos para buscar: distritos y nombres de provincia. */
+export function destinationsSearchText(meta: PublicMeta | null | undefined, c: Pick<PublicCenter, 'destinations'>) {
+  return (c.destinations ?? []).map((d) => `${d.district} ${provinceLabel(meta, d.province)}`).join(' ');
+}
+
 /** Distancia en km entre dos puntos (fórmula de Haversine). Se calcula solo en el navegador. */
 export function haversineKm(a: { lat: number; lng: number }, b: { lat: number; lng: number }): number {
   const R = 6371;

@@ -195,8 +195,13 @@ export class ManageController {
       .executeTakeFirstOrThrow();
     if (Number(managed.n) >= MAX_MANAGED) throw new ApiError(429, 'TOO_MANY', `Ya administras ${MAX_MANAGED} centros.`);
 
-    const { needs, contactConsent: _c, schedule, ...rest } = input;
-    const fields = { ...rest, ...consent, schedule: JSON.stringify(schedule) };
+    const { needs, contactConsent: _c, schedule, destinations, ...rest } = input;
+    const fields = {
+      ...rest,
+      ...consent,
+      schedule: JSON.stringify(schedule),
+      destinations: JSON.stringify(destinations),
+    };
     const center = await this.db.transaction().execute(async (trx) => {
       const base = slugify(`${fields.name} ${fields.community || fields.district}`) || 'centro';
       let slug = base;
@@ -243,10 +248,11 @@ export class ManageController {
     };
     const consent = touchesContact ? contactFields(merged) : {};
     this.centers.validateNoMoney(input);
-    const { contactConsent: _c, schedule, ...rest } = input;
+    const { contactConsent: _c, schedule, destinations, ...rest } = input;
     const fields = {
       ...rest,
       ...consent,
+      ...(destinations !== undefined ? { destinations: JSON.stringify(destinations) } : {}),
       ...(touchesContact && !merged.contactName && !merged.contactPhone && !merged.contactWhatsapp
         ? { contactConsentAt: null }
         : {}),

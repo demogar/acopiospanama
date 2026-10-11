@@ -1,5 +1,5 @@
 import { createDb, migrate } from '../db/db';
-import type { Item, NeedLevel, OrganizerType, Province } from '../domain';
+import type { Destination, Item, NeedLevel, OrganizerType, Province } from '../domain';
 
 /** Datos 100 % ficticios para desarrollo (correos .test, lugares inventados). Nunca en producción. */
 async function main() {
@@ -36,6 +36,8 @@ async function main() {
       by: string;
       confirmed: number;
       needs: [Item, NeedLevel][];
+      dest?: Destination[];
+      destNote?: string;
     }[] = [
       {
         name: 'Centro de acopio Parroquia (demo)',
@@ -50,6 +52,11 @@ async function main() {
         hours: 'Se recibe a cualquier hora; de noche, toca en la casa cural.',
         by: ana,
         confirmed: 2,
+        dest: [
+          { province: 'LOS_SANTOS', district: 'Tonosí' },
+          { province: 'LOS_SANTOS', district: 'Macaracas' },
+        ],
+        destNote: 'La parroquia lo reparte ella misma en las comunidades afectadas (demo).',
         needs: [
           ['WATER', 'URGENT'],
           ['FOOD', 'URGENT'],
@@ -70,6 +77,10 @@ async function main() {
         hours: 'Lunes a sábado, 8:00 a. m. – 5:00 p. m.',
         by: beto,
         confirmed: 30,
+        dest: [
+          { province: 'HERRERA', district: 'Los Pozos' },
+          { province: 'LOS_SANTOS', district: '' },
+        ],
         needs: [
           ['TARPS', 'URGENT'],
           ['HYGIENE', 'NEEDED'],
@@ -147,6 +158,8 @@ async function main() {
           lat: c.lat,
           lng: c.lng,
           hoursNote: c.hours,
+          destinations: JSON.stringify(c.dest ?? []),
+          destinationNote: c.destNote ?? '',
           createdBy: c.by,
           publishedAt: new Date(),
           managerConfirmedAt: hoursAgo(c.confirmed),

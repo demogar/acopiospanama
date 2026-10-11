@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import Link from 'next/link';
-import { CheckCircle2, Flag, Navigation } from 'lucide-react';
+import { CheckCircle2, Flag, Navigation, Truck } from 'lucide-react';
 import { Badge, Button, buttonVariants, Callout, EmptyState, useToast } from '@demogar/mola-ui';
 import { ErrorState, Loading } from '@/components/states';
 import { api, ApiError, errorMessage } from '@/lib/api';
@@ -10,6 +10,7 @@ import { useApi } from '@/lib/use-api';
 import {
   centerTypeLabel,
   centerTypeShort,
+  destinationsText,
   directionsLinks,
   itemLabel,
   needsAt,
@@ -127,10 +128,12 @@ export function CenterDetail({
   const needed = needsAt(center, 'NEEDED');
   const shareNeeds = [...urgent, ...needed].map((n) => itemLabel(meta, n.item));
   const today = todayText(center.schedule);
+  const destinations = destinationsText(meta, center);
   const shareText = [
     `${center.name} — ${centerTypeShort(meta, center.centerType)} en ${placeLine(meta, center)}.`,
     today ? (today.endsWith('.') ? today : `${today}.`) : '',
     shareNeeds.length ? `Necesita: ${shareNeeds.join(', ')}.` : '',
+    destinations ? `Llega a: ${destinations}.` : '',
     'Confirma antes de ir.',
   ]
     .filter(Boolean)
@@ -206,6 +209,26 @@ export function CenterDetail({
             <NeedsDetail center={center} meta={meta} />
           </section>
         )}
+
+        <section aria-labelledby="destino" className="grid gap-2">
+          <h2 id="destino" className="font-ui text-xl font-bold">
+            A dónde llega la ayuda
+          </h2>
+          {destinations ? (
+            <>
+              <p className="flex items-start gap-2">
+                <Truck aria-hidden="true" className="mt-1 size-4 shrink-0 text-ink-2" />
+                <span className="font-semibold text-ink">{destinations}</span>
+              </p>
+              {center.destinationNote && <p className="whitespace-pre-line text-ink-2">{center.destinationNote}</p>}
+            </>
+          ) : (
+            <p className="text-ink-2">
+              El centro no indicó a dónde envía lo que recibe. Pregunta antes de dejar tu donación, y si lo sabes, pide
+              al responsable que lo añada a la ficha.
+            </p>
+          )}
+        </section>
 
         <Callout tone="warn" title="Nunca transfieras dinero a nombre de un centro de esta lista." headingLevel={2}>
           Aquí solo se piden artículos. Si alguien te pide dinero en nombre de este centro, repórtalo.

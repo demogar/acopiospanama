@@ -1,5 +1,14 @@
 import type { ColumnType, Generated, Selectable } from 'kysely';
-import type { CenterType, Item, NeedLevel, OrganizerType, Province, ReportReason, Schedule } from '../domain';
+import type {
+  CenterType,
+  Destination,
+  Item,
+  NeedLevel,
+  OrganizerType,
+  Province,
+  ReportReason,
+  Schedule,
+} from '../domain';
 
 type TimestampNull = ColumnType<Date | null, Date | string | null | undefined, Date | string | null>;
 type Timestamp = ColumnType<Date, Date | string | undefined, Date | string>;
@@ -75,6 +84,8 @@ export interface CentersTable {
   contactWhatsapp: Generated<string>;
   contactConsentAt: TimestampNull;
   notes: Generated<string>;
+  destinations: ColumnType<Destination[], string | undefined, string>;
+  destinationNote: Generated<string>;
   status: Generated<CenterStatus>;
   managerConfirmedAt: Generated<Date>;
   lastReminderAt: TimestampNull;

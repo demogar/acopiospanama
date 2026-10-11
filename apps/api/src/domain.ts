@@ -76,6 +76,18 @@ export const DISTRICTS: Record<Province, string[]> = {
   NASO_TJER_DI: [],
 };
 
+/**
+ * A dónde llega la ayuda que recibe un centro: provincia o comarca del catálogo y, si se sabe,
+ * el distrito o la comunidad (texto libre). Quien dona elige así un centro cuyas donaciones vayan
+ * al lugar que le importa, y «cómo llega» (quién lo transporta, cada cuánto) ayuda a detectar el
+ * «juega vivo». Lista vacía = el centro no lo indicó.
+ */
+export interface Destination {
+  province: Province;
+  district: string;
+}
+export const MAX_DESTINATIONS = 10;
+
 export const CENTER_TYPES = {
   ACOPIO: 'Centro de acopio (recibe donaciones)',
   DISTRIBUCION: 'Punto de distribución (entrega ayuda a afectados)',
@@ -164,6 +176,7 @@ export const REPORT_REASONS = {
   WRONG_INFO: 'La información está equivocada',
   ASKS_MONEY: 'Pide dinero o transferencias',
   FAKE: 'Parece falso o una estafa',
+  DIVERTED: 'Las donaciones no llegan a donde dice',
   MY_DATA: 'Publicaron mis datos sin mi permiso',
   OTHER: 'Otro',
 } as const;
@@ -172,8 +185,8 @@ export const REPORT_KEYS = Object.keys(REPORT_REASONS) as [ReportReason, ...Repo
 
 /** A partir de cuántos reportes distintos (en 72 h) un centro queda «en verificación» o se oculta. */
 export const FLAG_THRESHOLD = 2;
-export const HIDE_THRESHOLD = 3; // solo motivos graves: ASKS_MONEY, FAKE, CLOSED
-export const SERIOUS_REASONS: ReportReason[] = ['ASKS_MONEY', 'FAKE', 'CLOSED'];
+export const HIDE_THRESHOLD = 3; // solo motivos graves: ASKS_MONEY, FAKE, DIVERTED, CLOSED
+export const SERIOUS_REASONS: ReportReason[] = ['ASKS_MONEY', 'FAKE', 'DIVERTED', 'CLOSED'];
 
 /** Frescura: sin confirmar en 72 h baja en la lista; en 14 días deja de mostrarse por defecto. */
 export const STALE_HOURS = 72;
