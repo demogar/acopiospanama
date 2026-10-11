@@ -1,0 +1,57 @@
+[
+  {
+    "name": "Club de Leones de Chanis (Plaza Ágora)",
+    "centerType": "ACOPIO",
+    "organizerType": "ONG",
+    "organizerName": "Club de Leones de Chanis",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Chanis",
+    "address": "Cueva Silvio Yáñez Dutary, Plaza Ágora de Chanis, 2.º piso, locales 26 y 27, Vía Cincuentenario (entre Avenida Santa Elena y Avenida La Fontana), Parque Lefevre",
+    "lat": 9.0174,
+    "lng": -79.4842,
+    "schedule": {},
+    "hoursNote": "Recibieron el sábado 10 y el domingo 11 de octubre sin publicar horas; la carga sale entre el lunes 12 y el martes 13. Confirma antes de ir.",
+    "notes": "Reciben botellas de agua, alimentos secos, ropa y calzado en buen estado, artículos de aseo personal y productos de limpieza. Las donaciones salen entre el lunes 12 y el martes 13 de octubre hacia Azuero y Veraguas, con parada en Panamá Oeste para sumar lo que reúnan otros clubes de Leones.",
+    "needs": [
+      { "item": "WATER", "level": "NEEDED", "note": "Botellas de agua" },
+      { "item": "FOOD", "level": "NEEDED", "note": "Alimentos secos" },
+      { "item": "CLOTHES", "level": "NEEDED", "note": "Ropa y calzado en buen estado" },
+      { "item": "HYGIENE", "level": "NEEDED", "note": "Aseo personal" },
+      { "item": "CLEANING", "level": "NEEDED" }
+    ],
+    "source": {
+      "title": "La Voz del Agro y El Siglo",
+      "url": "https://www.lavozdelagro.com/clubes-de-leones-se-solidarizan-con-los-afectados-por-el-sismo-en-azuero-y-veraguas/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "COE del Sinaproc en Aguadulce",
+    "centerType": "ACOPIO",
+    "organizerType": "GOBIERNO",
+    "organizerName": "Defensoría del Pueblo y Sinaproc",
+    "province": "COCLE",
+    "district": "Aguadulce",
+    "community": "Aguadulce",
+    "address": "Centro de Operaciones de Emergencias (COE) del Sinaproc, Vía Interamericana, a un costado de Plaza OnDGo, Barriada La Providencia, Aguadulce",
+    "lat": 8.2482,
+    "lng": -80.5511,
+    "schedule": {},
+    "hoursNote": "Horario no publicado: confirma antes de ir.",
+    "notes": "Punto de recepción de la Defensoría del Pueblo en Coclé. Piden agua embotellada, pañales de adulto y de niño, comida seca, insumos hospitalarios, leche para infantes, linternas, ventiladores, carpas y sillas.",
+    "needs": [
+      { "item": "WATER", "level": "NEEDED", "note": "Agua embotellada" },
+      { "item": "BABY", "level": "NEEDED", "note": "Pañales de niño y adulto, leche para infantes" },
+      { "item": "FOOD", "level": "NEEDED", "note": "Comida seca" },
+      { "item": "FIRST_AID", "level": "NEEDED", "note": "Insumos hospitalarios" },
+      { "item": "LIGHTS", "level": "NEEDED", "note": "Linternas" },
+      { "item": "TARPS", "level": "NEEDED", "note": "Carpas" }
+    ],
+    "source": {
+      "title": "Sitio oficial de la Defensoría del Pueblo (también Telemetro, 11 de octubre)",
+      "url": "https://www.defensoria.gob.pa/defensoria-despliega-recorrido-por-la-provincia-de-cocle-tras-terremoto/",
+      "date": "2026-10-10"
+    }
+  }
+]
