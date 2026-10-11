@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.0](https://github.com/demogar/acopiospanama/compare/v0.1.2...v0.2.0) (2026-10-11)
+
+
+### Novedades
+
+* **api:** importar centros anunciados públicamente y primer lote de 7 centros ([#23](https://github.com/demogar/acopiospanama/issues/23)) ([1b0b550](https://github.com/demogar/acopiospanama/commit/1b0b550e1e3ceb64d83f99c7478e1ebdf6623315))
+* **web:** aprovechar las pantallas anchas sin perder la vista móvil ([#21](https://github.com/demogar/acopiospanama/issues/21)) ([6438bbc](https://github.com/demogar/acopiospanama/commit/6438bbc732c6e8cf11914cbb8b18c7f64afb7f32))
+
 ## [0.1.2](https://github.com/demogar/acopiospanama/compare/v0.1.1...v0.1.2) (2026-10-11)
 
 
