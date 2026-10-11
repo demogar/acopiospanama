@@ -146,6 +146,13 @@ export function SiteFrame({ title, subtitle, back, actions, width = 'page', chil
             </a>
             .
           </p>
+          <p>
+            Iniciativa de{' '}
+            <a href="https://www.demogar.com" className="text-ink-2 hover:underline" rel="noopener noreferrer">
+              Demóstenes García
+            </a>
+            .
+          </p>
           {VERSION && <p className="font-mono">v{VERSION}</p>}
         </div>
       </footer>
