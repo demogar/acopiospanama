@@ -18,6 +18,7 @@ import {
 } from '@/components/account/needs-editor';
 import { ShareButton } from '@/components/account/share-button';
 import { SiteFrame } from '@/components/site-frame';
+import { NewTab } from '@/components/ui/new-tab';
 import { ErrorState, Loading } from '@/components/states';
 import { api, ApiError, errorMessage } from '@/lib/api';
 import { useMeta } from '@/lib/account-meta';
@@ -263,6 +264,7 @@ export function PublishForm({ tileHost }: { tileHost: string }) {
                         <span className="text-sm text-ink-2">
                           {[d.community, d.district, d.address].filter(Boolean).join(' · ')}
                         </span>
+                        <NewTab />
                       </Link>
                     </li>
                   ))}

@@ -4,6 +4,7 @@ import { useId, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { LocateFixed, Map as MapIcon, MapPin } from 'lucide-react';
 import { Button, Callout, Input, Text } from '@demogar/mola-ui';
+import { NewTab } from '@/components/ui/new-tab';
 import { inPanama, mapsLink, parseMapsLocation } from '@/lib/account-geo';
 
 const MapPicker = dynamic(() => import('./map-picker'), {
@@ -137,6 +138,7 @@ export function LocationField({
             className="inline-flex min-h-11 items-center text-sm underline"
           >
             Ver en Google Maps
+            <NewTab label="se abre en Google Maps" />
           </a>
         </div>
       ) : null}

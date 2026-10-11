@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { Badge, Button, Callout, Heading, Panel, Stack, Text, useToast } from '@demogar/mola-ui';
 import { StatusBadges } from '@/components/account/center-status';
+import { NewTab } from '@/components/ui/new-tab';
 import { api, ApiError, errorMessage } from '@/lib/api';
 import { formatDate, type Meta, type ModCenter, timeAgo } from '@/lib/account-types';
 import { ReasonDialog } from './reason-dialog';
@@ -62,6 +63,7 @@ export function QueueCard({
           ) : (
             <Link href={`/c/${c.slug}`} className="underline" target="_blank">
               {c.name}
+              <NewTab />
             </Link>
           )}
         </Heading>

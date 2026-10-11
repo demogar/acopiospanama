@@ -56,7 +56,11 @@ export function ItemPicker({
         aria-pressed={on}
         onClick={() => onChange(on ? ANY_ITEM : key)}
         className={`flex min-h-[4.5rem] flex-col items-start justify-between gap-1.5 p-3 text-start leading-snug shadow-cut transition-colors focus-visible:shadow-[var(--focus-ring)] focus-visible:outline-none ${
-          on ? 'bg-ink text-on-ink' : none ? 'bg-cloth-pale text-ink-2' : 'bg-cloth-pale text-ink hover:bg-cloth-shade'
+          on
+            ? 'bg-ink text-on-ink forced-selected'
+            : none
+              ? 'bg-cloth-pale text-ink-2'
+              : 'bg-cloth-pale text-ink hover:bg-cloth-shade'
         } ${extraClass}`}
       >
         <span className="font-ui text-base font-bold">{label}</span>
@@ -79,7 +83,11 @@ export function ItemPicker({
 
   return (
     <div className="grid gap-3">
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5">
+      <div
+        role="group"
+        aria-label="Artículos para donar"
+        className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5"
+      >
         {tile(ANY_ITEM, 'Cualquier artículo', null, 0)}
         {tiles.map((t, i) =>
           tile(t.key, t.label, t.count, t.urgent, i >= COMPACT && !expanded ? 'hidden lg:flex' : ''),
@@ -87,7 +95,13 @@ export function ItemPicker({
       </div>
       {hiddenCount > 0 && (
         <div className="lg:hidden">
-          <Button variant="ghost" size="sm" className="min-h-11" onClick={() => setExpanded((v) => !v)}>
+          <Button
+            variant="ghost"
+            size="sm"
+            className="min-h-11"
+            aria-expanded={expanded}
+            onClick={() => setExpanded((v) => !v)}
+          >
             {expanded ? 'Ver menos artículos' : `Ver los ${tiles.length} artículos`}
           </Button>
         </div>

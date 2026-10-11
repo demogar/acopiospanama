@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { MapPin, Navigation } from 'lucide-react';
 import { buttonVariants } from '@demogar/mola-ui';
+import { NewTab } from '@/components/ui/new-tab';
 import { centerTypeShort, directionsLinks, formatKm, organizerLabel, placeLine } from '@/lib/public-format';
 import { OpenLine } from './open-status';
 import type { PublicCenter, PublicMeta } from '@/lib/public-types';
@@ -76,9 +77,12 @@ export function CenterCard({
           >
             <Navigation aria-hidden="true" className="size-4" />
             Cómo llegar
+            <span className="sr-only"> a {center.name}</span>
+            <NewTab label="se abre en Google Maps" />
           </a>
           <Link href={`/c/${center.slug}`} className={`${buttonVariants({ variant: 'primary' })} no-underline`}>
             Ver centro
+            <span className="sr-only">: {center.name}</span>
           </Link>
         </div>
       </footer>

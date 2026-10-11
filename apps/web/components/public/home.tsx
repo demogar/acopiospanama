@@ -315,6 +315,7 @@ export function PublicHome({
           <ChipGroup legend="Provincia o comarca" className="flex flex-wrap gap-2">
             <Chip
               type="radio"
+              size="comfortable"
               name="provincia"
               value={ALL}
               checked={province === ALL}
@@ -327,6 +328,7 @@ export function PublicHome({
               <Chip
                 key={p.key}
                 type="radio"
+                size="comfortable"
                 name="provincia"
                 value={p.key}
                 checked={province === p.key}
@@ -339,7 +341,13 @@ export function PublicHome({
           </ChipGroup>
 
           <div className="flex flex-wrap items-center gap-2">
-            <Chip type="checkbox" name="abierto" checked={onlyOpen} onChange={(e) => setOnlyOpen(e.target.checked)}>
+            <Chip
+              type="checkbox"
+              size="comfortable"
+              name="abierto"
+              checked={onlyOpen}
+              onChange={(e) => setOnlyOpen(e.target.checked)}
+            >
               Abierto ahora
             </Chip>
             {geo.state === 'on' ? (
@@ -372,24 +380,23 @@ export function PublicHome({
             )}
           </div>
 
-          {moreOpen && (
-            <div id="mas-filtros" className="grid gap-3 md:grid-cols-2">
-              <Field label="Buscar" hint="Nombre, distrito o comunidad">
-                {(c) => (
-                  <SearchInput
-                    {...c}
-                    value={query}
-                    onChange={(e) => setQuery(e.target.value)}
-                    onClear={() => setQuery('')}
-                    clearLabel="Borrar búsqueda"
-                    placeholder="Ej.: Tonosí"
-                    autoComplete="off"
-                  />
-                )}
-              </Field>
-              <Select label="Tipo de lugar" items={typeItems} value={ctype} onValueChange={(v) => setCtype(v ?? ALL)} />
-            </div>
-          )}
+          {/* Siempre en el DOM (oculto) para que `aria-controls` apunte a algo real. */}
+          <div id="mas-filtros" hidden={!moreOpen} className="grid gap-3 md:grid-cols-2">
+            <Field label="Buscar" hint="Nombre, distrito o comunidad">
+              {(c) => (
+                <SearchInput
+                  {...c}
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  onClear={() => setQuery('')}
+                  clearLabel="Borrar búsqueda"
+                  placeholder="Ej.: Tonosí"
+                  autoComplete="off"
+                />
+              )}
+            </Field>
+            <Select label="Tipo de lugar" items={typeItems} value={ctype} onValueChange={(v) => setCtype(v ?? ALL)} />
+          </div>
 
           {geo.state === 'error' && (
             <p role="alert" className="text-sm text-ink-warn">
@@ -464,7 +471,7 @@ export function PublicHome({
                     id={`prov-${g.key}`}
                     className="flex flex-wrap items-baseline gap-x-2 border-b border-keyline pb-1 font-ui text-base font-bold text-ink"
                   >
-                    {g.label}
+                    {g.label}{' '}
                     <span className="text-sm font-normal text-ink-2">
                       {g.rows.length === 1 ? '1 centro' : `${g.rows.length} centros`}
                     </span>

@@ -84,7 +84,7 @@ export function SiteFrame({ title, subtitle, back, actions, width = 'page', chil
       </header>
 
       {/* El contenido comparte el margen izquierdo de la cabecera; `max` solo limita el ancho de lectura. */}
-      <main id="contenido" className={`${SITE} flex-1 pb-12 pt-4 lg:pt-6`}>
+      <main id="contenido" tabIndex={-1} className={`${SITE} flex-1 pb-12 pt-4 lg:pt-6 focus:outline-none`}>
         <div className={max}>
           {back && (
             <Link
@@ -129,6 +129,9 @@ export function SiteFrame({ title, subtitle, back, actions, width = 'page', chil
             <Link href="/privacidad" className={navLink}>
               Privacidad
             </Link>
+            <Link href="/accesibilidad" className={navLink}>
+              Accesibilidad
+            </Link>
             <a href="https://github.com/demogar/acopiospanama" className={navLink} rel="noopener noreferrer">
               Código abierto
             </a>
@@ -139,7 +142,7 @@ export function SiteFrame({ title, subtitle, back, actions, width = 'page', chil
             Datos abiertos bajo licencia{' '}
             <a
               href="https://creativecommons.org/licenses/by/4.0/deed.es"
-              className="text-ink-2 hover:underline"
+              className="text-ink-2 underline underline-offset-2"
               rel="noopener noreferrer"
             >
               CC BY 4.0
@@ -148,7 +151,11 @@ export function SiteFrame({ title, subtitle, back, actions, width = 'page', chil
           </p>
           <p>
             Iniciativa de{' '}
-            <a href="https://www.demogar.com" className="text-ink-2 hover:underline" rel="noopener noreferrer">
+            <a
+              href="https://www.demogar.com"
+              className="text-ink-2 underline underline-offset-2"
+              rel="noopener noreferrer"
+            >
               Demóstenes García
             </a>
             .

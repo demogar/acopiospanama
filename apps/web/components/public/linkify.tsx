@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { NewTab } from '@/components/ui/new-tab';
 
 /** Solo direcciones http(s): nunca `javascript:` ni otros esquemas que pudiera colar un texto libre. */
 const URL_RE = /https?:\/\/[^\s<>"'\])]+/g;
@@ -16,6 +17,7 @@ export function Linkify({ text }: { text: string }) {
     parts.push(
       <a key={start} href={url} target="_blank" rel="noopener noreferrer" className="break-all underline">
         {url}
+        <NewTab />
       </a>,
     );
     last = start + url.length;

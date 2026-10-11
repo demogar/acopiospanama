@@ -143,7 +143,9 @@ export function ScheduleEditor({
                       <label
                         key={o.value}
                         className={`relative flex min-h-11 cursor-pointer items-center justify-center px-1 text-center text-sm leading-tight shadow-cut has-[:focus-visible]:shadow-[var(--focus-ring)] ${
-                          checked ? 'bg-ink font-semibold text-on-ink' : 'bg-cloth-pale text-ink-2 hover:bg-cloth-shade'
+                          checked
+                            ? 'bg-ink font-semibold text-on-ink forced-selected'
+                            : 'bg-cloth-pale text-ink-2 hover:bg-cloth-shade'
                         }`}
                       >
                         <input

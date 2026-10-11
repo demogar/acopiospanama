@@ -1,5 +1,6 @@
 import { MessageCircle, Phone } from 'lucide-react';
 import { buttonVariants } from '@demogar/mola-ui';
+import { NewTab } from '@/components/ui/new-tab';
 import { telLink, whatsappLink } from '@/lib/public-schedule';
 import type { PublicCenter } from '@/lib/public-types';
 
@@ -41,6 +42,7 @@ export function ContactBlock({
             >
               <MessageCircle aria-hidden="true" className="size-4" />
               Escribir por WhatsApp
+              <NewTab label="se abre en WhatsApp" />
             </a>
           )}
         </div>

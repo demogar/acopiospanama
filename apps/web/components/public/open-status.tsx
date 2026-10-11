@@ -45,7 +45,10 @@ export function OpenBadge({ status }: { status: OpenStatus }) {
 export function OpenLine({ center }: { center: Pick<PublicCenter, 'schedule' | 'openNow'> }) {
   const now = useNow();
   const status = statusFor(center, now);
-  const today = todayText(center.schedule, now ?? undefined);
+  const raw = todayText(center.schedule, now ?? undefined);
+  // «Hoy: Cerrado» junto a «Cerrado ahora» repite lo mismo; «Hoy: Sin dato» no aporta nada.
+  const today =
+    !raw || raw.endsWith('Sin dato') || (raw.endsWith('Cerrado') && status?.state === 'closed') ? null : raw;
   if (!status && !today) return null;
   return (
     <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-ink">

@@ -13,6 +13,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${SITE_URL}/publicar`, changeFrequency: 'monthly', priority: 0.6 },
     { url: `${SITE_URL}/como-funciona`, changeFrequency: 'monthly', priority: 0.5 },
     { url: `${SITE_URL}/privacidad`, changeFrequency: 'yearly', priority: 0.3 },
+    { url: `${SITE_URL}/accesibilidad`, changeFrequency: 'yearly', priority: 0.3 },
   ];
   // Una entrada por provincia («centros de acopio en Chiriquí»): la portada filtrada tiene su propio título.
   const provinces: MetadataRoute.Sitemap = Object.keys(meta.ok ? meta.data.provinces : {}).map((p) => ({

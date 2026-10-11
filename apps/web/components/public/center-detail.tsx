@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { CheckCircle2, Flag, Navigation } from 'lucide-react';
 import { Badge, Button, buttonVariants, Callout, EmptyState, useToast } from '@demogar/mola-ui';
 import { ErrorState, Loading } from '@/components/states';
+import { NewTab } from '@/components/ui/new-tab';
 import { api, ApiError, errorMessage } from '@/lib/api';
 import { useApi } from '@/lib/use-api';
 import {
@@ -185,6 +186,7 @@ export function CenterDetail({
           >
             <Navigation aria-hidden="true" className="size-4" />
             Cómo llegar · Google Maps
+            <NewTab label="se abre en Google Maps" />
           </a>
           {dir.waze && (
             <a
@@ -194,6 +196,7 @@ export function CenterDetail({
               className={`${buttonVariants({ variant: 'secondary' })} no-underline`}
             >
               Waze
+              <NewTab label="se abre en Waze" />
             </a>
           )}
         </div>

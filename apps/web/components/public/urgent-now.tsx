@@ -50,7 +50,10 @@ export function UrgentNow({
           return (
             <li key={r.key} className="grid gap-0.5 py-3 leading-snug md:border-b md:border-on-ink/20">
               <span className="font-ui font-bold text-oro">{itemLabel(meta, r.item)}</span>
-              <Link href={`/c/${r.center.slug}`} className="text-on-ink">
+              <Link
+                href={`/c/${r.center.slug}`}
+                className="text-on-ink underline decoration-on-ink/50 underline-offset-2 hover:decoration-on-ink"
+              >
                 {r.center.name}
               </Link>
               <span className="text-sm text-on-ink/75">

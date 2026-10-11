@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { Copy, MessageCircle, Share2 } from 'lucide-react';
 import { Button, buttonVariants, useToast } from '@demogar/mola-ui';
+import { NewTab } from '@/components/ui/new-tab';
 
 async function copyText(text: string): Promise<boolean> {
   try {
@@ -73,6 +74,7 @@ export function ShareActions({ title, text, path }: { title: string; text: strin
       >
         <MessageCircle aria-hidden="true" className="size-4" />
         Enviar por WhatsApp
+        <NewTab label="se abre en WhatsApp" />
       </a>
     </div>
   );
