@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.0](https://github.com/demogar/acopiospanama/compare/v0.6.0...v0.7.0) (2026-10-11)
+
+
+### Novedades
+
+* **web:** agrupar los centros por provincia cuando no hay provincia elegida ([#39](https://github.com/demogar/acopiospanama/issues/39)) ([7966a04](https://github.com/demogar/acopiospanama/commit/7966a04d42079202b326de06ad924b6c1b53e3ff))
+
 ## [0.6.0](https://github.com/demogar/acopiospanama/compare/v0.5.0...v0.6.0) (2026-10-11)
 
 
