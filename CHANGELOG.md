@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.9.0](https://github.com/demogar/acopiospanama/compare/v0.8.0...v0.9.0) (2026-10-11)
+
+
+### Novedades
+
+* **web:** portada que empieza por qué quieres donar, con lo urgente a la vista ([#46](https://github.com/demogar/acopiospanama/issues/46)) ([48106b9](https://github.com/demogar/acopiospanama/commit/48106b92515d22e7f5c796dd61ea4656f5d42618))
+
 ## [0.8.0](https://github.com/demogar/acopiospanama/compare/v0.7.1...v0.8.0) (2026-10-11)
 
 
