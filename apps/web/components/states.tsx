@@ -32,13 +32,35 @@ export function ErrorState({ error, onRetry }: { error: ApiError; onRetry?: () =
   }
   if (error.code === 'MFA_REQUIRED') {
     return (
-      <Callout tone="warn" title="Verifica tu segundo factor" actions={<Button onClick={() => window.location.assign(`/seguridad?siguiente=${encodeURIComponent(window.location.pathname)}`)}>Verificar</Button>}>
+      <Callout
+        tone="warn"
+        title="Verifica tu segundo factor"
+        actions={
+          <Button
+            onClick={() =>
+              window.location.assign(`/seguridad?siguiente=${encodeURIComponent(window.location.pathname)}`)
+            }
+          >
+            Verificar
+          </Button>
+        }
+      >
         Para ver esta sección necesitas confirmar tu código de autenticación.
       </Callout>
     );
   }
   return (
-    <Callout tone="danger" title="No se pudo cargar" actions={onRetry ? <Button variant="secondary" onClick={onRetry}>Reintentar</Button> : undefined}>
+    <Callout
+      tone="danger"
+      title="No se pudo cargar"
+      actions={
+        onRetry ? (
+          <Button variant="secondary" onClick={onRetry}>
+            Reintentar
+          </Button>
+        ) : undefined
+      }
+    >
       {error.message}
     </Callout>
   );

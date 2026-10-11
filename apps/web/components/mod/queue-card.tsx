@@ -66,7 +66,8 @@ export function QueueCard({
         </Heading>
         <Text size="sm" tone={2}>
           {place}
-          {place && ' · '}Publicado {timeAgo(c.createdAt)} · {c.confirmations} {c.confirmations === 1 ? 'confirmación' : 'confirmaciones'} en 72 h
+          {place && ' · '}Publicado {timeAgo(c.createdAt)} · {c.confirmations}{' '}
+          {c.confirmations === 1 ? 'confirmación' : 'confirmaciones'} en 72 h
         </Text>
         {c.notes && (
           <Text size="sm" className="line-clamp-3 break-words">
@@ -83,7 +84,8 @@ export function QueueCard({
               {c.reports.map((r) => (
                 <li key={r.id} className="py-2">
                   <p className="text-sm">
-                    <strong>{meta?.reportReasons[r.reason] ?? r.reason}</strong> <span className="text-ink-2">· {formatDate(r.createdAt)}</span>
+                    <strong>{meta?.reportReasons[r.reason] ?? r.reason}</strong>{' '}
+                    <span className="text-ink-2">· {formatDate(r.createdAt)}</span>
                   </p>
                   {r.details && <p className="text-sm break-words text-ink-2">«{r.details}»</p>}
                 </li>

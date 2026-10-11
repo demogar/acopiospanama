@@ -58,8 +58,16 @@ export function Moderators({ run }: { run: <T>(fn: () => Promise<T>) => Promise<
                   <p className="font-semibold [overflow-wrap:anywhere] text-ink">{m.name || m.email}</p>
                   <p className="flex flex-wrap gap-1 text-sm text-ink-2">
                     {m.name && <span className="[overflow-wrap:anywhere]">{m.email}</span>}
-                    {m.isAdmin && <Badge tone="accent" variant="soft">Admin</Badge>}
-                    {!m.totpEnabledAt && <Badge tone="warn" variant="outline">Sin segundo factor aún</Badge>}
+                    {m.isAdmin && (
+                      <Badge tone="accent" variant="soft">
+                        Admin
+                      </Badge>
+                    )}
+                    {!m.totpEnabledAt && (
+                      <Badge tone="warn" variant="outline">
+                        Sin segundo factor aún
+                      </Badge>
+                    )}
                   </p>
                 </div>
                 {!m.isAdmin && (
@@ -74,7 +82,17 @@ export function Moderators({ run }: { run: <T>(fn: () => Promise<T>) => Promise<
         <form onSubmit={add} noValidate>
           <Stack gap="sm">
             <Field label="Añadir moderador por correo" error={error ?? undefined}>
-              {(c) => <Input {...c} type="email" inputMode="email" autoCapitalize="none" spellCheck={false} value={email} onChange={(e) => setEmail(e.target.value)} />}
+              {(c) => (
+                <Input
+                  {...c}
+                  type="email"
+                  inputMode="email"
+                  autoCapitalize="none"
+                  spellCheck={false}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              )}
             </Field>
             <Button type="submit" variant="secondary" loading={busy}>
               Añadir moderador
@@ -99,7 +117,8 @@ export function Moderators({ run }: { run: <T>(fn: () => Promise<T>) => Promise<
             await set(removing.email, false);
             toast.success({ title: 'Moderador quitado' });
           } catch (err) {
-            if (!(err instanceof ApiError && err.code === 'CANCELLED')) toast.error({ title: 'No se pudo', description: errorMessage(err) });
+            if (!(err instanceof ApiError && err.code === 'CANCELLED'))
+              toast.error({ title: 'No se pudo', description: errorMessage(err) });
           }
         }}
       />

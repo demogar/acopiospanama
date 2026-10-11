@@ -8,12 +8,25 @@ import { CenterFields, focusField, toBody, validateLocal } from '@/components/ac
 import { OwnerReports, StatusBadges } from '@/components/account/center-status';
 import { ErrorSummary } from '@/components/account/error-summary';
 import { Managers } from '@/components/account/managers';
-import { needErrors, NeedsEditor, needsToState, type NeedsState, stateToNeeds } from '@/components/account/needs-editor';
+import {
+  needErrors,
+  NeedsEditor,
+  needsToState,
+  type NeedsState,
+  stateToNeeds,
+} from '@/components/account/needs-editor';
 import { SiteFrame } from '@/components/site-frame';
 import { ErrorState, Loading } from '@/components/states';
 import { api, ApiError, errorMessage } from '@/lib/api';
 import { useMeta } from '@/lib/account-meta';
-import { type CenterInput, inputFromCenter, type ManagedCenter, type Meta, type MyCenter, timeAgo } from '@/lib/account-types';
+import {
+  type CenterInput,
+  inputFromCenter,
+  type ManagedCenter,
+  type Meta,
+  type MyCenter,
+  timeAgo,
+} from '@/lib/account-types';
 import { useApi } from '@/lib/use-api';
 
 type Section = 'necesidades' | 'datos' | 'responsables';
@@ -62,19 +75,34 @@ function EditInner({ tileHost }: { tileHost: string }) {
   }
 
   return (
-    <SiteFrame width="prose" back={back} title={<span className="break-words">{center.name}</span>} subtitle={<StatusLine c={center} />}>
+    <SiteFrame
+      width="prose"
+      back={back}
+      title={<span className="break-words">{center.name}</span>}
+      subtitle={<StatusLine c={center} />}
+    >
       <Stack gap="md">
         <OwnerReports c={center} headingLevel={2} />
         {center.visibility === 'CLOSED' && (
           <Callout tone="info" headingLevel={2} title="Este centro está cerrado">
-            No aparece en el directorio. Para reabrirlo, ve a <Link href="/mis-centros" className="underline">Mis centros</Link> y toca «Reabrir».
+            No aparece en el directorio. Para reabrirlo, ve a{' '}
+            <Link href="/mis-centros" className="underline">
+              Mis centros
+            </Link>{' '}
+            y toca «Reabrir».
           </Callout>
         )}
         <Tabs value={section} onValueChange={(v) => change(v as Section)} className="min-w-0">
           <TabsList className="min-w-0 max-w-full">
-            <TabsTab value="necesidades" className="flex-1 justify-center px-2">Qué aceptan</TabsTab>
-            <TabsTab value="datos" className="flex-1 justify-center px-2">Datos</TabsTab>
-            <TabsTab value="responsables" className="flex-1 justify-center px-2">Responsables</TabsTab>
+            <TabsTab value="necesidades" className="flex-1 justify-center px-2">
+              Qué aceptan
+            </TabsTab>
+            <TabsTab value="datos" className="flex-1 justify-center px-2">
+              Datos
+            </TabsTab>
+            <TabsTab value="responsables" className="flex-1 justify-center px-2">
+              Responsables
+            </TabsTab>
           </TabsList>
           <TabsPanel value="necesidades" className="pt-4">
             <NeedsForm key={center.updatedAt} center={center} meta={meta} onSaved={me.reload} />
@@ -124,12 +152,18 @@ function NeedsForm({ center, meta, onSaved }: { center: MyCenter; meta: Meta; on
     const sent = stateToNeeds(meta.items, value);
     try {
       await api.put(`/centers/${center.id}/needs`, { needs: sent });
-      toast.success({ title: 'Guardado: qué aceptan hoy', description: 'También quedó confirmado que sigue funcionando.' });
+      toast.success({
+        title: 'Guardado: qué aceptan hoy',
+        description: 'También quedó confirmado que sigue funcionando.',
+      });
       onSaved();
     } catch (err) {
       if (err instanceof ApiError && err.code === 'VALIDATION') setNoteErrs(needErrors(err.fields, sent));
       setError({
-        title: err instanceof ApiError && err.code === 'MONEY_NOT_ALLOWED' ? 'No se guardó: una nota menciona dinero' : 'No se pudo guardar',
+        title:
+          err instanceof ApiError && err.code === 'MONEY_NOT_ALLOWED'
+            ? 'No se guardó: una nota menciona dinero'
+            : 'No se pudo guardar',
         text: errorMessage(err),
       });
       requestAnimationFrame(() => errRef.current?.focus());
@@ -142,7 +176,8 @@ function NeedsForm({ center, meta, onSaved }: { center: MyCenter; meta: Meta; on
     <form onSubmit={save} noValidate>
       <Stack gap="sm">
         <Text size="sm" tone={2}>
-          Toca el estado de cada artículo; lo que quede «sin indicar» no aparece. «Ya no aceptan» evita que la gente lleve de más. Solo artículos: no pongas dinero ni cuentas.
+          Toca el estado de cada artículo; lo que quede «sin indicar» no aparece. «Ya no aceptan» evita que la gente
+          lleve de más. Solo artículos: no pongas dinero ni cuentas.
         </Text>
         {error && <ErrorSummary ref={errRef} title={error.title} message={error.text} fields={{}} onPick={() => {}} />}
         <NeedsEditor items={meta.items} value={value} onChange={setValue} errors={noteErrs} />
@@ -156,7 +191,17 @@ function NeedsForm({ center, meta, onSaved }: { center: MyCenter; meta: Meta; on
   );
 }
 
-function DataForm({ center, meta, tileHost, onSaved }: { center: ManagedCenter; meta: Meta; tileHost: string; onSaved: () => void }) {
+function DataForm({
+  center,
+  meta,
+  tileHost,
+  onSaved,
+}: {
+  center: ManagedCenter;
+  meta: Meta;
+  tileHost: string;
+  onSaved: () => void;
+}) {
   const toast = useToast();
   const original = useMemo(() => inputFromCenter(center), [center]);
   const [value, setValue] = useState<CenterInput>(original);
@@ -169,7 +214,8 @@ function DataForm({ center, meta, tileHost, onSaved }: { center: ManagedCenter; 
   function patch(p: Partial<CenterInput>) {
     setValue((v) => ({ ...v, ...p }));
     const keys = Object.keys(p);
-    if (keys.some((k) => fields[k])) setFields((f) => Object.fromEntries(Object.entries(f).filter(([k]) => !keys.includes(k))));
+    if (keys.some((k) => fields[k]))
+      setFields((f) => Object.fromEntries(Object.entries(f).filter(([k]) => !keys.includes(k))));
   }
 
   function fail(f: Record<string, string>, msg: { title: string; text: string } | null) {
@@ -205,8 +251,10 @@ function DataForm({ center, meta, tileHost, onSaved }: { center: ManagedCenter; 
       });
       onSaved();
     } catch (err) {
-      if (err instanceof ApiError && err.code === 'MONEY_NOT_ALLOWED') fail({}, { title: 'No se guardó: la ficha menciona dinero', text: err.message });
-      else if (err instanceof ApiError && err.code === 'VALIDATION' && Object.keys(err.fields).length) fail(err.fields, null);
+      if (err instanceof ApiError && err.code === 'MONEY_NOT_ALLOWED')
+        fail({}, { title: 'No se guardó: la ficha menciona dinero', text: err.message });
+      else if (err instanceof ApiError && err.code === 'VALIDATION' && Object.keys(err.fields).length)
+        fail(err.fields, null);
       else fail({}, { title: 'No se pudo guardar', text: errorMessage(err) });
     } finally {
       setBusy(false);
@@ -217,9 +265,16 @@ function DataForm({ center, meta, tileHost, onSaved }: { center: ManagedCenter; 
     <form ref={formRef} onSubmit={save} noValidate>
       <Stack gap="lg">
         <Text size="sm" tone={2}>
-          Guardar la ficha también resuelve los avisos de «datos por corregir». Solo artículos: no pongas dinero, cuentas ni Yappy.
+          Guardar la ficha también resuelve los avisos de «datos por corregir». Solo artículos: no pongas dinero,
+          cuentas ni Yappy.
         </Text>
-        <ErrorSummary ref={summaryRef} title={message?.title} message={message?.text} fields={fields} onPick={(k) => focusField(formRef.current, k)} />
+        <ErrorSummary
+          ref={summaryRef}
+          title={message?.title}
+          message={message?.text}
+          fields={fields}
+          onPick={(k) => focusField(formRef.current, k)}
+        />
         <CenterFields meta={meta} value={value} onChange={patch} errors={fields} tileHost={tileHost} />
         <Button type="submit" size="lg" loading={busy}>
           Guardar cambios

@@ -53,7 +53,13 @@ export class ManageController {
     const centers = await this.centers.withStats(rows);
     const stats = await this.centers.stats(rows.map((r) => r.id));
     return {
-      user: { id: a.user.id, email: a.user.email, name: a.user.name, isModerator: a.user.isModerator || a.user.isAdmin, isAdmin: a.user.isAdmin },
+      user: {
+        id: a.user.id,
+        email: a.user.email,
+        name: a.user.name,
+        isModerator: a.user.isModerator || a.user.isAdmin,
+        isAdmin: a.user.isAdmin,
+      },
       centers: centers.map((c) => ({ ...c, reportReasons: stats.get(c.id)?.reportReasons ?? {} })),
     };
   }
@@ -62,21 +68,39 @@ export class ManageController {
   @Delete('me')
   @HttpCode(200)
   async deleteMe(@Auth() a: AuthContext, @Res({ passthrough: true }) res: Response) {
-    if (a.user.isModerator || a.user.isAdmin) throw new ApiError(400, 'STAFF', 'Las cuentas de moderación se retiran por línea de comandos.');
+    if (a.user.isModerator || a.user.isAdmin)
+      throw new ApiError(400, 'STAFF', 'Las cuentas de moderación se retiran por línea de comandos.');
     await this.db.transaction().execute(async (trx) => {
       const mine = await trx.selectFrom('centerManagers').select('centerId').where('userId', '=', a.user.id).execute();
       for (const { centerId } of mine) {
-        const n = await trx.selectFrom('centerManagers').select((eb) => eb.fn.countAll<number>().as('n')).where('centerId', '=', centerId).executeTakeFirstOrThrow();
+        const n = await trx
+          .selectFrom('centerManagers')
+          .select((eb) => eb.fn.countAll<number>().as('n'))
+          .where('centerId', '=', centerId)
+          .executeTakeFirstOrThrow();
         if (Number(n.n) <= 1) {
-          await trx.updateTable('centers').set({ status: 'CLOSED', closedAt: new Date(), updatedAt: new Date() }).where('id', '=', centerId).where('status', '=', 'PUBLISHED').execute();
+          await trx
+            .updateTable('centers')
+            .set({ status: 'CLOSED', closedAt: new Date(), updatedAt: new Date() })
+            .where('id', '=', centerId)
+            .where('status', '=', 'PUBLISHED')
+            .execute();
         }
       }
       await trx.updateTable('centers').set({ createdBy: null }).where('createdBy', '=', a.user.id).execute();
-      await this.audit.log({ actorId: null, action: 'user.deleted_self', objectType: 'user', objectId: a.user.id }, trx);
+      await this.audit.log(
+        { actorId: null, action: 'user.deleted_self', objectType: 'user', objectId: a.user.id },
+        trx,
+      );
       await trx.deleteFrom('users').where('id', '=', a.user.id).execute();
     });
     this.centers.invalidate();
-    res.clearCookie(this.auth.cookieNames().session, { path: '/', secure: this.config.cookieSecure, httpOnly: true, sameSite: 'lax' });
+    res.clearCookie(this.auth.cookieNames().session, {
+      path: '/',
+      secure: this.config.cookieSecure,
+      httpOnly: true,
+      sameSite: 'lax',
+    });
     return { ok: true };
   }
 
@@ -135,7 +159,8 @@ export class ManageController {
       .where('createdBy', '=', a.user.id)
       .where('createdAt', '>', sql<Date>`now() - interval '24 hours'`)
       .executeTakeFirstOrThrow();
-    if (Number(recent.n) >= MAX_NEW_PER_DAY) throw new ApiError(429, 'TOO_MANY', `Puedes publicar hasta ${MAX_NEW_PER_DAY} centros por día.`);
+    if (Number(recent.n) >= MAX_NEW_PER_DAY)
+      throw new ApiError(429, 'TOO_MANY', `Puedes publicar hasta ${MAX_NEW_PER_DAY} centros por día.`);
     const managed = await this.db
       .selectFrom('centerManagers')
       .select((eb) => eb.fn.countAll<number>().as('n'))
@@ -158,7 +183,10 @@ export class ManageController {
         .values({ ...fields, slug, createdBy: a.user.id, publishedAt: new Date() })
         .returningAll()
         .executeTakeFirstOrThrow();
-      await trx.insertInto('centerManagers').values({ centerId: c.id, userId: a.user.id, createdBy: a.user.id }).execute();
+      await trx
+        .insertInto('centerManagers')
+        .values({ centerId: c.id, userId: a.user.id, createdBy: a.user.id })
+        .execute();
       await this.centers.replaceNeeds(trx, c.id, needs);
       await this.audit.log({ actorId: a.user.id, action: 'center.created', objectType: 'center', objectId: c.id }, trx);
       return c;
@@ -173,10 +201,13 @@ export class ManageController {
     const input = parse(centerInputSchema.partial(), body);
     if (input.lat !== undefined || input.lng !== undefined) {
       if (typeof input.lat !== 'number' || typeof input.lng !== 'number') {
-        throw new ApiError(400, 'VALIDATION', 'La ubicación exacta es obligatoria (latitud y longitud).', { fields: { lat: 'Marca la ubicación exacta' } });
+        throw new ApiError(400, 'VALIDATION', 'La ubicación exacta es obligatoria (latitud y longitud).', {
+          fields: { lat: 'Marca la ubicación exacta' },
+        });
       }
     }
-    const touchesContact = input.contactName !== undefined || input.contactPhone !== undefined || input.contactWhatsapp !== undefined;
+    const touchesContact =
+      input.contactName !== undefined || input.contactPhone !== undefined || input.contactWhatsapp !== undefined;
     const merged = {
       contactName: input.contactName ?? c.contactName,
       contactPhone: input.contactPhone ?? c.contactPhone,
@@ -189,12 +220,18 @@ export class ManageController {
     const fields = {
       ...rest,
       ...consent,
-      ...(touchesContact && !merged.contactName && !merged.contactPhone && !merged.contactWhatsapp ? { contactConsentAt: null } : {}),
+      ...(touchesContact && !merged.contactName && !merged.contactPhone && !merged.contactWhatsapp
+        ? { contactConsentAt: null }
+        : {}),
       ...(schedule !== undefined ? { schedule: JSON.stringify(schedule) } : {}),
     };
     const now = new Date();
     await this.db.transaction().execute(async (trx) => {
-      await trx.updateTable('centers').set({ ...fields, updatedAt: now, managerConfirmedAt: now }).where('id', '=', c.id).execute();
+      await trx
+        .updateTable('centers')
+        .set({ ...fields, updatedAt: now, managerConfirmedAt: now })
+        .where('id', '=', c.id)
+        .execute();
       // Corregir la ficha atiende los reportes de información; los graves (dinero, falso) no.
       await trx
         .updateTable('reports')
@@ -203,7 +240,16 @@ export class ManageController {
         .where('status', '=', 'OPEN')
         .where('reason', 'in', ['WRONG_INFO', 'NOT_RECEIVING', 'OTHER'])
         .execute();
-      await this.audit.log({ actorId: a.user.id, action: 'center.updated', objectType: 'center', objectId: c.id, meta: { fields: Object.keys(fields).join(',') } }, trx);
+      await this.audit.log(
+        {
+          actorId: a.user.id,
+          action: 'center.updated',
+          objectType: 'center',
+          objectId: c.id,
+          meta: { fields: Object.keys(fields).join(',') },
+        },
+        trx,
+      );
     });
     this.centers.invalidate();
     return this.centers.one(c.id);
@@ -217,7 +263,11 @@ export class ManageController {
     const now = new Date();
     await this.db.transaction().execute(async (trx) => {
       await this.centers.replaceNeeds(trx, c.id, needs);
-      await trx.updateTable('centers').set({ updatedAt: now, managerConfirmedAt: now }).where('id', '=', c.id).execute();
+      await trx
+        .updateTable('centers')
+        .set({ updatedAt: now, managerConfirmedAt: now })
+        .where('id', '=', c.id)
+        .execute();
       await trx
         .updateTable('reports')
         .set({ status: 'RESOLVED', resolvedBy: a.user.id, resolvedAt: now })
@@ -225,7 +275,16 @@ export class ManageController {
         .where('status', '=', 'OPEN')
         .where('reason', '=', 'NOT_RECEIVING')
         .execute();
-      await this.audit.log({ actorId: a.user.id, action: 'center.needs_updated', objectType: 'center', objectId: c.id, meta: { items: needs.length } }, trx);
+      await this.audit.log(
+        {
+          actorId: a.user.id,
+          action: 'center.needs_updated',
+          objectType: 'center',
+          objectId: c.id,
+          meta: { items: needs.length },
+        },
+        trx,
+      );
     });
     this.centers.invalidate();
     return this.centers.one(c.id);
@@ -246,7 +305,11 @@ export class ManageController {
   @HttpCode(200)
   async close(@Auth() a: AuthContext, @Param('id') id: string) {
     const c = await this.manager(a, id);
-    await this.db.updateTable('centers').set({ status: 'CLOSED', closedAt: new Date(), updatedAt: new Date() }).where('id', '=', c.id).execute();
+    await this.db
+      .updateTable('centers')
+      .set({ status: 'CLOSED', closedAt: new Date(), updatedAt: new Date() })
+      .where('id', '=', c.id)
+      .execute();
     await this.db
       .updateTable('reports')
       .set({ status: 'RESOLVED', resolvedBy: a.user.id, resolvedAt: new Date() })
@@ -264,7 +327,11 @@ export class ManageController {
   async reopen(@Auth() a: AuthContext, @Param('id') id: string) {
     const c = await this.manager(a, id);
     if (c.status !== 'CLOSED') return this.centers.one(c.id);
-    await this.db.updateTable('centers').set({ status: 'PUBLISHED', closedAt: null, managerConfirmedAt: new Date(), updatedAt: new Date() }).where('id', '=', c.id).execute();
+    await this.db
+      .updateTable('centers')
+      .set({ status: 'PUBLISHED', closedAt: null, managerConfirmedAt: new Date(), updatedAt: new Date() })
+      .where('id', '=', c.id)
+      .execute();
     await this.audit.log({ actorId: a.user.id, action: 'center.reopened', objectType: 'center', objectId: c.id });
     this.centers.invalidate();
     return this.centers.one(c.id);
@@ -289,11 +356,27 @@ export class ManageController {
   @Post('centers/:id/managers')
   async addManager(@Auth() a: AuthContext, @Param('id') id: string, @Body() body: unknown) {
     const c = await this.manager(a, id);
-    const { email } = parse(z.object({ email: z.string().trim().max(254).email('Correo inválido').transform(normalizeEmail) }), body);
-    const count = await this.db.selectFrom('centerManagers').select((eb) => eb.fn.countAll<number>().as('n')).where('centerId', '=', c.id).executeTakeFirstOrThrow();
-    if (Number(count.n) >= MAX_MANAGERS) throw new ApiError(400, 'TOO_MANY', `Un centro puede tener hasta ${MAX_MANAGERS} responsables.`);
-    await this.db.insertInto('users').values({ email }).onConflict((oc) => oc.column('email').doNothing()).execute();
-    const u = await this.db.selectFrom('users').select(['id', 'disabledAt']).where('email', '=', email).executeTakeFirstOrThrow();
+    const { email } = parse(
+      z.object({ email: z.string().trim().max(254).email('Correo inválido').transform(normalizeEmail) }),
+      body,
+    );
+    const count = await this.db
+      .selectFrom('centerManagers')
+      .select((eb) => eb.fn.countAll<number>().as('n'))
+      .where('centerId', '=', c.id)
+      .executeTakeFirstOrThrow();
+    if (Number(count.n) >= MAX_MANAGERS)
+      throw new ApiError(400, 'TOO_MANY', `Un centro puede tener hasta ${MAX_MANAGERS} responsables.`);
+    await this.db
+      .insertInto('users')
+      .values({ email })
+      .onConflict((oc) => oc.column('email').doNothing())
+      .execute();
+    const u = await this.db
+      .selectFrom('users')
+      .select(['id', 'disabledAt'])
+      .where('email', '=', email)
+      .executeTakeFirstOrThrow();
     if (u.disabledAt) throw new ApiError(400, 'BLOCKED', 'Ese correo no puede administrar centros.');
     const ins = await this.db
       .insertInto('centerManagers')
@@ -316,11 +399,25 @@ export class ManageController {
   async removeManager(@Auth() a: AuthContext, @Param('id') id: string, @Param('userId') u: string) {
     const c = await this.manager(a, id);
     const userId = parseId(u);
-    const count = await this.db.selectFrom('centerManagers').select((eb) => eb.fn.countAll<number>().as('n')).where('centerId', '=', c.id).executeTakeFirstOrThrow();
-    if (Number(count.n) <= 1) throw conflict('No puedes quitar al único responsable. Añade otro primero o cierra el centro.');
-    const r = await this.db.deleteFrom('centerManagers').where('centerId', '=', c.id).where('userId', '=', userId).executeTakeFirst();
+    const count = await this.db
+      .selectFrom('centerManagers')
+      .select((eb) => eb.fn.countAll<number>().as('n'))
+      .where('centerId', '=', c.id)
+      .executeTakeFirstOrThrow();
+    if (Number(count.n) <= 1)
+      throw conflict('No puedes quitar al único responsable. Añade otro primero o cierra el centro.');
+    const r = await this.db
+      .deleteFrom('centerManagers')
+      .where('centerId', '=', c.id)
+      .where('userId', '=', userId)
+      .executeTakeFirst();
     if (Number(r.numDeletedRows) === 0) throw notFound();
-    await this.audit.log({ actorId: a.user.id, action: 'center.manager_removed', objectType: 'center', objectId: c.id });
+    await this.audit.log({
+      actorId: a.user.id,
+      action: 'center.manager_removed',
+      objectType: 'center',
+      objectId: c.id,
+    });
     return { ok: true };
   }
 }

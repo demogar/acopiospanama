@@ -2,16 +2,30 @@ import { Badge } from '@demogar/mola-ui';
 import { itemLabel, needsAt } from '@/lib/public-format';
 import type { NeedLevel, PublicCenter, PublicMeta } from '@/lib/public-types';
 
-const ROWS: { level: NeedLevel; label: string; tone: 'danger' | 'warn' | 'neutral'; variant: 'solid' | 'soft' | 'outline' }[] = [
+const ROWS: {
+  level: NeedLevel;
+  label: string;
+  tone: 'danger' | 'warn' | 'neutral';
+  variant: 'solid' | 'soft' | 'outline';
+}[] = [
   { level: 'URGENT', label: 'Urgente', tone: 'danger', variant: 'solid' },
   { level: 'NEEDED', label: 'Necesitan', tone: 'warn', variant: 'soft' },
   { level: 'ENOUGH', label: 'Ya no necesitan', tone: 'neutral', variant: 'outline' },
 ];
 
 /** Resumen compacto para las tarjetas: una línea por nivel, con la etiqueta en texto (no solo color). */
-export function NeedsSummary({ center, meta, highlight }: { center: Pick<PublicCenter, 'needs'>; meta: PublicMeta | null; highlight?: string | null }) {
+export function NeedsSummary({
+  center,
+  meta,
+  highlight,
+}: {
+  center: Pick<PublicCenter, 'needs'>;
+  meta: PublicMeta | null;
+  highlight?: string | null;
+}) {
   const rows = ROWS.map((r) => ({ ...r, needs: needsAt(center, r.level) })).filter((r) => r.needs.length > 0);
-  if (rows.length === 0) return <p className="text-sm text-ink-2">Sin necesidades publicadas. Pregunta antes de llevar algo.</p>;
+  if (rows.length === 0)
+    return <p className="text-sm text-ink-2">Sin necesidades publicadas. Pregunta antes de llevar algo.</p>;
   return (
     <dl className="grid gap-1.5 text-sm">
       {rows.map((r) => (
@@ -21,11 +35,19 @@ export function NeedsSummary({ center, meta, highlight }: { center: Pick<PublicC
               {r.label}:
             </Badge>
           </dt>
-          <dd className={r.level === 'ENOUGH' ? 'text-ink-2' : r.level === 'URGENT' ? 'font-semibold text-ink' : 'text-ink'}>
+          <dd
+            className={
+              r.level === 'ENOUGH' ? 'text-ink-2' : r.level === 'URGENT' ? 'font-semibold text-ink' : 'text-ink'
+            }
+          >
             {r.needs.map((n, i) => (
               <span key={n.item}>
                 {i > 0 && ', '}
-                {highlight === n.item && r.level !== 'ENOUGH' ? <mark className="bg-oro-soft px-0.5 text-ink">{itemLabel(meta, n.item)}</mark> : itemLabel(meta, n.item)}
+                {highlight === n.item && r.level !== 'ENOUGH' ? (
+                  <mark className="bg-oro-soft px-0.5 text-ink">{itemLabel(meta, n.item)}</mark>
+                ) : (
+                  itemLabel(meta, n.item)
+                )}
               </span>
             ))}
           </dd>
@@ -59,7 +81,10 @@ export function NeedsDetail({ center, meta }: { center: Pick<PublicCenter, 'need
           </h3>
           <ul className="mt-2 grid gap-1.5">
             {g.needs.map((n) => (
-              <li key={n.item} className={`border-s-4 ps-3 ${g.level === 'URGENT' ? 'border-rojo' : g.level === 'NEEDED' ? 'border-oro' : 'border-keyline'}`}>
+              <li
+                key={n.item}
+                className={`border-s-4 ps-3 ${g.level === 'URGENT' ? 'border-rojo' : g.level === 'NEEDED' ? 'border-oro' : 'border-keyline'}`}
+              >
                 <span className={g.level === 'ENOUGH' ? 'text-ink-2' : 'font-semibold'}>{itemLabel(meta, n.item)}</span>
                 {n.note && <span className="block text-sm text-ink-2">{n.note}</span>}
               </li>

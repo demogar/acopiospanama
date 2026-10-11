@@ -3,7 +3,19 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { CheckCircle2, Pencil, Plus } from 'lucide-react';
-import { AlertDialog, Button, buttonVariants, EmptyState, Field, Heading, Input, Panel, Stack, Text, useToast } from '@demogar/mola-ui';
+import {
+  AlertDialog,
+  Button,
+  buttonVariants,
+  EmptyState,
+  Field,
+  Heading,
+  Input,
+  Panel,
+  Stack,
+  Text,
+  useToast,
+} from '@demogar/mola-ui';
 import { OwnerReports, StatusBadges } from '@/components/account/center-status';
 import { SiteFrame } from '@/components/site-frame';
 import { ErrorState, Loading } from '@/components/states';
@@ -37,7 +49,12 @@ export default function MyCentersPage() {
 
   const { user, centers } = me.data;
   return (
-    <SiteFrame width="prose" title="Mis centros" subtitle="Mantenlos al día: así la gente sabe a dónde ir y qué llevar." actions={centers.length ? publish : undefined}>
+    <SiteFrame
+      width="prose"
+      title="Mis centros"
+      subtitle="Mantenlos al día: así la gente sabe a dónde ir y qué llevar."
+      actions={centers.length ? publish : undefined}
+    >
       <Stack gap="lg">
         {centers.length === 0 ? (
           <EmptyState
@@ -76,7 +93,15 @@ export default function MyCentersPage() {
   );
 }
 
-function CenterCard({ c, provinces, onChanged }: { c: MyCenter; provinces?: Record<string, string>; onChanged: () => void }) {
+function CenterCard({
+  c,
+  provinces,
+  onChanged,
+}: {
+  c: MyCenter;
+  provinces?: Record<string, string>;
+  onChanged: () => void;
+}) {
   const toast = useToast();
   const [busy, setBusy] = useState<string | null>(null);
   const [closeOpen, setCloseOpen] = useState(false);
@@ -90,8 +115,14 @@ function CenterCard({ c, provinces, onChanged }: { c: MyCenter; provinces?: Reco
     try {
       await api.post(`/centers/${c.id}/${kind}`);
       toast.success({
-        title: kind === 'confirm' ? '¡Gracias! Quedó confirmado' : kind === 'close' ? 'Centro cerrado' : 'Centro reabierto',
-        description: kind === 'close' ? 'Ya no aparece en el directorio.' : kind === 'reopen' ? 'Revisa que lo que aceptan esté al día.' : undefined,
+        title:
+          kind === 'confirm' ? '¡Gracias! Quedó confirmado' : kind === 'close' ? 'Centro cerrado' : 'Centro reabierto',
+        description:
+          kind === 'close'
+            ? 'Ya no aparece en el directorio.'
+            : kind === 'reopen'
+              ? 'Revisa que lo que aceptan esté al día.'
+              : undefined,
       });
       onChanged();
     } catch (err) {
@@ -118,16 +149,27 @@ function CenterCard({ c, provinces, onChanged }: { c: MyCenter; provinces?: Reco
         <OwnerReports c={c} />
         <div className="mt-1 grid grid-cols-1 gap-2 sm:grid-cols-2">
           {!closed && (
-            <Button size="lg" icon={<CheckCircle2 aria-hidden="true" />} loading={busy === 'confirm'} onClick={() => act('confirm')}>
+            <Button
+              size="lg"
+              icon={<CheckCircle2 aria-hidden="true" />}
+              loading={busy === 'confirm'}
+              onClick={() => act('confirm')}
+            >
               Sigue funcionando
             </Button>
           )}
           {!closed && (
-            <Link href={`/mis-centros/${c.id}`} className={`${buttonVariants({ variant: 'secondary', size: 'lg' })} h-auto! min-h-(--control-h-lg) py-2 text-center whitespace-normal! no-underline`}>
+            <Link
+              href={`/mis-centros/${c.id}`}
+              className={`${buttonVariants({ variant: 'secondary', size: 'lg' })} h-auto! min-h-(--control-h-lg) py-2 text-center whitespace-normal! no-underline`}
+            >
               Actualizar qué aceptan
             </Link>
           )}
-          <Link href={`/mis-centros/${c.id}?seccion=datos`} className={`${buttonVariants({ variant: 'secondary', size: 'lg' })} no-underline`}>
+          <Link
+            href={`/mis-centros/${c.id}?seccion=datos`}
+            className={`${buttonVariants({ variant: 'secondary', size: 'lg' })} no-underline`}
+          >
             <Pencil aria-hidden="true" className="size-5" /> Editar
           </Link>
           {closed ? (
@@ -160,7 +202,17 @@ function CenterCard({ c, provinces, onChanged }: { c: MyCenter; provinces?: Reco
   );
 }
 
-function Account({ name, email, isStaff, onSaved }: { name: string; email: string; isStaff: boolean; onSaved: () => void }) {
+function Account({
+  name,
+  email,
+  isStaff,
+  onSaved,
+}: {
+  name: string;
+  email: string;
+  isStaff: boolean;
+  onSaved: () => void;
+}) {
   const toast = useToast();
   const [value, setValue] = useState(name);
   const [busy, setBusy] = useState(false);
@@ -219,8 +271,20 @@ function Account({ name, email, isStaff, onSaved }: { name: string; email: strin
         </Text>
         <form onSubmit={save}>
           <Stack gap="sm">
-            <Field label="Tu nombre (opcional)" hint="Lo ven los otros responsables de tus centros." error={error ?? undefined}>
-              {(c) => <Input {...c} value={value} maxLength={80} autoComplete="name" onChange={(e) => setValue(e.target.value)} />}
+            <Field
+              label="Tu nombre (opcional)"
+              hint="Lo ven los otros responsables de tus centros."
+              error={error ?? undefined}
+            >
+              {(c) => (
+                <Input
+                  {...c}
+                  value={value}
+                  maxLength={80}
+                  autoComplete="name"
+                  onChange={(e) => setValue(e.target.value)}
+                />
+              )}
             </Field>
             <Button type="submit" variant="secondary" loading={busy} disabled={value.trim() === name}>
               Guardar nombre

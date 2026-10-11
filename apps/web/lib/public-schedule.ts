@@ -91,7 +91,8 @@ export function openStatus(schedule: Schedule | null | undefined, at: Date = new
   if (open) return { state: 'open', label: 'Abierto ahora' };
   const { day, mins } = panamaNow(at);
   const today = schedule?.[day];
-  if (today && 'open' in today && toMin(today.open) > mins) return { state: 'opens-today', label: `Abre hoy ${formatTime(today.open)}` };
+  if (today && 'open' in today && toMin(today.open) > mins)
+    return { state: 'opens-today', label: `Abre hoy ${formatTime(today.open)}` };
   return { state: 'closed', label: 'Cerrado ahora' };
 }
 

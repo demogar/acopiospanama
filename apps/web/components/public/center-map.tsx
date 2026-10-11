@@ -125,7 +125,13 @@ export default function CenterMap({
       pts.push([c.lat as number, c.lng as number]);
     }
     if (origin) {
-      L.circleMarker([origin.lat, origin.lng], { radius: 7, color: '#ffffff', weight: 3, fillColor: '#1d4ed8', fillOpacity: 1 })
+      L.circleMarker([origin.lat, origin.lng], {
+        radius: 7,
+        color: '#ffffff',
+        weight: 3,
+        fillColor: '#1d4ed8',
+        fillOpacity: 1,
+      })
         .bindTooltip('Tú (solo en tu teléfono)')
         .addTo(layer);
       // No se encuadra el mapa en tu posición: las teselas que se piden revelarían tu zona al servidor de mapas.
@@ -146,9 +152,18 @@ export default function CenterMap({
         className="relative z-0 h-[min(60vh,420px)] w-full bg-cloth-shade shadow-cut"
       />
       <ul className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-ink-2" aria-label="Leyenda del mapa">
-        <li className="flex items-center gap-1.5"><span aria-hidden="true" className="inline-block size-3 rounded-full bg-rojo" />Urgente</li>
-        <li className="flex items-center gap-1.5"><span aria-hidden="true" className="inline-block size-3 rounded-full bg-oro" />Necesita artículos</li>
-        <li className="flex items-center gap-1.5"><span aria-hidden="true" className="inline-block size-3 rounded-full bg-anil" />Sin urgencias</li>
+        <li className="flex items-center gap-1.5">
+          <span aria-hidden="true" className="inline-block size-3 rounded-full bg-rojo" />
+          Urgente
+        </li>
+        <li className="flex items-center gap-1.5">
+          <span aria-hidden="true" className="inline-block size-3 rounded-full bg-oro" />
+          Necesita artículos
+        </li>
+        <li className="flex items-center gap-1.5">
+          <span aria-hidden="true" className="inline-block size-3 rounded-full bg-anil" />
+          Sin urgencias
+        </li>
       </ul>
       {tilesFailed && (
         <p role="status" className="text-sm text-ink-warn">
@@ -157,7 +172,10 @@ export default function CenterMap({
       )}
       {without > 0 && (
         <p className="text-sm text-ink-2">
-          {without === 1 ? '1 centro no tiene ubicación en el mapa' : `${without} centros no tienen ubicación en el mapa`}; están en la lista.
+          {without === 1
+            ? '1 centro no tiene ubicación en el mapa'
+            : `${without} centros no tienen ubicación en el mapa`}
+          ; están en la lista.
         </p>
       )}
     </div>

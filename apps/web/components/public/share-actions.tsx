@@ -65,7 +65,12 @@ export function ShareActions({ title, text, path }: { title: string; text: strin
       <Button variant="secondary" icon={<Copy aria-hidden="true" />} onClick={copy}>
         Copiar enlace
       </Button>
-      <a href={wa} target="_blank" rel="noopener noreferrer" className={`${buttonVariants({ variant: 'secondary' })} no-underline`}>
+      <a
+        href={wa}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`${buttonVariants({ variant: 'secondary' })} no-underline`}
+      >
         <MessageCircle aria-hidden="true" className="size-4" />
         Enviar por WhatsApp
       </a>

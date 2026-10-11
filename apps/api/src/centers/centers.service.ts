@@ -38,7 +38,15 @@ const daySchema = z.union([
     .refine((d) => d.open !== d.close, 'La hora de apertura y cierre no pueden ser iguales'),
 ]);
 export const scheduleSchema = z
-  .object({ MON: daySchema, TUE: daySchema, WED: daySchema, THU: daySchema, FRI: daySchema, SAT: daySchema, SUN: daySchema })
+  .object({
+    MON: daySchema,
+    TUE: daySchema,
+    WED: daySchema,
+    THU: daySchema,
+    FRI: daySchema,
+    SAT: daySchema,
+    SUN: daySchema,
+  })
   .partial()
   .strict();
 
@@ -73,16 +81,32 @@ export const centerInputSchema = z.object({
 
 /** Al publicar, la ubicación exacta es obligatoria (es lo primero que busca quien quiere llevar algo). */
 export const createCenterSchema = centerInputSchema.extend({
-  lat: z.number({ invalid_type_error: 'Marca la ubicación exacta', required_error: 'Marca la ubicación exacta' }).min(7.0, 'Fuera de Panamá').max(9.8, 'Fuera de Panamá'),
-  lng: z.number({ invalid_type_error: 'Marca la ubicación exacta', required_error: 'Marca la ubicación exacta' }).min(-83.1, 'Fuera de Panamá').max(-77.1, 'Fuera de Panamá'),
+  lat: z
+    .number({ invalid_type_error: 'Marca la ubicación exacta', required_error: 'Marca la ubicación exacta' })
+    .min(7.0, 'Fuera de Panamá')
+    .max(9.8, 'Fuera de Panamá'),
+  lng: z
+    .number({ invalid_type_error: 'Marca la ubicación exacta', required_error: 'Marca la ubicación exacta' })
+    .min(-83.1, 'Fuera de Panamá')
+    .max(-77.1, 'Fuera de Panamá'),
 });
 
-export function contactFields(input: { contactName?: string; contactPhone?: string; contactWhatsapp?: string; contactConsent?: boolean }) {
+export function contactFields(input: {
+  contactName?: string;
+  contactPhone?: string;
+  contactWhatsapp?: string;
+  contactConsent?: boolean;
+}) {
   const any = !!(input.contactName || input.contactPhone || input.contactWhatsapp);
   if (any && !input.contactConsent) {
-    throw new ApiError(400, 'VALIDATION', 'Confirma que la persona de contacto acepta que su nombre y teléfono sean públicos.', {
-      fields: { contactConsent: 'Obligatorio para publicar el contacto' },
-    });
+    throw new ApiError(
+      400,
+      'VALIDATION',
+      'Confirma que la persona de contacto acepta que su nombre y teléfono sean públicos.',
+      {
+        fields: { contactConsent: 'Obligatorio para publicar el contacto' },
+      },
+    );
   }
   return any ? { contactConsentAt: new Date() } : {};
 }
@@ -117,7 +141,11 @@ export interface CenterState {
  *    3 o más reportes graves (pide dinero, falso, cerrado) que superen las confirmaciones → oculto.
  *  - Nada de pedidos de dinero en las fichas (se bloquea al guardar).
  */
-export function computeState(c: Pick<Center, 'status' | 'managerConfirmedAt' | 'createdAt'>, s: CenterStats, now = Date.now()): CenterState {
+export function computeState(
+  c: Pick<Center, 'status' | 'managerConfirmedAt' | 'createdAt'>,
+  s: CenterStats,
+  now = Date.now(),
+): CenterState {
   const lastActivity = new Date(Math.max(c.managerConfirmedAt.getTime(), s.lastCommunityConfirmation?.getTime() ?? 0));
   const ageH = (now - lastActivity.getTime()) / 3_600_000;
   const flagged = s.openReports >= FLAG_THRESHOLD;
@@ -184,9 +212,15 @@ export class CentersService {
   }
 
   validateNoMoney(input: Partial<CenterInput>, needs: { note: string }[] = []) {
-    const texts = [input.name, input.organizerName, input.address, input.hoursNote, input.contactName, input.notes, ...needs.map((n) => n.note)].filter(
-      (t): t is string => typeof t === 'string',
-    );
+    const texts = [
+      input.name,
+      input.organizerName,
+      input.address,
+      input.hoursNote,
+      input.contactName,
+      input.notes,
+      ...needs.map((n) => n.note),
+    ].filter((t): t is string => typeof t === 'string');
     if (asksForMoney(...texts)) {
       throw new ApiError(
         400,
@@ -198,7 +232,14 @@ export class CentersService {
 
   async stats(centerIds: string[]): Promise<Map<string, CenterStats>> {
     const out = new Map<string, CenterStats>();
-    for (const id of centerIds) out.set(id, { confirmations: 0, lastCommunityConfirmation: null, openReports: 0, seriousReports: 0, reportReasons: {} });
+    for (const id of centerIds)
+      out.set(id, {
+        confirmations: 0,
+        lastCommunityConfirmation: null,
+        openReports: 0,
+        seriousReports: 0,
+        reportReasons: {},
+      });
     if (centerIds.length === 0) return out;
     const since = sql<Date>`now() - make_interval(hours => ${WINDOW_HOURS})`;
     const conf = await this.db
@@ -223,7 +264,8 @@ export class CentersService {
       .groupBy(['centerId', 'reason'])
       .execute();
     for (const r of conf) out.get(r.centerId)!.confirmations = Number(r.n);
-    for (const r of lastConf) out.get(r.centerId)!.lastCommunityConfirmation = r.last ? new Date(r.last as unknown as string) : null;
+    for (const r of lastConf)
+      out.get(r.centerId)!.lastCommunityConfirmation = r.last ? new Date(r.last as unknown as string) : null;
     for (const r of reps) {
       const s = out.get(r.centerId)!;
       const n = Number(r.n);
@@ -239,7 +281,11 @@ export class CentersService {
     const [stats, needs] = await Promise.all([
       this.stats(ids),
       ids.length
-        ? this.db.selectFrom('centerNeeds').select(['centerId', 'item', 'level', 'note']).where('centerId', 'in', ids).execute()
+        ? this.db
+            .selectFrom('centerNeeds')
+            .select(['centerId', 'item', 'level', 'note'])
+            .where('centerId', 'in', ids)
+            .execute()
         : Promise.resolve([]),
     ]);
     return rows.map((c) => {

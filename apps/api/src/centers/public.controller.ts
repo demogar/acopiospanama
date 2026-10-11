@@ -4,7 +4,17 @@ import type { Request } from 'express';
 import { z } from 'zod';
 import { AuditService } from '../audit/audit.service';
 import { ApiError, notFound, parse, parseId, Public, text } from '../common/http';
-import { CENTER_TYPES, DISTRICTS, ITEMS, ORGANIZER_TYPES, PROVINCES, REPORT_KEYS, REPORT_REASONS, EXPIRE_DAYS, STALE_HOURS } from '../domain';
+import {
+  CENTER_TYPES,
+  DISTRICTS,
+  ITEMS,
+  ORGANIZER_TYPES,
+  PROVINCES,
+  REPORT_KEYS,
+  REPORT_REASONS,
+  EXPIRE_DAYS,
+  STALE_HOURS,
+} from '../domain';
 import { CentersService } from './centers.service';
 import { LinksService } from './links.service';
 
@@ -47,7 +57,11 @@ export class PublicController {
     const c = await this.centers.publicDetail(slug);
     if (!c || c.visibility === 'REMOVED') throw notFound();
     if (c.visibility === 'COMMUNITY_HIDDEN') {
-      throw new ApiError(410, 'HIDDEN', 'Este centro está oculto porque varias personas lo reportaron. Si eres su responsable, entra para revisarlo.');
+      throw new ApiError(
+        410,
+        'HIDDEN',
+        'Este centro está oculto porque varias personas lo reportaron. Si eres su responsable, entra para revisarlo.',
+      );
     }
     return c;
   }
@@ -60,7 +74,8 @@ export class PublicController {
   async confirm(@Param('id') id: string, @Req() req: Request) {
     const centerId = parseId(id);
     const c = await this.centers.one(centerId);
-    if (!c || c.visibility === 'REMOVED' || c.visibility === 'CLOSED' || c.visibility === 'COMMUNITY_HIDDEN') throw notFound();
+    if (!c || c.visibility === 'REMOVED' || c.visibility === 'CLOSED' || c.visibility === 'COMMUNITY_HIDDEN')
+      throw notFound();
     await this.centers.addConfirmation(centerId, this.centers.origin(req.ip));
     return { message: 'Gracias. Tu confirmación ayuda a otras personas a saber que este centro sigue funcionando.' };
   }
@@ -71,16 +86,30 @@ export class PublicController {
   @HttpCode(200)
   async report(@Param('id') id: string, @Body() body: unknown, @Req() req: Request) {
     const centerId = parseId(id);
-    const input = parse(z.object({ reason: z.enum(REPORT_KEYS, { errorMap: () => ({ message: 'Elige un motivo' }) }), details: text(500).default('') }), body);
+    const input = parse(
+      z.object({
+        reason: z.enum(REPORT_KEYS, { errorMap: () => ({ message: 'Elige un motivo' }) }),
+        details: text(500).default(''),
+      }),
+      body,
+    );
     const c = await this.centers.one(centerId);
     if (!c || c.visibility === 'REMOVED') throw notFound();
     const created = await this.centers.addReport(centerId, input.reason, input.details, this.centers.origin(req.ip));
     if (created) {
-      await this.audit.log({ action: 'report.created', objectType: 'center', objectId: centerId, meta: { reason: input.reason } });
+      await this.audit.log({
+        action: 'report.created',
+        objectType: 'center',
+        objectId: centerId,
+        meta: { reason: input.reason },
+      });
       this.links.notifyManagersOfReport(centerId).catch(() => undefined);
     }
     if (!created) return { duplicate: true, message: 'Ya habías reportado este centro. Gracias.' };
-    return { duplicate: false, message: 'Gracias por avisar. Si más personas reportan lo mismo, el centro se marca o se oculta automáticamente.' };
+    return {
+      duplicate: false,
+      message: 'Gracias por avisar. Si más personas reportan lo mismo, el centro se marca o se oculta automáticamente.',
+    };
   }
 
   /** Enlace de los correos de recordatorio: confirmar con un toque (POST, para que los antivirus de correo no lo activen solos). */
@@ -89,7 +118,10 @@ export class PublicController {
   @Post('confirm-link')
   @HttpCode(200)
   async confirmLink(@Body() body: unknown) {
-    const { token, action } = parse(z.object({ token: z.string().max(400), action: z.enum(['CONFIRM', 'CLOSE']).default('CONFIRM') }), body);
+    const { token, action } = parse(
+      z.object({ token: z.string().max(400), action: z.enum(['CONFIRM', 'CLOSE']).default('CONFIRM') }),
+      body,
+    );
     const r = await this.links.useToken(token, action);
     return r;
   }

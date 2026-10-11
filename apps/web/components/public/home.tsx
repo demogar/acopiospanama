@@ -35,7 +35,21 @@ class MapBoundary extends Component<{ children: React.ReactNode; onRetry: () => 
   render() {
     if (this.state.failed) {
       return (
-        <Callout tone="warn" title="No se pudo cargar el mapa" actions={<Button variant="secondary" onClick={() => { this.setState({ failed: false }); this.props.onRetry(); }}>Reintentar</Button>}>
+        <Callout
+          tone="warn"
+          title="No se pudo cargar el mapa"
+          actions={
+            <Button
+              variant="secondary"
+              onClick={() => {
+                this.setState({ failed: false });
+                this.props.onRetry();
+              }}
+            >
+              Reintentar
+            </Button>
+          }
+        >
           Puede ser la señal. La lista de abajo sigue funcionando.
         </Callout>
       );
@@ -93,7 +107,8 @@ export function PublicHome({
     if (ctype !== ALL) url.searchParams.set('t', ctype);
     else url.searchParams.delete('t');
     const next = url.pathname + (url.searchParams.toString() ? `?${url.searchParams}` : '');
-    if (next !== window.location.pathname + window.location.search) window.history.replaceState(window.history.state, '', next);
+    if (next !== window.location.pathname + window.location.search)
+      window.history.replaceState(window.history.state, '', next);
   }, [province, item, ctype]);
 
   const locate = useCallback(() => {
@@ -129,7 +144,10 @@ export function PublicHome({
       if (q && !fold(`${c.name} ${c.district} ${c.community}`).includes(q)) return false;
       return true;
     });
-    const rows = filtered.map((c) => ({ c, km: origin && hasCoords(c) ? haversineKm(origin, { lat: c.lat as number, lng: c.lng as number }) : null }));
+    const rows = filtered.map((c) => ({
+      c,
+      km: origin && hasCoords(c) ? haversineKm(origin, { lat: c.lat as number, lng: c.lng as number }) : null,
+    }));
     if (origin) {
       // Orden estable: los que tienen coordenadas por distancia; los que no, al final en el orden de la API.
       rows.sort((a, b) => (a.km == null ? 1 : 0) - (b.km == null ? 1 : 0) || (a.km ?? 0) - (b.km ?? 0));
@@ -147,18 +165,27 @@ export function PublicHome({
   };
 
   const provinceItems = useMemo(
-    () => [{ value: ALL, label: 'Todo el país' }, ...Object.entries(meta?.provinces ?? {}).map(([value, label]) => ({ value, label }))],
+    () => [
+      { value: ALL, label: 'Todo el país' },
+      ...Object.entries(meta?.provinces ?? {}).map(([value, label]) => ({ value, label })),
+    ],
     [meta],
   );
   const itemItems = useMemo(
-    () => [{ value: ALL, label: 'Cualquier artículo' }, ...Object.entries(meta?.items ?? {}).map(([value, label]) => ({ value, label }))],
+    () => [
+      { value: ALL, label: 'Cualquier artículo' },
+      ...Object.entries(meta?.items ?? {}).map(([value, label]) => ({ value, label })),
+    ],
     [meta],
   );
 
   const typeItems = useMemo(
     () => [
       { value: ALL, label: 'Todos los tipos' },
-      ...Object.keys(meta?.centerTypes ?? CENTER_TYPES_FALLBACK).map((value) => ({ value, label: centerTypeLabel(meta, value) })),
+      ...Object.keys(meta?.centerTypes ?? CENTER_TYPES_FALLBACK).map((value) => ({
+        value,
+        label: centerTypeLabel(meta, value),
+      })),
     ],
     [meta],
   );
@@ -173,7 +200,8 @@ export function PublicHome({
         </h1>
         <p className="max-w-2xl text-ink-2">
           Centros de acopio de todo Panamá tras el terremoto. La información la mantiene la comunidad:{' '}
-          <strong className="text-ink">confirma con el centro antes de ir</strong>. Aquí solo se piden artículos, nunca dinero.
+          <strong className="text-ink">confirma con el centro antes de ir</strong>. Aquí solo se piden artículos, nunca
+          dinero.
         </p>
         <div className="flex flex-wrap gap-2">
           <Link href="/publicar" className={`${buttonVariants({ variant: 'primary' })} no-underline`}>
@@ -190,8 +218,20 @@ export function PublicHome({
           Filtros
         </h2>
         <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
-          <Select label="Provincia o comarca" items={provinceItems} value={province} onValueChange={(v) => setProvince(v ?? ALL)} disabled={!meta} />
-          <Select label="¿Qué quieres donar?" items={itemItems} value={item} onValueChange={(v) => setItem(v ?? ALL)} disabled={!meta} />
+          <Select
+            label="Provincia o comarca"
+            items={provinceItems}
+            value={province}
+            onValueChange={(v) => setProvince(v ?? ALL)}
+            disabled={!meta}
+          />
+          <Select
+            label="¿Qué quieres donar?"
+            items={itemItems}
+            value={item}
+            onValueChange={(v) => setItem(v ?? ALL)}
+            disabled={!meta}
+          />
           <Select label="Tipo de lugar" items={typeItems} value={ctype} onValueChange={(v) => setCtype(v ?? ALL)} />
           <div className="grid gap-1.5">
             <label htmlFor="buscar" className="text-sm font-semibold text-ink">
@@ -208,14 +248,24 @@ export function PublicHome({
             />
           </div>
         </div>
-        <Switch label="Abierto ahora" description="Según el horario que publicó cada centro (hora de Panamá)." checked={onlyOpen} onCheckedChange={setOnlyOpen} />
+        <Switch
+          label="Abierto ahora"
+          description="Según el horario que publicó cada centro (hora de Panamá)."
+          checked={onlyOpen}
+          onCheckedChange={setOnlyOpen}
+        />
         <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
           {geo.state === 'on' ? (
             <Button variant="secondary" icon={<X aria-hidden="true" />} onClick={() => setGeo({ state: 'off' })}>
               Quitar «cerca de mí»
             </Button>
           ) : (
-            <Button variant="secondary" icon={<LocateFixed aria-hidden="true" />} loading={geo.state === 'locating'} onClick={locate}>
+            <Button
+              variant="secondary"
+              icon={<LocateFixed aria-hidden="true" />}
+              loading={geo.state === 'locating'}
+              onClick={locate}
+            >
               Cerca de mí
             </Button>
           )}

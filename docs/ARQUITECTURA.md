@@ -13,13 +13,13 @@
 
 ## Reglas automáticas (`apps/api/src/centers/centers.service.ts` → `computeState`)
 
-| Condición | Resultado |
-| --- | --- |
+| Condición                                                                            | Resultado                                                |
+| ------------------------------------------------------------------------------------ | -------------------------------------------------------- |
 | Última actividad (confirmación de un responsable o de la comunidad) hace más de 72 h | `STALE`: «sin confirmar recientemente», baja en la lista |
-| … hace más de 14 días | `EXPIRED`: no se lista |
-| Reportes abiertos de 2 o más personas en 72 h | `flagged`: «Reportado: verifica antes de ir» |
-| 3 o más reportes graves (dinero, falso, cerrado) que superan las confirmaciones | `COMMUNITY_HIDDEN`: oculto, la ficha responde 410 |
-| Texto que pide dinero (Yappy, transferencias, cuentas, bancos, números largos) | No se puede guardar |
+| … hace más de 14 días                                                                | `EXPIRED`: no se lista                                   |
+| Reportes abiertos de 2 o más personas en 72 h                                        | `flagged`: «Reportado: verifica antes de ir»             |
+| 3 o más reportes graves (dinero, falso, cerrado) que superan las confirmaciones      | `COMMUNITY_HIDDEN`: oculto, la ficha responde 410        |
+| Texto que pide dinero (Yappy, transferencias, cuentas, bancos, números largos)       | No se puede guardar                                      |
 
 Corregir la ficha resuelve los reportes de información (dato equivocado, ya no recibe, otro). Los graves solo
 caducan (90 días) o los descarta la moderación. Los recordatorios por correo se envían cada 48 h a los

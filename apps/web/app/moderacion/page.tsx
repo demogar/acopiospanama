@@ -42,13 +42,20 @@ export default function ModerationPage() {
   return frame(
     <Stack gap="lg">
       <Callout tone="info" icon={false}>
-        Las reglas automáticas ya bajan, marcan u ocultan centros según confirmaciones y reportes. Aquí ves los que tienen reportes abiertos y los publicados en las últimas 24 h.
+        Las reglas automáticas ya bajan, marcan u ocultan centros según confirmaciones y reportes. Aquí ves los que
+        tienen reportes abiertos y los publicados en las últimas 24 h.
       </Callout>
       <Text aria-live="polite" tone={2}>
-        {withReports === 1 ? '1 centro con reportes' : `${withReports} centros con reportes`} · {items.length - withReports} nuevos sin reportes
+        {withReports === 1 ? '1 centro con reportes' : `${withReports} centros con reportes`} ·{' '}
+        {items.length - withReports} nuevos sin reportes
       </Text>
       {items.length === 0 ? (
-        <EmptyState className="grid-cols-[minmax(0,1fr)] px-3" variant="empty" title="Nada por revisar" description="No hay reportes abiertos ni centros nuevos. La comunidad se está encargando." />
+        <EmptyState
+          className="grid-cols-[minmax(0,1fr)] px-3"
+          variant="empty"
+          title="Nada por revisar"
+          description="No hay reportes abiertos ni centros nuevos. La comunidad se está encargando."
+        />
       ) : (
         <ul className="grid gap-4 md:grid-cols-2" aria-label="Centros por revisar">
           {items.map((c) => (
@@ -63,7 +70,9 @@ export default function ModerationPage() {
           <h2 id="removed-h" className="font-ui text-xl font-bold text-ink">
             Retirados en los últimos 7 días
           </h2>
-          <p className="text-sm text-ink-2">Si alguno fue un error, restáuralo. Después de 7 días dejan de aparecer aquí.</p>
+          <p className="text-sm text-ink-2">
+            Si alguno fue un error, restáuralo. Después de 7 días dejan de aparecer aquí.
+          </p>
           <ul className="grid gap-4 md:grid-cols-2" aria-label="Centros retirados">
             {removed.map((c) => (
               <li key={c.id}>

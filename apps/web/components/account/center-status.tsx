@@ -20,7 +20,13 @@ export function StatusBadges({ c }: { c: Pick<MyCenter, 'visibility' | 'flagged'
 }
 
 /** Reportes abiertos contados al responsable, sin culpar, con qué hacer en cada caso. */
-export function OwnerReports({ c, headingLevel = 3 }: { c: Pick<MyCenter, 'reportReasons' | 'visibility'>; headingLevel?: 2 | 3 | 4 }) {
+export function OwnerReports({
+  c,
+  headingLevel = 3,
+}: {
+  c: Pick<MyCenter, 'reportReasons' | 'visibility'>;
+  headingLevel?: 2 | 3 | 4;
+}) {
   const entries = Object.entries(c.reportReasons ?? {}).filter(([, n]) => (n ?? 0) > 0) as [ReportReason, number][];
   if (entries.length === 0 && c.visibility !== 'COMMUNITY_HIDDEN') return null;
   const hidden = c.visibility === 'COMMUNITY_HIDDEN';
@@ -43,7 +49,8 @@ export function OwnerReports({ c, headingLevel = 3 }: { c: Pick<MyCenter, 'repor
       </ul>
       {hidden && (
         <p className="mt-2">
-          Corrige la ficha. Vuelve a mostrarse cuando más personas confirmen en la ficha que funciona que las que lo reportaron, o cuando esos reportes cumplan 3 días. Pide a quienes lo visitan que toquen «Sigue funcionando».
+          Corrige la ficha. Vuelve a mostrarse cuando más personas confirmen en la ficha que funciona que las que lo
+          reportaron, o cuando esos reportes cumplan 3 días. Pide a quienes lo visitan que toquen «Sigue funcionando».
         </p>
       )}
     </Callout>

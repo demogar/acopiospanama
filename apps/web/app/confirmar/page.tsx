@@ -61,7 +61,10 @@ function ConfirmInner() {
     return (
       <SiteFrame width="prose" title={network ? 'Sin conexión' : 'Este enlace ya no sirve'}>
         <Stack gap="md">
-          <Callout tone={network ? 'warn' : 'danger'} title={network ? 'No pudimos abrir el enlace' : 'Enlace vencido o inválido'}>
+          <Callout
+            tone={network ? 'warn' : 'danger'}
+            title={network ? 'No pudimos abrir el enlace' : 'Enlace vencido o inválido'}
+          >
             {network
               ? loadError.message
               : 'Los enlaces de los correos vencen a los pocos días. Entra con tu correo para confirmar o cerrar tu centro desde «Mis centros».'}
@@ -97,15 +100,19 @@ function ConfirmInner() {
                 : 'Ya no aparece en el directorio. Gracias por avisar: así nadie hace un viaje en vano.'}
             </Callout>
           </div>
-          {done === 'CONFIRM' && (
-            <Text>¿Cambió lo que aceptan? Actualízalo para que la gente lleve lo correcto.</Text>
-          )}
+          {done === 'CONFIRM' && <Text>¿Cambió lo que aceptan? Actualízalo para que la gente lleve lo correcto.</Text>}
           <div className="flex flex-col gap-3 sm:flex-row">
-            <Link href="/entrar?siguiente=/mis-centros" className={`${buttonVariants({ size: 'lg', variant: done === 'CONFIRM' ? 'primary' : 'secondary' })} no-underline`}>
+            <Link
+              href="/entrar?siguiente=/mis-centros"
+              className={`${buttonVariants({ size: 'lg', variant: done === 'CONFIRM' ? 'primary' : 'secondary' })} no-underline`}
+            >
               {done === 'CONFIRM' ? 'Actualizar qué aceptan' : 'Reabrir más adelante'}
             </Link>
             {done === 'CONFIRM' && (
-              <Link href={`/c/${peek.slug}`} className={`${buttonVariants({ size: 'lg', variant: 'secondary' })} no-underline`}>
+              <Link
+                href={`/c/${peek.slug}`}
+                className={`${buttonVariants({ size: 'lg', variant: 'secondary' })} no-underline`}
+              >
                 Ver la ficha
               </Link>
             )}
@@ -132,7 +139,10 @@ function ConfirmInner() {
             Si volvió a recibir donaciones, entra con tu correo y reábrelo desde «Mis centros».
           </Callout>
         ) : (
-          <Text>Confírmalo para que siga arriba en la lista. Si ya no recibe donaciones, ciérralo para que nadie vaya en vano.</Text>
+          <Text>
+            Confírmalo para que siga arriba en la lista. Si ya no recibe donaciones, ciérralo para que nadie vaya en
+            vano.
+          </Text>
         )}
         <div aria-live="polite">
           {error && (
@@ -147,10 +157,25 @@ function ConfirmInner() {
           </Link>
         ) : (
           <div className="flex flex-col gap-3">
-            <Button size="lg" icon={<CheckCircle2 aria-hidden="true" />} loading={busy === 'CONFIRM'} disabled={!!busy} onClick={() => act('CONFIRM')} className="h-auto! min-h-16 py-3 text-lg leading-snug whitespace-normal!">
+            <Button
+              size="lg"
+              icon={<CheckCircle2 aria-hidden="true" />}
+              loading={busy === 'CONFIRM'}
+              disabled={!!busy}
+              onClick={() => act('CONFIRM')}
+              className="h-auto! min-h-16 py-3 text-lg leading-snug whitespace-normal!"
+            >
               Sí, sigue funcionando
             </Button>
-            <Button size="lg" variant="secondary" icon={<DoorClosed aria-hidden="true" />} loading={busy === 'CLOSE'} disabled={!!busy} onClick={() => setCloseOpen(true)} className="h-auto! min-h-16 py-3 text-lg leading-snug whitespace-normal!">
+            <Button
+              size="lg"
+              variant="secondary"
+              icon={<DoorClosed aria-hidden="true" />}
+              loading={busy === 'CLOSE'}
+              disabled={!!busy}
+              onClick={() => setCloseOpen(true)}
+              className="h-auto! min-h-16 py-3 text-lg leading-snug whitespace-normal!"
+            >
               Ya cerró
             </Button>
           </div>

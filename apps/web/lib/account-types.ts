@@ -175,7 +175,10 @@ export function centerTypes(meta: Meta | null | undefined): Record<string, strin
 }
 
 /** Estado del centro contado a su responsable: qué significa y qué hacer. */
-export const VISIBILITY_INFO: Record<Visibility, { label: string; tone: 'success' | 'warn' | 'danger' | 'neutral'; help: string }> = {
+export const VISIBILITY_INFO: Record<
+  Visibility,
+  { label: string; tone: 'success' | 'warn' | 'danger' | 'neutral'; help: string }
+> = {
   VISIBLE: { label: 'Publicado', tone: 'success', help: 'Aparece en el directorio.' },
   STALE: {
     label: 'Sin confirmar',
@@ -192,20 +195,36 @@ export const VISIBILITY_INFO: Record<Visibility, { label: string; tone: 'success
     tone: 'danger',
     help: 'Varias personas lo reportaron y se ocultó mientras tanto. Revisa los avisos de abajo.',
   },
-  CLOSED: { label: 'Cerrado', tone: 'neutral', help: 'Lo marcaste como cerrado: no aparece. Puedes reabrirlo cuando quieras.' },
+  CLOSED: {
+    label: 'Cerrado',
+    tone: 'neutral',
+    help: 'Lo marcaste como cerrado: no aparece. Puedes reabrirlo cuando quieras.',
+  },
   REMOVED: { label: 'Retirado', tone: 'danger', help: 'Moderación lo retiró del directorio.' },
 };
 
 /** Motivos de reporte dichos sin culpar a nadie, para el responsable del centro. */
 export const REPORT_FOR_OWNER: Record<ReportReason, { text: string; fix: string }> = {
-  CLOSED: { text: 'ya cerró o no está funcionando', fix: 'Si sigue abierto, toca «Sigue funcionando». Si ya cerró, ciérralo aquí.' },
-  NOT_RECEIVING: { text: 'ya no están recibiendo donaciones', fix: 'Actualiza las necesidades: con eso se resuelve este aviso.' },
-  WRONG_INFO: { text: 'hay datos por corregir (dirección, horario…)', fix: 'Revisa y guarda la ficha: con eso se resuelve este aviso.' },
+  CLOSED: {
+    text: 'ya cerró o no está funcionando',
+    fix: 'Si sigue abierto, toca «Sigue funcionando». Si ya cerró, ciérralo aquí.',
+  },
+  NOT_RECEIVING: {
+    text: 'ya no están recibiendo donaciones',
+    fix: 'Actualiza las necesidades: con eso se resuelve este aviso.',
+  },
+  WRONG_INFO: {
+    text: 'hay datos por corregir (dirección, horario…)',
+    fix: 'Revisa y guarda la ficha: con eso se resuelve este aviso.',
+  },
   ASKS_MONEY: {
     text: 'la ficha parece pedir dinero',
     fix: 'Quita cualquier mención de dinero, cuentas o transferencias. Aquí solo se piden artículos.',
   },
-  FAKE: { text: 'no pudieron comprobar que el centro exista', fix: 'Añade una referencia clara, el horario y quién lo organiza para que la gente lo encuentre.' },
+  FAKE: {
+    text: 'no pudieron comprobar que el centro exista',
+    fix: 'Añade una referencia clara, el horario y quién lo organiza para que la gente lo encuentre.',
+  },
   OTHER: { text: 'hay algo por revisar', fix: 'Revisa que la ficha esté al día y guárdala.' },
 };
 
@@ -222,5 +241,11 @@ export function timeAgo(iso: string, now = Date.now()): string {
 }
 
 export function formatDate(iso: string): string {
-  return new Intl.DateTimeFormat('es-PA', { day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit', timeZone: 'America/Panama' }).format(new Date(iso));
+  return new Intl.DateTimeFormat('es-PA', {
+    day: 'numeric',
+    month: 'short',
+    hour: 'numeric',
+    minute: '2-digit',
+    timeZone: 'America/Panama',
+  }).format(new Date(iso));
 }

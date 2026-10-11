@@ -15,7 +15,11 @@ export function useStepUp() {
   const [code, setCode] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
-  const pending = useRef<{ fn: () => Promise<unknown>; resolve: (v: unknown) => void; reject: (e: unknown) => void } | null>(null);
+  const pending = useRef<{
+    fn: () => Promise<unknown>;
+    resolve: (v: unknown) => void;
+    reject: (e: unknown) => void;
+  } | null>(null);
 
   const run = useCallback(<T,>(fn: () => Promise<T>): Promise<T> => {
     return fn().catch((err) => {
@@ -57,12 +61,24 @@ export function useStepUp() {
 
   const dialog = (
     <Dialog open={open} onOpenChange={(o) => (o ? setOpen(true) : cancel())}>
-      <DialogContentEs title="Confirma que eres tú" description="Escribe el código de 6 dígitos de tu app de autenticación." size="sm">
+      <DialogContentEs
+        title="Confirma que eres tú"
+        description="Escribe el código de 6 dígitos de tu app de autenticación."
+        size="sm"
+      >
         <form onSubmit={confirm}>
           <Stack gap="md">
             <Field label="Código" error={error ?? undefined}>
               {(c) => (
-                <Input {...c} value={code} onChange={(e) => setCode(e.target.value)} inputMode="numeric" autoComplete="one-time-code" maxLength={8} autoFocus />
+                <Input
+                  {...c}
+                  value={code}
+                  onChange={(e) => setCode(e.target.value)}
+                  inputMode="numeric"
+                  autoComplete="one-time-code"
+                  maxLength={8}
+                  autoFocus
+                />
               )}
             </Field>
             <Text size="sm" tone="muted">

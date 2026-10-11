@@ -44,8 +44,12 @@ export function ReportDialog({
     setBusy(true);
     setError(null);
     try {
-      const r = await api.post<{ message: string; duplicate?: boolean }>(`/public/centers/${centerId}/report`, { reason, details: details.trim() });
-      if (r.duplicate) toast.info({ title: 'Ya habías reportado este centro', description: 'Cada persona cuenta una vez. Gracias.' });
+      const r = await api.post<{ message: string; duplicate?: boolean }>(`/public/centers/${centerId}/report`, {
+        reason,
+        details: details.trim(),
+      });
+      if (r.duplicate)
+        toast.info({ title: 'Ya habías reportado este centro', description: 'Cada persona cuenta una vez. Gracias.' });
       else toast.success({ title: 'Reporte enviado', description: r.message });
       onOpenChange(false);
       reset();
@@ -109,13 +113,18 @@ export function ReportDialog({
             </div>
           )}
           {reason === 'ASKS_MONEY' && (
-            <Callout tone="info">No transfieras dinero. Si ya lo hiciste, denúncialo también a la policía o a tu banco.</Callout>
+            <Callout tone="info">
+              No transfieras dinero. Si ya lo hiciste, denúncialo también a la policía o a tu banco.
+            </Callout>
           )}
           <Field label="Detalles (opcional)" hint="Qué viste o cuándo. No pongas datos personales.">
-            {(c) => <Textarea {...c} rows={3} maxLength={500} value={details} onChange={(e) => setDetails(e.target.value)} />}
+            {(c) => (
+              <Textarea {...c} rows={3} maxLength={500} value={details} onChange={(e) => setDetails(e.target.value)} />
+            )}
           </Field>
           <p className="text-sm text-ink-2">
-            Si varias personas reportan lo mismo, el centro se marca o se oculta automáticamente hasta que su responsable lo revise.
+            Si varias personas reportan lo mismo, el centro se marca o se oculta automáticamente hasta que su
+            responsable lo revise.
           </p>
           {error && (
             <Callout tone="danger" role="alert">

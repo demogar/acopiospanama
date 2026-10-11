@@ -7,7 +7,13 @@ import { Ban, CheckCircle2 } from 'lucide-react';
 import { Button, buttonVariants, Callout, Heading, Panel, Stack, Text } from '@demogar/mola-ui';
 import { CenterFields, focusField, toBody, validateLocal } from '@/components/account/center-fields';
 import { ErrorSummary } from '@/components/account/error-summary';
-import { needErrors, NeedsEditor, needsToState, type NeedsState, stateToNeeds } from '@/components/account/needs-editor';
+import {
+  needErrors,
+  NeedsEditor,
+  needsToState,
+  type NeedsState,
+  stateToNeeds,
+} from '@/components/account/needs-editor';
 import { ShareButton } from '@/components/account/share-button';
 import { SiteFrame } from '@/components/site-frame';
 import { ErrorState, Loading } from '@/components/states';
@@ -54,7 +60,8 @@ export function PublishForm({ tileHost }: { tileHost: string }) {
     // Cambiar nombre o provincia invalida la comprobación de duplicados.
     if ('name' in p || 'province' in p) setDups(null);
     const keys = Object.keys(p);
-    if (keys.some((k) => fields[k])) setFields((f) => Object.fromEntries(Object.entries(f).filter(([k]) => !keys.includes(k))));
+    if (keys.some((k) => fields[k]))
+      setFields((f) => Object.fromEntries(Object.entries(f).filter(([k]) => !keys.includes(k))));
   }
 
   function showErrors(f: Record<string, string>, msg: { title: string; text: string } | null) {
@@ -74,7 +81,10 @@ export function PublishForm({ tileHost }: { tileHost: string }) {
     setNeedErrs({});
     try {
       if (!skipDuplicates && dups === null) {
-        const found = await api.post<Duplicate[]>('/centers/check-duplicates', { name: value.name.trim(), province: value.province });
+        const found = await api.post<Duplicate[]>('/centers/check-duplicates', {
+          name: value.name.trim(),
+          province: value.province,
+        });
         if (found.length) {
           setDups(found);
           setBusy(false);
@@ -145,16 +155,23 @@ export function PublishForm({ tileHost }: { tileHost: string }) {
               </Heading>
               <ul className="list-disc space-y-2 ps-5 text-ink">
                 <li>
-                  Si en 2 días nadie lo confirma, te enviaremos un correo con un botón para decir <strong>«sigue funcionando»</strong> o <strong>«ya cerró»</strong>, sin entrar.
+                  Si en 2 días nadie lo confirma, te enviaremos un correo con un botón para decir{' '}
+                  <strong>«sigue funcionando»</strong> o <strong>«ya cerró»</strong>, sin entrar.
                 </li>
-                <li>Sin confirmar en 3 días, baja en la lista; en 14 días deja de mostrarse. Así el directorio se mantiene al día solo.</li>
+                <li>
+                  Sin confirmar en 3 días, baja en la lista; en 14 días deja de mostrarse. Así el directorio se mantiene
+                  al día solo.
+                </li>
                 <li>Cuando cambie lo que aceptan, actualízalo desde «Mis centros»: toma 20 segundos.</li>
                 <li>Añade a 1 o 2 personas más como responsables, por si no puedes responder.</li>
               </ul>
             </Stack>
           </Panel>
           <div className="flex flex-col gap-3 sm:flex-row">
-            <Link href={`/mis-centros/${created.id}#responsables`} className={`${buttonVariants({ variant: 'secondary' })} no-underline`}>
+            <Link
+              href={`/mis-centros/${created.id}#responsables`}
+              className={`${buttonVariants({ variant: 'secondary' })} no-underline`}
+            >
               Añadir responsables
             </Link>
             <Link href="/mis-centros" className={`${buttonVariants({ variant: 'ghost' })} no-underline`}>
@@ -167,7 +184,12 @@ export function PublishForm({ tileHost }: { tileHost: string }) {
   }
 
   return (
-    <SiteFrame width="prose" title="Publicar un centro de acopio" subtitle="Quedas como responsable. Toma unos 3 minutos." back={{ href: '/', label: 'Volver al directorio' }}>
+    <SiteFrame
+      width="prose"
+      title="Publicar un centro de acopio"
+      subtitle="Quedas como responsable. Toma unos 3 minutos."
+      back={{ href: '/', label: 'Volver al directorio' }}
+    >
       <form ref={formRef} onSubmit={(e) => submit(e)} noValidate>
         <Stack gap="lg">
           <Callout tone="warn" icon={<Ban aria-hidden="true" />} title="Solo artículos">
@@ -179,7 +201,11 @@ export function PublishForm({ tileHost }: { tileHost: string }) {
             message={message?.text}
             title={message?.title}
             fields={fields}
-            onPick={(k) => (k.startsWith('needs') ? document.getElementById('needs-h')?.scrollIntoView() : focusField(formRef.current, k))}
+            onPick={(k) =>
+              k.startsWith('needs')
+                ? document.getElementById('needs-h')?.scrollIntoView()
+                : focusField(formRef.current, k)
+            }
           />
 
           <CenterFields meta={meta} value={value} onChange={patch} errors={fields} tileHost={tileHost} />
@@ -189,7 +215,8 @@ export function PublishForm({ tileHost }: { tileHost: string }) {
               Qué aceptan hoy
             </Heading>
             <Text size="sm" tone="muted" className="mt-1 mb-2">
-              Marca solo lo que sepas; lo que dejes «sin indicar» no aparece. «Ya no aceptan» evita que la gente lleve de más. Puedes cambiarlo cuando quieras.
+              Marca solo lo que sepas; lo que dejes «sin indicar» no aparece. «Ya no aceptan» evita que la gente lleve
+              de más. Puedes cambiarlo cuando quieras.
             </Text>
             <NeedsEditor items={meta.items} value={needs} onChange={setNeeds} errors={needErrs} />
           </section>
@@ -197,14 +224,23 @@ export function PublishForm({ tileHost }: { tileHost: string }) {
           {dups && dups.length > 0 && (
             <div ref={dupRef} tabIndex={-1} className="focus:outline-none" role="alert">
               <Callout tone="warn" title="¿Es alguno de estos?">
-                <p>Ya hay centros publicados con un nombre parecido en esta provincia. Mejor confirma o reporta ese en lugar de crear otro.</p>
+                <p>
+                  Ya hay centros publicados con un nombre parecido en esta provincia. Mejor confirma o reporta ese en
+                  lugar de crear otro.
+                </p>
                 <p className="mt-1">Si no es ninguno, toca «Publicar igualmente».</p>
                 <ul className="mt-2 space-y-2">
                   {dups.map((d) => (
                     <li key={d.slug}>
-                      <Link href={`/c/${d.slug}`} className="inline-flex min-h-11 flex-col justify-center underline" target="_blank">
+                      <Link
+                        href={`/c/${d.slug}`}
+                        className="inline-flex min-h-11 flex-col justify-center underline"
+                        target="_blank"
+                      >
                         <span className="font-semibold">{d.name}</span>
-                        <span className="text-sm text-ink-2">{[d.community, d.district, d.address].filter(Boolean).join(' · ')}</span>
+                        <span className="text-sm text-ink-2">
+                          {[d.community, d.district, d.address].filter(Boolean).join(' · ')}
+                        </span>
                       </Link>
                     </li>
                   ))}

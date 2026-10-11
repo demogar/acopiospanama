@@ -5,11 +5,11 @@ body:
   - type: textarea
     id: problema
     attributes:
-      label: "¿Qué problema resuelve?"
-      description: "Cuéntanos la situación real (quién, dónde, cuándo)."
+      label: '¿Qué problema resuelve?'
+      description: 'Cuéntanos la situación real (quién, dónde, cuándo).'
     validations:
       required: true
   - type: textarea
     id: propuesta
     attributes:
-      label: "¿Qué propones?"
+      label: '¿Qué propones?'

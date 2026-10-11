@@ -58,7 +58,12 @@ const closeClass = 'absolute end-2 top-[calc(11px+0.5rem)] z-10';
 export function DialogContentEs({ title, children, hideClose = false, finalFocus, ...props }: DialogContentProps) {
   const o = useOpener();
   return (
-    <DialogContent {...props} finalFocus={finalFocus ?? o.finalFocus} hideClose title={<span className="block pe-12">{title}</span>}>
+    <DialogContent
+      {...props}
+      finalFocus={finalFocus ?? o.finalFocus}
+      hideClose
+      title={<span className="block pe-12">{title}</span>}
+    >
       <OpenerMemo opener={o.opener} />
       {!hideClose && (
         <DialogClose
@@ -77,7 +82,12 @@ export function DialogContentEs({ title, children, hideClose = false, finalFocus
 export function DrawerContentEs({ title, children, hideClose = false, finalFocus, ...props }: DrawerContentProps) {
   const o = useOpener();
   return (
-    <DrawerContent {...props} finalFocus={finalFocus ?? o.finalFocus} hideClose title={<span className="block pe-12">{title}</span>}>
+    <DrawerContent
+      {...props}
+      finalFocus={finalFocus ?? o.finalFocus}
+      hideClose
+      title={<span className="block pe-12">{title}</span>}
+    >
       <OpenerMemo opener={o.opener} />
       {!hideClose && (
         <DrawerClose

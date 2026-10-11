@@ -19,18 +19,24 @@ export class AccessService {
 
   /** «Personal» = moderación o administración: segundo factor obligatorio. */
   async hasAnyStaffMembership(userId: string): Promise<boolean> {
-    const u = await this.db.selectFrom('users').select(['isModerator', 'isAdmin']).where('id', '=', userId).executeTakeFirst();
+    const u = await this.db
+      .selectFrom('users')
+      .select(['isModerator', 'isAdmin'])
+      .where('id', '=', userId)
+      .executeTakeFirst();
     return !!u && (u.isModerator || u.isAdmin);
   }
 
   requireModerator(auth: AuthContext) {
     if (!auth.user.isModerator && !auth.user.isAdmin) throw notFound();
-    if (!auth.session.mfaVerifiedAt) throw new ApiError(403, 'MFA_REQUIRED', 'Verifica tu segundo factor para continuar.');
+    if (!auth.session.mfaVerifiedAt)
+      throw new ApiError(403, 'MFA_REQUIRED', 'Verifica tu segundo factor para continuar.');
   }
 
   requireAdmin(auth: AuthContext) {
     if (!auth.user.isAdmin) throw notFound();
-    if (!auth.session.mfaVerifiedAt) throw new ApiError(403, 'MFA_REQUIRED', 'Verifica tu segundo factor para continuar.');
+    if (!auth.session.mfaVerifiedAt)
+      throw new ApiError(403, 'MFA_REQUIRED', 'Verifica tu segundo factor para continuar.');
   }
 
   requireStepUp(auth: AuthContext, minutes: number) {

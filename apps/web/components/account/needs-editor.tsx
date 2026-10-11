@@ -119,7 +119,11 @@ function NeedRow({
           })}
         </div>
         {state.level !== '' && !showNote && (
-          <button type="button" className="mt-1 inline-flex min-h-11 items-center text-sm text-ink-2 underline" onClick={() => setNoteOpen(true)}>
+          <button
+            type="button"
+            className="mt-1 inline-flex min-h-11 items-center text-sm text-ink-2 underline"
+            onClick={() => setNoteOpen(true)}
+          >
             Añadir nota <span className="sr-only">sobre {label}</span>
           </button>
         )}

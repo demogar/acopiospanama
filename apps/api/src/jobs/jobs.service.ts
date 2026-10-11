@@ -44,13 +44,26 @@ export class JobsService implements OnModuleInit {
   async retention() {
     const counts: Record<string, number> = {};
     const add = (k: string, n: bigint | number | undefined) => (counts[k] = Number(n ?? 0));
-    add('challenges', (await this.db.deleteFrom('authChallenges').where('createdAt', '<', sql<Date>`now() - interval '1 day'`).executeTakeFirst()).numDeletedRows);
+    add(
+      'challenges',
+      (
+        await this.db
+          .deleteFrom('authChallenges')
+          .where('createdAt', '<', sql<Date>`now() - interval '1 day'`)
+          .executeTakeFirst()
+      ).numDeletedRows,
+    );
     add(
       'sessions',
       (
         await this.db
           .deleteFrom('sessions')
-          .where((eb) => eb.or([eb('expiresAt', '<', sql<Date>`now() - interval '30 days'`), eb('revokedAt', '<', sql<Date>`now() - interval '30 days'`)]))
+          .where((eb) =>
+            eb.or([
+              eb('expiresAt', '<', sql<Date>`now() - interval '30 days'`),
+              eb('revokedAt', '<', sql<Date>`now() - interval '30 days'`),
+            ]),
+          )
           .executeTakeFirst()
       ).numDeletedRows,
     );
@@ -64,12 +77,37 @@ export class JobsService implements OnModuleInit {
           .where('isModerator', '=', false)
           .where('isAdmin', '=', false)
           .where('createdAt', '<', sql<Date>`now() - interval '1 day'`)
-          .where((eb) => eb.not(eb.exists(eb.selectFrom('centerManagers').select('centerManagers.userId').whereRef('centerManagers.userId', '=', 'users.id'))))
+          .where((eb) =>
+            eb.not(
+              eb.exists(
+                eb
+                  .selectFrom('centerManagers')
+                  .select('centerManagers.userId')
+                  .whereRef('centerManagers.userId', '=', 'users.id'),
+              ),
+            ),
+          )
           .executeTakeFirst()
       ).numDeletedRows,
     );
-    add('confirmations', (await this.db.deleteFrom('confirmations').where('createdAt', '<', sql<Date>`now() - interval '30 days'`).executeTakeFirst()).numDeletedRows);
-    add('reports', (await this.db.deleteFrom('reports').where('createdAt', '<', sql<Date>`now() - interval '90 days'`).executeTakeFirst()).numDeletedRows);
+    add(
+      'confirmations',
+      (
+        await this.db
+          .deleteFrom('confirmations')
+          .where('createdAt', '<', sql<Date>`now() - interval '30 days'`)
+          .executeTakeFirst()
+      ).numDeletedRows,
+    );
+    add(
+      'reports',
+      (
+        await this.db
+          .deleteFrom('reports')
+          .where('createdAt', '<', sql<Date>`now() - interval '90 days'`)
+          .executeTakeFirst()
+      ).numDeletedRows,
+    );
     // Centros cerrados, retirados o abandonados (sin actividad) por más de 180 días.
     add(
       'centers',
@@ -85,7 +123,15 @@ export class JobsService implements OnModuleInit {
           .executeTakeFirst()
       ).numDeletedRows,
     );
-    add('audit', (await this.db.deleteFrom('auditEvents').where('createdAt', '<', sql<Date>`now() - interval '365 days'`).executeTakeFirst()).numDeletedRows);
+    add(
+      'audit',
+      (
+        await this.db
+          .deleteFrom('auditEvents')
+          .where('createdAt', '<', sql<Date>`now() - interval '365 days'`)
+          .executeTakeFirst()
+      ).numDeletedRows,
+    );
     this.centers.invalidate();
     await this.audit.log({ action: 'retention.run', objectType: 'system', meta: counts });
     return counts;

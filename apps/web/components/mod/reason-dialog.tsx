@@ -62,8 +62,22 @@ export function ReasonDialog({
           <Stack gap="md">
             <Text>{description}</Text>
             {extra}
-            <Field label="Motivo" hint="Breve y concreto. Queda en el registro de moderación." error={error ?? undefined}>
-              {(c) => <Textarea {...c} rows={2} autosize maxLength={300} value={reason} onChange={(e) => setReason(e.target.value)} autoFocus />}
+            <Field
+              label="Motivo"
+              hint="Breve y concreto. Queda en el registro de moderación."
+              error={error ?? undefined}
+            >
+              {(c) => (
+                <Textarea
+                  {...c}
+                  rows={2}
+                  autosize
+                  maxLength={300}
+                  value={reason}
+                  onChange={(e) => setReason(e.target.value)}
+                  autoFocus
+                />
+              )}
             </Field>
             <div className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
               <Button type="button" variant="secondary" onClick={() => onOpenChange(false)}>

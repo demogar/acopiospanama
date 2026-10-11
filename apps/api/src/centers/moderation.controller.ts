@@ -36,7 +36,13 @@ export class ModerationController {
           eb.and([
             eb('status', '!=', 'REMOVED'),
             eb.or([
-              eb.exists(eb.selectFrom('reports').select('reports.id').whereRef('reports.centerId', '=', 'centers.id').where('reports.status', '=', 'OPEN')),
+              eb.exists(
+                eb
+                  .selectFrom('reports')
+                  .select('reports.id')
+                  .whereRef('reports.centerId', '=', 'centers.id')
+                  .where('reports.status', '=', 'OPEN'),
+              ),
               eb('createdAt', '>', sql<Date>`now() - interval '24 hours'`),
             ]),
           ]),
@@ -52,14 +58,23 @@ export class ModerationController {
       ? await this.db
           .selectFrom('reports')
           .select(['id', 'centerId', 'reason', 'details', 'createdAt'])
-          .where('centerId', 'in', rows.map((r) => r.id))
+          .where(
+            'centerId',
+            'in',
+            rows.map((r) => r.id),
+          )
           .where('status', '=', 'OPEN')
           .orderBy('createdAt', 'desc')
           .execute()
       : [];
     return list.map((c) => {
       const row = rows.find((r) => r.id === c.id)!;
-      return { ...c, status: row.status, removedReason: row.removedReason, reports: reports.filter((r) => r.centerId === c.id) };
+      return {
+        ...c,
+        status: row.status,
+        removedReason: row.removedReason,
+        reports: reports.filter((r) => r.centerId === c.id),
+      };
     });
   }
 
@@ -67,7 +82,10 @@ export class ModerationController {
   @HttpCode(200)
   async remove(@Auth() a: AuthContext, @Param('id') id: string, @Body() body: unknown) {
     this.access.requireModerator(a);
-    const { reason } = parse(z.object({ reason: shortText(300).refine((s) => s.length >= 3, 'Indica el motivo') }), body);
+    const { reason } = parse(
+      z.object({ reason: shortText(300).refine((s) => s.length >= 3, 'Indica el motivo') }),
+      body,
+    );
     const r = await this.db
       .updateTable('centers')
       .set({ status: 'REMOVED', removedReason: reason, updatedAt: new Date() })
@@ -75,7 +93,13 @@ export class ModerationController {
       .returning('id')
       .executeTakeFirst();
     if (!r) throw notFound();
-    await this.audit.log({ actorId: a.user.id, action: 'mod.center_removed', objectType: 'center', objectId: r.id, reason });
+    await this.audit.log({
+      actorId: a.user.id,
+      action: 'mod.center_removed',
+      objectType: 'center',
+      objectId: r.id,
+      reason,
+    });
     this.centers.invalidate();
     return { ok: true };
   }
@@ -84,7 +108,10 @@ export class ModerationController {
   @HttpCode(200)
   async restore(@Auth() a: AuthContext, @Param('id') id: string, @Body() body: unknown) {
     this.access.requireModerator(a);
-    const { reason } = parse(z.object({ reason: shortText(300).refine((s) => s.length >= 3, 'Indica el motivo') }), body);
+    const { reason } = parse(
+      z.object({ reason: shortText(300).refine((s) => s.length >= 3, 'Indica el motivo') }),
+      body,
+    );
     const centerId = parseId(id);
     const r = await this.db
       .updateTable('centers')
@@ -94,8 +121,19 @@ export class ModerationController {
       .executeTakeFirst();
     if (!r) throw notFound();
     // Restaurar descarta los reportes abiertos (si no, volvería a ocultarse solo).
-    await this.db.updateTable('reports').set({ status: 'DISMISSED', resolvedBy: a.user.id, resolvedAt: new Date() }).where('centerId', '=', centerId).where('status', '=', 'OPEN').execute();
-    await this.audit.log({ actorId: a.user.id, action: 'mod.center_restored', objectType: 'center', objectId: r.id, reason });
+    await this.db
+      .updateTable('reports')
+      .set({ status: 'DISMISSED', resolvedBy: a.user.id, resolvedAt: new Date() })
+      .where('centerId', '=', centerId)
+      .where('status', '=', 'OPEN')
+      .execute();
+    await this.audit.log({
+      actorId: a.user.id,
+      action: 'mod.center_restored',
+      objectType: 'center',
+      objectId: r.id,
+      reason,
+    });
     this.centers.invalidate();
     return { ok: true };
   }
@@ -105,8 +143,19 @@ export class ModerationController {
   async dismiss(@Auth() a: AuthContext, @Param('id') id: string) {
     this.access.requireModerator(a);
     const centerId = parseId(id);
-    const r = await this.db.updateTable('reports').set({ status: 'DISMISSED', resolvedBy: a.user.id, resolvedAt: new Date() }).where('centerId', '=', centerId).where('status', '=', 'OPEN').executeTakeFirst();
-    await this.audit.log({ actorId: a.user.id, action: 'mod.reports_dismissed', objectType: 'center', objectId: centerId, meta: { n: Number(r.numUpdatedRows) } });
+    const r = await this.db
+      .updateTable('reports')
+      .set({ status: 'DISMISSED', resolvedBy: a.user.id, resolvedAt: new Date() })
+      .where('centerId', '=', centerId)
+      .where('status', '=', 'OPEN')
+      .executeTakeFirst();
+    await this.audit.log({
+      actorId: a.user.id,
+      action: 'mod.reports_dismissed',
+      objectType: 'center',
+      objectId: centerId,
+      meta: { n: Number(r.numUpdatedRows) },
+    });
     this.centers.invalidate();
     return { dismissed: Number(r.numUpdatedRows) };
   }
@@ -131,22 +180,40 @@ export class ModerationController {
       if (u) userIds = [u.id];
     } else if (input.centerId) {
       // Bloquear «a quien creó este centro» sin que el moderador vea el correo.
-      const c = await this.db.selectFrom('centers').select('createdBy').where('id', '=', input.centerId).executeTakeFirst();
+      const c = await this.db
+        .selectFrom('centers')
+        .select('createdBy')
+        .where('id', '=', input.centerId)
+        .executeTakeFirst();
       if (c?.createdBy) userIds = [c.createdBy];
     }
     if (userIds.length === 0) throw notFound();
-    const protectedUser = await this.db.selectFrom('users').select('id').where('id', 'in', userIds).where((eb) => eb.or([eb('isModerator', '=', true), eb('isAdmin', '=', true)])).executeTakeFirst();
+    const protectedUser = await this.db
+      .selectFrom('users')
+      .select('id')
+      .where('id', 'in', userIds)
+      .where((eb) => eb.or([eb('isModerator', '=', true), eb('isAdmin', '=', true)]))
+      .executeTakeFirst();
     if (protectedUser) throw notFound();
     await this.db.transaction().execute(async (trx) => {
       await trx.updateTable('users').set({ disabledAt: new Date() }).where('id', 'in', userIds).execute();
-      await trx.updateTable('sessions').set({ revokedAt: new Date() }).where('userId', 'in', userIds).where('revokedAt', 'is', null).execute();
+      await trx
+        .updateTable('sessions')
+        .set({ revokedAt: new Date() })
+        .where('userId', 'in', userIds)
+        .where('revokedAt', 'is', null)
+        .execute();
       await trx
         .updateTable('centers')
         .set({ status: 'REMOVED', removedReason: `Cuenta bloqueada: ${input.reason}`, updatedAt: new Date() })
         .where('createdBy', 'in', userIds)
         .where('status', '!=', 'REMOVED')
         .execute();
-      for (const id of userIds) await this.audit.log({ actorId: a.user.id, action: 'mod.user_blocked', objectType: 'user', objectId: id, reason: input.reason }, trx);
+      for (const id of userIds)
+        await this.audit.log(
+          { actorId: a.user.id, action: 'mod.user_blocked', objectType: 'user', objectId: id, reason: input.reason },
+          trx,
+        );
     });
     this.centers.invalidate();
     return { ok: true };
@@ -157,7 +224,12 @@ export class ModerationController {
   @Get('moderators')
   async moderators(@Auth() a: AuthContext) {
     this.access.requireAdmin(a);
-    return this.db.selectFrom('users').select(['id', 'email', 'name', 'isAdmin', 'totpEnabledAt']).where((eb) => eb.or([eb('isModerator', '=', true), eb('isAdmin', '=', true)])).orderBy('email').execute();
+    return this.db
+      .selectFrom('users')
+      .select(['id', 'email', 'name', 'isAdmin', 'totpEnabledAt'])
+      .where((eb) => eb.or([eb('isModerator', '=', true), eb('isAdmin', '=', true)]))
+      .orderBy('email')
+      .execute();
   }
 
   @Post('moderators')
@@ -165,12 +237,36 @@ export class ModerationController {
   async setModerator(@Auth() a: AuthContext, @Body() body: unknown) {
     this.access.requireAdmin(a);
     this.access.requireStepUp(a, this.config.STEP_UP_MINUTES);
-    const { email, moderator } = parse(z.object({ email: z.string().trim().max(254).email().transform(normalizeEmail), moderator: z.boolean() }), body);
-    await this.db.insertInto('users').values({ email }).onConflict((oc) => oc.column('email').doNothing()).execute();
-    const u = await this.db.updateTable('users').set({ isModerator: moderator }).where('email', '=', email).where('isAdmin', '=', false).returning('id').executeTakeFirst();
+    const { email, moderator } = parse(
+      z.object({ email: z.string().trim().max(254).email().transform(normalizeEmail), moderator: z.boolean() }),
+      body,
+    );
+    await this.db
+      .insertInto('users')
+      .values({ email })
+      .onConflict((oc) => oc.column('email').doNothing())
+      .execute();
+    const u = await this.db
+      .updateTable('users')
+      .set({ isModerator: moderator })
+      .where('email', '=', email)
+      .where('isAdmin', '=', false)
+      .returning('id')
+      .executeTakeFirst();
     if (!u) throw notFound();
-    if (!moderator) await this.db.updateTable('sessions').set({ revokedAt: new Date() }).where('userId', '=', u.id).where('revokedAt', 'is', null).execute();
-    await this.audit.log({ actorId: a.user.id, action: moderator ? 'admin.moderator_added' : 'admin.moderator_removed', objectType: 'user', objectId: u.id });
+    if (!moderator)
+      await this.db
+        .updateTable('sessions')
+        .set({ revokedAt: new Date() })
+        .where('userId', '=', u.id)
+        .where('revokedAt', 'is', null)
+        .execute();
+    await this.audit.log({
+      actorId: a.user.id,
+      action: moderator ? 'admin.moderator_added' : 'admin.moderator_removed',
+      objectType: 'user',
+      objectId: u.id,
+    });
     return { ok: true };
   }
 }

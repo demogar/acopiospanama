@@ -15,7 +15,15 @@ function modeOf(d: DaySchedule | undefined): Mode {
 
 /** Horario propuesto al empezar: lunes a sábado 8:00–5:00, domingo cerrado (se ajusta en un toque). */
 export function starterSchedule(): Schedule {
-  return { MON: { ...DEFAULT_HOURS }, TUE: { ...DEFAULT_HOURS }, WED: { ...DEFAULT_HOURS }, THU: { ...DEFAULT_HOURS }, FRI: { ...DEFAULT_HOURS }, SAT: { ...DEFAULT_HOURS }, SUN: null };
+  return {
+    MON: { ...DEFAULT_HOURS },
+    TUE: { ...DEFAULT_HOURS },
+    WED: { ...DEFAULT_HOURS },
+    THU: { ...DEFAULT_HOURS },
+    FRI: { ...DEFAULT_HOURS },
+    SAT: { ...DEFAULT_HOURS },
+    SUN: null,
+  };
 }
 
 /** Errores locales (la API valida igual): horas vacías o iguales. Clave: día. */
@@ -24,7 +32,8 @@ export function scheduleErrors(s: Schedule): Partial<Record<Day, string>> {
   for (const d of DAYS) {
     const v = s[d];
     if (v && 'open' in v) {
-      if (!/^\d\d:\d\d$/.test(v.open) || !/^\d\d:\d\d$/.test(v.close)) out[d] = 'Escribe la hora de apertura y de cierre';
+      if (!/^\d\d:\d\d$/.test(v.open) || !/^\d\d:\d\d$/.test(v.close))
+        out[d] = 'Escribe la hora de apertura y de cierre';
       else if (v.open === v.close) out[d] = 'La apertura y el cierre no pueden ser iguales';
     }
   }
@@ -95,7 +104,12 @@ export function ScheduleEditor({
           variant="secondary"
           size="sm"
           disabled={mon === undefined}
-          onClick={() => onChange({ ...value, ...Object.fromEntries(WEEKDAYS.map((d) => [d, mon && 'open' in mon ? { ...mon } : (mon ?? null)])) })}
+          onClick={() =>
+            onChange({
+              ...value,
+              ...Object.fromEntries(WEEKDAYS.map((d) => [d, mon && 'open' in mon ? { ...mon } : (mon ?? null)])),
+            })
+          }
         >
           Copiar lunes a días hábiles
         </Button>
@@ -104,7 +118,11 @@ export function ScheduleEditor({
           variant="secondary"
           size="sm"
           disabled={mon === undefined}
-          onClick={() => onChange(Object.fromEntries(DAYS.map((d) => [d, mon && 'open' in mon ? { ...mon } : (mon ?? null)])) as Schedule)}
+          onClick={() =>
+            onChange(
+              Object.fromEntries(DAYS.map((d) => [d, mon && 'open' in mon ? { ...mon } : (mon ?? null)])) as Schedule,
+            )
+          }
         >
           Mismo horario todos los días
         </Button>
@@ -134,7 +152,16 @@ export function ScheduleEditor({
                           name={`${id}-${d}`}
                           checked={checked}
                           onChange={() =>
-                            setDay(d, o.value === 'closed' ? null : o.value === 'allDay' ? { allDay: true } : v && 'open' in v ? v : { ...DEFAULT_HOURS })
+                            setDay(
+                              d,
+                              o.value === 'closed'
+                                ? null
+                                : o.value === 'allDay'
+                                  ? { allDay: true }
+                                  : v && 'open' in v
+                                    ? v
+                                    : { ...DEFAULT_HOURS },
+                            )
                           }
                         />
                         {o.label}
@@ -166,7 +193,9 @@ export function ScheduleEditor({
                         className="h-11 w-full min-w-0 bg-cloth-pale px-2 text-base text-ink shadow-cut focus:shadow-[var(--focus-ring)] focus:outline-none aria-invalid:band-rojo aria-invalid:cut-band"
                       />
                     </label>
-                    {v.close < v.open && !err && <p className="col-span-2 text-sm text-ink-2">Cierra al día siguiente.</p>}
+                    {v.close < v.open && !err && (
+                      <p className="col-span-2 text-sm text-ink-2">Cierra al día siguiente.</p>
+                    )}
                   </div>
                 )}
                 {err && <p className="mt-1 text-sm text-ink-danger">{err}</p>}

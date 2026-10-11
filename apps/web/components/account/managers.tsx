@@ -53,7 +53,8 @@ export function Managers({ centerId }: { centerId: string }) {
   return (
     <Stack gap="md">
       <Text>
-        Tener <strong>2 o 3 responsables</strong> evita que el centro desaparezca del directorio si una persona no puede responder los recordatorios. Cualquiera de ustedes puede actualizarlo, confirmarlo o cerrarlo.
+        Tener <strong>2 o 3 responsables</strong> evita que el centro desaparezca del directorio si una persona no puede
+        responder los recordatorios. Cualquiera de ustedes puede actualizarlo, confirmarlo o cerrarlo.
       </Text>
       {list.error ? (
         <ErrorState error={list.error} onRetry={list.reload} />
@@ -65,7 +66,12 @@ export function Managers({ centerId }: { centerId: string }) {
             <li key={m.id} className="flex flex-wrap items-center justify-between gap-2 py-2">
               <div className="min-w-0">
                 <p className="font-semibold break-words text-ink">
-                  {m.name || m.email.split('@')[0]} {m.you && <Badge tone="info" variant="soft">Tú</Badge>}
+                  {m.name || m.email.split('@')[0]}{' '}
+                  {m.you && (
+                    <Badge tone="info" variant="soft">
+                      Tú
+                    </Badge>
+                  )}
                 </p>
                 <p className="text-sm [overflow-wrap:anywhere] text-ink-2">{m.email}</p>
               </div>
@@ -84,14 +90,28 @@ export function Managers({ centerId }: { centerId: string }) {
       )}
       {only && list.data && (
         <Callout tone="info" icon={false}>
-          Eres el único responsable. Añade a alguien más; no puedes quitar al único (si el centro dejó de funcionar, ciérralo).
+          Eres el único responsable. Añade a alguien más; no puedes quitar al único (si el centro dejó de funcionar,
+          ciérralo).
         </Callout>
       )}
       <form onSubmit={invite} noValidate>
         <Stack gap="sm">
-          <Field label="Añadir responsable por correo" hint="Le llega un aviso. Entra con ese correo, sin contraseña." error={error ?? undefined}>
+          <Field
+            label="Añadir responsable por correo"
+            hint="Le llega un aviso. Entra con ese correo, sin contraseña."
+            error={error ?? undefined}
+          >
             {(c) => (
-              <Input {...c} type="email" inputMode="email" autoCapitalize="none" spellCheck={false} autoComplete="off" value={email} onChange={(e) => setEmail(e.target.value)} />
+              <Input
+                {...c}
+                type="email"
+                inputMode="email"
+                autoCapitalize="none"
+                spellCheck={false}
+                autoComplete="off"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
             )}
           </Field>
           <Button type="submit" variant="secondary" icon={<UserPlus aria-hidden="true" />} loading={busy}>
@@ -106,7 +126,11 @@ export function Managers({ centerId }: { centerId: string }) {
         open={!!removing}
         onOpenChange={(o) => !o && setRemoving(null)}
         title={removing?.you ? '¿Dejar de ser responsable?' : `¿Quitar a ${removing?.name || removing?.email}?`}
-        description={removing?.you ? 'Ya no verás este centro en «Mis centros» ni recibirás recordatorios.' : 'Ya no podrá actualizar este centro ni recibirá recordatorios.'}
+        description={
+          removing?.you
+            ? 'Ya no verás este centro en «Mis centros» ni recibirás recordatorios.'
+            : 'Ya no podrá actualizar este centro ni recibirá recordatorios.'
+        }
         confirmLabel={removing?.you ? 'Sí, salir' : 'Sí, quitar'}
         cancelLabel="Cancelar"
         tone="danger"

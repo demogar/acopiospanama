@@ -99,7 +99,13 @@ export default function MapPicker({
         iconSize: [22, 22],
         iconAnchor: [11, 22],
       });
-      const m = L.marker([lat, lng], { draggable: true, icon, keyboard: true, title: 'Ubicación del centro', alt: 'Ubicación del centro' });
+      const m = L.marker([lat, lng], {
+        draggable: true,
+        icon,
+        keyboard: true,
+        title: 'Ubicación del centro',
+        alt: 'Ubicación del centro',
+      });
       m.on('dragend', () => {
         const p = m.getLatLng();
         place(p.lat, p.lng);
@@ -109,7 +115,8 @@ export default function MapPicker({
     } else {
       markerRef.current.setLatLng([lat, lng]);
     }
-    if (!map.getBounds().contains([lat, lng]) || map.getZoom() < 14) map.setView([lat, lng], Math.max(map.getZoom(), 16));
+    if (!map.getBounds().contains([lat, lng]) || map.getZoom() < 14)
+      map.setView([lat, lng], Math.max(map.getZoom(), 16));
   }, [ready, lat, lng]);
 
   return (
@@ -120,7 +127,9 @@ export default function MapPicker({
         aria-label="Mapa para marcar la ubicación del centro. Toca el lugar exacto."
         className="relative z-0 h-72 w-full bg-cloth-shade shadow-cut"
       />
-      <p className="text-sm text-ink-2">Acércate con los botones + y −, y toca el lugar exacto. Puedes arrastrar el marcador.</p>
+      <p className="text-sm text-ink-2">
+        Acércate con los botones + y −, y toca el lugar exacto. Puedes arrastrar el marcador.
+      </p>
       <div aria-live="polite">
         {outside && <p className="text-sm text-ink-danger">Ese punto queda fuera de Panamá.</p>}
         {tilesFailed && (

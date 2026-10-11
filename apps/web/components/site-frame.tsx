@@ -26,12 +26,18 @@ export function SiteFrame({ title, subtitle, back, actions, width = 'page', chil
   const max = width === 'prose' ? 'max-w-2xl' : 'max-w-5xl';
   return (
     <div className="flex min-h-dvh flex-col">
-      <a href="#contenido" className="sr-only focus:not-sr-only focus:absolute focus:start-2 focus:top-2 focus:z-50 focus:bg-cloth-pale focus:p-3">
+      <a
+        href="#contenido"
+        className="sr-only focus:not-sr-only focus:absolute focus:start-2 focus:top-2 focus:z-50 focus:bg-cloth-pale focus:p-3"
+      >
         Saltar al contenido
       </a>
       <header className="border-b border-keyline bg-cloth-pale">
         <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-x-3 gap-y-1 px-4 py-1">
-          <Link href="/" className="inline-flex min-h-11 items-center gap-2 font-ui text-lg font-bold text-ink no-underline">
+          <Link
+            href="/"
+            className="inline-flex min-h-11 items-center gap-2 font-ui text-lg font-bold text-ink no-underline"
+          >
             <span aria-hidden="true" className="inline-block size-3 bg-rojo" />
             Acopio Panamá
           </Link>
@@ -48,7 +54,10 @@ export function SiteFrame({ title, subtitle, back, actions, width = 'page', chil
 
       <main id="contenido" className={`mx-auto w-full ${max} flex-1 px-4 pb-12 pt-4`}>
         {back && (
-          <Link href={back.href} className="mb-2 -ms-1 inline-flex min-h-11 items-center gap-1 px-1 text-sm text-ink-2 no-underline hover:underline">
+          <Link
+            href={back.href}
+            className="mb-2 -ms-1 inline-flex min-h-11 items-center gap-1 px-1 text-sm text-ink-2 no-underline hover:underline"
+          >
             <ArrowLeft aria-hidden="true" className="size-4" />
             {back.label}
           </Link>
@@ -76,7 +85,11 @@ export function SiteFrame({ title, subtitle, back, actions, width = 'page', chil
             </Link>
           </nav>
           <p>
-            ¿Emergencia? Llama al <a href="tel:911" className="font-semibold text-ink">911</a>. Este directorio no atiende emergencias.
+            ¿Emergencia? Llama al{' '}
+            <a href="tel:911" className="font-semibold text-ink">
+              911
+            </a>
+            . Este directorio no atiende emergencias.
           </p>
         </div>
       </footer>

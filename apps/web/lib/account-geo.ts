@@ -3,12 +3,16 @@
 export const PANAMA_BOUNDS = { minLat: 7.0, maxLat: 9.8, minLng: -83.1, maxLng: -77.1 };
 
 export function inPanama(lat: number, lng: number): boolean {
-  return lat >= PANAMA_BOUNDS.minLat && lat <= PANAMA_BOUNDS.maxLat && lng >= PANAMA_BOUNDS.minLng && lng <= PANAMA_BOUNDS.maxLng;
+  return (
+    lat >= PANAMA_BOUNDS.minLat &&
+    lat <= PANAMA_BOUNDS.maxLat &&
+    lng >= PANAMA_BOUNDS.minLng &&
+    lng <= PANAMA_BOUNDS.maxLng
+  );
 }
 
 export type ParsedLocation =
-  | { ok: true; lat: number; lng: number }
-  | { ok: false; reason: 'SHORT_LINK' | 'NOT_FOUND' | 'OUTSIDE' };
+  { ok: true; lat: number; lng: number } | { ok: false; reason: 'SHORT_LINK' | 'NOT_FOUND' | 'OUTSIDE' };
 
 const NUM = '(-?\\d{1,2}(?:\\.\\d+)?)';
 const PAIR = `${NUM}\\s*,\\s*(-?\\d{1,3}(?:\\.\\d+)?)`;

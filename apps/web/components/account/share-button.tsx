@@ -5,7 +5,15 @@ import { Share2 } from 'lucide-react';
 import { Button, useToast } from '@demogar/mola-ui';
 
 /** Compartir la ficha: menú nativo del teléfono o, si no existe, copiar el enlace. */
-export function ShareButton({ path, title, variant = 'secondary' }: { path: string; title: string; variant?: 'primary' | 'secondary' }) {
+export function ShareButton({
+  path,
+  title,
+  variant = 'secondary',
+}: {
+  path: string;
+  title: string;
+  variant?: 'primary' | 'secondary';
+}) {
   const toast = useToast();
   const [busy, setBusy] = useState(false);
   async function share() {
@@ -25,7 +33,14 @@ export function ShareButton({ path, title, variant = 'secondary' }: { path: stri
     }
   }
   return (
-    <Button type="button" variant={variant} size="lg" icon={<Share2 aria-hidden="true" />} loading={busy} onClick={share}>
+    <Button
+      type="button"
+      variant={variant}
+      size="lg"
+      icon={<Share2 aria-hidden="true" />}
+      loading={busy}
+      onClick={share}
+    >
       Compartir
     </Button>
   );

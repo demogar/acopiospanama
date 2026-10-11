@@ -19,7 +19,11 @@ import { JobsService } from './jobs/jobs.service';
 import { MailService } from './mail/mail.service';
 
 @Module({
-  imports: [CoreModule, ScheduleModule.forRoot(), ThrottlerModule.forRoot({ throttlers: [{ name: 'default', ttl: 60_000, limit: 300 }] })],
+  imports: [
+    CoreModule,
+    ScheduleModule.forRoot(),
+    ThrottlerModule.forRoot({ throttlers: [{ name: 'default', ttl: 60_000, limit: 300 }] }),
+  ],
   controllers: [SystemController, AuthController, PublicController, ManageController, ModerationController],
   providers: [
     AccessService,

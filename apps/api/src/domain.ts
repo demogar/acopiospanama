@@ -25,16 +25,54 @@ export const DISTRICTS: Record<Province, string[]> = {
   BOCAS_DEL_TORO: ['Almirante', 'Bocas del Toro', 'Changuinola', 'Chiriquí Grande'],
   COCLE: ['Aguadulce', 'Antón', 'La Pintada', 'Natá', 'Olá', 'Penonomé'],
   COLON: ['Colón', 'Chagres', 'Donoso', 'Omar Torrijos Herrera', 'Portobelo', 'Santa Isabel'],
-  CHIRIQUI: ['Alanje', 'Barú', 'Boquerón', 'Boquete', 'Bugaba', 'David', 'Dolega', 'Gualaca', 'Remedios', 'Renacimiento', 'San Félix', 'San Lorenzo', 'Tierras Altas', 'Tolé'],
+  CHIRIQUI: [
+    'Alanje',
+    'Barú',
+    'Boquerón',
+    'Boquete',
+    'Bugaba',
+    'David',
+    'Dolega',
+    'Gualaca',
+    'Remedios',
+    'Renacimiento',
+    'San Félix',
+    'San Lorenzo',
+    'Tierras Altas',
+    'Tolé',
+  ],
   DARIEN: ['Chepigana', 'Pinogana', 'Santa Fe'],
   HERRERA: ['Chitré', 'Las Minas', 'Los Pozos', 'Ocú', 'Parita', 'Pesé', 'Santa María'],
   LOS_SANTOS: ['Guararé', 'Las Tablas', 'Los Santos', 'Macaracas', 'Pedasí', 'Pocrí', 'Tonosí'],
   PANAMA: ['Balboa', 'Chepo', 'Chimán', 'Panamá', 'San Miguelito', 'Taboga'],
   PANAMA_OESTE: ['Arraiján', 'Capira', 'Chame', 'La Chorrera', 'San Carlos'],
-  VERAGUAS: ['Atalaya', 'Calobre', 'Cañazas', 'La Mesa', 'Las Palmas', 'Mariato', 'Montijo', 'Río de Jesús', 'San Francisco', 'Santa Fe', 'Santiago', 'Soná'],
+  VERAGUAS: [
+    'Atalaya',
+    'Calobre',
+    'Cañazas',
+    'La Mesa',
+    'Las Palmas',
+    'Mariato',
+    'Montijo',
+    'Río de Jesús',
+    'San Francisco',
+    'Santa Fe',
+    'Santiago',
+    'Soná',
+  ],
   GUNA_YALA: [],
   EMBERA_WOUNAAN: ['Cémaco', 'Sambú'],
-  NGABE_BUGLE: ['Besikó', 'Jirondai', 'Kankintú', 'Kusapín', 'Mironó', 'Müna', 'Nole Duima', 'Ñürüm', 'Santa Catalina o Calovébora'],
+  NGABE_BUGLE: [
+    'Besikó',
+    'Jirondai',
+    'Kankintú',
+    'Kusapín',
+    'Mironó',
+    'Müna',
+    'Nole Duima',
+    'Ñürüm',
+    'Santa Catalina o Calovébora',
+  ],
   NASO_TJER_DI: [],
 };
 
@@ -50,7 +88,15 @@ export const CENTER_TYPE_KEYS = Object.keys(CENTER_TYPES) as [CenterType, ...Cen
 
 export const DAYS = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'] as const;
 export type Day = (typeof DAYS)[number];
-export const DAY_LABELS: Record<Day, string> = { MON: 'Lunes', TUE: 'Martes', WED: 'Miércoles', THU: 'Jueves', FRI: 'Viernes', SAT: 'Sábado', SUN: 'Domingo' };
+export const DAY_LABELS: Record<Day, string> = {
+  MON: 'Lunes',
+  TUE: 'Martes',
+  WED: 'Miércoles',
+  THU: 'Jueves',
+  FRI: 'Viernes',
+  SAT: 'Sábado',
+  SUN: 'Domingo',
+};
 export type DaySchedule = { allDay: true } | { open: string; close: string } | null;
 export type Schedule = Partial<Record<Day, DaySchedule>>;
 

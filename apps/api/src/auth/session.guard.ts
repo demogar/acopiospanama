@@ -43,7 +43,12 @@ export class SessionGuard implements CanActivate {
       return true;
     }
     if (token) {
-      res.clearCookie(this.auth.cookieNames().session, { path: '/', secure: this.config.cookieSecure, httpOnly: true, sameSite: 'lax' });
+      res.clearCookie(this.auth.cookieNames().session, {
+        path: '/',
+        secure: this.config.cookieSecure,
+        httpOnly: true,
+        sameSite: 'lax',
+      });
     }
     if (isPublic) return true;
     throw new ApiError(401, 'UNAUTHENTICATED', 'Tu sesión terminó. Vuelve a entrar con tu correo.');

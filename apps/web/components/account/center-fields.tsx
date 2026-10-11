@@ -36,7 +36,9 @@ export function fieldLabel(k: string): string {
 export function focusField(root: HTMLElement | null, name: string) {
   const base = name === 'lng' ? 'lat' : name.split('.')[0];
   const box = root?.querySelector<HTMLElement>(`[data-field="${base}"]`);
-  const el = box?.querySelector<HTMLElement>('input:not([type=hidden]):not(.sr-only), textarea, button, [tabindex]:not([tabindex="-1"])');
+  const el = box?.querySelector<HTMLElement>(
+    'input:not([type=hidden]):not(.sr-only), textarea, button, [tabindex]:not([tabindex="-1"])',
+  );
   box?.scrollIntoView({ block: 'center' });
   el?.focus({ preventScroll: true });
 }
@@ -70,8 +72,16 @@ export function CenterFields({
 
   return (
     <Stack gap="lg">
-      <Field data-field="name" label="Nombre del centro" hint="Como lo conoce la gente. Ej.: Acopio Junta Comunal de Tonosí" error={errors.name} required>
-        {(c) => <Input {...c} value={value.name} maxLength={120} onChange={(e) => onChange({ name: e.target.value })} />}
+      <Field
+        data-field="name"
+        label="Nombre del centro"
+        hint="Como lo conoce la gente. Ej.: Acopio Junta Comunal de Tonosí"
+        error={errors.name}
+        required
+      >
+        {(c) => (
+          <Input {...c} value={value.name} maxLength={120} onChange={(e) => onChange({ name: e.target.value })} />
+        )}
       </Field>
 
       <Field data-field="centerType" label="Tipo de centro" error={errors.centerType} required>
@@ -100,8 +110,20 @@ export function CenterFields({
               />
             )}
           </Field>
-          <Field data-field="organizerName" label="Nombre (opcional)" hint="Ej.: Parroquia San Juan, Club de Leones de Las Tablas" error={errors.organizerName}>
-            {(c) => <Input {...c} value={value.organizerName} maxLength={120} onChange={(e) => onChange({ organizerName: e.target.value })} />}
+          <Field
+            data-field="organizerName"
+            label="Nombre (opcional)"
+            hint="Ej.: Parroquia San Juan, Club de Leones de Las Tablas"
+            error={errors.organizerName}
+          >
+            {(c) => (
+              <Input
+                {...c}
+                value={value.organizerName}
+                maxLength={120}
+                onChange={(e) => onChange({ organizerName: e.target.value })}
+              />
+            )}
           </Field>
         </Stack>
       </fieldset>
@@ -120,9 +142,21 @@ export function CenterFields({
               />
             )}
           </Field>
-          <Field data-field="district" label="Distrito (opcional)" hint={districts.length ? 'Escribe o elige de la lista.' : undefined} error={errors.district}>
+          <Field
+            data-field="district"
+            label="Distrito (opcional)"
+            hint={districts.length ? 'Escribe o elige de la lista.' : undefined}
+            error={errors.district}
+          >
             {(c) => (
-              <Input {...c} list={districts.length ? listId : undefined} value={value.district} maxLength={60} autoComplete="off" onChange={(e) => onChange({ district: e.target.value })} />
+              <Input
+                {...c}
+                list={districts.length ? listId : undefined}
+                value={value.district}
+                maxLength={60}
+                autoComplete="off"
+                onChange={(e) => onChange({ district: e.target.value })}
+              />
             )}
           </Field>
           {districts.length > 0 && (
@@ -133,32 +167,92 @@ export function CenterFields({
             </datalist>
           )}
           <Field data-field="community" label="Comunidad, barrio o corregimiento (opcional)" error={errors.community}>
-            {(c) => <Input {...c} value={value.community} maxLength={80} onChange={(e) => onChange({ community: e.target.value })} />}
+            {(c) => (
+              <Input
+                {...c}
+                value={value.community}
+                maxLength={80}
+                onChange={(e) => onChange({ community: e.target.value })}
+              />
+            )}
           </Field>
-          <Field data-field="address" label="Dirección o referencia" hint="Cómo llegar. Ej.: frente al parque, al lado de la iglesia" error={errors.address} required>
-            {(c) => <Textarea {...c} rows={2} autosize value={value.address} maxLength={300} onChange={(e) => onChange({ address: e.target.value })} />}
+          <Field
+            data-field="address"
+            label="Dirección o referencia"
+            hint="Cómo llegar. Ej.: frente al parque, al lado de la iglesia"
+            error={errors.address}
+            required
+          >
+            {(c) => (
+              <Textarea
+                {...c}
+                rows={2}
+                autosize
+                value={value.address}
+                maxLength={300}
+                onChange={(e) => onChange({ address: e.target.value })}
+              />
+            )}
           </Field>
           <div data-field="lat">
-            <LocationField lat={value.lat} lng={value.lng} tileHost={tileHost} error={errors.lat ?? errors.lng} onChange={(lat, lng) => onChange({ lat, lng })} />
+            <LocationField
+              lat={value.lat}
+              lng={value.lng}
+              tileHost={tileHost}
+              error={errors.lat ?? errors.lng}
+              onChange={(lat, lng) => onChange({ lat, lng })}
+            />
           </div>
         </Stack>
       </fieldset>
 
       <fieldset className="min-w-0" data-field="schedule">
         <legend className="mb-2 font-semibold text-ink">Horario (opcional)</legend>
-        <ScheduleEditor value={value.schedule} onChange={(schedule) => onChange({ schedule })} errors={dayErrs} apiError={errors.schedule} />
+        <ScheduleEditor
+          value={value.schedule}
+          onChange={(schedule) => onChange({ schedule })}
+          errors={dayErrs}
+          apiError={errors.schedule}
+        />
       </fieldset>
 
-      <Field data-field="hoursNote" label="Nota sobre el horario (opcional)" hint="Ej.: hasta agotar espacio; el sábado solo reciben agua." error={errors.hoursNote}>
-        {(c) => <Input {...c} value={value.hoursNote} maxLength={200} onChange={(e) => onChange({ hoursNote: e.target.value })} />}
+      <Field
+        data-field="hoursNote"
+        label="Nota sobre el horario (opcional)"
+        hint="Ej.: hasta agotar espacio; el sábado solo reciben agua."
+        error={errors.hoursNote}
+      >
+        {(c) => (
+          <Input
+            {...c}
+            value={value.hoursNote}
+            maxLength={200}
+            onChange={(e) => onChange({ hoursNote: e.target.value })}
+          />
+        )}
       </Field>
 
       <fieldset className="min-w-0">
         <legend className="mb-1 font-semibold text-ink">Contacto público (opcional)</legend>
-        <p className="mb-3 text-sm text-ink-2">Para coordinar donaciones. Solo con permiso de esa persona: se publica en la ficha.</p>
+        <p className="mb-3 text-sm text-ink-2">
+          Para coordinar donaciones. Solo con permiso de esa persona: se publica en la ficha.
+        </p>
         <Stack gap="md">
-          <Field data-field="contactName" label="Nombre" hint="Ej.: Sra. Marta (coordinadora)" error={errors.contactName}>
-            {(c) => <Input {...c} value={value.contactName} maxLength={80} autoComplete="off" onChange={(e) => onChange({ contactName: e.target.value })} />}
+          <Field
+            data-field="contactName"
+            label="Nombre"
+            hint="Ej.: Sra. Marta (coordinadora)"
+            error={errors.contactName}
+          >
+            {(c) => (
+              <Input
+                {...c}
+                value={value.contactName}
+                maxLength={80}
+                autoComplete="off"
+                onChange={(e) => onChange({ contactName: e.target.value })}
+              />
+            )}
           </Field>
           <Field data-field="contactPhone" label="Teléfono" error={errors.contactPhone}>
             {(c) => (
@@ -169,17 +263,31 @@ export function CenterFields({
                 autoComplete="off"
                 value={value.contactPhone}
                 maxLength={30}
-                onChange={(e) => onChange({ contactPhone: e.target.value, ...(sameWa ? { contactWhatsapp: e.target.value } : {}) })}
+                onChange={(e) =>
+                  onChange({ contactPhone: e.target.value, ...(sameWa ? { contactWhatsapp: e.target.value } : {}) })
+                }
               />
             )}
           </Field>
           {value.contactPhone.trim() !== '' && (
-            <Checkbox checked={sameWa} onCheckedChange={(v) => onChange({ contactWhatsapp: v ? value.contactPhone : '' })} label="El WhatsApp es el mismo número" />
+            <Checkbox
+              checked={sameWa}
+              onCheckedChange={(v) => onChange({ contactWhatsapp: v ? value.contactPhone : '' })}
+              label="El WhatsApp es el mismo número"
+            />
           )}
           {!sameWa && (
             <Field data-field="contactWhatsapp" label="WhatsApp" error={errors.contactWhatsapp}>
               {(c) => (
-                <Input {...c} type="tel" inputMode="tel" autoComplete="off" value={value.contactWhatsapp} maxLength={30} onChange={(e) => onChange({ contactWhatsapp: e.target.value })} />
+                <Input
+                  {...c}
+                  type="tel"
+                  inputMode="tel"
+                  autoComplete="off"
+                  value={value.contactWhatsapp}
+                  maxLength={30}
+                  onChange={(e) => onChange({ contactWhatsapp: e.target.value })}
+                />
               )}
             </Field>
           )}
@@ -197,8 +305,22 @@ export function CenterFields({
         </Stack>
       </fieldset>
 
-      <Field data-field="notes" label="Notas (opcional)" hint="Ej.: no reciben ropa usada; tienen estacionamiento." error={errors.notes}>
-        {(c) => <Textarea {...c} rows={3} autosize value={value.notes} maxLength={600} onChange={(e) => onChange({ notes: e.target.value })} />}
+      <Field
+        data-field="notes"
+        label="Notas (opcional)"
+        hint="Ej.: no reciben ropa usada; tienen estacionamiento."
+        error={errors.notes}
+      >
+        {(c) => (
+          <Textarea
+            {...c}
+            rows={3}
+            autosize
+            value={value.notes}
+            maxLength={600}
+            onChange={(e) => onChange({ notes: e.target.value })}
+          />
+        )}
       </Field>
     </Stack>
   );
@@ -226,7 +348,8 @@ export function validateLocal(v: CenterInput): Record<string, string> {
   if (pe) e.contactPhone = pe;
   const we = phoneError(v.contactWhatsapp);
   if (we) e.contactWhatsapp = we;
-  if (hasContact(v) && !v.contactConsent) e.contactConsent = 'Marca la casilla para publicar el contacto, o borra sus datos';
+  if (hasContact(v) && !v.contactConsent)
+    e.contactConsent = 'Marca la casilla para publicar el contacto, o borra sus datos';
   return e;
 }
 

@@ -70,7 +70,11 @@ export class AuthService {
 
     // Directorio abierto: cualquiera puede entrar con su correo. La cuenta se crea al pedir el código
     // y queda «sin verificar» hasta usarlo (la retención borra las no verificadas en 1 día).
-    await this.db.insertInto('users').values({ email }).onConflict((oc) => oc.column('email').doNothing()).execute();
+    await this.db
+      .insertInto('users')
+      .values({ email })
+      .onConflict((oc) => oc.column('email').doNothing())
+      .execute();
     const user = await this.db.selectFrom('users').selectAll().where('email', '=', email).executeTakeFirst();
     const eligible = !!user && !user.disabledAt && (await this.access.hasAnyAccess(user.id));
 
@@ -115,7 +119,11 @@ export class AuthService {
           leader.sentCount < MAX_SENDS_PER_CODE &&
           (!leader.lastSentAt || now.getTime() - leader.lastSentAt.getTime() >= resendGapMs);
         if (canResend) {
-          await trx.updateTable('authChallenges').set({ sentCount: sql`sent_count + 1`, lastSentAt: now }).where('id', '=', leader.id).execute();
+          await trx
+            .updateTable('authChallenges')
+            .set({ sentCount: sql`sent_count + 1`, lastSentAt: now })
+            .where('id', '=', leader.id)
+            .execute();
           return { send: decrypt(this.keys.codeEnc, leader.codeEnc!), expiresAt: leader.expiresAt };
         }
         return { send: null, expiresAt: leader.expiresAt };
@@ -129,10 +137,19 @@ export class AuthService {
         .where('createdAt', '>', new Date(now.getTime() - 60 * 60_000))
         .executeTakeFirstOrThrow();
       if (codesLastHour.n >= maxCodesPerHour) {
-        throw new ApiError(429, 'TOO_MANY', 'Se pidieron demasiados códigos para este correo. Usa el último que recibiste o intenta en una hora.');
+        throw new ApiError(
+          429,
+          'TOO_MANY',
+          'Se pidieron demasiados códigos para este correo. Usa el último que recibiste o intenta en una hora.',
+        );
       }
       // Los códigos anteriores dejan de valer.
-      await trx.updateTable('authChallenges').set({ consumedAt: now, codeEnc: null }).where('emailHmac', '=', emailHmac).where('consumedAt', 'is', null).execute();
+      await trx
+        .updateTable('authChallenges')
+        .set({ consumedAt: now, codeEnc: null })
+        .where('emailHmac', '=', emailHmac)
+        .where('consumedAt', 'is', null)
+        .execute();
       const code = numericCode(8);
       const expiresAt = new Date(now.getTime() + CODE_TTL_MS);
       await trx
@@ -193,17 +210,35 @@ export class AuthService {
     // Todo bajo el candado del código (fila líder): intentos y consumo son atómicos. Los errores se
     // devuelven como valor para no deshacer el conteo del intento al lanzar dentro de la transacción.
     const r = await this.db.transaction().execute(async (trx) => {
-      const leader = await trx.selectFrom('authChallenges').selectAll().where('id', '=', ch.codeGroup).forUpdate().executeTakeFirst();
+      const leader = await trx
+        .selectFrom('authChallenges')
+        .selectAll()
+        .where('id', '=', ch.codeGroup)
+        .forUpdate()
+        .executeTakeFirst();
       const mine = await trx.selectFrom('authChallenges').selectAll().where('id', '=', ch.id).executeTakeFirstOrThrow();
-      if (!leader || leader.consumedAt || leader.expiresAt <= new Date() || mine.consumedAt) return { kind: 'invalid' as const };
+      if (!leader || leader.consumedAt || leader.expiresAt <= new Date() || mine.consumedAt)
+        return { kind: 'invalid' as const };
       const total = await this.groupAttempts(trx, leader.id);
       if (total >= MAX_GROUP_ATTEMPTS || mine.attempts >= MAX_ATTEMPTS) return { kind: 'exhausted' as const };
-      await trx.updateTable('authChallenges').set({ attempts: sql`attempts + 1` }).where('id', '=', mine.id).execute();
+      await trx
+        .updateTable('authChallenges')
+        .set({ attempts: sql`attempts + 1` })
+        .where('id', '=', mine.id)
+        .execute();
       if (!safeEqual(leader.codeHmac, hmac(this.keys.otp, `${leader.id}:${code}`))) {
-        return { kind: 'wrong' as const, left: Math.min(MAX_ATTEMPTS - mine.attempts - 1, MAX_GROUP_ATTEMPTS - total - 1) };
+        return {
+          kind: 'wrong' as const,
+          left: Math.min(MAX_ATTEMPTS - mine.attempts - 1, MAX_GROUP_ATTEMPTS - total - 1),
+        };
       }
       // Un código sirve una sola vez: se consumen todos los desafíos ligados a él.
-      await trx.updateTable('authChallenges').set({ consumedAt: new Date(), codeEnc: null }).where('codeGroup', '=', leader.id).where('consumedAt', 'is', null).execute();
+      await trx
+        .updateTable('authChallenges')
+        .set({ consumedAt: new Date(), codeEnc: null })
+        .where('codeGroup', '=', leader.id)
+        .where('consumedAt', 'is', null)
+        .execute();
       return { kind: 'ok' as const, userId: leader.userId };
     });
 
@@ -211,13 +246,16 @@ export class AuthService {
     if (r.kind === 'exhausted') throw new ApiError(400, 'INVALID_CODE', 'Agotaste los intentos. Pide un código nuevo.');
     if (r.kind === 'wrong') {
       if (r.left <= 0) throw new ApiError(400, 'INVALID_CODE', 'Agotaste los intentos. Pide un código nuevo.');
-      throw new ApiError(400, 'INVALID_CODE', `Código incorrecto. Te quedan ${r.left} intentos.`, { attemptsLeft: r.left });
+      throw new ApiError(400, 'INVALID_CODE', `Código incorrecto. Te quedan ${r.left} intentos.`, {
+        attemptsLeft: r.left,
+      });
     }
     if (!r.userId) throw genericCodeError();
 
     const user = await this.db.selectFrom('users').selectAll().where('id', '=', r.userId).executeTakeFirst();
     if (!user || user.disabledAt || !(await this.access.hasAnyAccess(user.id))) throw genericCodeError();
-    if (!user.verifiedAt) await this.db.updateTable('users').set({ verifiedAt: new Date() }).where('id', '=', user.id).execute();
+    if (!user.verifiedAt)
+      await this.db.updateTable('users').set({ verifiedAt: new Date() }).where('id', '=', user.id).execute();
 
     const isStaff = await this.access.hasAnyStaffMembership(user.id);
     const token = randomToken();
@@ -232,7 +270,13 @@ export class AuthService {
         userAgent: userAgent.slice(0, 160),
       })
       .execute();
-    await this.audit.log({ actorId: user.id, action: 'auth.login', objectType: 'user', objectId: user.id, meta: { staff: isStaff } });
+    await this.audit.log({
+      actorId: user.id,
+      action: 'auth.login',
+      objectType: 'user',
+      objectId: user.id,
+      meta: { staff: isStaff },
+    });
     return { token, user, isStaff, maxAgeMs: maxMs };
   }
 
@@ -313,7 +357,11 @@ export class AuthService {
       .set({ totpEnabledAt: now, recoveryCodes: codes.map((c) => hmac(this.keys.recovery, c)) })
       .where('id', '=', user.id)
       .execute();
-    await this.db.updateTable('sessions').set({ mfaVerifiedAt: now, stepUpAt: now }).where('id', '=', sessionId).execute();
+    await this.db
+      .updateTable('sessions')
+      .set({ mfaVerifiedAt: now, stepUpAt: now })
+      .where('id', '=', sessionId)
+      .execute();
     await this.audit.log({ actorId: user.id, action: 'mfa.enabled', objectType: 'user', objectId: user.id });
     return codes;
   }
@@ -341,9 +389,18 @@ export class AuthService {
       throw new ApiError(400, 'INVALID_TOTP', 'Código incorrecto.');
     }
     const now = new Date();
-    await this.db.updateTable('sessions').set({ mfaVerifiedAt: now, stepUpAt: now }).where('id', '=', sessionId).execute();
+    await this.db
+      .updateTable('sessions')
+      .set({ mfaVerifiedAt: now, stepUpAt: now })
+      .where('id', '=', sessionId)
+      .execute();
     if (usedRecovery) {
-      await this.audit.log({ actorId: user.id, action: 'mfa.recovery_code_used', objectType: 'user', objectId: user.id });
+      await this.audit.log({
+        actorId: user.id,
+        action: 'mfa.recovery_code_used',
+        objectType: 'user',
+        objectId: user.id,
+      });
     }
   }
 
@@ -354,7 +411,12 @@ export class AuthService {
       .set({ recoveryCodes: codes.map((c) => hmac(this.keys.recovery, c)) })
       .where('id', '=', user.id)
       .execute();
-    await this.audit.log({ actorId: user.id, action: 'mfa.recovery_regenerated', objectType: 'user', objectId: user.id });
+    await this.audit.log({
+      actorId: user.id,
+      action: 'mfa.recovery_regenerated',
+      objectType: 'user',
+      objectId: user.id,
+    });
     return codes;
   }
 }

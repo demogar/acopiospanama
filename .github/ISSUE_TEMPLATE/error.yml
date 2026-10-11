@@ -5,19 +5,19 @@ body:
   - type: textarea
     id: que
     attributes:
-      label: "¿Qué pasó?"
-      description: "Y qué esperabas que pasara."
+      label: '¿Qué pasó?'
+      description: 'Y qué esperabas que pasara.'
     validations:
       required: true
   - type: textarea
     id: pasos
     attributes:
-      label: "Pasos para reproducirlo"
+      label: 'Pasos para reproducirlo'
   - type: input
     id: dispositivo
     attributes:
-      label: "Teléfono / navegador"
-      placeholder: "Android 14, Chrome"
+      label: 'Teléfono / navegador'
+      placeholder: 'Android 14, Chrome'
   - type: markdown
     attributes:
-      value: "⚠️ No pegues correos, teléfonos ni datos de personas en el issue: es público."
+      value: '⚠️ No pegues correos, teléfonos ni datos de personas en el issue: es público.'

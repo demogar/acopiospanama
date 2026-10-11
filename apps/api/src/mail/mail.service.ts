@@ -32,7 +32,12 @@ export class MailService {
       return true;
     }
     try {
-      await this.transport!.sendMail({ from: this.config.MAIL_FROM, to: mail.to, subject: mail.subject, text: mail.text });
+      await this.transport!.sendMail({
+        from: this.config.MAIL_FROM,
+        to: mail.to,
+        subject: mail.subject,
+        text: mail.text,
+      });
       return true;
     } catch (err) {
       // Sin destinatario ni contenido en el log.

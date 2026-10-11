@@ -4,7 +4,11 @@ import { getPublicCenters, getPublicMeta, mapTileHost } from '@/lib/public-serve
 
 const KEY = /^[A-Z_]{2,40}$/;
 
-export default async function Home({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}) {
   const sp = await searchParams;
   const p = typeof sp.p === 'string' && KEY.test(sp.p) ? sp.p : null;
   const i = typeof sp.i === 'string' && KEY.test(sp.i) ? sp.i : null;

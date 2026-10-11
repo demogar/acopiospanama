@@ -31,7 +31,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const status = openStatus(c.data.schedule);
   // El enlace se comparte y se ve más tarde: se usa el horario de hoy, no «abierto ahora».
   const hoy = today ? ` ${today}.` : status ? ` ${status.label}.` : '';
-  const needsText = urgent.length ? ` Urgente: ${urgent.join(', ')}.` : needed.length ? ` Necesitan: ${needed.join(', ')}.` : '';
+  const needsText = urgent.length
+    ? ` Urgente: ${urgent.join(', ')}.`
+    : needed.length
+      ? ` Necesitan: ${needed.join(', ')}.`
+      : '';
   const description = `${type} en ${place}.${hoy}${needsText}`;
   const title = `${c.data.name} · Acopio Panamá`;
   return {

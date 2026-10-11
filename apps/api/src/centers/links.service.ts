@@ -31,18 +31,33 @@ export class LinksService {
     private readonly audit: AuditService,
     private readonly mail: MailService,
   ) {
-    this.key = Buffer.from(hkdfSync('sha256', Buffer.from(config.SECRET_KEY), Buffer.from('acopio-panama'), Buffer.from('confirm-link-v1'), 32));
+    this.key = Buffer.from(
+      hkdfSync(
+        'sha256',
+        Buffer.from(config.SECRET_KEY),
+        Buffer.from('acopio-panama'),
+        Buffer.from('confirm-link-v1'),
+        32,
+      ),
+    );
   }
 
   makeToken(centerId: string, userId: string): string {
-    const payload = Buffer.from(JSON.stringify({ c: centerId, u: userId, e: Date.now() + TOKEN_DAYS * 86_400_000 })).toString('base64url');
+    const payload = Buffer.from(
+      JSON.stringify({ c: centerId, u: userId, e: Date.now() + TOKEN_DAYS * 86_400_000 }),
+    ).toString('base64url');
     const sig = createHmac('sha256', this.key).update(payload).digest('base64url');
     return `${payload}.${sig}`;
   }
 
   private verify(token: string): { c: string; u: string } {
     const [payload, sig] = token.split('.');
-    const bad = () => new ApiError(400, 'BAD_LINK', 'El enlace no es válido o ya venció. Entra con tu correo para actualizar el centro.');
+    const bad = () =>
+      new ApiError(
+        400,
+        'BAD_LINK',
+        'El enlace no es válido o ya venció. Entra con tu correo para actualizar el centro.',
+      );
     if (!payload || !sig) throw bad();
     const expected = createHmac('sha256', this.key).update(payload).digest('base64url');
     if (!safeEqual(sig, expected)) throw bad();
@@ -67,7 +82,11 @@ export class LinksService {
       .where('centerManagers.userId', '=', u)
       .executeTakeFirst();
     if (!row || row.disabledAt || row.status === 'REMOVED') {
-      throw new ApiError(400, 'BAD_LINK', 'El enlace no es válido o ya venció. Entra con tu correo para actualizar el centro.');
+      throw new ApiError(
+        400,
+        'BAD_LINK',
+        'El enlace no es válido o ya venció. Entra con tu correo para actualizar el centro.',
+      );
     }
     return { ...row, userId: u };
   }
@@ -80,11 +99,21 @@ export class LinksService {
   async useToken(token: string, action: 'CONFIRM' | 'CLOSE') {
     const r = await this.load(token);
     if (action === 'CONFIRM') {
-      if (r.status !== 'PUBLISHED') throw new ApiError(409, 'NOT_OPEN', 'Este centro está cerrado. Entra con tu correo si quieres reabrirlo.');
+      if (r.status !== 'PUBLISHED')
+        throw new ApiError(409, 'NOT_OPEN', 'Este centro está cerrado. Entra con tu correo si quieres reabrirlo.');
       await this.db.updateTable('centers').set({ managerConfirmedAt: new Date() }).where('id', '=', r.id).execute();
-      await this.audit.log({ actorId: r.userId, action: 'center.confirmed_link', objectType: 'center', objectId: r.id });
+      await this.audit.log({
+        actorId: r.userId,
+        action: 'center.confirmed_link',
+        objectType: 'center',
+        objectId: r.id,
+      });
     } else {
-      await this.db.updateTable('centers').set({ status: 'CLOSED', closedAt: new Date(), updatedAt: new Date() }).where('id', '=', r.id).execute();
+      await this.db
+        .updateTable('centers')
+        .set({ status: 'CLOSED', closedAt: new Date(), updatedAt: new Date() })
+        .where('id', '=', r.id)
+        .execute();
       await this.audit.log({ actorId: r.userId, action: 'center.closed_link', objectType: 'center', objectId: r.id });
     }
     this.centers.invalidate();
@@ -99,7 +128,12 @@ export class LinksService {
       .select(['id', 'name', 'slug'])
       .where('status', '=', 'PUBLISHED')
       .where('managerConfirmedAt', '<', sql<Date>`now() - make_interval(hours => ${REMIND_AFTER_HOURS})`)
-      .where((eb) => eb.or([eb('lastReminderAt', 'is', null), eb('lastReminderAt', '<', sql<Date>`now() - make_interval(hours => ${REMIND_AFTER_HOURS})`)]))
+      .where((eb) =>
+        eb.or([
+          eb('lastReminderAt', 'is', null),
+          eb('lastReminderAt', '<', sql<Date>`now() - make_interval(hours => ${REMIND_AFTER_HOURS})`),
+        ]),
+      )
       .limit(500)
       .execute();
     let sent = 0;

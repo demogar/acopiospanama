@@ -7,7 +7,15 @@ import { Badge, Button, buttonVariants, Callout, EmptyState, useToast } from '@d
 import { ErrorState, Loading } from '@/components/states';
 import { api, ApiError, errorMessage } from '@/lib/api';
 import { useApi } from '@/lib/use-api';
-import { centerTypeLabel, centerTypeShort, directionsLinks, itemLabel, needsAt, organizerLabel, placeLine } from '@/lib/public-format';
+import {
+  centerTypeLabel,
+  centerTypeShort,
+  directionsLinks,
+  itemLabel,
+  needsAt,
+  organizerLabel,
+  placeLine,
+} from '@/lib/public-format';
 import { todayText } from '@/lib/public-schedule';
 import type { PublicCenter, PublicMeta } from '@/lib/public-types';
 import { FreshnessLine, StatusBadges } from './freshness';
@@ -20,11 +28,21 @@ import { ShareActions } from './share-actions';
 
 type Initial = { ok: true; data: PublicCenter } | { ok: false; status: number; code?: string; message?: string } | null;
 
-export function CenterDetail({ slug, initial, initialMeta }: { slug: string; initial: Initial; initialMeta: PublicMeta | null }) {
+export function CenterDetail({
+  slug,
+  initial,
+  initialMeta,
+}: {
+  slug: string;
+  initial: Initial;
+  initialMeta: PublicMeta | null;
+}) {
   const toast = useToast();
   const [center, setCenter] = useState<PublicCenter | null>(initial?.ok ? initial.data : null);
   const [error, setError] = useState<ApiError | null>(
-    initial && !initial.ok && initial.status !== 0 ? new ApiError(initial.status, initial.code ?? 'ERROR', initial.message ?? 'No se pudo cargar.') : null,
+    initial && !initial.ok && initial.status !== 0
+      ? new ApiError(initial.status, initial.code ?? 'ERROR', initial.message ?? 'No se pudo cargar.')
+      : null,
   );
   const [loading, setLoading] = useState(!initial || (!initial.ok && initial.status === 0));
   const metaQ = useApi<PublicMeta>(initialMeta ? null : '/public/meta');
@@ -74,7 +92,11 @@ export function CenterDetail({ slug, initial, initialMeta }: { slug: string; ini
           variant="no-results"
           title="No encontrado"
           description="Este centro no existe o ya fue retirado. Busca otros centros en el inicio."
-          actions={<Link href="/" className={`${buttonVariants({ variant: 'primary' })} no-underline`}>Ver centros</Link>}
+          actions={
+            <Link href="/" className={`${buttonVariants({ variant: 'primary' })} no-underline`}>
+              Ver centros
+            </Link>
+          }
         />
       );
     }
@@ -89,8 +111,12 @@ export function CenterDetail({ slug, initial, initialMeta }: { slug: string; ini
             <Link href="/">listado</Link>.
           </p>
           <div className="flex flex-wrap gap-2">
-            <Link href="/" className={`${buttonVariants({ variant: 'primary' })} no-underline`}>Ver otros centros</Link>
-            <Link href="/mis-centros" className={`${buttonVariants({ variant: 'secondary' })} no-underline`}>Soy responsable</Link>
+            <Link href="/" className={`${buttonVariants({ variant: 'primary' })} no-underline`}>
+              Ver otros centros
+            </Link>
+            <Link href="/mis-centros" className={`${buttonVariants({ variant: 'secondary' })} no-underline`}>
+              Soy responsable
+            </Link>
           </div>
         </div>
       );
@@ -119,7 +145,9 @@ export function CenterDetail({ slug, initial, initialMeta }: { slug: string; ini
     <article className="grid gap-6">
       <header className="grid gap-2">
         <div className="flex flex-wrap gap-1.5">
-          <Badge tone="accent" variant="outline">{centerTypeShort(meta, center.centerType)}</Badge>
+          <Badge tone="accent" variant="outline">
+            {centerTypeShort(meta, center.centerType)}
+          </Badge>
           <StatusBadges center={center} />
         </div>
         <h1 className="font-ui text-2xl font-bold leading-tight text-ink sm:text-3xl">{center.name}</h1>
@@ -151,12 +179,22 @@ export function CenterDetail({ slug, initial, initialMeta }: { slug: string; ini
       </div>
 
       <div className="flex flex-wrap gap-2">
-        <a href={dir.google} target="_blank" rel="noopener noreferrer" className={`${buttonVariants({ variant: 'primary' })} no-underline w-full sm:w-auto h-auto min-h-11 whitespace-normal py-2 text-center`}>
+        <a
+          href={dir.google}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`${buttonVariants({ variant: 'primary' })} no-underline w-full sm:w-auto h-auto min-h-11 whitespace-normal py-2 text-center`}
+        >
           <Navigation aria-hidden="true" className="size-4" />
           Cómo llegar · Google Maps
         </a>
         {dir.waze && (
-          <a href={dir.waze} target="_blank" rel="noopener noreferrer" className={`${buttonVariants({ variant: 'secondary' })} no-underline`}>
+          <a
+            href={dir.waze}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`${buttonVariants({ variant: 'secondary' })} no-underline`}
+          >
             Waze
           </a>
         )}
@@ -215,7 +253,9 @@ export function CenterDetail({ slug, initial, initialMeta }: { slug: string; ini
         <h2 id="comunidad" className="font-ui text-xl font-bold">
           ¿Fuiste hoy?
         </h2>
-        <p className="text-ink-2">Tu confirmación ayuda a que otras personas sepan que este centro sigue funcionando. Es anónima.</p>
+        <p className="text-ink-2">
+          Tu confirmación ayuda a que otras personas sepan que este centro sigue funcionando. Es anónima.
+        </p>
         <div className="flex flex-wrap gap-2">
           {canConfirm && (
             <Button
@@ -229,7 +269,13 @@ export function CenterDetail({ slug, initial, initialMeta }: { slug: string; ini
               {confirmed ? 'Gracias, ya confirmaste' : 'Estuve aquí y sigue funcionando'}
             </Button>
           )}
-          <Button variant="secondary" className="w-full sm:w-auto h-auto min-h-11 whitespace-normal py-2 text-center" icon={<Flag aria-hidden="true" />} onClick={() => setReportOpen(true)} disabled={reported}>
+          <Button
+            variant="secondary"
+            className="w-full sm:w-auto h-auto min-h-11 whitespace-normal py-2 text-center"
+            icon={<Flag aria-hidden="true" />}
+            onClick={() => setReportOpen(true)}
+            disabled={reported}
+          >
             {reported ? 'Reporte enviado' : 'Reportar un problema'}
           </Button>
         </div>

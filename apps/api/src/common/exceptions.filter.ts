@@ -20,13 +20,27 @@ export class AllExceptionsFilter implements ExceptionFilter {
         return;
       }
       const message =
-        status === 404 ? 'No encontrado.' : status === 429 ? 'Demasiadas solicitudes. Espera un momento.' : status === 413 ? 'El archivo es demasiado grande.' : 'Solicitud inválida.';
-      const code = status === 404 ? 'NOT_FOUND' : status === 429 ? 'RATE_LIMITED' : status === 413 ? 'TOO_LARGE' : 'BAD_REQUEST';
+        status === 404
+          ? 'No encontrado.'
+          : status === 429
+            ? 'Demasiadas solicitudes. Espera un momento.'
+            : status === 413
+              ? 'El archivo es demasiado grande.'
+              : 'Solicitud inválida.';
+      const code =
+        status === 404 ? 'NOT_FOUND' : status === 429 ? 'RATE_LIMITED' : status === 413 ? 'TOO_LARGE' : 'BAD_REQUEST';
       res.status(status).json({ code, message });
       return;
     }
     const err = exception as { name?: string; code?: string; message?: string };
-    this.logger.error(`${req.method} ${req.route?.path ?? '?'} → ${err.name ?? 'Error'}${err.code ? ` [${err.code}]` : ''}`);
-    res.status(500).json({ code: 'INTERNAL', message: 'Ocurrió un error. Intenta de nuevo; si persiste, avisa a la administración.' });
+    this.logger.error(
+      `${req.method} ${req.route?.path ?? '?'} → ${err.name ?? 'Error'}${err.code ? ` [${err.code}]` : ''}`,
+    );
+    res
+      .status(500)
+      .json({
+        code: 'INTERNAL',
+        message: 'Ocurrió un error. Intenta de nuevo; si persiste, avisa a la administración.',
+      });
   }
 }

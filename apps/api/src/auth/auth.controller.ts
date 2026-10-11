@@ -58,7 +58,12 @@ export class AuthController {
   @HttpCode(200)
   async logout(@Auth() a: AuthContext, @Res({ passthrough: true }) res: Response) {
     await this.auth.logout(a.session.id);
-    res.clearCookie(this.auth.cookieNames().session, { path: '/', secure: this.config.cookieSecure, httpOnly: true, sameSite: 'lax' });
+    res.clearCookie(this.auth.cookieNames().session, {
+      path: '/',
+      secure: this.config.cookieSecure,
+      httpOnly: true,
+      sameSite: 'lax',
+    });
     return { ok: true };
   }
 

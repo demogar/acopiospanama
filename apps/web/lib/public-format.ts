@@ -38,8 +38,13 @@ export function organizerLabel(meta: PublicMeta | null | undefined, key: string)
 }
 
 /** «Tonosí cabecera, Tonosí, Los Santos» sin repetir partes iguales. */
-export function placeLine(meta: PublicMeta | null | undefined, c: Pick<PublicCenter, 'community' | 'district' | 'province'>): string {
-  const parts = [c.community, c.district, provinceLabel(meta, c.province)].map((s) => s?.trim()).filter(Boolean) as string[];
+export function placeLine(
+  meta: PublicMeta | null | undefined,
+  c: Pick<PublicCenter, 'community' | 'district' | 'province'>,
+): string {
+  const parts = [c.community, c.district, provinceLabel(meta, c.province)]
+    .map((s) => s?.trim())
+    .filter(Boolean) as string[];
   return parts.filter((p, i) => parts.findIndex((q) => q.toLowerCase() === p.toLowerCase()) === i).join(', ');
 }
 
@@ -61,17 +66,17 @@ export function formatKm(km: number): string {
 
 /** Texto sin tildes ni mayúsculas, para buscar «tonosi» y encontrar «Tonosí». */
 export function fold(s: string): string {
-  return s
-    .normalize('NFD')
-    .replace(/[̀-ͯ]/g, '')
-    .toLowerCase();
+  return s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
 }
 
 export function hasCoords(c: Pick<PublicCenter, 'lat' | 'lng'>): c is { lat: number; lng: number } {
   return typeof c.lat === 'number' && typeof c.lng === 'number' && Number.isFinite(c.lat) && Number.isFinite(c.lng);
 }
 
-export function directionsLinks(c: Pick<PublicCenter, 'lat' | 'lng' | 'address' | 'community' | 'district' | 'province' | 'name'>, meta?: PublicMeta | null) {
+export function directionsLinks(
+  c: Pick<PublicCenter, 'lat' | 'lng' | 'address' | 'community' | 'district' | 'province' | 'name'>,
+  meta?: PublicMeta | null,
+) {
   if (hasCoords(c)) {
     const ll = `${c.lat},${c.lng}`; // coma literal: Waze y Google la esperan así
     return {

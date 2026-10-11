@@ -21,7 +21,12 @@ export class ApiError extends Error {
 
 type Json = Record<string, unknown> | unknown[];
 
-async function request<T>(method: string, path: string, body?: Json | FormData, opts: { signal?: AbortSignal } = {}): Promise<T> {
+async function request<T>(
+  method: string,
+  path: string,
+  body?: Json | FormData,
+  opts: { signal?: AbortSignal } = {},
+): Promise<T> {
   const headers: Record<string, string> = { Accept: 'application/json' };
   if (method !== 'GET') headers['X-ACP'] = '1';
   let payload: BodyInit | undefined;
@@ -32,16 +37,32 @@ async function request<T>(method: string, path: string, body?: Json | FormData, 
   }
   let res: Response;
   try {
-    res = await fetch(`/api${path}`, { method, headers, body: payload, credentials: 'same-origin', cache: 'no-store', signal: opts.signal });
+    res = await fetch(`/api${path}`, {
+      method,
+      headers,
+      body: payload,
+      credentials: 'same-origin',
+      cache: 'no-store',
+      signal: opts.signal,
+    });
   } catch (err) {
     if ((err as Error).name === 'AbortError') throw err;
-    throw new ApiError(0, 'NETWORK', 'Sin conexión. Revisa tu señal e intenta de nuevo; lo que guardaste no se pierde.');
+    throw new ApiError(
+      0,
+      'NETWORK',
+      'Sin conexión. Revisa tu señal e intenta de nuevo; lo que guardaste no se pierde.',
+    );
   }
   const isJson = res.headers.get('content-type')?.includes('application/json');
   const data = isJson ? await res.json().catch(() => ({})) : undefined;
   if (!res.ok) {
     const d = (data ?? {}) as { code?: string; message?: string };
-    const err = new ApiError(res.status, d.code ?? 'ERROR', d.message ?? 'Ocurrió un error. Intenta de nuevo.', (data ?? {}) as Record<string, unknown>);
+    const err = new ApiError(
+      res.status,
+      d.code ?? 'ERROR',
+      d.message ?? 'Ocurrió un error. Intenta de nuevo.',
+      (data ?? {}) as Record<string, unknown>,
+    );
     if (res.status === 401 && typeof window !== 'undefined' && !path.startsWith('/auth/')) {
       const next = window.location.pathname + window.location.search;
       window.location.assign(`/entrar?siguiente=${encodeURIComponent(next)}`);

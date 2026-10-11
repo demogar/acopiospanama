@@ -16,7 +16,13 @@ async function get<T>(path: string, timeoutMs = 2500): Promise<Loaded<T>> {
       signal: AbortSignal.timeout(timeoutMs),
     });
     const body = (await res.json().catch(() => ({}))) as Record<string, unknown>;
-    if (!res.ok) return { ok: false, status: res.status, code: body.code as string | undefined, message: body.message as string | undefined };
+    if (!res.ok)
+      return {
+        ok: false,
+        status: res.status,
+        code: body.code as string | undefined,
+        message: body.message as string | undefined,
+      };
     return { ok: true, data: body as T };
   } catch {
     return { ok: false, status: 0 };
@@ -26,7 +32,9 @@ async function get<T>(path: string, timeoutMs = 2500): Promise<Loaded<T>> {
 export const getPublicCenters = () => get<PublicCenter[]>('/public/centers');
 export const getPublicMeta = () => get<PublicMeta>('/public/meta');
 export const getPublicCenter = (slug: string) =>
-  /^[a-z0-9-]{1,80}$/.test(slug) ? get<PublicCenter>(`/public/centers/${slug}`) : Promise.resolve<Loaded<PublicCenter>>({ ok: false, status: 404 });
+  /^[a-z0-9-]{1,80}$/.test(slug)
+    ? get<PublicCenter>(`/public/centers/${slug}`)
+    : Promise.resolve<Loaded<PublicCenter>>({ ok: false, status: 404 });
 
 /** Origen de las teselas del mapa (también se usa en la CSP de `proxy.ts`). */
 export function mapTileHost(): string {

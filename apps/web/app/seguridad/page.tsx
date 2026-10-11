@@ -28,7 +28,8 @@ function SecurityInner() {
   }, [session.data, recoveryCodes, next, router]);
 
   useEffect(() => {
-    if (session.error?.status === 401) router.replace(`/entrar?siguiente=${encodeURIComponent(`/seguridad?siguiente=${next}`)}`);
+    if (session.error?.status === 401)
+      router.replace(`/entrar?siguiente=${encodeURIComponent(`/seguridad?siguiente=${next}`)}`);
   }, [session.error, next, router]);
 
   async function startSetup() {
@@ -62,10 +63,15 @@ function SecurityInner() {
     setBusy(true);
     setError(null);
     try {
-      await api.post('/auth/mfa/verify', useRecovery ? { recoveryCode: code.trim() } : { code: code.replace(/\s/g, '') });
+      await api.post(
+        '/auth/mfa/verify',
+        useRecovery ? { recoveryCode: code.trim() } : { code: code.replace(/\s/g, '') },
+      );
       router.replace(next);
     } catch (err) {
-      setError(err instanceof ApiError && err.status === 429 ? 'Demasiados intentos. Espera unos minutos.' : errorMessage(err));
+      setError(
+        err instanceof ApiError && err.status === 429 ? 'Demasiados intentos. Espera unos minutos.' : errorMessage(err),
+      );
       setBusy(false);
     }
   }
@@ -111,7 +117,8 @@ function SecurityInner() {
         <Panel padding="lg">
           <Stack gap="md">
             <Callout tone="warn" title="Solo se muestran esta vez">
-              Úsalos si pierdes el teléfono. Cada código sirve una sola vez. Guárdalos en tu gestor de contraseñas o en papel, no en un chat.
+              Úsalos si pierdes el teléfono. Cada código sirve una sola vez. Guárdalos en tu gestor de contraseñas o en
+              papel, no en un chat.
             </Callout>
             <ul className="grid grid-cols-2 gap-2" aria-label="Códigos de recuperación">
               {recoveryCodes.map((c) => (
@@ -137,7 +144,9 @@ function SecurityInner() {
             {!setup ? (
               <Stack gap="md">
                 <Text>
-                  Necesitas una app de autenticación en tu teléfono (Google Authenticator, Microsoft Authenticator, 1Password, Bitwarden u otra). Así, aunque alguien entre a tu correo, no puede retirar centros ni bloquear cuentas.
+                  Necesitas una app de autenticación en tu teléfono (Google Authenticator, Microsoft Authenticator,
+                  1Password, Bitwarden u otra). Así, aunque alguien entre a tu correo, no puede retirar centros ni
+                  bloquear cuentas.
                 </Text>
                 {error && (
                   <Callout tone="danger" role="alert">
@@ -153,12 +162,28 @@ function SecurityInner() {
                 <Stack gap="md">
                   <Text>1. Escanea este código con tu app de autenticación.</Text>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={setup.qr} alt="Código QR para tu app de autenticación" width={240} height={240} className="bg-white p-2" />
+                  <img
+                    src={setup.qr}
+                    alt="Código QR para tu app de autenticación"
+                    width={240}
+                    height={240}
+                    className="bg-white p-2"
+                  />
                   <Text size="sm" tone="muted">
-                    ¿Estás en el mismo teléfono? Copia esta clave en la app: <Code className="[overflow-wrap:anywhere]">{setup.secret}</Code>
+                    ¿Estás en el mismo teléfono? Copia esta clave en la app:{' '}
+                    <Code className="[overflow-wrap:anywhere]">{setup.secret}</Code>
                   </Text>
                   <Field label="2. Escribe el código de 6 dígitos que muestra la app" error={error ?? undefined}>
-                    {(c) => <Input {...c} inputMode="numeric" autoComplete="one-time-code" maxLength={8} value={code} onChange={(e) => setCode(e.target.value)} />}
+                    {(c) => (
+                      <Input
+                        {...c}
+                        inputMode="numeric"
+                        autoComplete="one-time-code"
+                        maxLength={8}
+                        value={code}
+                        onChange={(e) => setCode(e.target.value)}
+                      />
+                    )}
                   </Field>
                   <Button type="submit" size="lg" loading={busy} disabled={code.replace(/\D/g, '').length !== 6}>
                     Activar
@@ -179,7 +204,10 @@ function SecurityInner() {
         <Panel padding="lg">
           <form onSubmit={verify}>
             <Stack gap="md">
-              <Field label={useRecovery ? 'Código de recuperación' : 'Código de 6 dígitos de tu app'} error={error ?? undefined}>
+              <Field
+                label={useRecovery ? 'Código de recuperación' : 'Código de 6 dígitos de tu app'}
+                error={error ?? undefined}
+              >
                 {(c) => (
                   <Input
                     {...c}

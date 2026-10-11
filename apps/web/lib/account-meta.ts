@@ -24,12 +24,20 @@ export function useMeta() {
       })
       .catch((e) => {
         inflight = null;
-        if (alive) setError(e instanceof ApiError ? e : new ApiError(0, 'ERROR', 'No se pudieron cargar los catálogos.'));
+        if (alive)
+          setError(e instanceof ApiError ? e : new ApiError(0, 'ERROR', 'No se pudieron cargar los catálogos.'));
       });
     return () => {
       alive = false;
     };
   }, [tick]);
 
-  return { meta, error, reload: () => { setError(null); setTick((t) => t + 1); } };
+  return {
+    meta,
+    error,
+    reload: () => {
+      setError(null);
+      setTick((t) => t + 1);
+    },
+  };
 }

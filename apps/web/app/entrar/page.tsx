@@ -38,13 +38,16 @@ function LoginInner() {
     setBusy(true);
     setError(null);
     try {
-      const r = await api.post<{ message: string; cooldownSeconds: number }>('/auth/request-code', { email: email.trim() });
+      const r = await api.post<{ message: string; cooldownSeconds: number }>('/auth/request-code', {
+        email: email.trim(),
+      });
       setCooldown(r.cooldownSeconds);
       setStep('code');
       setCode('');
     } catch (err) {
       if (err instanceof ApiError && typeof err.data.retryAfter === 'number') setCooldown(err.data.retryAfter);
-      if (err instanceof ApiError && err.status === 429) setError('Pediste muchos códigos seguidos. Espera unos minutos e intenta de nuevo.');
+      if (err instanceof ApiError && err.status === 429)
+        setError('Pediste muchos códigos seguidos. Espera unos minutos e intenta de nuevo.');
       else setError(err instanceof ApiError ? (err.fields.email ?? err.message) : errorMessage(err));
     } finally {
       setBusy(false);
@@ -56,11 +59,18 @@ function LoginInner() {
     setBusy(true);
     setError(null);
     try {
-      const r = await api.post<{ isStaff: boolean; mfaEnrolled: boolean }>('/auth/verify-code', { code: code.replace(/\D/g, '') });
-      if (r.isStaff) router.replace(`/seguridad?siguiente=${encodeURIComponent(params.get('siguiente') ? next : '/moderacion')}`);
+      const r = await api.post<{ isStaff: boolean; mfaEnrolled: boolean }>('/auth/verify-code', {
+        code: code.replace(/\D/g, ''),
+      });
+      if (r.isStaff)
+        router.replace(`/seguridad?siguiente=${encodeURIComponent(params.get('siguiente') ? next : '/moderacion')}`);
       else router.replace(next);
     } catch (err) {
-      setError(err instanceof ApiError && err.status === 429 ? 'Demasiados intentos. Espera unos minutos y pide un código nuevo.' : errorMessage(err));
+      setError(
+        err instanceof ApiError && err.status === 429
+          ? 'Demasiados intentos. Espera unos minutos y pide un código nuevo.'
+          : errorMessage(err),
+      );
       setBusy(false);
     }
   }
@@ -91,7 +101,8 @@ function LoginInner() {
                   {cooldown > 0 ? `Espera ${cooldown} s` : 'Recibir código'}
                 </Button>
                 <Text size="sm" tone="muted">
-                  Sin contraseñas. Tu correo nunca se publica: solo lo usamos para que entres y para recordarte que confirmes tus centros.
+                  Sin contraseñas. Tu correo nunca se publica: solo lo usamos para que entres y para recordarte que
+                  confirmes tus centros.
                 </Text>
               </Stack>
             </form>
@@ -100,7 +111,8 @@ function LoginInner() {
               <Stack gap="md">
                 <div aria-live="polite">
                   <Callout tone="info" title="Revisa tu correo">
-                    Te enviamos un código a <strong className="[overflow-wrap:anywhere]">{email}</strong>. Si no lo ves en unos minutos, busca en correo no deseado o promociones.
+                    Te enviamos un código a <strong className="[overflow-wrap:anywhere]">{email}</strong>. Si no lo ves
+                    en unos minutos, busca en correo no deseado o promociones.
                   </Callout>
                 </div>
                 <Field label="Código de 8 dígitos" hint="Vence en 10 minutos." error={error ?? undefined}>

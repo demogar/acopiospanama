@@ -8,7 +8,9 @@ import { inPanama, mapsLink, parseMapsLocation } from '@/lib/account-geo';
 
 const MapPicker = dynamic(() => import('./map-picker'), {
   ssr: false,
-  loading: () => <div className="h-72 w-full animate-pulse bg-cloth-shade" aria-busy="true" aria-label="Cargando mapa" />,
+  loading: () => (
+    <div className="h-72 w-full animate-pulse bg-cloth-shade" aria-busy="true" aria-label="Cargando mapa" />
+  ),
 });
 
 /**
@@ -51,8 +53,9 @@ export function LocationField({
         tone: 'warn',
         text: (
           <>
-            Los enlaces cortos (<code>maps.app.goo.gl</code>) no se pueden leer desde aquí. Ábrelo en el navegador, espera a que cargue el mapa y copia el
-            enlace largo de la barra de direcciones (empieza con <code>google.com/maps</code>).
+            Los enlaces cortos (<code>maps.app.goo.gl</code>) no se pueden leer desde aquí. Ábrelo en el navegador,
+            espera a que cargue el mapa y copia el enlace largo de la barra de direcciones (empieza con{' '}
+            <code>google.com/maps</code>).
           </>
         ),
       });
@@ -79,11 +82,17 @@ export function LocationField({
         const la = Math.round(p.coords.latitude * 1e6) / 1e6;
         const ln = Math.round(p.coords.longitude * 1e6) / 1e6;
         if (!inPanama(la, ln)) {
-          setMsg({ tone: 'danger', text: 'Tu ubicación actual queda fuera de Panamá. Pega un enlace de Google Maps del centro.' });
+          setMsg({
+            tone: 'danger',
+            text: 'Tu ubicación actual queda fuera de Panamá. Pega un enlace de Google Maps del centro.',
+          });
           return;
         }
         onChange(la, ln);
-        setMsg({ tone: 'success', text: `Listo: ubicación tomada (precisión de unos ${Math.round(p.coords.accuracy)} m).` });
+        setMsg({
+          tone: 'success',
+          text: `Listo: ubicación tomada (precisión de unos ${Math.round(p.coords.accuracy)} m).`,
+        });
       },
       (err) => {
         setLocating(false);
@@ -104,7 +113,10 @@ export function LocationField({
   return (
     <fieldset className="min-w-0" aria-describedby={`${id}-help`}>
       <legend className="mb-1 font-semibold text-ink">
-        Ubicación exacta <span aria-hidden="true" className="text-rojo">*</span>
+        Ubicación exacta{' '}
+        <span aria-hidden="true" className="text-rojo">
+          *
+        </span>
         <span className="sr-only">(obligatoria)</span>
       </legend>
       <Text size="sm" tone="muted" id={`${id}-help`}>
@@ -118,14 +130,25 @@ export function LocationField({
           <span className="font-mono text-sm">
             {lat.toFixed(5)}, {lng.toFixed(5)}
           </span>
-          <a href={mapsLink(lat, lng)} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center text-sm underline">
+          <a
+            href={mapsLink(lat, lng)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex min-h-11 items-center text-sm underline"
+          >
             Ver en Google Maps
           </a>
         </div>
       ) : null}
 
       <div className="mt-3 flex flex-col gap-3">
-        <Button type="button" variant="secondary" icon={<LocateFixed aria-hidden="true" />} loading={locating} onClick={useMyLocation}>
+        <Button
+          type="button"
+          variant="secondary"
+          icon={<LocateFixed aria-hidden="true" />}
+          loading={locating}
+          onClick={useMyLocation}
+        >
           Usar mi ubicación actual
         </Button>
         <Text size="sm" tone="muted">
@@ -158,7 +181,13 @@ export function LocationField({
               }}
             />
           ) : (
-            <Button type="button" variant="secondary" className="w-full" icon={<MapIcon aria-hidden="true" />} onClick={() => setShowMap(true)}>
+            <Button
+              type="button"
+              variant="secondary"
+              className="w-full"
+              icon={<MapIcon aria-hidden="true" />}
+              onClick={() => setShowMap(true)}
+            >
               Elegir en el mapa
             </Button>
           )}

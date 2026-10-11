@@ -10,22 +10,31 @@ let env: TestEnv;
 
 before(async () => {
   env = await setup();
-  await env.db.insertInto('users').values([
-    { email: 'mod@x.test', isModerator: true, verifiedAt: new Date() },
-    { email: 'admin@x.test', isAdmin: true, isModerator: true, verifiedAt: new Date() },
-  ]).execute();
+  await env.db
+    .insertInto('users')
+    .values([
+      { email: 'mod@x.test', isModerator: true, verifiedAt: new Date() },
+      { email: 'admin@x.test', isAdmin: true, isModerator: true, verifiedAt: new Date() },
+    ])
+    .execute();
 });
 after(async () => env.close());
 
 const ago = (h: number) => new Date(Date.now() - h * 3_600_000);
-const pub = async (slug: string) => (await new Client(env).get(`/public/centers/${slug}`));
-const listed = async (id: string) => ((await new Client(env).get('/public/centers')).body as { id: string }[]).some((c) => c.id === id);
-const invalidate = () => (env.app.get(LinksService) as unknown as { centers: { invalidate(): void } }).centers.invalidate();
+const pub = async (slug: string) => await new Client(env).get(`/public/centers/${slug}`);
+const listed = async (id: string) =>
+  ((await new Client(env).get('/public/centers')).body as { id: string }[]).some((c) => c.id === id);
+const invalidate = () =>
+  (env.app.get(LinksService) as unknown as { centers: { invalidate(): void } }).centers.invalidate();
 
 describe('acceso', () => {
   it('cualquiera puede entrar con su correo; queda verificado al usar el código', async () => {
     const c = await login(env, 'nueva@x.test');
-    const u = await env.db.selectFrom('users').select(['verifiedAt']).where('email', '=', 'nueva@x.test').executeTakeFirstOrThrow();
+    const u = await env.db
+      .selectFrom('users')
+      .select(['verifiedAt'])
+      .where('email', '=', 'nueva@x.test')
+      .executeTakeFirstOrThrow();
     assert.ok(u.verifiedAt);
     assert.equal((await c.get('/me')).status, 200);
   });
@@ -165,7 +174,10 @@ describe('responsables', () => {
     assert.equal((await u.get('/me')).status, 401);
     const row = await env.db.selectFrom('centers').select('status').where('id', '=', c.id).executeTakeFirstOrThrow();
     assert.equal(row.status, 'CLOSED');
-    assert.equal(await env.db.selectFrom('users').select('id').where('email', '=', 'leaving@x.test').executeTakeFirst(), undefined);
+    assert.equal(
+      await env.db.selectFrom('users').select('id').where('email', '=', 'leaving@x.test').executeTakeFirst(),
+      undefined,
+    );
   });
 });
 
@@ -173,11 +185,19 @@ describe('reglas automáticas (auto-mantenimiento)', () => {
   it('frescura: sin confirmar en 72 h → «sin confirmar»; en 14 días deja de listarse; una confirmación de la comunidad lo revive', async () => {
     const u = await login(env, 'fresh@x.test');
     const c = await createCenter(u, { name: 'Centro que envejece' });
-    await env.db.updateTable('centers').set({ managerConfirmedAt: ago(80) }).where('id', '=', c.id).execute();
+    await env.db
+      .updateTable('centers')
+      .set({ managerConfirmedAt: ago(80) })
+      .where('id', '=', c.id)
+      .execute();
     invalidate();
     assert.equal((await pub(c.slug)).body.visibility, 'STALE');
     assert.equal(await listed(c.id), true);
-    await env.db.updateTable('centers').set({ managerConfirmedAt: ago(15 * 24) }).where('id', '=', c.id).execute();
+    await env.db
+      .updateTable('centers')
+      .set({ managerConfirmedAt: ago(15 * 24) })
+      .where('id', '=', c.id)
+      .execute();
     invalidate();
     assert.equal(await listed(c.id), false);
     assert.equal((await person(env).post(`/public/centers/${c.id}/confirm`)).status, 200);
@@ -200,16 +220,26 @@ describe('reglas automáticas (auto-mantenimiento)', () => {
     const c = await createCenter(u, { name: 'Centro reportado' });
     const r1 = person(env);
     assert.equal((await r1.post(`/public/centers/${c.id}/report`, { reason: 'ASKS_MONEY' })).body.duplicate, false);
-    assert.equal((await r1.post(`/public/centers/${c.id}/report`, { reason: 'FAKE' })).body.duplicate, true, 'misma persona no cuenta dos veces');
+    assert.equal(
+      (await r1.post(`/public/centers/${c.id}/report`, { reason: 'FAKE' })).body.duplicate,
+      true,
+      'misma persona no cuenta dos veces',
+    );
     assert.equal((await pub(c.slug)).body.flagged, false);
     await person(env).post(`/public/centers/${c.id}/report`, { reason: 'FAKE' });
     assert.equal((await pub(c.slug)).body.flagged, true);
-    assert.ok(env.mail.readOutbox('rep@x.test').some((m) => /reportó/.test(m.subject)), 'el responsable recibe aviso');
+    assert.ok(
+      env.mail.readOutbox('rep@x.test').some((m) => /reportó/.test(m.subject)),
+      'el responsable recibe aviso',
+    );
     await person(env).post(`/public/centers/${c.id}/report`, { reason: 'CLOSED' });
     const hidden = await pub(c.slug);
     assert.equal(hidden.status, 410);
     assert.equal(await listed(c.id), false);
-    for (let i = 0; i < 4; i++) await person(env).post(`/public/centers/${c.id}/confirm`).catch(() => undefined);
+    for (let i = 0; i < 4; i++)
+      await person(env)
+        .post(`/public/centers/${c.id}/confirm`)
+        .catch(() => undefined);
     // Oculto: no se puede confirmar públicamente; el responsable sí puede corregir y confirmar.
     assert.equal((await person(env).post(`/public/centers/${c.id}/confirm`)).status, 404);
     const mine = await u.get(`/centers/${c.id}`);
@@ -223,8 +253,16 @@ describe('reglas automáticas (auto-mantenimiento)', () => {
     await person(env).post(`/public/centers/${c.id}/report`, { reason: 'WRONG_INFO' });
     await person(env).post(`/public/centers/${c.id}/report`, { reason: 'ASKS_MONEY' });
     await u.patch(`/centers/${c.id}`, { address: 'Dirección corregida' });
-    const open = await env.db.selectFrom('reports').select('reason').where('centerId', '=', c.id).where('status', '=', 'OPEN').execute();
-    assert.deepEqual(open.map((r) => r.reason), ['ASKS_MONEY']);
+    const open = await env.db
+      .selectFrom('reports')
+      .select('reason')
+      .where('centerId', '=', c.id)
+      .where('status', '=', 'OPEN')
+      .execute();
+    assert.deepEqual(
+      open.map((r) => r.reason),
+      ['ASKS_MONEY'],
+    );
   });
 });
 
@@ -232,11 +270,18 @@ describe('enlaces de confirmación por correo', () => {
   it('recordatorio a las 48 h con enlace firmado: confirmar o cerrar; no sirve alterado ni a quien ya no es responsable', async () => {
     const u = await login(env, 'remind@x.test');
     const c = await createCenter(u, { name: 'Centro para recordar' });
-    await env.db.updateTable('centers').set({ managerConfirmedAt: ago(50), lastReminderAt: null }).where('id', '=', c.id).execute();
+    await env.db
+      .updateTable('centers')
+      .set({ managerConfirmedAt: ago(50), lastReminderAt: null })
+      .where('id', '=', c.id)
+      .execute();
     const links = env.app.get(LinksService);
     const r = await links.sendReminders();
     assert.ok(r.sent >= 1);
-    const mail = env.mail.readOutbox('remind@x.test').filter((m) => /sigue recibiendo/.test(m.subject)).at(-1)!;
+    const mail = env.mail
+      .readOutbox('remind@x.test')
+      .filter((m) => /sigue recibiendo/.test(m.subject))
+      .at(-1)!;
     const token = decodeURIComponent(/\?t=([^\s]+)/.exec(mail.text)![1]);
     assert.equal((await links.sendReminders()).centers, 0, 'no repite antes de 48 h');
 
@@ -245,10 +290,17 @@ describe('enlaces de confirmación por correo', () => {
     assert.equal(peek.body.name, 'Centro para recordar');
     assert.equal((await anon.post('/public/confirm-link', { token: token.slice(0, -2) + 'xx' })).status, 400);
     assert.equal((await anon.post('/public/confirm-link', { token, action: 'CONFIRM' })).status, 200);
-    const row = await env.db.selectFrom('centers').select('managerConfirmedAt').where('id', '=', c.id).executeTakeFirstOrThrow();
+    const row = await env.db
+      .selectFrom('centers')
+      .select('managerConfirmedAt')
+      .where('id', '=', c.id)
+      .executeTakeFirstOrThrow();
     assert.ok(Date.now() - row.managerConfirmedAt.getTime() < 60_000);
     assert.equal((await anon.post('/public/confirm-link', { token, action: 'CLOSE' })).status, 200);
-    assert.equal((await env.db.selectFrom('centers').select('status').where('id', '=', c.id).executeTakeFirstOrThrow()).status, 'CLOSED');
+    assert.equal(
+      (await env.db.selectFrom('centers').select('status').where('id', '=', c.id).executeTakeFirstOrThrow()).status,
+      'CLOSED',
+    );
 
     await env.db.deleteFrom('centerManagers').where('centerId', '=', c.id).execute();
     assert.equal((await anon.post('/public/confirm-link/peek', { token })).status, 400);
@@ -268,8 +320,16 @@ describe('moderación (último recurso)', () => {
     assert.ok(!JSON.stringify(q.body).includes('@x.test'), 'la cola no expone correos');
     assert.equal((await mod.post(`/mod/centers/${c.id}/remove`, { reason: 'Estafa evidente' })).status, 200);
     assert.equal((await pub(c.slug)).status, 404);
-    assert.ok((await mod.get('/mod/queue')).body.some((x: { id: string; status: string }) => x.id === c.id && x.status === 'REMOVED'));
-    assert.equal((await u.patch(`/centers/${c.id}`, { hoursNote: 'x' })).status, 404, 'retirado: el responsable no lo edita');
+    assert.ok(
+      (await mod.get('/mod/queue')).body.some(
+        (x: { id: string; status: string }) => x.id === c.id && x.status === 'REMOVED',
+      ),
+    );
+    assert.equal(
+      (await u.patch(`/centers/${c.id}`, { hoursNote: 'x' })).status,
+      404,
+      'retirado: el responsable no lo edita',
+    );
     assert.equal((await mod.post(`/mod/centers/${c.id}/restore`, { reason: 'Error' })).status, 200);
     assert.equal((await pub(c.slug)).status, 200);
   });
@@ -279,7 +339,10 @@ describe('moderación (último recurso)', () => {
     const c1 = await createCenter(spam, { name: 'Spam 1' });
     const c2 = await createCenter(spam, { name: 'Spam 2' });
     const mod = await modLogin(env, 'mod@x.test');
-    await env.db.updateTable('sessions').set({ stepUpAt: ago(1) }).execute();
+    await env.db
+      .updateTable('sessions')
+      .set({ stepUpAt: ago(1) })
+      .execute();
     assert.equal((await mod.post('/mod/users/block', { centerId: c1.id, reason: 'Spam' })).status, 403);
     await env.db.updateTable('sessions').set({ stepUpAt: new Date() }).execute();
     assert.equal((await mod.post('/mod/users/block', { centerId: c1.id, reason: 'Spam' })).status, 200);
@@ -297,7 +360,16 @@ describe('moderación (último recurso)', () => {
     const admin = await modLogin(env, 'admin@x.test');
     const r = await admin.post('/mod/moderators', { email: 'mod2@x.test', moderator: true });
     assert.equal(r.status, 200);
-    assert.equal((await env.db.selectFrom('users').select('isModerator').where('email', '=', 'mod2@x.test').executeTakeFirstOrThrow()).isModerator, true);
+    assert.equal(
+      (
+        await env.db
+          .selectFrom('users')
+          .select('isModerator')
+          .where('email', '=', 'mod2@x.test')
+          .executeTakeFirstOrThrow()
+      ).isModerator,
+      true,
+    );
   });
 });
 
@@ -305,7 +377,12 @@ describe('horario', () => {
   // 2026-10-12 es lunes. Hora de Panamá = UTC−5.
   const at = (isoLocal: string) => new Date(`${isoLocal}-05:00`);
   it('abierto/cerrado según el día y la hora de Panamá, incluido 24 h y tramos que cruzan medianoche', () => {
-    const s = { MON: { open: '08:00', close: '17:00' }, TUE: { open: '20:00', close: '02:00' }, SAT: { allDay: true as const }, SUN: null };
+    const s = {
+      MON: { open: '08:00', close: '17:00' },
+      TUE: { open: '20:00', close: '02:00' },
+      SAT: { allDay: true as const },
+      SUN: null,
+    };
     assert.equal(openNow(s, at('2026-10-12T09:00:00')), true);
     assert.equal(openNow(s, at('2026-10-12T17:00:00')), false);
     assert.equal(openNow(s, at('2026-10-12T07:59:00')), false);
@@ -329,16 +406,33 @@ describe('horario', () => {
 describe('retención', () => {
   it('borra cuentas no verificadas, confirmaciones viejas y centros abandonados', async () => {
     await new Client(env).post('/auth/request-code', { email: 'nunca@x.test' });
-    await env.db.updateTable('users').set({ createdAt: ago(48) }).where('email', '=', 'nunca@x.test').execute();
+    await env.db
+      .updateTable('users')
+      .set({ createdAt: ago(48) })
+      .where('email', '=', 'nunca@x.test')
+      .execute();
     const u = await login(env, 'old@x.test');
     const c = await createCenter(u, { name: 'Centro abandonado' });
-    await env.db.updateTable('centers').set({ managerConfirmedAt: ago(200 * 24) }).where('id', '=', c.id).execute();
-    await env.db.insertInto('confirmations').values({ centerId: c.id, originHmac: 'x', createdAt: ago(40 * 24) }).execute();
+    await env.db
+      .updateTable('centers')
+      .set({ managerConfirmedAt: ago(200 * 24) })
+      .where('id', '=', c.id)
+      .execute();
+    await env.db
+      .insertInto('confirmations')
+      .values({ centerId: c.id, originHmac: 'x', createdAt: ago(40 * 24) })
+      .execute();
     const counts = await env.app.get(JobsService).retention();
     assert.ok(counts.unverifiedUsers >= 1);
-    assert.equal(await env.db.selectFrom('users').select('id').where('email', '=', 'nunca@x.test').executeTakeFirst(), undefined);
+    assert.equal(
+      await env.db.selectFrom('users').select('id').where('email', '=', 'nunca@x.test').executeTakeFirst(),
+      undefined,
+    );
     assert.equal(await env.db.selectFrom('centers').select('id').where('id', '=', c.id).executeTakeFirst(), undefined);
-    assert.ok(await env.db.selectFrom('users').select('id').where('email', '=', 'old@x.test').executeTakeFirst(), 'la cuenta verificada se conserva');
+    assert.ok(
+      await env.db.selectFrom('users').select('id').where('email', '=', 'old@x.test').executeTakeFirst(),
+      'la cuenta verificada se conserva',
+    );
     await assert.rejects(sql`UPDATE audit_events SET action = 'x'`.execute(env.db), /solo inserción/);
   });
 });

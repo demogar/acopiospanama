@@ -1,4 +1,13 @@
-import { createCipheriv, createDecipheriv, createHash, createHmac, hkdfSync, randomBytes, randomInt, timingSafeEqual } from 'node:crypto';
+import {
+  createCipheriv,
+  createDecipheriv,
+  createHash,
+  createHmac,
+  hkdfSync,
+  randomBytes,
+  randomInt,
+  timingSafeEqual,
+} from 'node:crypto';
 
 /**
  * Claves derivadas de SECRET_KEY con HKDF, una por propósito, para que comprometer un uso
@@ -13,7 +22,8 @@ export class Keys {
 
   constructor(secret: string) {
     const ikm = Buffer.from(secret, 'utf8');
-    const derive = (info: string) => Buffer.from(hkdfSync('sha256', ikm, Buffer.from('acopio-panama'), Buffer.from(info), 32));
+    const derive = (info: string) =>
+      Buffer.from(hkdfSync('sha256', ikm, Buffer.from('acopio-panama'), Buffer.from(info), 32));
     this.otp = derive('otp-code-hmac-v1');
     this.email = derive('email-hmac-v1');
     this.recovery = derive('recovery-code-hmac-v1');

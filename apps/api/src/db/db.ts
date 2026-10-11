@@ -40,7 +40,9 @@ export async function migrate(db: DB, log: (m: string) => void = () => {}): Prom
   await db.connection().execute(async (conn) => {
     await sql`SELECT pg_advisory_lock(727274)`.execute(conn);
     try {
-      await sql`CREATE TABLE IF NOT EXISTS schema_migrations (name text PRIMARY KEY, applied_at timestamptz NOT NULL DEFAULT now())`.execute(conn);
+      await sql`CREATE TABLE IF NOT EXISTS schema_migrations (name text PRIMARY KEY, applied_at timestamptz NOT NULL DEFAULT now())`.execute(
+        conn,
+      );
       const done = await sql<{ name: string }>`SELECT name FROM schema_migrations`.execute(conn);
       const doneSet = new Set(done.rows.map((r) => r.name));
       for (const file of files) {
