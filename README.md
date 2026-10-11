@@ -79,5 +79,6 @@ npm test              # pruebas de la API contra PostgreSQL
 ## Documentación
 
 - [Cómo funciona por dentro](docs/ARQUITECTURA.md): reglas automáticas, privacidad y seguridad.
+- [Centros cargados desde fuentes públicas](data/centros/README.md): cómo se importan los anuncios de prensa y redes.
 - [Despliegue y CI/CD](docs/DESPLIEGUE.md) · [Registro de cambios](https://github.com/demogar/acopiospanama/blob/main/CHANGELOG.md)
 - [Seguridad](SECURITY.md) · [Código de conducta](CODE_OF_CONDUCT.md)

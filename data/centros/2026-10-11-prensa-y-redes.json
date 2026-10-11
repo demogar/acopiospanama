@@ -1,0 +1,192 @@
+[
+  {
+    "name": "Casa Club Activo 20-30 Panamá",
+    "centerType": "ACOPIO",
+    "organizerType": "ONG",
+    "organizerName": "Club Activo 20-30 Panamá",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "San Francisco",
+    "address": "Casa Club Activo 20-30, Calle 73 Este, San Francisco",
+    "lat": 9.0016631,
+    "lng": -79.5126893,
+    "schedule": {},
+    "hoursNote": "Horario no publicado: confirma antes de ir.",
+    "notes": "Reciben alimentos no perecederos (enlatados, granos, leche en polvo y fórmula, café, arroz, pasta, agua), higiene personal y sanitaria (jabón, pasta dental, toallas sanitarias, pañales de niño y adulto, papel higiénico), insumos médicos y de primeros auxilios (gasas, vendas, guantes, alcohol, solución salina, mascarillas, botiquines), útiles escolares y alimento para mascotas. Destino: familias afectadas por el terremoto.",
+    "needs": [
+      { "item": "FOOD", "level": "NEEDED" },
+      { "item": "WATER", "level": "NEEDED" },
+      { "item": "HYGIENE", "level": "NEEDED" },
+      { "item": "BABY", "level": "NEEDED" },
+      { "item": "FIRST_AID", "level": "NEEDED" },
+      { "item": "PET_FOOD", "level": "NEEDED" }
+    ],
+    "source": {
+      "title": "Instagram de Club Activo 20-30 Panamá",
+      "url": "https://www.instagram.com/p/DeUjVsZxMOD/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Sociedad Panameña de Pediatría",
+    "centerType": "ACOPIO",
+    "organizerType": "ONG",
+    "organizerName": "Sociedad Panameña de Pediatría (SPP)",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Pueblo Nuevo",
+    "address": "Oficina de la SPP, Plaza Comercial San Fernando, local 27, Vía España",
+    "lat": 9.0020734,
+    "lng": -79.517207,
+    "schedule": {},
+    "hoursNote": "Desde el lunes 12 de octubre, en horario de oficina. Confirma antes de ir.",
+    "notes": "Donaciones destinadas principalmente a la sala de pediatría del Hospital Cecilio A. Castillero (Chitré) y a hospitales de Azuero. Piden pañales desechables, ropa de cama, abanicos, lámparas y extensiones eléctricas.",
+    "needs": [
+      { "item": "BABY", "level": "URGENT", "note": "Pañales desechables" },
+      { "item": "BEDDING", "level": "NEEDED", "note": "Ropa de cama" },
+      { "item": "LIGHTS", "level": "NEEDED", "note": "Lámparas y extensiones eléctricas" }
+    ],
+    "source": { "title": "Afiche de la Sociedad Panameña de Pediatría", "date": "2026-10-11" }
+  },
+  {
+    "name": "Domo del Parque Omar",
+    "centerType": "ACOPIO",
+    "organizerType": "OTRO",
+    "organizerName": "Parque Recreativo Omar",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "San Francisco",
+    "address": "Domo del Parque Recreativo Omar, San Francisco",
+    "lat": 9.0011865,
+    "lng": -79.5072807,
+    "schedule": { "SUN": { "open": "09:00", "close": "16:00" } },
+    "hoursNote": "Horario anunciado para el domingo 11 de octubre (9:00 a. m. a 4:00 p. m.). Confirma si sigue abierto.",
+    "notes": "Piden agua embotellada, colchonetas, frazadas y sábanas nuevas, leche en polvo y fórmula para bebés, pañales de niño y adulto, abanicos y carpas.",
+    "needs": [
+      { "item": "WATER", "level": "URGENT" },
+      { "item": "BEDDING", "level": "URGENT", "note": "Colchonetas, frazadas, sábanas nuevas" },
+      { "item": "BABY", "level": "NEEDED", "note": "Leche en polvo, fórmula, pañales" },
+      { "item": "TARPS", "level": "NEEDED", "note": "Carpas" }
+    ],
+    "source": {
+      "title": "Telemetro",
+      "url": "https://www.telemetro.com/nacionales/centro-acopio-el-parque-omar-que-donaciones-se-necesitan-el-terremoto-panama-n6094804",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Alcaldía de Panamá (edificio Hatillo)",
+    "centerType": "ACOPIO",
+    "organizerType": "MUNICIPIO",
+    "organizerName": "Alcaldía de Panamá",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Calidonia",
+    "address": "Planta baja del edificio Hatillo, sede de la Alcaldía de Panamá, Avenida Cuba, Calidonia",
+    "lat": 8.9708527,
+    "lng": -79.534231,
+    "schedule": { "SAT": { "open": "08:00", "close": "18:00" } },
+    "hoursNote": "Jornada anunciada para el sábado 10 de octubre (8:00 a. m. a 6:00 p. m.). Confirma si sigue recibiendo.",
+    "notes": "Reciben alimentos no perecederos, agua, leche en polvo y fórmula, higiene personal y sanitaria, pañales de niño y adulto, materiales de primeros auxilios, útiles escolares y alimento para mascotas. Por ahora no reciben ropa.",
+    "needs": [
+      { "item": "FOOD", "level": "NEEDED" },
+      { "item": "WATER", "level": "NEEDED" },
+      { "item": "BABY", "level": "NEEDED" },
+      { "item": "HYGIENE", "level": "NEEDED" },
+      { "item": "FIRST_AID", "level": "NEEDED" },
+      { "item": "PET_FOOD", "level": "NEEDED" },
+      { "item": "CLOTHES", "level": "ENOUGH" }
+    ],
+    "source": {
+      "title": "TVN Noticias y cuenta de Instagram de la Alcaldía de Panamá",
+      "url": "https://www.tvn-2.com/nacionales/alcaldia-panama-habilita-centro-acopio_1_2265349.html",
+      "date": "2026-10-09"
+    }
+  },
+  {
+    "name": "Gimnasio de la USMA",
+    "centerType": "ACOPIO",
+    "organizerType": "ESCUELA",
+    "organizerName": "Universidad Católica Santa María La Antigua (USMA)",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Bethania",
+    "address": "Gimnasio de la USMA, campus de Vía Ricardo J. Alfaro",
+    "lat": 9.0294,
+    "lng": -79.5209,
+    "schedule": {
+      "MON": { "open": "09:00", "close": "16:00" },
+      "TUE": { "open": "09:00", "close": "16:00" },
+      "WED": { "open": "09:00", "close": "16:00" }
+    },
+    "hoursNote": "Del lunes 12 al miércoles 14 de octubre, de 9:00 a. m. a 4:00 p. m.",
+    "notes": "Artículos más pedidos en general: agua embotellada, alimentos secos y no perecederos, mantas y toallas limpias, higiene personal, toallas sanitarias, pañales de bebé y adulto e insumos médicos básicos.",
+    "needs": [
+      { "item": "WATER", "level": "NEEDED" },
+      { "item": "FOOD", "level": "NEEDED" },
+      { "item": "BEDDING", "level": "NEEDED" },
+      { "item": "HYGIENE", "level": "NEEDED" },
+      { "item": "BABY", "level": "NEEDED" },
+      { "item": "FIRST_AID", "level": "NEEDED" }
+    ],
+    "source": {
+      "title": "La Estrella de Panamá",
+      "url": "https://www.laestrella.com.pa/panama/informacion-util/donde-donar-tras-el-terremoto-en-panama-conoce-los-centros-de-acopio-habilitados-PO26394847",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Plaza Terronal (antiguo local de Lumicentro)",
+    "centerType": "ACOPIO",
+    "organizerType": "OTRO",
+    "organizerName": "",
+    "province": "CHIRIQUI",
+    "district": "David",
+    "community": "David",
+    "address": "Antiguo local de Lumicentro, Plaza Terronal, Carretera Panamericana, David",
+    "lat": 8.4456509,
+    "lng": -82.4202965,
+    "schedule": {},
+    "hoursNote": "Horario no publicado: confirma antes de ir.",
+    "notes": "No lleves medicamentos sin coordinación, productos vencidos, alimentos abiertos ni artículos deteriorados.",
+    "needs": [
+      { "item": "WATER", "level": "NEEDED" },
+      { "item": "FOOD", "level": "NEEDED" },
+      { "item": "HYGIENE", "level": "NEEDED" }
+    ],
+    "source": {
+      "title": "Retén Chiriquí",
+      "url": "https://www.retenchiriqui.com/post/habilitan-centro-de-acopio-en-plaza-terronal-para-apoyar-a-familias-afectadas-por-el-terremoto",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Estadio Olmedo Solé",
+    "centerType": "ACOPIO",
+    "organizerType": "GOBIERNO",
+    "organizerName": "Pandeportes",
+    "province": "LOS_SANTOS",
+    "district": "Las Tablas",
+    "community": "Las Tablas",
+    "address": "Estadio Olmedo Solé, Calle Emilio Castro, Las Tablas",
+    "lat": 7.7682213,
+    "lng": -80.2713701,
+    "schedule": {},
+    "hoursNote": "Horario no publicado: confirma antes de ir.",
+    "notes": "Piden agua embotellada, alimentos no perecederos y enlatados, leche y fórmula infantil, pañales de bebé y adulto, higiene y limpieza, primeros auxilios y comida para mascotas.",
+    "needs": [
+      { "item": "WATER", "level": "NEEDED" },
+      { "item": "FOOD", "level": "NEEDED" },
+      { "item": "BABY", "level": "NEEDED" },
+      { "item": "HYGIENE", "level": "NEEDED" },
+      { "item": "CLEANING", "level": "NEEDED" },
+      { "item": "FIRST_AID", "level": "NEEDED" },
+      { "item": "PET_FOOD", "level": "NEEDED" }
+    ],
+    "source": {
+      "title": "La Prensa",
+      "url": "https://www.prensa.com/deportes/pandeportes-habilita-coliseos-y-centros-de-apoyo-tras-el-terremoto/",
+      "date": "2026-10-10"
+    }
+  }
+]

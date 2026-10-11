@@ -13,20 +13,33 @@ const HELP = `Acopio Panamá — línea de comandos
   retention                       Aplica la retención ahora.
   reminders                       Envía ahora los recordatorios «¿sigue funcionando?».
   revoke-all-sessions             Cierra todas las sesiones (tras restaurar un respaldo).
+  import-centers --email <correo> [--file centros.json]
+                                  Importa centros anunciados públicamente (JSON por archivo o stdin)
+                                  a nombre de ese correo. Ver data/centros/README.md.
 `;
 
 async function main() {
   const [cmd, ...rest] = process.argv.slice(2);
   if (!cmd || cmd === 'help' || cmd === '--help') return console.log(HELP);
-  const { values } = parseArgs({ args: rest, options: { email: { type: 'string' } }, strict: true });
+  const { values } = parseArgs({
+    args: rest,
+    options: { email: { type: 'string' }, file: { type: 'string' } },
+    strict: true,
+  });
 
-  if (cmd === 'retention' || cmd === 'reminders') {
+  if (cmd === 'retention' || cmd === 'reminders' || cmd === 'import-centers') {
     const { NestFactory } = await import('@nestjs/core');
     const { AppModule } = await import('../app.module');
     const ctx = await NestFactory.createApplicationContext(AppModule, { logger: ['error'] });
     if (cmd === 'retention') {
       const { JobsService } = await import('../jobs/jobs.service');
       console.log('Retención aplicada:', await ctx.get(JobsService).retention());
+    } else if (cmd === 'import-centers') {
+      const { importCenters } = await import('./import-centers');
+      const r = await importCenters(ctx, { email: values.email ?? '', file: values.file });
+      for (const c of r.created) console.log(`+ ${c}`);
+      for (const c of r.skipped) console.log(`= ${c}`);
+      console.log(`${r.created.length} centro(s) importado(s), ${r.skipped.length} ya existían.`);
     } else {
       const { LinksService } = await import('../centers/links.service');
       const { MailService } = await import('../mail/mail.service');
