@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/demogar/acopiospanama/compare/v0.4.0...v0.5.0) (2026-10-11)
+
+
+### Novedades
+
+* avisos contra el «juega vivo» y reporte «se aprovechan» ([#34](https://github.com/demogar/acopiospanama/issues/34)) ([2149ae5](https://github.com/demogar/acopiospanama/commit/2149ae5cae77eb36b83476426f05b0c4a0f662fc))
+
 ## [0.4.0](https://github.com/demogar/acopiospanama/compare/v0.3.0...v0.4.0) (2026-10-11)
 
 
