@@ -14,7 +14,7 @@ export function Linkify({ text }: { text: string }) {
     const start = m.index ?? 0;
     if (start > last) parts.push(text.slice(last, start));
     parts.push(
-      <a key={start} href={url} target="_blank" rel="noopener noreferrer" className="break-all">
+      <a key={start} href={url} target="_blank" rel="noopener noreferrer" className="break-all underline">
         {url}
       </a>,
     );
