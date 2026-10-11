@@ -1,0 +1,3455 @@
+[
+  {
+    "name": "Hospital Joaquín Pablo Franco Sayas",
+    "centerType": "ACOPIO",
+    "organizerType": "GOBIERNO",
+    "organizerName": "Hospital Joaquín Pablo Franco Sayas (Minsa)",
+    "province": "LOS_SANTOS",
+    "district": "Las Tablas",
+    "community": "Las Tablas",
+    "address": "Hospital Joaquín Pablo Franco Sayas, Circunvalación de Las Tablas, Las Tablas",
+    "lat": 7.7875,
+    "lng": -80.2722,
+    "schedule": {},
+    "hoursNote": "Afiches difundidos el 10 de octubre como punto de recepción de donaciones, sin horario publicado. Confirma antes de ir.",
+    "notes": "Punto de recepción de donaciones para las familias damnificadas de Las Tablas. Piden agua (botellas o presentaciones grandes), alimentos no perecederos, enlatados, conservas y snacks, colchas o carpas, y comida ya preparada para los pacientes.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "URGENT",
+        "note": "Botellas o presentaciones grandes"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "No perecederos, enlatados, conservas, snacks"
+      },
+      {
+        "item": "HOT_MEALS",
+        "level": "URGENT",
+        "note": "Comida ya preparada para pacientes"
+      },
+      {
+        "item": "BEDDING",
+        "level": "NEEDED",
+        "note": "Colchas"
+      },
+      {
+        "item": "TARPS",
+        "level": "NEEDED",
+        "note": "Carpas"
+      }
+    ],
+    "source": {
+      "title": "Afiches del Hospital Joaquín Pablo Franco Sayas compartidos en X por @sonomirenkirin",
+      "url": "https://x.com/sonomirenkirin/status/2108872088178057271",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Hospital Regional Anita Moreno",
+    "centerType": "ACOPIO",
+    "organizerType": "GOBIERNO",
+    "organizerName": "Hospital Regional de Azuero Anita Moreno (CSS)",
+    "province": "LOS_SANTOS",
+    "district": "Los Santos",
+    "community": "La Villa de Los Santos",
+    "address": "Hospital Regional de Azuero Anita Moreno, Vía Dr. Belisario Porras, El Ejido, La Villa de Los Santos",
+    "lat": 7.9244,
+    "lng": -80.393,
+    "schedule": {},
+    "hoursNote": "Afiche del 10 de octubre que pide donaciones con urgencia, sin horario publicado. Confirma antes de ir.",
+    "notes": "El hospital pide con urgencia carpas, para dar un espacio seguro y adecuado, y agua para hidratar a pacientes, personal y familiares.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "URGENT",
+        "note": "Para pacientes, personal y familiares"
+      },
+      {
+        "item": "TARPS",
+        "level": "URGENT",
+        "note": "Carpas"
+      }
+    ],
+    "source": {
+      "title": "Afiche del Hospital Regional Anita Moreno compartido en X por @sonomirenkirin",
+      "url": "https://x.com/sonomirenkirin/status/2108872088178057271",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Estadio Roberto «Flaco Bala» Hernández",
+    "centerType": "MIXTO",
+    "organizerType": "GOBIERNO",
+    "organizerName": "Gobierno Nacional",
+    "province": "LOS_SANTOS",
+    "district": "Las Tablas",
+    "community": "Las Tablas",
+    "address": "Estadio Roberto «Flaco Bala» Hernández, Las Tablas",
+    "lat": 7.7694,
+    "lng": -80.265,
+    "schedule": {},
+    "hoursNote": "Horario no publicado. Confirma antes de ir.",
+    "notes": "Punto oficial de acopio del Gobierno en Los Santos (TVN, 11 de octubre). Además, familias cuyas casas sufrieron daños duermen en el estadio y piden agua, atún, galletas de sal y comida cocida.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "URGENT"
+      },
+      {
+        "item": "FOOD",
+        "level": "URGENT",
+        "note": "Atún, galletas de sal"
+      },
+      {
+        "item": "HOT_MEALS",
+        "level": "URGENT",
+        "note": "Comida cocida"
+      }
+    ],
+    "source": {
+      "title": "TVN (11 de octubre) y aviso compartido en X por @sonomirenkirin",
+      "url": "https://www.tvn-2.com/nacionales/temblor-terremoto-en-panama-gobierno-nacional-evalua-danos-ayuda-humanitaria_1_2265490.html",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Municipio de Pedasí",
+    "centerType": "ACOPIO",
+    "organizerType": "MUNICIPIO",
+    "organizerName": "Municipio de Pedasí",
+    "province": "LOS_SANTOS",
+    "district": "Pedasí",
+    "community": "Pedasí",
+    "address": "Municipio de Pedasí, Vía Dr. Belisario Porras, Pedasí",
+    "lat": 7.531,
+    "lng": -80.0268,
+    "schedule": {},
+    "hoursNote": "Recibe desde las 8:00 a. m. según el hilo del 10 de octubre. Confirma antes de ir.",
+    "notes": "Centro de acopio en solidaridad con Isla Cañas. Piden leche en polvo o Tetra Pak; alimentos y artículos de higiene nuevos y sellados.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "URGENT",
+        "note": "Botellas cerradas"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Secos y enlatados; leche en polvo o Tetra Pak"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pañales de bebé y de adulto"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Toallitas, jabón"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED",
+        "note": "Desinfectante y cloro"
+      },
+      {
+        "item": "BEDDING",
+        "level": "NEEDED",
+        "note": "Frazadas"
+      },
+      {
+        "item": "CLOTHES",
+        "level": "NEEDED",
+        "note": "Ropa seca en buen estado"
+      },
+      {
+        "item": "PET_FOOD",
+        "level": "NEEDED",
+        "note": "Perros y gatos"
+      }
+    ],
+    "source": {
+      "title": "Afiche del Municipio de Pedasí compartido en X por @sonomirenkirin",
+      "url": "https://x.com/sonomirenkirin/status/2108872094620713317",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Parque Simón Bolívar (La Villa de Los Santos)",
+    "centerType": "ACOPIO",
+    "organizerType": "MUNICIPIO",
+    "organizerName": "Centro de Acopio de La Villa de Los Santos",
+    "province": "LOS_SANTOS",
+    "district": "Los Santos",
+    "community": "La Villa de Los Santos",
+    "address": "Parque Simón Bolívar, centro de La Villa de Los Santos",
+    "lat": 7.9377,
+    "lng": -80.414,
+    "schedule": {},
+    "hoursNote": "Afiche difundido el 10 de octubre, sin horario publicado. Confirma antes de ir.",
+    "notes": "Centro de acopio en el parque. Alimentos que puedes donar: frutas, galletas, bebidas y agua.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Frutas, galletas, bebidas"
+      }
+    ],
+    "source": {
+      "title": "Afiche del centro de acopio de La Villa de Los Santos compartido en X por @sonomirenkirin",
+      "url": "https://x.com/sonomirenkirin/status/2108873218773639407",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Hospital Cecilio A. Castillero",
+    "centerType": "ACOPIO",
+    "organizerType": "GOBIERNO",
+    "organizerName": "Hospital Cecilio A. Castillero (Minsa)",
+    "province": "HERRERA",
+    "district": "Chitré",
+    "community": "Chitré",
+    "address": "Hospital Cecilio Castillero, Calle Dr. Damasco Elías Ulloa, Chitré",
+    "lat": 7.958,
+    "lng": -80.4268,
+    "schedule": {},
+    "hoursNote": "Afiches del 10 de octubre: atienden pacientes afuera del hospital, a oscuras. Sin horario publicado. Confirma antes de ir.",
+    "notes": "Piden insumos: snacks o barritas, fórmula 0-4 años, Pedialyte, Pulmicort, supositorios de acetaminofén 250 y 300 mg, nifedipino, tanques de oxígeno y adaptadores, bombillos o plantas de luz, resucitadores manuales pediátricos y neonatales.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "URGENT"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Snacks y barritas saludables"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pampers y fórmula de 0 a 4 años"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Pañitos húmedos, papel higiénico, toallas sanitarias"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "URGENT",
+        "note": "Oxígeno, Pedialyte, medicamentos e insumos médicos"
+      },
+      {
+        "item": "LIGHTS",
+        "level": "URGENT",
+        "note": "Linternas, bombillos o plantas de luz"
+      },
+      {
+        "item": "TARPS",
+        "level": "URGENT",
+        "note": "Carpas"
+      }
+    ],
+    "source": {
+      "title": "Afiches del Hospital Cecilio Castillero compartidos en X por @sonomirenkirin",
+      "url": "https://x.com/sonomirenkirin/status/2108875109343887858",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Hospital Rafael Estévez (Aguadulce)",
+    "centerType": "ACOPIO",
+    "organizerType": "GOBIERNO",
+    "organizerName": "Hospital Rafael Estévez (CSS)",
+    "province": "COCLE",
+    "district": "Aguadulce",
+    "community": "Aguadulce",
+    "address": "Hospital Rafael Estévez, Avenida Alejandro Tapia, Residencial La Florida, Aguadulce",
+    "lat": 8.2446,
+    "lng": -80.5578,
+    "schedule": {},
+    "hoursNote": "Llamado del 10 de octubre, sin horario publicado. Confirma antes de ir.",
+    "notes": "Llamado a enviar apoyo al hospital: agua embotellada e insumos de primera necesidad.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "URGENT",
+        "note": "Agua embotellada"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Insumos de primera necesidad"
+      }
+    ],
+    "source": {
+      "title": "Aviso compartido en X por @sonomirenkirin",
+      "url": "https://x.com/sonomirenkirin/status/2108875944991547448",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Parque Juan Demóstenes Arosemena (Santiago)",
+    "centerType": "ACOPIO",
+    "organizerType": "ONG",
+    "organizerName": "Impulsa Impacta Foundation y VEF",
+    "province": "VERAGUAS",
+    "district": "Santiago",
+    "community": "Santiago",
+    "address": "Parque Juan Demóstenes Arosemena, centro de Santiago de Veraguas",
+    "lat": 8.0976,
+    "lng": -80.9834,
+    "schedule": {},
+    "hoursNote": "Desde las 8:00 a. m. del sábado 10 de octubre (el afiche dice «sábado 9»). Confirma antes de ir.",
+    "notes": "Ayuda humanitaria para Azuero y el sur de Veraguas. Piden insumos para bebés, adultos mayores y personas con discapacidad, y equipos de protección para voluntarios.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Enlatados y alimentos secos"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Higiene personal"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Primeros auxilios y salud"
+      },
+      {
+        "item": "CLOTHES",
+        "level": "NEEDED",
+        "note": "Limpia, seca y en buen estado"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Insumos para bebés"
+      },
+      {
+        "item": "TOOLS",
+        "level": "NEEDED",
+        "note": "Equipo de protección para voluntarios"
+      }
+    ],
+    "source": {
+      "title": "Afiche de Impulsa Impacta Foundation y VEF compartido en X por @sonomirenkirin",
+      "url": "https://x.com/sonomirenkirin/status/2108878957936615741",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Parque Unión (Chitré)",
+    "centerType": "ACOPIO",
+    "organizerType": "ONG",
+    "organizerName": "Impulsa Impacta Foundation y VEF",
+    "province": "HERRERA",
+    "district": "Chitré",
+    "community": "Chitré",
+    "address": "Parque Unión, Chitré",
+    "lat": 7.9627,
+    "lng": -80.4287,
+    "schedule": {},
+    "hoursNote": "Desde las 8:00 a. m. del sábado 10 de octubre (el afiche dice «sábado 9»). Confirma antes de ir.",
+    "notes": "Ayuda humanitaria para Azuero y el sur de Veraguas. Piden insumos para bebés, adultos mayores y personas con discapacidad, y equipos de protección para voluntarios.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Enlatados y alimentos secos"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Higiene personal"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Primeros auxilios y salud"
+      },
+      {
+        "item": "CLOTHES",
+        "level": "NEEDED",
+        "note": "Limpia, seca y en buen estado"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Insumos para bebés"
+      },
+      {
+        "item": "TOOLS",
+        "level": "NEEDED",
+        "note": "Equipo de protección para voluntarios"
+      }
+    ],
+    "source": {
+      "title": "Afiche de Impulsa Impacta Foundation y VEF compartido en X por @sonomirenkirin",
+      "url": "https://x.com/sonomirenkirin/status/2108878957936615741",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Parque Municipal Tomás Alberto Clavel (Cañazas)",
+    "centerType": "ACOPIO",
+    "organizerType": "ONG",
+    "organizerName": "Corazones en Acción",
+    "province": "VERAGUAS",
+    "district": "Cañazas",
+    "community": "Cañazas",
+    "address": "Parque Municipal Tomás Alberto Clavel (parque central), frente a la iglesia San Francisco Javier, Cañazas",
+    "lat": 8.3193,
+    "lng": -81.2112,
+    "schedule": {},
+    "hoursNote": "Sábado 10 de octubre desde las 8:00 a. m. Confirma antes de ir.",
+    "notes": "Lo recolectado se destina a familias afectadas del distrito de Cañazas. Piden arroz, frijoles, enlatados, leche, galletas; sábanas, toallas y cobijas; botiquines, baterías, guantes y mascarillas. Buscan voluntarios.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua potable"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "No perecederos"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Jabón, pasta, cepillos, papel higiénico, toallas sanitarias"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED",
+        "note": "Detergentes"
+      },
+      {
+        "item": "CLOTHES",
+        "level": "NEEDED",
+        "note": "Limpia y en buen estado"
+      },
+      {
+        "item": "BEDDING",
+        "level": "NEEDED",
+        "note": "Sábanas, toallas, cobijas"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pañales y toallitas"
+      },
+      {
+        "item": "TARPS",
+        "level": "NEEDED",
+        "note": "Lonas y plásticos impermeables"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Botiquines"
+      },
+      {
+        "item": "LIGHTS",
+        "level": "NEEDED",
+        "note": "Linternas y baterías"
+      },
+      {
+        "item": "VOLUNTEERS",
+        "level": "NEEDED"
+      }
+    ],
+    "source": {
+      "title": "Afiche de Corazones en Acción compartido en X por @sonomirenkirin",
+      "url": "https://x.com/sonomirenkirin/status/2108878957936615741",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Super 99 de Villa Lucre (Alcaldía de San Miguelito)",
+    "centerType": "ACOPIO",
+    "organizerType": "MUNICIPIO",
+    "organizerName": "Alcaldía de San Miguelito",
+    "province": "PANAMA",
+    "district": "San Miguelito",
+    "community": "José Domingo Espinar (Villa Lucre)",
+    "address": "Estacionamientos del Super 99 de Villa Lucre, Avenida Rafael E. Alemán, Villa Lucre",
+    "lat": 9.0415,
+    "lng": -79.4784,
+    "schedule": {},
+    "hoursNote": "Sábado 10 de octubre, de 8:00 a. m. a 12:00 m. Confirma antes de ir.",
+    "notes": "Centro de acopio de la Alcaldía de San Miguelito para las familias afectadas por los sismos en las provincias centrales. Piden agua, alimentos secos, Ensure, Glucerna y pampers.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos, Ensure, Glucerna"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pampers"
+      }
+    ],
+    "source": {
+      "title": "Afiche de la Alcaldía de San Miguelito compartido en X por @sonomirenkirin",
+      "url": "https://x.com/sonomirenkirin/status/2108880457370624375",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Supermercado Xtra El Cangrejo",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Xtra",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Bella Vista",
+    "address": "Supermercado Xtra, Vía Transístmica, El Cangrejo",
+    "lat": 8.9941,
+    "lng": -79.5278,
+    "schedule": {},
+    "hoursNote": "Todas las sucursales de Panamá y Panamá Oeste reciben donaciones desde el 10 de octubre, en horario de la tienda. Confirma antes de ir.",
+    "notes": "Xtra habilitó todas sus sucursales de Panamá y Panamá Oeste como centros de acopio. Las donaciones se remiten a los centros de acopio que indique el Sinaproc para los afectados del interior. Ubicación de la sucursal tomada de OpenStreetMap.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Aseo personal y toallitas húmedas"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche y pañales"
+      }
+    ],
+    "source": {
+      "title": "Lista compartida en X por @taerrari",
+      "url": "https://x.com/taerrari/status/2109013109075476682",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Supermercado Xtra San Pedro (Juan Díaz)",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Xtra",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Juan Díaz",
+    "address": "Supermercado Xtra, San Pedro, Juan Díaz",
+    "lat": 9.0442,
+    "lng": -79.4512,
+    "schedule": {},
+    "hoursNote": "Todas las sucursales de Panamá y Panamá Oeste reciben donaciones desde el 10 de octubre, en horario de la tienda. Confirma antes de ir.",
+    "notes": "Xtra habilitó todas sus sucursales de Panamá y Panamá Oeste como centros de acopio. Las donaciones se remiten a los centros de acopio que indique el Sinaproc para los afectados del interior. Ubicación de la sucursal tomada de OpenStreetMap.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Aseo personal y toallitas húmedas"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche y pañales"
+      }
+    ],
+    "source": {
+      "title": "Lista compartida en X por @taerrari",
+      "url": "https://x.com/taerrari/status/2109013109075476682",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Supermercado Xtra Don Bosco",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Xtra",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Don Bosco",
+    "address": "Supermercado Xtra, Calle 1-A, Urbanización Anasa, Cantabria, Don Bosco",
+    "lat": 9.0593,
+    "lng": -79.4275,
+    "schedule": {},
+    "hoursNote": "Todas las sucursales de Panamá y Panamá Oeste reciben donaciones desde el 10 de octubre, en horario de la tienda. Confirma antes de ir.",
+    "notes": "Xtra habilitó todas sus sucursales de Panamá y Panamá Oeste como centros de acopio. Las donaciones se remiten a los centros de acopio que indique el Sinaproc para los afectados del interior. Ubicación de la sucursal tomada de OpenStreetMap.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Aseo personal y toallitas húmedas"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche y pañales"
+      }
+    ],
+    "source": {
+      "title": "Lista compartida en X por @taerrari",
+      "url": "https://x.com/taerrari/status/2109013109075476682",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Supermercado Xtra Monte Rico (24 de Diciembre)",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Xtra",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "24 de Diciembre",
+    "address": "Supermercado Xtra, Calle San José, Monte Rico, 24 de Diciembre",
+    "lat": 9.104,
+    "lng": -79.3668,
+    "schedule": {},
+    "hoursNote": "Todas las sucursales de Panamá y Panamá Oeste reciben donaciones desde el 10 de octubre, en horario de la tienda. Confirma antes de ir.",
+    "notes": "Xtra habilitó todas sus sucursales de Panamá y Panamá Oeste como centros de acopio. Las donaciones se remiten a los centros de acopio que indique el Sinaproc para los afectados del interior. Ubicación de la sucursal tomada de OpenStreetMap.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Aseo personal y toallitas húmedas"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche y pañales"
+      }
+    ],
+    "source": {
+      "title": "Lista compartida en X por @taerrari",
+      "url": "https://x.com/taerrari/status/2109013109075476682",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Supermercado Xtra Vista Alegre",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Xtra",
+    "province": "PANAMA_OESTE",
+    "district": "Arraiján",
+    "community": "Vista Alegre",
+    "address": "Supermercado Xtra, Carretera Interamericana, Vista Alegre",
+    "lat": 8.9316,
+    "lng": -79.7016,
+    "schedule": {},
+    "hoursNote": "Todas las sucursales de Panamá y Panamá Oeste reciben donaciones desde el 10 de octubre, en horario de la tienda. Confirma antes de ir.",
+    "notes": "Xtra habilitó todas sus sucursales de Panamá y Panamá Oeste como centros de acopio. Las donaciones se remiten a los centros de acopio que indique el Sinaproc para los afectados del interior. Ubicación de la sucursal tomada de OpenStreetMap.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Aseo personal y toallitas húmedas"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche y pañales"
+      }
+    ],
+    "source": {
+      "title": "Lista compartida en X por @taerrari",
+      "url": "https://x.com/taerrari/status/2109013109075476682",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Supermercado Xtra El Coco (La Chorrera)",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Xtra",
+    "province": "PANAMA_OESTE",
+    "district": "La Chorrera",
+    "community": "El Coco",
+    "address": "Supermercado Xtra, Carretera Interamericana, El Coco",
+    "lat": 8.8703,
+    "lng": -79.8001,
+    "schedule": {},
+    "hoursNote": "Todas las sucursales de Panamá y Panamá Oeste reciben donaciones desde el 10 de octubre, en horario de la tienda. Confirma antes de ir.",
+    "notes": "Xtra habilitó todas sus sucursales de Panamá y Panamá Oeste como centros de acopio. Las donaciones se remiten a los centros de acopio que indique el Sinaproc para los afectados del interior. Ubicación de la sucursal tomada de OpenStreetMap.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Aseo personal y toallitas húmedas"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche y pañales"
+      }
+    ],
+    "source": {
+      "title": "Lista compartida en X por @taerrari",
+      "url": "https://x.com/taerrari/status/2109013109075476682",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Supermercado Xtra Ciudad Radial",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Xtra",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Juan Díaz",
+    "address": "Supermercado Xtra, Avenida José Agustín Arango, Ciudad Radial, Juan Díaz",
+    "lat": 9.0477,
+    "lng": -79.4408,
+    "schedule": {},
+    "hoursNote": "Todas las sucursales de Panamá y Panamá Oeste reciben donaciones desde el 10 de octubre, en horario de la tienda. Confirma antes de ir.",
+    "notes": "Xtra habilitó todas sus sucursales de Panamá y Panamá Oeste como centros de acopio. Las donaciones se remiten a los centros de acopio que indique el Sinaproc para los afectados del interior. Ubicación de la sucursal tomada de OpenStreetMap.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Aseo personal y toallitas húmedas"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche y pañales"
+      }
+    ],
+    "source": {
+      "title": "Lista compartida en X por @taerrari",
+      "url": "https://x.com/taerrari/status/2109013109075476682",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Supermercado Xtra Betania (Vía Ricardo J. Alfaro)",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Xtra",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Betania",
+    "address": "Supermercado Xtra, Vía Ricardo J. Alfaro, Nuevo Paraíso, Betania",
+    "lat": 9.0264,
+    "lng": -79.5217,
+    "schedule": {},
+    "hoursNote": "Todas las sucursales de Panamá y Panamá Oeste reciben donaciones desde el 10 de octubre, en horario de la tienda. Confirma antes de ir.",
+    "notes": "Xtra habilitó todas sus sucursales de Panamá y Panamá Oeste como centros de acopio. Las donaciones se remiten a los centros de acopio que indique el Sinaproc para los afectados del interior. Ubicación de la sucursal tomada de OpenStreetMap.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Aseo personal y toallitas húmedas"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche y pañales"
+      }
+    ],
+    "source": {
+      "title": "Lista compartida en X por @taerrari",
+      "url": "https://x.com/taerrari/status/2109013109075476682",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Supermercado Xtra Ojo de Agua",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Xtra",
+    "province": "PANAMA",
+    "district": "San Miguelito",
+    "community": "Belisario Porras",
+    "address": "Supermercado Xtra, Calle Turín, Ojo de Agua, Belisario Porras",
+    "lat": 9.0518,
+    "lng": -79.5016,
+    "schedule": {},
+    "hoursNote": "Todas las sucursales de Panamá y Panamá Oeste reciben donaciones desde el 10 de octubre, en horario de la tienda. Confirma antes de ir.",
+    "notes": "Xtra habilitó todas sus sucursales de Panamá y Panamá Oeste como centros de acopio. Las donaciones se remiten a los centros de acopio que indique el Sinaproc para los afectados del interior. Ubicación de la sucursal tomada de OpenStreetMap.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Aseo personal y toallitas húmedas"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche y pañales"
+      }
+    ],
+    "source": {
+      "title": "Lista compartida en X por @taerrari",
+      "url": "https://x.com/taerrari/status/2109013109075476682",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Supermercado Xtra Río Abajo (Feria Xtra)",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Xtra",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Río Abajo",
+    "address": "Supermercado Xtra, Calle 16, Río Abajo",
+    "lat": 9.0204,
+    "lng": -79.4919,
+    "schedule": {},
+    "hoursNote": "Todas las sucursales de Panamá y Panamá Oeste reciben donaciones desde el 10 de octubre, en horario de la tienda. Confirma antes de ir.",
+    "notes": "Xtra habilitó todas sus sucursales de Panamá y Panamá Oeste como centros de acopio. Las donaciones se remiten a los centros de acopio que indique el Sinaproc para los afectados del interior. Ubicación de la sucursal tomada de OpenStreetMap.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Aseo personal y toallitas húmedas"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche y pañales"
+      }
+    ],
+    "source": {
+      "title": "Lista compartida en X por @taerrari",
+      "url": "https://x.com/taerrari/status/2109013109075476682",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Supermercado Xtra Pan de Azúcar",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Xtra",
+    "province": "PANAMA",
+    "district": "San Miguelito",
+    "community": "Amelia Denis de Icaza",
+    "address": "Supermercado Xtra, Pan de Azúcar, Amelia Denis de Icaza",
+    "lat": 9.036,
+    "lng": -79.5052,
+    "schedule": {},
+    "hoursNote": "Todas las sucursales de Panamá y Panamá Oeste reciben donaciones desde el 10 de octubre, en horario de la tienda. Confirma antes de ir.",
+    "notes": "Xtra habilitó todas sus sucursales de Panamá y Panamá Oeste como centros de acopio. Las donaciones se remiten a los centros de acopio que indique el Sinaproc para los afectados del interior. Ubicación de la sucursal tomada de OpenStreetMap.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Aseo personal y toallitas húmedas"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche y pañales"
+      }
+    ],
+    "source": {
+      "title": "Lista compartida en X por @taerrari",
+      "url": "https://x.com/taerrari/status/2109013109075476682",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Supermercado Xtra Burunga",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Xtra",
+    "province": "PANAMA_OESTE",
+    "district": "Arraiján",
+    "community": "Burunga",
+    "address": "Supermercado Xtra, Vía La 2000, Sector 9, Burunga",
+    "lat": 8.9562,
+    "lng": -79.6531,
+    "schedule": {},
+    "hoursNote": "Todas las sucursales de Panamá y Panamá Oeste reciben donaciones desde el 10 de octubre, en horario de la tienda. Confirma antes de ir.",
+    "notes": "Xtra habilitó todas sus sucursales de Panamá y Panamá Oeste como centros de acopio. Las donaciones se remiten a los centros de acopio que indique el Sinaproc para los afectados del interior. Ubicación de la sucursal tomada de OpenStreetMap.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Aseo personal y toallitas húmedas"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche y pañales"
+      }
+    ],
+    "source": {
+      "title": "Lista compartida en X por @taerrari",
+      "url": "https://x.com/taerrari/status/2109013109075476682",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Supermercado Xtra Tinajita",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Xtra",
+    "province": "PANAMA",
+    "district": "San Miguelito",
+    "community": "Belisario Porras",
+    "address": "Supermercado Xtra, Carretera Transístmica, Tinajita",
+    "lat": 9.056,
+    "lng": -79.5088,
+    "schedule": {},
+    "hoursNote": "Todas las sucursales de Panamá y Panamá Oeste reciben donaciones desde el 10 de octubre, en horario de la tienda. Confirma antes de ir.",
+    "notes": "Xtra habilitó todas sus sucursales de Panamá y Panamá Oeste como centros de acopio. Las donaciones se remiten a los centros de acopio que indique el Sinaproc para los afectados del interior. Ubicación de la sucursal tomada de OpenStreetMap.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Aseo personal y toallitas húmedas"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche y pañales"
+      }
+    ],
+    "source": {
+      "title": "Lista compartida en X por @taerrari",
+      "url": "https://x.com/taerrari/status/2109013109075476682",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Supermercado Xtra Vía Panamá Norte",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Xtra",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Ernesto Córdoba Campos",
+    "address": "Supermercado Xtra, Vía Panamá Norte, Ernesto Córdoba Campos",
+    "lat": 9.103,
+    "lng": -79.5212,
+    "schedule": {},
+    "hoursNote": "Todas las sucursales de Panamá y Panamá Oeste reciben donaciones desde el 10 de octubre, en horario de la tienda. Confirma antes de ir.",
+    "notes": "Xtra habilitó todas sus sucursales de Panamá y Panamá Oeste como centros de acopio. Las donaciones se remiten a los centros de acopio que indique el Sinaproc para los afectados del interior. Ubicación de la sucursal tomada de OpenStreetMap.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Aseo personal y toallitas húmedas"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche y pañales"
+      }
+    ],
+    "source": {
+      "title": "Lista compartida en X por @taerrari",
+      "url": "https://x.com/taerrari/status/2109013109075476682",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Supermercado Xtra Villa Lucre",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Xtra",
+    "province": "PANAMA",
+    "district": "San Miguelito",
+    "community": "José Domingo Espinar",
+    "address": "Supermercado Xtra, Villa Lucre, José Domingo Espinar",
+    "lat": 9.0396,
+    "lng": -79.481,
+    "schedule": {},
+    "hoursNote": "Todas las sucursales de Panamá y Panamá Oeste reciben donaciones desde el 10 de octubre, en horario de la tienda. Confirma antes de ir.",
+    "notes": "Xtra habilitó todas sus sucursales de Panamá y Panamá Oeste como centros de acopio. Las donaciones se remiten a los centros de acopio que indique el Sinaproc para los afectados del interior. Ubicación de la sucursal tomada de OpenStreetMap.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Aseo personal y toallitas húmedas"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche y pañales"
+      }
+    ],
+    "source": {
+      "title": "Lista compartida en X por @taerrari",
+      "url": "https://x.com/taerrari/status/2109013109075476682",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Supermercado Xtra Carretera Panamericana (La Chorrera)",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Xtra",
+    "province": "PANAMA_OESTE",
+    "district": "La Chorrera",
+    "community": "La Chorrera",
+    "address": "Supermercado Xtra, Carretera Panamericana, La Chorrera",
+    "lat": 8.8919,
+    "lng": -79.7637,
+    "schedule": {},
+    "hoursNote": "Todas las sucursales de Panamá y Panamá Oeste reciben donaciones desde el 10 de octubre, en horario de la tienda. Confirma antes de ir.",
+    "notes": "Xtra habilitó todas sus sucursales de Panamá y Panamá Oeste como centros de acopio. Las donaciones se remiten a los centros de acopio que indique el Sinaproc para los afectados del interior. Ubicación de la sucursal tomada de OpenStreetMap.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Aseo personal y toallitas húmedas"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche y pañales"
+      }
+    ],
+    "source": {
+      "title": "Lista compartida en X por @taerrari",
+      "url": "https://x.com/taerrari/status/2109013109075476682",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Supermercado Xtra Calidonia",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Xtra",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Calidonia",
+    "address": "Supermercado Xtra, Calle 27 Este, Calidonia",
+    "lat": 8.9662,
+    "lng": -79.5398,
+    "schedule": {},
+    "hoursNote": "Todas las sucursales de Panamá y Panamá Oeste reciben donaciones desde el 10 de octubre, en horario de la tienda. Confirma antes de ir.",
+    "notes": "Xtra habilitó todas sus sucursales de Panamá y Panamá Oeste como centros de acopio. Las donaciones se remiten a los centros de acopio que indique el Sinaproc para los afectados del interior. Ubicación de la sucursal tomada de OpenStreetMap.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Aseo personal y toallitas húmedas"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche y pañales"
+      }
+    ],
+    "source": {
+      "title": "Lista compartida en X por @taerrari",
+      "url": "https://x.com/taerrari/status/2109013109075476682",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Supermercado Xtra Boca La Caja",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Xtra",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "San Francisco",
+    "address": "Supermercado Xtra, Boca La Caja, San Francisco",
+    "lat": 8.9875,
+    "lng": -79.5025,
+    "schedule": {},
+    "hoursNote": "Todas las sucursales de Panamá y Panamá Oeste reciben donaciones desde el 10 de octubre, en horario de la tienda. Confirma antes de ir.",
+    "notes": "Xtra habilitó todas sus sucursales de Panamá y Panamá Oeste como centros de acopio. Las donaciones se remiten a los centros de acopio que indique el Sinaproc para los afectados del interior. Ubicación de la sucursal tomada de OpenStreetMap.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Aseo personal y toallitas húmedas"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche y pañales"
+      }
+    ],
+    "source": {
+      "title": "Lista compartida en X por @taerrari",
+      "url": "https://x.com/taerrari/status/2109013109075476682",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Supermercado Xtra Chepo",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Xtra",
+    "province": "PANAMA",
+    "district": "Chepo",
+    "community": "Chepo",
+    "address": "Supermercado Xtra, Vía Chepo-Puerto Coquira, Santa Isabel, Chepo",
+    "lat": 9.1636,
+    "lng": -79.0903,
+    "schedule": {},
+    "hoursNote": "Todas las sucursales de Panamá y Panamá Oeste reciben donaciones desde el 10 de octubre, en horario de la tienda. Confirma antes de ir.",
+    "notes": "Xtra habilitó todas sus sucursales de Panamá y Panamá Oeste como centros de acopio. Las donaciones se remiten a los centros de acopio que indique el Sinaproc para los afectados del interior. Ubicación de la sucursal tomada de OpenStreetMap.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Aseo personal y toallitas húmedas"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche y pañales"
+      }
+    ],
+    "source": {
+      "title": "Lista compartida en X por @taerrari",
+      "url": "https://x.com/taerrari/status/2109013109075476682",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Supermercado Xtra Victoriano Lorenzo",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Xtra",
+    "province": "PANAMA",
+    "district": "San Miguelito",
+    "community": "Victoriano Lorenzo",
+    "address": "Supermercado Xtra, Calle 16, Victoriano Lorenzo",
+    "lat": 9.0273,
+    "lng": -79.5064,
+    "schedule": {},
+    "hoursNote": "Todas las sucursales de Panamá y Panamá Oeste reciben donaciones desde el 10 de octubre, en horario de la tienda. Confirma antes de ir.",
+    "notes": "Xtra habilitó todas sus sucursales de Panamá y Panamá Oeste como centros de acopio. Las donaciones se remiten a los centros de acopio que indique el Sinaproc para los afectados del interior. Ubicación de la sucursal tomada de OpenStreetMap.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Aseo personal y toallitas húmedas"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche y pañales"
+      }
+    ],
+    "source": {
+      "title": "Lista compartida en X por @taerrari",
+      "url": "https://x.com/taerrari/status/2109013109075476682",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Supermercado Xtra Altos del Lago (Tocumen)",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Xtra",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Tocumen",
+    "address": "Supermercado Xtra, Altos del Lago, Sector 4, Tocumen",
+    "lat": 9.0764,
+    "lng": -79.3684,
+    "schedule": {},
+    "hoursNote": "Todas las sucursales de Panamá y Panamá Oeste reciben donaciones desde el 10 de octubre, en horario de la tienda. Confirma antes de ir.",
+    "notes": "Xtra habilitó todas sus sucursales de Panamá y Panamá Oeste como centros de acopio. Las donaciones se remiten a los centros de acopio que indique el Sinaproc para los afectados del interior. Ubicación de la sucursal tomada de OpenStreetMap.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Aseo personal y toallitas húmedas"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche y pañales"
+      }
+    ],
+    "source": {
+      "title": "Lista compartida en X por @taerrari",
+      "url": "https://x.com/taerrari/status/2109013109075476682",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Supermercado Xtra Albrook",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Xtra",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Ancón",
+    "address": "Supermercado Xtra, Avenida de la Amistad, Albrook",
+    "lat": 8.9689,
+    "lng": -79.5542,
+    "schedule": {},
+    "hoursNote": "Todas las sucursales de Panamá y Panamá Oeste reciben donaciones desde el 10 de octubre, en horario de la tienda. Confirma antes de ir.",
+    "notes": "Xtra habilitó todas sus sucursales de Panamá y Panamá Oeste como centros de acopio. Las donaciones se remiten a los centros de acopio que indique el Sinaproc para los afectados del interior. Ubicación de la sucursal tomada de OpenStreetMap.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Aseo personal y toallitas húmedas"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche y pañales"
+      }
+    ],
+    "source": {
+      "title": "Lista compartida en X por @taerrari",
+      "url": "https://x.com/taerrari/status/2109013109075476682",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Supermercado Xtra Los Laureles (La Chorrera)",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Xtra",
+    "province": "PANAMA_OESTE",
+    "district": "La Chorrera",
+    "community": "La Chorrera",
+    "address": "Supermercado Xtra, Avenida Libertador, Residencial Los Laureles",
+    "lat": 8.8791,
+    "lng": -79.7807,
+    "schedule": {},
+    "hoursNote": "Todas las sucursales de Panamá y Panamá Oeste reciben donaciones desde el 10 de octubre, en horario de la tienda. Confirma antes de ir.",
+    "notes": "Xtra habilitó todas sus sucursales de Panamá y Panamá Oeste como centros de acopio. Las donaciones se remiten a los centros de acopio que indique el Sinaproc para los afectados del interior. Ubicación de la sucursal tomada de OpenStreetMap.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Aseo personal y toallitas húmedas"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche y pañales"
+      }
+    ],
+    "source": {
+      "title": "Lista compartida en X por @taerrari",
+      "url": "https://x.com/taerrari/status/2109013109075476682",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Supermercado Xtra Avenida 8a Norte (La Chorrera)",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Xtra",
+    "province": "PANAMA_OESTE",
+    "district": "La Chorrera",
+    "community": "La Chorrera",
+    "address": "Supermercado Xtra, Avenida 8a Norte, La Chorrera",
+    "lat": 8.8856,
+    "lng": -79.7757,
+    "schedule": {},
+    "hoursNote": "Todas las sucursales de Panamá y Panamá Oeste reciben donaciones desde el 10 de octubre, en horario de la tienda. Confirma antes de ir.",
+    "notes": "Xtra habilitó todas sus sucursales de Panamá y Panamá Oeste como centros de acopio. Las donaciones se remiten a los centros de acopio que indique el Sinaproc para los afectados del interior. Ubicación de la sucursal tomada de OpenStreetMap.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Aseo personal y toallitas húmedas"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche y pañales"
+      }
+    ],
+    "source": {
+      "title": "Lista compartida en X por @taerrari",
+      "url": "https://x.com/taerrari/status/2109013109075476682",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Supermercado Xtra Villa Unida (Chilibre)",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Xtra",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Chilibre",
+    "address": "Supermercado Xtra, Buenos Aires, Villa Unida, Chilibre",
+    "lat": 9.1806,
+    "lng": -79.6161,
+    "schedule": {},
+    "hoursNote": "Todas las sucursales de Panamá y Panamá Oeste reciben donaciones desde el 10 de octubre, en horario de la tienda. Confirma antes de ir.",
+    "notes": "Xtra habilitó todas sus sucursales de Panamá y Panamá Oeste como centros de acopio. Las donaciones se remiten a los centros de acopio que indique el Sinaproc para los afectados del interior. Ubicación de la sucursal tomada de OpenStreetMap.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Aseo personal y toallitas húmedas"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche y pañales"
+      }
+    ],
+    "source": {
+      "title": "Lista compartida en X por @taerrari",
+      "url": "https://x.com/taerrari/status/2109013109075476682",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Supermercado Xtra Coronado",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Xtra",
+    "province": "PANAMA_OESTE",
+    "district": "Chame",
+    "community": "Las Lajas",
+    "address": "Supermercado Xtra, Coronado, Chame",
+    "lat": 8.544,
+    "lng": -79.9147,
+    "schedule": {},
+    "hoursNote": "Todas las sucursales de Panamá y Panamá Oeste reciben donaciones desde el 10 de octubre, en horario de la tienda. Confirma antes de ir.",
+    "notes": "Xtra habilitó todas sus sucursales de Panamá y Panamá Oeste como centros de acopio. Las donaciones se remiten a los centros de acopio que indique el Sinaproc para los afectados del interior. Ubicación de la sucursal tomada de OpenStreetMap.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Aseo personal y toallitas húmedas"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche y pañales"
+      }
+    ],
+    "source": {
+      "title": "Lista compartida en X por @taerrari",
+      "url": "https://x.com/taerrari/status/2109013109075476682",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Supermercado Xtra Arraiján",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Xtra",
+    "province": "PANAMA_OESTE",
+    "district": "Arraiján",
+    "community": "Arraiján",
+    "address": "Supermercado Xtra, Arraiján cabecera",
+    "lat": 8.9723,
+    "lng": -79.7052,
+    "schedule": {},
+    "hoursNote": "Todas las sucursales de Panamá y Panamá Oeste reciben donaciones desde el 10 de octubre, en horario de la tienda. Confirma antes de ir.",
+    "notes": "Xtra habilitó todas sus sucursales de Panamá y Panamá Oeste como centros de acopio. Las donaciones se remiten a los centros de acopio que indique el Sinaproc para los afectados del interior. Ubicación de la sucursal tomada de OpenStreetMap.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Aseo personal y toallitas húmedas"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche y pañales"
+      }
+    ],
+    "source": {
+      "title": "Lista compartida en X por @taerrari",
+      "url": "https://x.com/taerrari/status/2109013109075476682",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Supermercado Xtra Altos de Villalobos (Pedregal)",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Xtra",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Pedregal",
+    "address": "Supermercado Xtra, Corredor Norte, Altos de Villalobos, Pedregal",
+    "lat": 9.0861,
+    "lng": -79.4443,
+    "schedule": {},
+    "hoursNote": "Todas las sucursales de Panamá y Panamá Oeste reciben donaciones desde el 10 de octubre, en horario de la tienda. Confirma antes de ir.",
+    "notes": "Xtra habilitó todas sus sucursales de Panamá y Panamá Oeste como centros de acopio. Las donaciones se remiten a los centros de acopio que indique el Sinaproc para los afectados del interior. Ubicación de la sucursal tomada de OpenStreetMap.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Aseo personal y toallitas húmedas"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche y pañales"
+      }
+    ],
+    "source": {
+      "title": "Lista compartida en X por @taerrari",
+      "url": "https://x.com/taerrari/status/2109013109075476682",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Supermercado Xtra Altos de Tataré (Pacora)",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Xtra",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Pacora",
+    "address": "Supermercado Xtra, Carretera Panamericana, Altos de Tataré, Pacora",
+    "lat": 9.0992,
+    "lng": -79.2848,
+    "schedule": {},
+    "hoursNote": "Todas las sucursales de Panamá y Panamá Oeste reciben donaciones desde el 10 de octubre, en horario de la tienda. Confirma antes de ir.",
+    "notes": "Xtra habilitó todas sus sucursales de Panamá y Panamá Oeste como centros de acopio. Las donaciones se remiten a los centros de acopio que indique el Sinaproc para los afectados del interior. Ubicación de la sucursal tomada de OpenStreetMap.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Aseo personal y toallitas húmedas"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche y pañales"
+      }
+    ],
+    "source": {
+      "title": "Lista compartida en X por @taerrari",
+      "url": "https://x.com/taerrari/status/2109013109075476682",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Supermercado Xtra El Chorrillo",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Xtra",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "El Chorrillo",
+    "address": "Supermercado Xtra, Avenida A, El Chorrillo",
+    "lat": 8.9513,
+    "lng": -79.5448,
+    "schedule": {},
+    "hoursNote": "Todas las sucursales de Panamá y Panamá Oeste reciben donaciones desde el 10 de octubre, en horario de la tienda. Confirma antes de ir.",
+    "notes": "Xtra habilitó todas sus sucursales de Panamá y Panamá Oeste como centros de acopio. Las donaciones se remiten a los centros de acopio que indique el Sinaproc para los afectados del interior. Ubicación de la sucursal tomada de OpenStreetMap.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Aseo personal y toallitas húmedas"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche y pañales"
+      }
+    ],
+    "source": {
+      "title": "Lista compartida en X por @taerrari",
+      "url": "https://x.com/taerrari/status/2109013109075476682",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Supermercado Xtra San Isidro",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Xtra",
+    "province": "PANAMA",
+    "district": "San Miguelito",
+    "community": "Omar Torrijos",
+    "address": "Supermercado Xtra, Carretera Transístmica, San Isidro",
+    "lat": 9.0656,
+    "lng": -79.5142,
+    "schedule": {},
+    "hoursNote": "Todas las sucursales de Panamá y Panamá Oeste reciben donaciones desde el 10 de octubre, en horario de la tienda. Confirma antes de ir.",
+    "notes": "Xtra habilitó todas sus sucursales de Panamá y Panamá Oeste como centros de acopio. Las donaciones se remiten a los centros de acopio que indique el Sinaproc para los afectados del interior. Ubicación de la sucursal tomada de OpenStreetMap.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Aseo personal y toallitas húmedas"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche y pañales"
+      }
+    ],
+    "source": {
+      "title": "Lista compartida en X por @taerrari",
+      "url": "https://x.com/taerrari/status/2109013109075476682",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Supermercado Xtra Villa Carmen (Capira)",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Xtra",
+    "province": "PANAMA_OESTE",
+    "district": "Capira",
+    "community": "Villa Carmen",
+    "address": "Supermercado Xtra, Villa Carmen, Capira",
+    "lat": 8.8016,
+    "lng": -79.8674,
+    "schedule": {},
+    "hoursNote": "Todas las sucursales de Panamá y Panamá Oeste reciben donaciones desde el 10 de octubre, en horario de la tienda. Confirma antes de ir.",
+    "notes": "Xtra habilitó todas sus sucursales de Panamá y Panamá Oeste como centros de acopio. Las donaciones se remiten a los centros de acopio que indique el Sinaproc para los afectados del interior. Ubicación de la sucursal tomada de OpenStreetMap.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Aseo personal y toallitas húmedas"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche y pañales"
+      }
+    ],
+    "source": {
+      "title": "Lista compartida en X por @taerrari",
+      "url": "https://x.com/taerrari/status/2109013109075476682",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Supermercado Xtra Las Mañanitas",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Xtra",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Las Mañanitas",
+    "address": "Supermercado Xtra, Las Mañanitas",
+    "lat": 9.0813,
+    "lng": -79.4005,
+    "schedule": {},
+    "hoursNote": "Todas las sucursales de Panamá y Panamá Oeste reciben donaciones desde el 10 de octubre, en horario de la tienda. Confirma antes de ir.",
+    "notes": "Xtra habilitó todas sus sucursales de Panamá y Panamá Oeste como centros de acopio. Las donaciones se remiten a los centros de acopio que indique el Sinaproc para los afectados del interior. Ubicación de la sucursal tomada de OpenStreetMap.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Aseo personal y toallitas húmedas"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche y pañales"
+      }
+    ],
+    "source": {
+      "title": "Lista compartida en X por @taerrari",
+      "url": "https://x.com/taerrari/status/2109013109075476682",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Supermercado Xtra Brisas del Golf",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Xtra",
+    "province": "PANAMA",
+    "district": "San Miguelito",
+    "community": "Rufina Alfaro",
+    "address": "Supermercado Xtra, Avenida Manuel F. Zárate, Brisas del Golf",
+    "lat": 9.0684,
+    "lng": -79.4634,
+    "schedule": {},
+    "hoursNote": "Todas las sucursales de Panamá y Panamá Oeste reciben donaciones desde el 10 de octubre, en horario de la tienda. Confirma antes de ir.",
+    "notes": "Xtra habilitó todas sus sucursales de Panamá y Panamá Oeste como centros de acopio. Las donaciones se remiten a los centros de acopio que indique el Sinaproc para los afectados del interior. Ubicación de la sucursal tomada de OpenStreetMap.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Aseo personal y toallitas húmedas"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche y pañales"
+      }
+    ],
+    "source": {
+      "title": "Lista compartida en X por @taerrari",
+      "url": "https://x.com/taerrari/status/2109013109075476682",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Supermercado Xtra La Unión (Chilibre)",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Xtra",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Chilibre",
+    "address": "Supermercado Xtra, Carretera Transístmica, La Unión, Chilibre",
+    "lat": 9.1225,
+    "lng": -79.5941,
+    "schedule": {},
+    "hoursNote": "Todas las sucursales de Panamá y Panamá Oeste reciben donaciones desde el 10 de octubre, en horario de la tienda. Confirma antes de ir.",
+    "notes": "Xtra habilitó todas sus sucursales de Panamá y Panamá Oeste como centros de acopio. Las donaciones se remiten a los centros de acopio que indique el Sinaproc para los afectados del interior. Ubicación de la sucursal tomada de OpenStreetMap.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Aseo personal y toallitas húmedas"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche y pañales"
+      }
+    ],
+    "source": {
+      "title": "Lista compartida en X por @taerrari",
+      "url": "https://x.com/taerrari/status/2109013109075476682",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Supermercado Xtra Tortí",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Xtra",
+    "province": "PANAMA",
+    "district": "Chepo",
+    "community": "Tortí",
+    "address": "Supermercado Xtra, Carretera Panamericana, Tortí",
+    "lat": 8.9171,
+    "lng": -78.3958,
+    "schedule": {},
+    "hoursNote": "Todas las sucursales de Panamá y Panamá Oeste reciben donaciones desde el 10 de octubre, en horario de la tienda. Confirma antes de ir.",
+    "notes": "Xtra habilitó todas sus sucursales de Panamá y Panamá Oeste como centros de acopio. Las donaciones se remiten a los centros de acopio que indique el Sinaproc para los afectados del interior. Ubicación de la sucursal tomada de OpenStreetMap.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Aseo personal y toallitas húmedas"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche y pañales"
+      }
+    ],
+    "source": {
+      "title": "Lista compartida en X por @taerrari",
+      "url": "https://x.com/taerrari/status/2109013109075476682",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Supermercado Xtra El Trébol (Pacora)",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Xtra",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Pacora",
+    "address": "Supermercado Xtra, El Trébol, Pacora",
+    "lat": 9.1144,
+    "lng": -79.3366,
+    "schedule": {},
+    "hoursNote": "Todas las sucursales de Panamá y Panamá Oeste reciben donaciones desde el 10 de octubre, en horario de la tienda. Confirma antes de ir.",
+    "notes": "Xtra habilitó todas sus sucursales de Panamá y Panamá Oeste como centros de acopio. Las donaciones se remiten a los centros de acopio que indique el Sinaproc para los afectados del interior. Ubicación de la sucursal tomada de OpenStreetMap.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Aseo personal y toallitas húmedas"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche y pañales"
+      }
+    ],
+    "source": {
+      "title": "Lista compartida en X por @taerrari",
+      "url": "https://x.com/taerrari/status/2109013109075476682",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Supermercado Xtra Vía España (Obarrio)",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Xtra",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Bella Vista",
+    "address": "Supermercado Xtra, Avenida Central España, Obarrio",
+    "lat": 8.9879,
+    "lng": -79.5228,
+    "schedule": {},
+    "hoursNote": "Todas las sucursales de Panamá y Panamá Oeste reciben donaciones desde el 10 de octubre, en horario de la tienda. Confirma antes de ir.",
+    "notes": "Xtra habilitó todas sus sucursales de Panamá y Panamá Oeste como centros de acopio. Las donaciones se remiten a los centros de acopio que indique el Sinaproc para los afectados del interior. Ubicación de la sucursal tomada de OpenStreetMap.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Aseo personal y toallitas húmedas"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche y pañales"
+      }
+    ],
+    "source": {
+      "title": "Lista compartida en X por @taerrari",
+      "url": "https://x.com/taerrari/status/2109013109075476682",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Supermercado Xtra Torrijos Carter",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Xtra",
+    "province": "PANAMA",
+    "district": "San Miguelito",
+    "community": "Belisario Frías",
+    "address": "Supermercado Xtra, Torrijos Carter, Belisario Frías",
+    "lat": 9.0805,
+    "lng": -79.4939,
+    "schedule": {},
+    "hoursNote": "Todas las sucursales de Panamá y Panamá Oeste reciben donaciones desde el 10 de octubre, en horario de la tienda. Confirma antes de ir.",
+    "notes": "Xtra habilitó todas sus sucursales de Panamá y Panamá Oeste como centros de acopio. Las donaciones se remiten a los centros de acopio que indique el Sinaproc para los afectados del interior. Ubicación de la sucursal tomada de OpenStreetMap.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Aseo personal y toallitas húmedas"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche y pañales"
+      }
+    ],
+    "source": {
+      "title": "Lista compartida en X por @taerrari",
+      "url": "https://x.com/taerrari/status/2109013109075476682",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Supermercado Xtra Corredor Sur (Las Mañanitas)",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Xtra",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Las Mañanitas",
+    "address": "Supermercado Xtra, Corredor Sur, Las Mañanitas",
+    "lat": 9.0636,
+    "lng": -79.4046,
+    "schedule": {},
+    "hoursNote": "Todas las sucursales de Panamá y Panamá Oeste reciben donaciones desde el 10 de octubre, en horario de la tienda. Confirma antes de ir.",
+    "notes": "Xtra habilitó todas sus sucursales de Panamá y Panamá Oeste como centros de acopio. Las donaciones se remiten a los centros de acopio que indique el Sinaproc para los afectados del interior. Ubicación de la sucursal tomada de OpenStreetMap.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Aseo personal y toallitas húmedas"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche y pañales"
+      }
+    ],
+    "source": {
+      "title": "Lista compartida en X por @taerrari",
+      "url": "https://x.com/taerrari/status/2109013109075476682",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Supermercado Xtra Calle T1 Sur (La Chorrera)",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Xtra",
+    "province": "PANAMA_OESTE",
+    "district": "La Chorrera",
+    "community": "La Chorrera",
+    "address": "Supermercado Xtra, Calle T1 Sur, La Chorrera",
+    "lat": 8.8741,
+    "lng": -79.7807,
+    "schedule": {},
+    "hoursNote": "Todas las sucursales de Panamá y Panamá Oeste reciben donaciones desde el 10 de octubre, en horario de la tienda. Confirma antes de ir.",
+    "notes": "Xtra habilitó todas sus sucursales de Panamá y Panamá Oeste como centros de acopio. Las donaciones se remiten a los centros de acopio que indique el Sinaproc para los afectados del interior. Ubicación de la sucursal tomada de OpenStreetMap.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Aseo personal y toallitas húmedas"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche y pañales"
+      }
+    ],
+    "source": {
+      "title": "Lista compartida en X por @taerrari",
+      "url": "https://x.com/taerrari/status/2109013109075476682",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Supermercado Xtra Llano Largo (La Chorrera)",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Xtra",
+    "province": "PANAMA_OESTE",
+    "district": "La Chorrera",
+    "community": "Llano Largo",
+    "address": "Supermercado Xtra, Vía La Herradura-Llano Largo, Llano Largo",
+    "lat": 8.8349,
+    "lng": -79.8048,
+    "schedule": {},
+    "hoursNote": "Todas las sucursales de Panamá y Panamá Oeste reciben donaciones desde el 10 de octubre, en horario de la tienda. Confirma antes de ir.",
+    "notes": "Xtra habilitó todas sus sucursales de Panamá y Panamá Oeste como centros de acopio. Las donaciones se remiten a los centros de acopio que indique el Sinaproc para los afectados del interior. Ubicación de la sucursal tomada de OpenStreetMap.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Aseo personal y toallitas húmedas"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche y pañales"
+      }
+    ],
+    "source": {
+      "title": "Lista compartida en X por @taerrari",
+      "url": "https://x.com/taerrari/status/2109013109075476682",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "centerType": "ACOPIO",
+    "schedule": {},
+    "name": "Hub Humanitario Panamá Pacífico (recepción de contenedores de empresas)",
+    "organizerType": "GOBIERNO",
+    "organizerName": "Hub Humanitario Regional de Panamá",
+    "province": "PANAMA_OESTE",
+    "district": "Arraiján",
+    "community": "Panamá Pacífico",
+    "address": "Centro Logístico Regional de Asistencia Humanitaria (CLRAH), Panamá Pacífico, Veracruz, Arraiján",
+    "lat": 8.9109,
+    "lng": -79.6033,
+    "hoursNote": "Horario no publicado. Confirma antes de ir.",
+    "notes": "Punto de recepción de contenedores y donaciones de empresas, según la lista de Sumarse. Para donaciones de particulares, usa los otros centros de la lista.",
+    "needs": [
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos no perecederos"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Insumos médicos y de primeros auxilios"
+      },
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      }
+    ],
+    "source": {
+      "title": "Lista compartida en X por @Sumarse",
+      "url": "https://x.com/Sumarse/status/2109047318494462289",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "centerType": "ACOPIO",
+    "schedule": {},
+    "name": "Gobernación de la Provincia de Panamá",
+    "organizerType": "GOBIERNO",
+    "organizerName": "Gobernación de la Provincia de Panamá",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Calidonia",
+    "address": "Gobernación de la Provincia de Panamá, Calle de la Concordia, Calidonia",
+    "lat": 8.9705,
+    "lng": -79.5363,
+    "hoursNote": "Horario no publicado. Confirma antes de ir.",
+    "notes": "Según Sumarse, las gobernaciones de todas las provincias reciben donaciones para los afectados por el sismo.",
+    "needs": [
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos no perecederos"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Aseo personal"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Insumos médicos y de primeros auxilios"
+      },
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      }
+    ],
+    "source": {
+      "title": "Lista compartida en X por @Sumarse",
+      "url": "https://x.com/Sumarse/status/2109047318494462289",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "centerType": "ACOPIO",
+    "schedule": {},
+    "name": "Gobernación de Veraguas",
+    "organizerType": "GOBIERNO",
+    "organizerName": "Gobernación de Veraguas",
+    "province": "VERAGUAS",
+    "district": "Santiago",
+    "community": "Santiago",
+    "address": "Gobernación de Veraguas, Avenida Héctor Alejandro Santacoloma, barriada 26 de Noviembre, Santiago",
+    "lat": 8.0999,
+    "lng": -80.9673,
+    "hoursNote": "Horario no publicado. Confirma antes de ir.",
+    "notes": "Según Sumarse, las gobernaciones de todas las provincias reciben donaciones para los afectados por el sismo.",
+    "needs": [
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos no perecederos"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Aseo personal"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Insumos médicos y de primeros auxilios"
+      },
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      }
+    ],
+    "source": {
+      "title": "Lista compartida en X por @Sumarse",
+      "url": "https://x.com/Sumarse/status/2109047318494462289",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "centerType": "ACOPIO",
+    "schedule": {},
+    "name": "Gobernación de Coclé",
+    "organizerType": "GOBIERNO",
+    "organizerName": "Gobernación de Coclé",
+    "province": "COCLE",
+    "district": "Penonomé",
+    "community": "Penonomé",
+    "address": "Gobernación de Coclé, Calle José Vásquez, Penonomé",
+    "lat": 8.5217,
+    "lng": -80.3599,
+    "hoursNote": "Horario no publicado. Confirma antes de ir.",
+    "notes": "Según Sumarse, las gobernaciones de todas las provincias reciben donaciones para los afectados por el sismo.",
+    "needs": [
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos no perecederos"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Aseo personal"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Insumos médicos y de primeros auxilios"
+      },
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      }
+    ],
+    "source": {
+      "title": "Lista compartida en X por @Sumarse",
+      "url": "https://x.com/Sumarse/status/2109047318494462289",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "centerType": "ACOPIO",
+    "schedule": {},
+    "name": "Gobernación de Bocas del Toro",
+    "organizerType": "GOBIERNO",
+    "organizerName": "Gobernación de Bocas del Toro",
+    "province": "BOCAS_DEL_TORO",
+    "district": "Bocas del Toro",
+    "community": "Bocas del Toro",
+    "address": "Gobernación de Bocas del Toro, Calle 3a, Isla Colón, Bocas del Toro",
+    "lat": 9.3405,
+    "lng": -82.2405,
+    "hoursNote": "Horario no publicado. Confirma antes de ir.",
+    "notes": "Según Sumarse, las gobernaciones de todas las provincias reciben donaciones para los afectados por el sismo.",
+    "needs": [
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos no perecederos"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Aseo personal"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Insumos médicos y de primeros auxilios"
+      },
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      }
+    ],
+    "source": {
+      "title": "Lista compartida en X por @Sumarse",
+      "url": "https://x.com/Sumarse/status/2109047318494462289",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Riba Smith Bella Vista",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Riba Smith",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Bella Vista",
+    "address": "Riba Smith Bella Vista, Calle 45 Este, La Cresta, Bella Vista",
+    "lat": 8.9772,
+    "lng": -79.5301,
+    "schedule": {},
+    "hoursNote": "Recibe en horario de la tienda (lun-sáb 7:00 a. m.-10:00 p. m., dom 8:00 a. m.-10:00 p. m., según su sitio web). Anunciado el 10 de octubre. Confirma antes de ir.",
+    "notes": "Riba Smith anunció que todos sus supermercados (excepto Chitré) son punto de acopio para los damnificados de la península de Azuero. Piden agua embotellada, alimentos enlatados y secos, pañales para bebés y adultos, leche e insumos de salud y medicamentos.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua embotellada"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos enlatados y secos"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pañales para bebés y adultos; leche"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Insumos de salud y medicamentos"
+      }
+    ],
+    "source": {
+      "title": "Riba Smith (Instagram oficial), compartido en X por @MiryAyala",
+      "url": "https://x.com/MiryAyala/status/2108969018367324478",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Riba Smith Transístmica",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Riba Smith",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Betania",
+    "address": "Riba Smith Transístmica, Avenida Simón Bolívar (Transístmica), Los Ángeles, Betania",
+    "lat": 8.9985,
+    "lng": -79.5253,
+    "schedule": {},
+    "hoursNote": "Recibe en horario de la tienda (lun-sáb 7:00 a. m.-10:00 p. m., dom 8:00 a. m.-10:00 p. m., según su sitio web). Anunciado el 10 de octubre. Confirma antes de ir.",
+    "notes": "Riba Smith anunció que todos sus supermercados (excepto Chitré) son punto de acopio para los damnificados de la península de Azuero. Piden agua embotellada, alimentos enlatados y secos, pañales para bebés y adultos, leche e insumos de salud y medicamentos.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua embotellada"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos enlatados y secos"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pañales para bebés y adultos; leche"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Insumos de salud y medicamentos"
+      }
+    ],
+    "source": {
+      "title": "Riba Smith (Instagram oficial), compartido en X por @MiryAyala",
+      "url": "https://x.com/MiryAyala/status/2108969018367324478",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Riba Smith Multiplaza",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Riba Smith",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "San Francisco (Punta Pacífica)",
+    "address": "Riba Smith Multiplaza, frente a Multiplaza Pacific, Punta Pacífica, San Francisco",
+    "lat": 8.9858,
+    "lng": -79.5101,
+    "schedule": {},
+    "hoursNote": "Recibe en horario de la tienda (lun-sáb 7:00 a. m.-10:00 p. m., dom 8:00 a. m.-10:00 p. m., según su sitio web). Anunciado el 10 de octubre. Confirma antes de ir.",
+    "notes": "Riba Smith anunció que todos sus supermercados (excepto Chitré) son punto de acopio para los damnificados de la península de Azuero. Piden agua embotellada, alimentos enlatados y secos, pañales para bebés y adultos, leche e insumos de salud y medicamentos.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua embotellada"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos enlatados y secos"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pañales para bebés y adultos; leche"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Insumos de salud y medicamentos"
+      }
+    ],
+    "source": {
+      "title": "Riba Smith (Instagram oficial), compartido en X por @MiryAyala",
+      "url": "https://x.com/MiryAyala/status/2108969018367324478",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Riba Smith Costa del Este",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Riba Smith",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Costa del Este",
+    "address": "Riba Smith Costa del Este, Calle Costa Dorada / Avenida Marina Norte, Costa del Este",
+    "lat": 9.0237,
+    "lng": -79.4624,
+    "schedule": {},
+    "hoursNote": "Recibe en horario de la tienda (lun-sáb 7:00 a. m.-10:00 p. m., dom 8:00 a. m.-10:00 p. m., según su sitio web). Anunciado el 10 de octubre. Confirma antes de ir.",
+    "notes": "Riba Smith anunció que todos sus supermercados (excepto Chitré) son punto de acopio para los damnificados de la península de Azuero. Piden agua embotellada, alimentos enlatados y secos, pañales para bebés y adultos, leche e insumos de salud y medicamentos.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua embotellada"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos enlatados y secos"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pañales para bebés y adultos; leche"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Insumos de salud y medicamentos"
+      }
+    ],
+    "source": {
+      "title": "Riba Smith (Instagram oficial), compartido en X por @MiryAyala",
+      "url": "https://x.com/MiryAyala/status/2108969018367324478",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Riba Smith Brisas del Golf",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Riba Smith",
+    "province": "PANAMA",
+    "district": "San Miguelito",
+    "community": "Brisas del Golf",
+    "address": "Riba Smith Brisas del Golf, Avenida Manuel Fernando Zárate, Brisas del Golf, Rufina Alfaro",
+    "lat": 9.0696,
+    "lng": -79.4632,
+    "schedule": {},
+    "hoursNote": "Recibe en horario de la tienda (lun-sáb 7:00 a. m.-10:00 p. m., dom 8:00 a. m.-10:00 p. m., según su sitio web). Anunciado el 10 de octubre. Confirma antes de ir.",
+    "notes": "Riba Smith anunció que todos sus supermercados (excepto Chitré) son punto de acopio para los damnificados de la península de Azuero. Piden agua embotellada, alimentos enlatados y secos, pañales para bebés y adultos, leche e insumos de salud y medicamentos.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua embotellada"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos enlatados y secos"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pañales para bebés y adultos; leche"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Insumos de salud y medicamentos"
+      }
+    ],
+    "source": {
+      "title": "Riba Smith (Instagram oficial), compartido en X por @MiryAyala",
+      "url": "https://x.com/MiryAyala/status/2108969018367324478",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Riba Smith Altaplaza",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Riba Smith",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Ancón (Altaplaza)",
+    "address": "Riba Smith en Altaplaza Mall, Vía Centenario, The Springs, Ancón",
+    "lat": 9.0295,
+    "lng": -79.5345,
+    "schedule": {},
+    "hoursNote": "Recibe en horario de la tienda (lun-sáb 7:00 a. m.-10:00 p. m., dom 8:00 a. m.-10:00 p. m., según su sitio web). Anunciado el 10 de octubre. Confirma antes de ir.",
+    "notes": "Riba Smith anunció que todos sus supermercados (excepto Chitré) son punto de acopio para los damnificados de la península de Azuero. Piden agua embotellada, alimentos enlatados y secos, pañales para bebés y adultos, leche e insumos de salud y medicamentos.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua embotellada"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos enlatados y secos"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pañales para bebés y adultos; leche"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Insumos de salud y medicamentos"
+      }
+    ],
+    "source": {
+      "title": "Riba Smith (Instagram oficial), compartido en X por @MiryAyala",
+      "url": "https://x.com/MiryAyala/status/2108969018367324478",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Riba Smith Albrook",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Riba Smith",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Ancón (Albrook)",
+    "address": "Riba Smith en Terrazas de Albrook, Avenida Omar Torrijos Herrera, Albrook",
+    "lat": 8.9743,
+    "lng": -79.5654,
+    "schedule": {},
+    "hoursNote": "Recibe en horario de la tienda (lun-sáb 6:30 a. m.-10:00 p. m., dom 8:00 a. m.-10:00 p. m., según su sitio web). Anunciado el 10 de octubre. Confirma antes de ir.",
+    "notes": "Riba Smith anunció que todos sus supermercados (excepto Chitré) son punto de acopio para los damnificados de la península de Azuero. Piden agua embotellada, alimentos enlatados y secos, pañales para bebés y adultos, leche e insumos de salud y medicamentos.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua embotellada"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos enlatados y secos"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pañales para bebés y adultos; leche"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Insumos de salud y medicamentos"
+      }
+    ],
+    "source": {
+      "title": "Riba Smith (Instagram oficial), compartido en X por @MiryAyala",
+      "url": "https://x.com/MiryAyala/status/2108969018367324478",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Riba Smith La Siesta",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Riba Smith",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Tocumen (La Siesta)",
+    "address": "Riba Smith Mercadito La Siesta, Calle Oricamola, La Siesta, Sector 4, Tocumen",
+    "lat": 9.0783,
+    "lng": -79.364,
+    "schedule": {},
+    "hoursNote": "Recibe en horario de la tienda (lun-sáb 6:30 a. m.-10:00 p. m., dom 7:00 a. m.-10:00 p. m., según su sitio web). Anunciado el 10 de octubre. Confirma antes de ir.",
+    "notes": "Riba Smith anunció que todos sus supermercados (excepto Chitré) son punto de acopio para los damnificados de la península de Azuero. Piden agua embotellada, alimentos enlatados y secos, pañales para bebés y adultos, leche e insumos de salud y medicamentos.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua embotellada"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos enlatados y secos"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pañales para bebés y adultos; leche"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Insumos de salud y medicamentos"
+      }
+    ],
+    "source": {
+      "title": "Riba Smith (Instagram oficial), compartido en X por @MiryAyala",
+      "url": "https://x.com/MiryAyala/status/2108969018367324478",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Riba Smith Villa Zaita",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Riba Smith",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Ernesto Córdoba Campos (Villa Zaita)",
+    "address": "Riba Smith Mercadito, Plaza Villa Zaita, Calle Montisol, Villa Zaita",
+    "lat": 9.0816,
+    "lng": -79.5168,
+    "schedule": {},
+    "hoursNote": "Recibe en horario de la tienda (lun-sáb 6:00 a. m.-9:30 p. m., dom 7:00 a. m.-10:00 p. m., según su sitio web). Anunciado el 10 de octubre. Confirma antes de ir.",
+    "notes": "Riba Smith anunció que todos sus supermercados (excepto Chitré) son punto de acopio para los damnificados de la península de Azuero. Piden agua embotellada, alimentos enlatados y secos, pañales para bebés y adultos, leche e insumos de salud y medicamentos.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua embotellada"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos enlatados y secos"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pañales para bebés y adultos; leche"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Insumos de salud y medicamentos"
+      }
+    ],
+    "source": {
+      "title": "Riba Smith (Instagram oficial), compartido en X por @MiryAyala",
+      "url": "https://x.com/MiryAyala/status/2108969018367324478",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Riba Smith Panamá Pacífico",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Riba Smith",
+    "province": "PANAMA_OESTE",
+    "district": "Arraiján",
+    "community": "Veracruz (Panamá Pacífico)",
+    "address": "Riba Smith Panamá Pacífico, Bulevar Andrews, Panamá Pacífico",
+    "lat": 8.9179,
+    "lng": -79.5928,
+    "schedule": {},
+    "hoursNote": "Recibe en horario de la tienda (lun-sáb 7:00 a. m.-9:00 p. m., dom 8:00 a. m.-9:00 p. m., según su sitio web). Anunciado el 10 de octubre. Confirma antes de ir.",
+    "notes": "Riba Smith anunció que todos sus supermercados (excepto Chitré) son punto de acopio para los damnificados de la península de Azuero. Piden agua embotellada, alimentos enlatados y secos, pañales para bebés y adultos, leche e insumos de salud y medicamentos.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua embotellada"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos enlatados y secos"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pañales para bebés y adultos; leche"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Insumos de salud y medicamentos"
+      }
+    ],
+    "source": {
+      "title": "Riba Smith (Instagram oficial), compartido en X por @MiryAyala",
+      "url": "https://x.com/MiryAyala/status/2108969018367324478",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Riba Smith Market Plaza (La Chorrera)",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Riba Smith",
+    "province": "PANAMA_OESTE",
+    "district": "La Chorrera",
+    "community": "Costa Verde",
+    "address": "Riba Smith en Market Plaza, Costa Verde, La Chorrera",
+    "lat": 8.8888,
+    "lng": -79.7495,
+    "schedule": {},
+    "hoursNote": "Recibe en horario de la tienda (lun-sáb 7:00 a. m.-10:00 p. m., dom 8:00 a. m.-10:00 p. m., según su sitio web). Anunciado el 10 de octubre. Confirma antes de ir.",
+    "notes": "Riba Smith anunció que todos sus supermercados (excepto Chitré) son punto de acopio para los damnificados de la península de Azuero. Piden agua embotellada, alimentos enlatados y secos, pañales para bebés y adultos, leche e insumos de salud y medicamentos.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua embotellada"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos enlatados y secos"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pañales para bebés y adultos; leche"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Insumos de salud y medicamentos"
+      }
+    ],
+    "source": {
+      "title": "Riba Smith (Instagram oficial), compartido en X por @MiryAyala",
+      "url": "https://x.com/MiryAyala/status/2108969018367324478",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Riba Smith Coronado",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Riba Smith",
+    "province": "PANAMA_OESTE",
+    "district": "Chame",
+    "community": "Coronado",
+    "address": "Riba Smith Coronado, Carretera Interamericana, Coronado",
+    "lat": 8.5411,
+    "lng": -79.916,
+    "schedule": {},
+    "hoursNote": "Recibe en horario de la tienda (lun-mié 7:00 a. m.-10:00 p. m., jue-sáb 6:00 a. m.-10:00 p. m., dom 7:00 a. m.-8:00 p. m., según su sitio web). Anunciado el 10 de octubre. Confirma antes de ir.",
+    "notes": "Riba Smith anunció que todos sus supermercados (excepto Chitré) son punto de acopio para los damnificados de la península de Azuero. Piden agua embotellada, alimentos enlatados y secos, pañales para bebés y adultos, leche e insumos de salud y medicamentos.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua embotellada"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos enlatados y secos"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pañales para bebés y adultos; leche"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Insumos de salud y medicamentos"
+      }
+    ],
+    "source": {
+      "title": "Riba Smith (Instagram oficial), compartido en X por @MiryAyala",
+      "url": "https://x.com/MiryAyala/status/2108969018367324478",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Counter de Flytrip (Aeropuerto Marcos A. Gelabert)",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Flytrip",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Ancón (Albrook)",
+    "address": "Counter de Flytrip, terminal del Aeropuerto Internacional Marcos A. Gelabert, Albrook",
+    "lat": 8.9705,
+    "lng": -79.5599,
+    "schedule": {},
+    "hoursNote": "Anunciado el 10 de octubre; horario no publicado. Confirma antes de ir.",
+    "notes": "Campaña «Juntos por Pedasí»: la aerolínea lleva los insumos en sus vuelos programados a Pedasí. Se dejan en el counter de Flytrip del aeropuerto de Albrook. No detallan qué artículos piden.",
+    "needs": [],
+    "source": {
+      "title": "Flytrip, compartido en X por @MiryAyala",
+      "url": "https://x.com/MiryAyala/status/2108970788451995863",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Policlínica Dr. Horacio Díaz Gómez (Santiago)",
+    "centerType": "ACOPIO",
+    "organizerType": "MUNICIPIO",
+    "organizerName": "Alcaldía de Santiago",
+    "province": "VERAGUAS",
+    "district": "Santiago",
+    "community": "Paritilla",
+    "address": "Policlínica Dr. Horacio Díaz Gómez de la CSS, Avenida 10 A Norte, barriada Paritilla, Santiago",
+    "lat": 8.1081,
+    "lng": -80.9806,
+    "schedule": {},
+    "hoursNote": "Comunicado del 9 de octubre; horario no publicado. Confirma antes de ir.",
+    "notes": "Punto de recolección de la Alcaldía de Santiago. Piden con urgencia toldas para habilitar espacios temporales y proteger a los pacientes de la policlínica tras el sismo.",
+    "needs": [
+      {
+        "item": "TARPS",
+        "level": "URGENT",
+        "note": "Toldas para espacios temporales de la policlínica"
+      }
+    ],
+    "source": {
+      "title": "Comunicado oficial de la Alcaldía de Santiago, compartido en X por @DrAlexisTejedor",
+      "url": "https://x.com/DrAlexisTejedor/status/2108740261148766522",
+      "date": "2026-10-09"
+    }
+  },
+  {
+    "name": "Boquete Brewing Company",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Boquete Brew Co.",
+    "province": "CHIRIQUI",
+    "district": "Boquete",
+    "community": "Bajo Boquete",
+    "address": "Boquete Brewing Company, Vía Boquete, Los Cabezos, Bajo Boquete",
+    "lat": 8.7809,
+    "lng": -82.4324,
+    "schedule": {},
+    "hoursNote": "Anunciado el 10 de octubre; horario no publicado. Confirma antes de ir.",
+    "notes": "Recogen donaciones para provincias centrales; el envío al interior se coordina con la Alcaldía de Boquete y otras instituciones. No reciben ropa.",
+    "needs": [
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos y enlatados"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pañales para bebés y adultos"
+      },
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua embotellada"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Útiles de aseo"
+      }
+    ],
+    "source": {
+      "title": "Boquete Brew Co., compartido en X por @Skrying",
+      "url": "https://x.com/Skrying/status/2108949639516872752",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Junta Comunal de Betania",
+    "centerType": "ACOPIO",
+    "organizerType": "JUNTA_COMUNAL",
+    "organizerName": "Junta Comunal de Betania",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Betania",
+    "address": "Junta Comunal de Betania, Camino Real de Betania, El Ingenio, Betania",
+    "lat": 9.0098,
+    "lng": -79.5242,
+    "schedule": {},
+    "hoursNote": "Señalado como centro de acopio el 10 de octubre; horario no publicado. Confirma antes de ir.",
+    "notes": "Aparece en una lista ciudadana de centros de acopio de la ciudad para los afectados por el sismo. No se publicó lista de artículos.",
+    "needs": [],
+    "source": {
+      "title": "Lista de centros de acopio publicada en X por @raulconte10",
+      "url": "https://x.com/raulconte10/status/2108948205937295844",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Super Xtra de Penonomé",
+    "centerType": "ACOPIO",
+    "organizerType": "VECINOS",
+    "organizerName": "Voluntarios de Penonomé",
+    "province": "COCLE",
+    "district": "Penonomé",
+    "community": "Penonomé",
+    "address": "Super Xtra de Penonomé, Carretera Panamericana, Penonomé",
+    "lat": 8.5147,
+    "lng": -80.349,
+    "schedule": {},
+    "hoursNote": "De 4:00 p. m. a 7:00 p. m.; anunciado el 10 de octubre. Confirma antes de ir.",
+    "notes": "Cambio de ubicación: antes era detrás de Credicorp Bank y pasó al Xtra de Penonomé. Medicamentos que piden: ibuprofeno, acetaminofén, sitagliptina y para la presión.",
+    "needs": [
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos y enlatados"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche de fórmula para bebés"
+      },
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua embotellada"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Medicamentos"
+      }
+    ],
+    "source": {
+      "title": "Afiche «Centro de acopio en Penonomé», compartido en X por @emalek1985",
+      "url": "https://x.com/emalek1985/status/2109013159319085440",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Punto de carga frente a Novey Centennial",
+    "centerType": "ACOPIO",
+    "organizerType": "VECINOS",
+    "organizerName": "Voluntarios «Ayuda para Los Santos»",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Ancón (Centennial)",
+    "address": "Estacionamiento frente al Novey de Centennial, Calle Centennial, Dorado Lakes, Ancón",
+    "lat": 9.0306,
+    "lng": -79.5299,
+    "schedule": {},
+    "hoursNote": "Solo el domingo 11 de octubre, recibiendo desde las 10:00 a. m. Confirma antes de ir.",
+    "notes": "Punto de un día para cargar un camión con ayuda a Los Santos. Piden carpas, sábanas, colchones, comida no perecedera, agua y medicamentos. Se necesitan voluntarios para cargar.",
+    "needs": [
+      {
+        "item": "TARPS",
+        "level": "NEEDED",
+        "note": "Carpas"
+      },
+      {
+        "item": "BEDDING",
+        "level": "NEEDED",
+        "note": "Sábanas y colchones"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Comida no perecedera"
+      },
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Medicamentos"
+      },
+      {
+        "item": "VOLUNTEERS",
+        "level": "URGENT",
+        "note": "Para cargar el camión"
+      }
+    ],
+    "source": {
+      "title": "Afiche «Ayuda para Los Santos», compartido en X por @kaitleinpmd",
+      "url": "https://x.com/kaitleinpmd/status/2109092966648381751",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Supermercado Xtra Parque Lefevre",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Xtra",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Parque Lefevre",
+    "address": "Supermercado Xtra, Vía Cincuentenario, Parque Lefevre",
+    "lat": 9.0171,
+    "lng": -79.4841,
+    "schedule": {},
+    "hoursNote": "Todas las sucursales de Panamá y Panamá Oeste reciben donaciones desde el 10 de octubre, en horario de la tienda. Confirma antes de ir.",
+    "notes": "Xtra habilitó todas sus sucursales de Panamá y Panamá Oeste como centros de acopio. Las donaciones se remiten a los centros de acopio que indique el Sinaproc para los afectados del interior. Ubicación de la sucursal tomada de OpenStreetMap.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Aseo personal y toallitas húmedas"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche y pañales"
+      }
+    ],
+    "source": {
+      "title": "Lista compartida en X por @taerrari",
+      "url": "https://x.com/taerrari/status/2109013109075476682",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Supermercado Xtra La Loma (Pueblo Nuevo)",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Xtra",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Pueblo Nuevo",
+    "address": "Supermercado Xtra, Avenida Central España, La Loma, Pueblo Nuevo",
+    "lat": 9.0021,
+    "lng": -79.5166,
+    "schedule": {},
+    "hoursNote": "Todas las sucursales de Panamá y Panamá Oeste reciben donaciones desde el 10 de octubre, en horario de la tienda. Confirma antes de ir.",
+    "notes": "Xtra habilitó todas sus sucursales de Panamá y Panamá Oeste como centros de acopio. Las donaciones se remiten a los centros de acopio que indique el Sinaproc para los afectados del interior. Ubicación de la sucursal tomada de OpenStreetMap.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Aseo personal y toallitas húmedas"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche y pañales"
+      }
+    ],
+    "source": {
+      "title": "Lista compartida en X por @taerrari",
+      "url": "https://x.com/taerrari/status/2109013109075476682",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "centerType": "ACOPIO",
+    "schedule": {},
+    "name": "Municipio de Santiago",
+    "organizerType": "MUNICIPIO",
+    "organizerName": "Alcaldía de Santiago",
+    "province": "VERAGUAS",
+    "district": "Santiago",
+    "community": "Santiago",
+    "address": "Alcaldía de Santiago, Avenida Central, Santiago de Veraguas",
+    "lat": 8.0972,
+    "lng": -80.9828,
+    "hoursNote": "Horario no publicado. Confirma antes de ir.",
+    "notes": "Centro de acopio en Veraguas incluido en la lista de Sumarse.",
+    "needs": [
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos no perecederos"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Aseo personal"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Insumos médicos y de primeros auxilios"
+      },
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      }
+    ],
+    "source": {
+      "title": "Lista compartida en X por @Sumarse",
+      "url": "https://x.com/Sumarse/status/2109047318494462289",
+      "date": "2026-10-10"
+    }
+  }
+]
