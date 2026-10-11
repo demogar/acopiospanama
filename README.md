@@ -72,12 +72,12 @@ npm test              # pruebas de la API contra PostgreSQL
 - Los títulos de los PR siguen [Conventional Commits](https://www.conventionalcommits.org/es/) (`feat:`, `fix:`,
   `docs:`…) y se convierten en el mensaje del commit al fusionar con _squash_. La CI lo comprueba.
 - [release-please](https://github.com/googleapis/release-please) mantiene un PR de publicación con el
-  [CHANGELOG](CHANGELOG.md) y la versión ([SemVer](https://semver.org/lang/es/)). Al fusionarlo se crea la etiqueta
+  [CHANGELOG](https://github.com/demogar/acopiospanama/blob/main/CHANGELOG.md) y la versión ([SemVer](https://semver.org/lang/es/)). Al fusionarlo se crea la etiqueta
   `vX.Y.Z`, la publicación en GitHub y las imágenes `ghcr.io/demogar/acopiospanama-{api,web,backup}:vX.Y.Z`.
 - Cada despliegue expone su versión en `/api/health` (`1.2.3+abc1234`).
 
 ## Documentación
 
 - [Cómo funciona por dentro](docs/ARQUITECTURA.md): reglas automáticas, privacidad y seguridad.
-- [Despliegue y CI/CD](docs/DESPLIEGUE.md) · [Registro de cambios](CHANGELOG.md)
+- [Despliegue y CI/CD](docs/DESPLIEGUE.md) · [Registro de cambios](https://github.com/demogar/acopiospanama/blob/main/CHANGELOG.md)
 - [Seguridad](SECURITY.md) · [Código de conducta](CODE_OF_CONDUCT.md)

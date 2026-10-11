@@ -29,7 +29,7 @@ Un cambio que rompe compatibilidad (API pública, formato de datos) lleva `!` en
 
 `main` siempre está desplegado. [release-please](https://github.com/googleapis/release-please) agrupa los cambios en
 un PR «chore(release): vX.Y.Z»; al fusionarlo se etiqueta la versión, se publica en GitHub y se escribe el
-[CHANGELOG](CHANGELOG.md). Mientras la versión sea 0.x, los `feat` suben el _minor_ y los `fix` el _patch_.
+[CHANGELOG](https://github.com/demogar/acopiospanama/blob/main/CHANGELOG.md). Mientras la versión sea 0.x, los `feat` suben el _minor_ y los `fix` el _patch_.
 
 ## Reglas que no se negocian
 

@@ -4,27 +4,74 @@
   "include-component-in-tag": false,
   "include-v-in-tag": true,
   "bump-minor-pre-major": true,
-  "bump-patch-for-minor-pre-major": true,
   "pull-request-title-pattern": "chore(release): v${version}",
   "pull-request-header": "Fusiona este PR para publicar la versión. El CHANGELOG y las versiones de package.json se actualizan solos.",
   "changelog-sections": [
-    { "type": "feat", "section": "Novedades" },
-    { "type": "fix", "section": "Correcciones" },
-    { "type": "perf", "section": "Rendimiento" },
-    { "type": "revert", "section": "Reversiones" },
-    { "type": "docs", "section": "Documentación", "hidden": true },
-    { "type": "build", "section": "Dependencias", "hidden": true },
-    { "type": "chore", "section": "Mantenimiento", "hidden": true },
-    { "type": "ci", "section": "CI", "hidden": true },
-    { "type": "refactor", "section": "Refactorización", "hidden": true },
-    { "type": "style", "section": "Estilo", "hidden": true },
-    { "type": "test", "section": "Pruebas", "hidden": true }
+    {
+      "type": "feat",
+      "section": "Novedades"
+    },
+    {
+      "type": "fix",
+      "section": "Correcciones"
+    },
+    {
+      "type": "perf",
+      "section": "Rendimiento"
+    },
+    {
+      "type": "revert",
+      "section": "Reversiones"
+    },
+    {
+      "type": "docs",
+      "section": "Documentación",
+      "hidden": true
+    },
+    {
+      "type": "build",
+      "section": "Dependencias",
+      "hidden": true
+    },
+    {
+      "type": "chore",
+      "section": "Mantenimiento",
+      "hidden": true
+    },
+    {
+      "type": "ci",
+      "section": "CI",
+      "hidden": true
+    },
+    {
+      "type": "refactor",
+      "section": "Refactorización",
+      "hidden": true
+    },
+    {
+      "type": "style",
+      "section": "Estilo",
+      "hidden": true
+    },
+    {
+      "type": "test",
+      "section": "Pruebas",
+      "hidden": true
+    }
   ],
   "packages": {
     ".": {
       "extra-files": [
-        { "type": "json", "path": "apps/api/package.json", "jsonpath": "$.version" },
-        { "type": "json", "path": "apps/web/package.json", "jsonpath": "$.version" }
+        {
+          "type": "json",
+          "path": "apps/api/package.json",
+          "jsonpath": "$.version"
+        },
+        {
+          "type": "json",
+          "path": "apps/web/package.json",
+          "jsonpath": "$.version"
+        }
       ]
     }
   }
