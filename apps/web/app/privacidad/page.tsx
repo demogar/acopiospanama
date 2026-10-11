@@ -8,8 +8,8 @@ export const metadata: Metadata = {
   description: 'Qué datos se publican, cuáles se guardan, por cuánto tiempo y cómo pedir que se borren.',
 };
 
-/** Completar antes de publicar el sitio. */
-const CONTACT_EMAIL = '[correo de contacto]';
+/** Correo para solicitudes sobre datos (borrado, consultas). */
+const CONTACT_EMAIL = 'acopiospanama@demogar.com';
 
 export default function Privacidad() {
   return (
