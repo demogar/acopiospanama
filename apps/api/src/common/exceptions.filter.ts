@@ -36,11 +36,9 @@ export class AllExceptionsFilter implements ExceptionFilter {
     this.logger.error(
       `${req.method} ${req.route?.path ?? '?'} → ${err.name ?? 'Error'}${err.code ? ` [${err.code}]` : ''}`,
     );
-    res
-      .status(500)
-      .json({
-        code: 'INTERNAL',
-        message: 'Ocurrió un error. Intenta de nuevo; si persiste, avisa a la administración.',
-      });
+    res.status(500).json({
+      code: 'INTERNAL',
+      message: 'Ocurrió un error. Intenta de nuevo; si persiste, avisa a la administración.',
+    });
   }
 }
