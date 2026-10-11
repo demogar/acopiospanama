@@ -87,7 +87,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 24
-      - run: npm audit --audit-level=high
+      # Lo que llega a producción bloquea; las herramientas de desarrollo (ESLint, Prettier…) solo avisan,
+      # porque sus avisos no afectan al sitio y a veces no tienen versión corregida. Dependabot las sigue.
+      - name: Dependencias de producción
+        run: npm audit --omit=dev --audit-level=high
+      - name: Dependencias de desarrollo (informativo)
+        continue-on-error: true
+        run: npm audit --audit-level=high
 
   images:
     name: Imágenes Docker (${{ matrix.name }})
