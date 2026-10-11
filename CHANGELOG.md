@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.6.0](https://github.com/demogar/acopiospanama/compare/v0.5.0...v0.6.0) (2026-10-11)
+
+
+### Novedades
+
+* **datos:** tercer lote con el Club de Leones de Chanis y el COE de Aguadulce ([#37](https://github.com/demogar/acopiospanama/issues/37)) ([226c461](https://github.com/demogar/acopiospanama/commit/226c46137e41c3594d45dce5f53a7d9ed11d9c4d))
+
+
+### Correcciones
+
+* **datos:** la Alcaldía de Panamá (edificio Hatillo) también abre el domingo 11 ([#36](https://github.com/demogar/acopiospanama/issues/36)) ([5561b6c](https://github.com/demogar/acopiospanama/commit/5561b6cb9f84bf3a76dcb2a758ad7f37b1a45016))
+
 ## [0.5.0](https://github.com/demogar/acopiospanama/compare/v0.4.0...v0.5.0) (2026-10-11)
 
 
