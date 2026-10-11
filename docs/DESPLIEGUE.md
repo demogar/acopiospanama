@@ -90,6 +90,23 @@ Entra en `/entrar` con ese correo y configura el segundo factor. Desde `/moderac
 moderadores. Otros comandos: `make-moderator`, `revoke-role`, `reset-mfa`, `retention`, `reminders`,
 `revoke-all-sessions` e `import-centers` (carga centros anunciados públicamente; ver `data/centros/README.md`).
 
+## Despliegue sin caída
+
+`deploy/desplegar.sh` renueva la API y la web una a una: arranca el contenedor nuevo junto al viejo
+(`docker compose up --scale`), espera a que pase su healthcheck y solo entonces para y borra el viejo. Mientras
+conviven, el DNS de Docker reparte entre los dos; si uno rechaza la conexión, Node (web → api) y Caddy
+(Caddy → web) prueban con el otro, y Caddy además reintenta hasta 30 s antes de responder 502. Si el contenedor
+nuevo no arranca, se descarta, el viejo sigue sirviendo y el job falla. Caddy nunca se recrea en un despliegue:
+solo recarga el `Caddyfile`; la base de datos tampoco.
+
+Consecuencias:
+
+- Durante unos segundos conviven dos versiones de la API. Las migraciones deben ser compatibles con la versión
+  anterior (añadir antes que quitar; nunca renombrar en un solo paso).
+- Los contenedores se llaman `acopiospanama-api-N` con N creciente; es normal.
+- La imagen de Caddy o de PostgreSQL se actualiza a mano, asumiendo unos segundos sin servicio:
+  `docker compose pull caddy && docker compose up -d caddy`.
+
 ## Volver a una versión anterior
 
 Cada despliegue deja en `.env` la versión exacta (`IMAGE_TAG=sha-…`). Las publicaciones añaden además la etiqueta

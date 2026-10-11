@@ -18,5 +18,10 @@ www.{$DOMAIN} {
 		-Server
 	}
 	# Sin registros de acceso: no guardamos URLs ni IPs innecesariamente.
-	reverse_proxy web:3000
+	reverse_proxy web:3000 {
+		# Durante un despliegue conviven dos contenedores `web` y luego se retira el viejo. Si la
+		# conexión falla, se reintenta hasta 30 s en vez de responder 502 (ver deploy/desplegar.sh).
+		lb_try_duration 30s
+		lb_try_interval 250ms
+	}
 }

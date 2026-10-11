@@ -27,7 +27,9 @@ COPY --chown=1000:1000 apps/api/migrations ./apps/api/migrations
 WORKDIR /app/apps/api
 USER 1000:1000
 EXPOSE 3001
-HEALTHCHECK --interval=30s --timeout=5s --start-period=30s --retries=3 \
+# start-interval: durante el arranque se comprueba cada 2 s, así el despliegue continuo retira el
+# contenedor viejo en cuanto el nuevo responde (deploy/desplegar.sh).
+HEALTHCHECK --interval=30s --timeout=5s --start-period=40s --start-interval=2s --retries=3 \
   CMD ["node", "-e", "fetch('http://127.0.0.1:'+(process.env.PORT||3001)+'/api/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
 # Aplica migraciones pendientes (con candado) y arranca.
 CMD ["sh", "-c", "node dist/cli/cli.js migrate && exec node dist/main.js"]
