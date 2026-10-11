@@ -19,6 +19,9 @@ export interface UsersTable {
   recoveryCodes: Generated<string[]>;
   verifiedAt: TimestampNull;
   disabledAt: TimestampNull;
+  lastInvitedAt: TimestampNull;
+  mfaFailedCount: Generated<number>;
+  mfaLockedUntil: TimestampNull;
   createdAt: Generated<Date>;
 }
 
@@ -76,6 +79,7 @@ export interface CentersTable {
   managerConfirmedAt: Generated<Date>;
   lastReminderAt: TimestampNull;
   createdBy: string | null;
+  creatorEmailHmac: string | null;
   removedReason: Generated<string>;
   createdAt: Generated<Date>;
   updatedAt: Generated<Date>;
@@ -96,6 +100,12 @@ export interface CenterManagersTable {
   userId: string;
   createdAt: Generated<Date>;
   createdBy: string | null;
+  acceptedAt: TimestampNull; // null = invitación pendiente (sin acceso)
+}
+
+export interface BlockedEmailsTable {
+  emailHmac: string;
+  createdAt: Generated<Date>;
 }
 
 export interface ReportsTable {
@@ -135,6 +145,7 @@ export interface Database {
   centers: CentersTable;
   centerNeeds: CenterNeedsTable;
   centerManagers: CenterManagersTable;
+  blockedEmails: BlockedEmailsTable;
   reports: ReportsTable;
   confirmations: ConfirmationsTable;
   auditEvents: AuditEventsTable;

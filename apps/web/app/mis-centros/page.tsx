@@ -21,7 +21,7 @@ import { SiteFrame } from '@/components/site-frame';
 import { ErrorState, Loading } from '@/components/states';
 import { api, errorMessage } from '@/lib/api';
 import { useMeta } from '@/lib/account-meta';
-import { type Me, type MyCenter, timeAgo, VISIBILITY_INFO } from '@/lib/account-types';
+import { type Invitation, type Me, type MyCenter, timeAgo, VISIBILITY_INFO } from '@/lib/account-types';
 import { useApi } from '@/lib/use-api';
 
 export default function MyCentersPage() {
@@ -48,6 +48,7 @@ export default function MyCentersPage() {
     );
 
   const { user, centers } = me.data;
+  const invitations = me.data.invitations ?? [];
   return (
     <SiteFrame
       width="prose"
@@ -56,12 +57,13 @@ export default function MyCentersPage() {
       actions={centers.length ? publish : undefined}
     >
       <Stack gap="lg">
-        {centers.length === 0 ? (
+        {invitations.length > 0 && <Invitations items={invitations} provinces={meta?.provinces} onDone={me.reload} />}
+        {centers.length === 0 && invitations.length > 0 ? null : centers.length === 0 ? (
           <EmptyState
             className="grid-cols-[minmax(0,1fr)] px-3"
             variant="empty"
             title="Aún no tienes centros"
-            description="Si organizas o conoces de primera mano un centro de acopio, publícalo: toma unos 3 minutos. Si alguien te añadió como responsable, aparecerá aquí."
+            description="Si organizas o conoces de primera mano un centro de acopio, publícalo: toma unos 3 minutos. Si alguien te invita como responsable, la invitación aparecerá aquí."
             actions={
               <Link href="/publicar" className={`${buttonVariants({ size: 'lg' })} no-underline`}>
                 Publicar un centro
@@ -304,12 +306,80 @@ function Account({
         open={deleteOpen}
         onOpenChange={setDeleteOpen}
         title="¿Borrar tu cuenta?"
-        description="Dejas de ser responsable de tus centros. Los centros donde eres el único responsable quedan cerrados. Se borra tu correo; no se puede deshacer."
+        description="Dejas de ser responsable de tus centros. Los centros donde eres el único responsable quedan cerrados. Se borra tu correo; no se puede deshacer. Si la moderación bloqueó tu cuenta, no podrás crear otra con el mismo correo."
         confirmLabel="Sí, borrar mi cuenta"
         cancelLabel="Cancelar"
         tone="danger"
         onConfirm={deleteAccount}
       />
+    </Panel>
+  );
+}
+
+/** Invitaciones a co-administrar: no dan acceso hasta aceptarlas. */
+function Invitations({
+  items,
+  provinces,
+  onDone,
+}: {
+  items: Invitation[];
+  provinces?: Record<string, string>;
+  onDone: () => void;
+}) {
+  const toast = useToast();
+  const [busy, setBusy] = useState<string | null>(null);
+
+  async function answer(inv: Invitation, action: 'accept' | 'decline') {
+    setBusy(`${inv.id}:${action}`);
+    try {
+      await api.post(`/centers/${inv.id}/invitation/${action}`);
+      toast.success({ title: action === 'accept' ? `Ahora administras «${inv.name}»` : 'Invitación rechazada' });
+      onDone();
+    } catch (err) {
+      toast.error({ title: 'No se pudo', description: errorMessage(err) });
+    } finally {
+      setBusy(null);
+    }
+  }
+
+  return (
+    <Panel as="section" padding="md" tone="pale" aria-labelledby="inv-h">
+      <Stack gap="sm">
+        <Heading level={2} size={3} id="inv-h">
+          Te invitaron a administrar
+        </Heading>
+        <Text size="sm" tone={2}>
+          Al aceptar podrás editar ese centro, actualizar lo que aceptan y recibir sus recordatorios. Si no conoces el
+          centro, recházala.
+        </Text>
+        <ul className="divide-y divide-keyline-soft border-y border-keyline-soft">
+          {items.map((inv) => (
+            <li key={inv.id} className="py-3">
+              <p className="font-semibold break-words text-ink">{inv.name}</p>
+              <p className="text-sm text-ink-2">
+                {[inv.community, provinces?.[inv.province]].filter(Boolean).join(' · ')}
+                {' · '}
+                <Link href={`/c/${inv.slug}`} className="underline">
+                  Ver ficha
+                </Link>
+              </p>
+              <div className="mt-2 grid grid-cols-2 gap-2">
+                <Button loading={busy === `${inv.id}:accept`} disabled={!!busy} onClick={() => answer(inv, 'accept')}>
+                  Aceptar
+                </Button>
+                <Button
+                  variant="secondary"
+                  loading={busy === `${inv.id}:decline`}
+                  disabled={!!busy}
+                  onClick={() => answer(inv, 'decline')}
+                >
+                  Rechazar
+                </Button>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </Stack>
     </Panel>
   );
 }

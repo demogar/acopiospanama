@@ -36,6 +36,11 @@ export default function ComoFunciona() {
             . Tu correo nunca se muestra.
           </p>
           <p>
+            Para que el centro no dependa de una sola persona, el responsable puede invitar a{' '}
+            <strong>co-responsables</strong>. La invitación llega por correo y solo da acceso cuando esa persona la{' '}
+            <strong>acepta</strong> al entrar.
+          </p>
+          <p>
             Cada centro indica qué tipo de lugar es (acopio, distribución, comedor, albergue o mixto), su ubicación y su
             horario por día. Con ese horario se calcula si está <strong>abierto ahora</strong>, en hora de Panamá.
           </p>
@@ -71,7 +76,11 @@ export default function ComoFunciona() {
           <ul>
             <li>
               Cualquiera puede reportar que un centro cerró, que ya no recibe, que tiene datos equivocados, que pide
-              dinero o que parece falso. El reporte es anónimo.
+              dinero, que parece falso o que publicaron sus datos sin permiso. El reporte es anónimo.
+            </li>
+            <li>
+              La misma persona cuenta <strong>una sola vez</strong> por centro mientras su reporte siga abierto:
+              reportar de nuevo otro día no suma.
             </li>
             <li>
               Si <strong>2 o más personas distintas</strong> lo reportan en 3 días, el centro muestra el aviso{' '}
@@ -79,8 +88,17 @@ export default function ComoFunciona() {
             </li>
             <li>
               Si <strong>3 o más personas</strong> reportan algo grave (que cerró, que pide dinero o que es falso) y son
-              más que quienes confirmaron que funciona, el centro <strong>se oculta</strong> solo hasta que su
-              responsable lo revise.
+              más que quienes confirmaron que funciona, el centro <strong>se oculta</strong> solo.
+            </li>
+            <li>
+              Un centro oculto <strong>vuelve a mostrarse</strong> si al menos tantas personas confirman que sigue
+              funcionando como las que lo reportaron, o si su responsable lo confirma. En ese caso queda{' '}
+              <strong>en disputa</strong>, con el aviso «Varias personas lo reportaron. Confirma por teléfono antes de
+              ir y nunca envíes dinero».
+            </li>
+            <li>
+              Si alguien reporta que publicaron <strong>sus datos sin permiso</strong>, el contacto del centro se oculta
+              de inmediato.
             </li>
             <li>El responsable recibe un aviso por correo cuando su centro es reportado.</li>
           </ul>
@@ -90,7 +108,7 @@ export default function ComoFunciona() {
           <h2>Aquí no se pide dinero</h2>
           <p>
             Las fichas solo pueden pedir <strong>artículos</strong>. El sistema bloquea textos con transferencias,
-            números de cuenta o billeteras digitales.{' '}
+            números de cuenta o billeteras digitales. Tampoco admiten <strong>enlaces</strong> a otros sitios.{' '}
             <strong>Nunca transfieras dinero a nombre de un centro de esta lista.</strong> Si ves que alguno pide
             dinero, repórtalo. Si quieres donar dinero, hazlo directamente a organizaciones reconocidas.
           </p>

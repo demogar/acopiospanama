@@ -23,11 +23,16 @@ export function StatusBadges({ c }: { c: Pick<MyCenter, 'visibility' | 'flagged'
 export function OwnerReports({
   c,
   headingLevel = 3,
+  exclude = [],
 }: {
   c: Pick<MyCenter, 'reportReasons' | 'visibility'>;
   headingLevel?: 2 | 3 | 4;
+  /** Motivos que la página ya explica aparte. */
+  exclude?: ReportReason[];
 }) {
-  const entries = Object.entries(c.reportReasons ?? {}).filter(([, n]) => (n ?? 0) > 0) as [ReportReason, number][];
+  const entries = Object.entries(c.reportReasons ?? {}).filter(
+    ([r, n]) => (n ?? 0) > 0 && !exclude.includes(r as ReportReason),
+  ) as [ReportReason, number][];
   if (entries.length === 0 && c.visibility !== 'COMMUNITY_HIDDEN') return null;
   const hidden = c.visibility === 'COMMUNITY_HIDDEN';
   return (
@@ -49,8 +54,10 @@ export function OwnerReports({
       </ul>
       {hidden && (
         <p className="mt-2">
-          Corrige la ficha. Vuelve a mostrarse cuando más personas confirmen en la ficha que funciona que las que lo
-          reportaron, o cuando esos reportes cumplan 3 días. Pide a quienes lo visitan que toquen «Sigue funcionando».
+          Corrige la ficha y, si el centro sigue funcionando, toca «Sigue funcionando»: como responsable, tu
+          confirmación lo vuelve a mostrar, con un aviso de que hay reportes en revisión (la comunidad no puede
+          confirmarlo mientras está oculto). Si no, vuelve cuando esos reportes cumplan 3 días o si la moderación los
+          descarta.
         </p>
       )}
     </Callout>

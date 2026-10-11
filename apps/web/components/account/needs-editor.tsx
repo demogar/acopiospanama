@@ -29,6 +29,27 @@ export function needErrors(fields: Record<string, string>, sent: Need[]): Record
   return out;
 }
 
+/** Errores de la API en notas (`needs.N.note`) como claves `needs.<ARTÍCULO>` para el resumen. */
+export function needSummaryFields(fields: Record<string, string>, sent: Need[]): Record<string, string> {
+  const out: Record<string, string> = {};
+  for (const [k, msg] of Object.entries(fields)) {
+    const m = /^needs\.(\d+)/.exec(k);
+    if (!m) out[k] = msg;
+    else if (sent[Number(m[1])]) out[`needs.${sent[Number(m[1])].item}`] = msg;
+  }
+  return out;
+}
+
+/** Lleva el foco a la nota (o al primer control) del artículo. */
+export function focusNeed(root: ParentNode | null, item: string) {
+  const li = root?.querySelector<HTMLElement>(`[data-need="${item}"]`);
+  const el =
+    li?.querySelector<HTMLElement>('input[type=text], input:not([type=radio])') ??
+    li?.querySelector<HTMLElement>('input');
+  li?.scrollIntoView({ block: 'center' });
+  el?.focus({ preventScroll: true });
+}
+
 const OPTIONS: { value: NeedLevel | ''; short: string; full: string; on: string }[] = [
   { value: '', short: 'Sin indicar', full: 'Sin indicar', on: 'bg-cloth-deep text-ink' },
   { value: 'URGENT', short: 'Urgente', full: 'Urgente', on: 'bg-rojo text-on-ink' },
@@ -85,7 +106,7 @@ function NeedRow({
   const [noteOpen, setNoteOpen] = useState(!!state.note);
   const showNote = state.level !== '' && (noteOpen || !!state.note);
   return (
-    <li className="py-3">
+    <li className="py-3" data-need={itemKey}>
       <fieldset>
         <legend className="mb-2 font-semibold text-ink">{label}</legend>
         <div className="grid grid-cols-4 gap-1">

@@ -124,6 +124,15 @@ export class JobsService implements OnModuleInit {
       ).numDeletedRows,
     );
     add(
+      'blockedEmails',
+      (
+        await this.db
+          .deleteFrom('blockedEmails')
+          .where('createdAt', '<', sql<Date>`now() - interval '365 days'`)
+          .executeTakeFirst()
+      ).numDeletedRows,
+    );
+    add(
       'audit',
       (
         await this.db

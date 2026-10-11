@@ -8,12 +8,18 @@ import { api, ApiError, errorMessage } from '@/lib/api';
 import type { Manager } from '@/lib/account-types';
 import { useApi } from '@/lib/use-api';
 
-/** Responsables del centro: tener 2–3 evita que desaparezca si una persona no responde. */
+/**
+ * Responsables del centro: tener 2–3 evita que desaparezca si una persona no responde.
+ * Se invita por correo y la persona tiene acceso solo cuando acepta. Para evitar que alguien
+ * recién llegado «tome» el centro, solo quien es responsable desde antes puede quitar a otro;
+ * cualquiera puede retirarse a sí mismo (la API lo hace cumplir; aquí solo se refleja).
+ */
 export function Managers({ centerId }: { centerId: string }) {
   const toast = useToast();
   const list = useApi<Manager[]>(`/centers/${centerId}/managers`);
   const [email, setEmail] = useState('');
   const [error, setError] = useState<string | null>(null);
+  const [sent, setSent] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
   const [removing, setRemoving] = useState<Manager | null>(null);
 
@@ -25,9 +31,10 @@ export function Managers({ centerId }: { centerId: string }) {
     }
     setBusy(true);
     setError(null);
+    setSent(null);
     try {
       await api.post(`/centers/${centerId}/managers`, { email: email.trim() });
-      toast.success({ title: 'Responsable añadido', description: `Le avisamos a ${email.trim()} por correo.` });
+      setSent('Le enviamos una invitación. Tendrá acceso cuando la acepte.');
       setEmail('');
       list.reload();
     } catch (err) {
@@ -40,15 +47,28 @@ export function Managers({ centerId }: { centerId: string }) {
   async function remove(m: Manager) {
     try {
       await api.del(`/centers/${centerId}/managers/${m.id}`);
-      toast.success({ title: m.you ? 'Ya no eres responsable de este centro' : 'Responsable quitado' });
+      toast.success({
+        title: m.you
+          ? 'Ya no eres responsable de este centro'
+          : m.pending
+            ? 'Invitación retirada'
+            : 'Responsable quitado',
+      });
       if (m.you) window.location.assign('/mis-centros');
       else list.reload();
     } catch (err) {
-      toast.error({ title: 'No se pudo quitar', description: errorMessage(err) });
+      toast.error({ title: 'No se pudo', description: errorMessage(err) });
     }
   }
 
-  const only = (list.data?.length ?? 0) <= 1;
+  const rows = list.data ?? [];
+  const me = rows.find((m) => m.you);
+  const accepted = rows.filter((m) => !m.pending);
+  const only = accepted.length <= 1;
+  /** Puedo quitar a una invitación pendiente, o a quien aceptó después que yo. */
+  const canRemove = (m: Manager) =>
+    m.pending ||
+    (!!me?.acceptedAt && !!m.acceptedAt && new Date(me.acceptedAt).getTime() < new Date(m.acceptedAt).getTime());
 
   return (
     <Stack gap="md">
@@ -61,44 +81,65 @@ export function Managers({ centerId }: { centerId: string }) {
       ) : !list.data ? (
         <Loading />
       ) : (
-        <ul className="divide-y divide-keyline-soft border-y border-keyline-soft" aria-label="Responsables actuales">
-          {list.data.map((m) => (
+        <ul
+          className="divide-y divide-keyline-soft border-y border-keyline-soft"
+          aria-label="Responsables e invitaciones"
+        >
+          {rows.map((m) => (
             <li key={m.id} className="flex flex-wrap items-center justify-between gap-2 py-2">
               <div className="min-w-0">
-                <p className="font-semibold break-words text-ink">
-                  {m.name || m.email.split('@')[0]}{' '}
+                <p className="flex flex-wrap items-center gap-1 font-semibold break-words text-ink">
+                  {m.name || m.email.split('@')[0]}
                   {m.you && (
                     <Badge tone="info" variant="soft">
                       Tú
                     </Badge>
                   )}
+                  {m.pending && (
+                    <Badge tone="warn" variant="outline">
+                      Invitación pendiente
+                    </Badge>
+                  )}
                 </p>
                 <p className="text-sm [overflow-wrap:anywhere] text-ink-2">{m.email}</p>
               </div>
-              <Button
-                variant="ghost"
-                size="sm"
-                disabled={only}
-                onClick={() => setRemoving(m)}
-                aria-label={m.you ? 'Dejar de ser responsable' : `Quitar a ${m.name || m.email}`}
-              >
-                {m.you ? 'Salir' : 'Quitar'}
-              </Button>
+              {m.you
+                ? !only && (
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => setRemoving(m)}
+                      aria-label="Dejar de ser responsable"
+                    >
+                      Salir
+                    </Button>
+                  )
+                : canRemove(m) && (
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => setRemoving(m)}
+                      aria-label={m.pending ? `Retirar la invitación a ${m.email}` : `Quitar a ${m.name || m.email}`}
+                    >
+                      {m.pending ? 'Retirar' : 'Quitar'}
+                    </Button>
+                  )}
             </li>
           ))}
         </ul>
       )}
-      {only && list.data && (
-        <Callout tone="info" icon={false}>
-          Eres el único responsable. Añade a alguien más; no puedes quitar al único (si el centro dejó de funcionar,
-          ciérralo).
-        </Callout>
+      {list.data && (
+        <Text size="sm" tone={2}>
+          {only
+            ? 'Eres el único responsable: no puedes retirarte. Invita a alguien más o, si el centro dejó de funcionar, ciérralo.'
+            : 'Puedes retirarte cuando quieras. Solo quien es responsable desde antes puede quitar a otra persona; las invitaciones pendientes las puede retirar cualquiera.'}
+        </Text>
       )}
       <form onSubmit={invite} noValidate>
         <Stack gap="sm">
           <Field
-            label="Añadir responsable por correo"
-            hint="Le llega un aviso. Entra con ese correo, sin contraseña."
+            label="Invitar a un responsable por correo"
+            hint="Le llega una invitación. Tendrá acceso solo cuando la acepte."
             error={error ?? undefined}
           >
             {(c) => (
@@ -110,28 +151,46 @@ export function Managers({ centerId }: { centerId: string }) {
                 spellCheck={false}
                 autoComplete="off"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  setSent(null);
+                }}
               />
             )}
           </Field>
           <Button type="submit" variant="secondary" icon={<UserPlus aria-hidden="true" />} loading={busy}>
-            Añadir responsable
+            Enviar invitación
           </Button>
+          <div aria-live="polite">
+            {sent && (
+              <Callout tone="success" icon={false}>
+                {sent}
+              </Callout>
+            )}
+          </div>
           <Text size="sm" tone="muted">
-            Solo añade a personas que conoces y que trabajan en el centro. Los responsables ven el correo de los demás.
+            Solo invita a personas que conoces y que trabajan en el centro. Los responsables ven el correo de los demás.
           </Text>
         </Stack>
       </form>
       <AlertDialog
         open={!!removing}
         onOpenChange={(o) => !o && setRemoving(null)}
-        title={removing?.you ? '¿Dejar de ser responsable?' : `¿Quitar a ${removing?.name || removing?.email}?`}
+        title={
+          removing?.you
+            ? '¿Dejar de ser responsable?'
+            : removing?.pending
+              ? `¿Retirar la invitación a ${removing.email}?`
+              : `¿Quitar a ${removing?.name || removing?.email}?`
+        }
         description={
           removing?.you
             ? 'Ya no verás este centro en «Mis centros» ni recibirás recordatorios.'
-            : 'Ya no podrá actualizar este centro ni recibirá recordatorios.'
+            : removing?.pending
+              ? 'Ya no podrá aceptarla.'
+              : 'Ya no podrá actualizar este centro. Le avisaremos por correo.'
         }
-        confirmLabel={removing?.you ? 'Sí, salir' : 'Sí, quitar'}
+        confirmLabel={removing?.you ? 'Sí, dejar de serlo' : removing?.pending ? 'Sí, retirar' : 'Sí, quitar'}
         cancelLabel="Cancelar"
         tone="danger"
         onConfirm={async () => {

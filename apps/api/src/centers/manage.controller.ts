@@ -7,8 +7,8 @@ import { sql } from 'kysely';
 import { z } from 'zod';
 import { AccessService } from '../access/access.service';
 import { AuditService } from '../audit/audit.service';
-import { CONFIG, DATABASE } from '../common/core.module';
-import { normalizeEmail } from '../common/crypto';
+import { CONFIG, DATABASE, KEYS } from '../common/core.module';
+import { hmac, Keys, normalizeEmail } from '../common/crypto';
 import { ApiError, Auth, AuthContext, conflict, notFound, parse, parseId, shortText } from '../common/http';
 import type { AppConfig } from '../config';
 import type { DB } from '../db/db';
@@ -19,6 +19,7 @@ import { centerInputSchema, CentersService, contactFields, createCenterSchema, n
 const MAX_NEW_PER_DAY = 3;
 const MAX_MANAGED = 20;
 const MAX_MANAGERS = 5;
+const MAX_INVITES_PER_DAY = 10;
 
 /** Lo que hace cualquier persona con correo verificado: publicar y mantener sus centros. */
 @Controller()
@@ -26,6 +27,7 @@ export class ManageController {
   constructor(
     @Inject(DATABASE) private readonly db: DB,
     @Inject(CONFIG) private readonly config: AppConfig,
+    @Inject(KEYS) private readonly keys: Keys,
     private readonly centers: CentersService,
     private readonly access: AccessService,
     private readonly audit: AuditService,
@@ -47,8 +49,24 @@ export class ManageController {
       .innerJoin('centerManagers', 'centerManagers.centerId', 'centers.id')
       .selectAll('centers')
       .where('centerManagers.userId', '=', a.user.id)
+      .where('centerManagers.acceptedAt', 'is not', null)
       .where('centers.status', '!=', 'REMOVED')
       .orderBy('centers.updatedAt', 'desc')
+      .execute();
+    const invitations = await this.db
+      .selectFrom('centerManagers')
+      .innerJoin('centers', 'centers.id', 'centerManagers.centerId')
+      .select([
+        'centers.id',
+        'centers.name',
+        'centers.slug',
+        'centers.province',
+        'centers.community',
+        'centerManagers.createdAt',
+      ])
+      .where('centerManagers.userId', '=', a.user.id)
+      .where('centerManagers.acceptedAt', 'is', null)
+      .where('centers.status', '!=', 'REMOVED')
       .execute();
     const centers = await this.centers.withStats(rows);
     const stats = await this.centers.stats(rows.map((r) => r.id));
@@ -61,6 +79,7 @@ export class ManageController {
         isAdmin: a.user.isAdmin,
       },
       centers: centers.map((c) => ({ ...c, reportReasons: stats.get(c.id)?.reportReasons ?? {} })),
+      invitations,
     };
   }
 
@@ -71,12 +90,18 @@ export class ManageController {
     if (a.user.isModerator || a.user.isAdmin)
       throw new ApiError(400, 'STAFF', 'Las cuentas de moderación se retiran por línea de comandos.');
     await this.db.transaction().execute(async (trx) => {
-      const mine = await trx.selectFrom('centerManagers').select('centerId').where('userId', '=', a.user.id).execute();
+      const mine = await trx
+        .selectFrom('centerManagers')
+        .select('centerId')
+        .where('userId', '=', a.user.id)
+        .where('acceptedAt', 'is not', null)
+        .execute();
       for (const { centerId } of mine) {
         const n = await trx
           .selectFrom('centerManagers')
           .select((eb) => eb.fn.countAll<number>().as('n'))
           .where('centerId', '=', centerId)
+          .where('acceptedAt', 'is not', null)
           .executeTakeFirstOrThrow();
         if (Number(n.n) <= 1) {
           await trx
@@ -153,10 +178,12 @@ export class ManageController {
     const input = parse(createCenterSchema.extend({ needs: needsSchema.default([]) }), body);
     const consent = contactFields(input);
     this.centers.validateNoMoney(input, input.needs);
+    // Por correo (HMAC), no por cuenta: borrar la cuenta y volver a entrar no reinicia el límite.
+    const creatorEmailHmac = hmac(this.keys.email, a.user.email);
     const recent = await this.db
       .selectFrom('centers')
       .select((eb) => eb.fn.countAll<number>().as('n'))
-      .where('createdBy', '=', a.user.id)
+      .where('creatorEmailHmac', '=', creatorEmailHmac)
       .where('createdAt', '>', sql<Date>`now() - interval '24 hours'`)
       .executeTakeFirstOrThrow();
     if (Number(recent.n) >= MAX_NEW_PER_DAY)
@@ -180,12 +207,12 @@ export class ManageController {
       }
       const c = await trx
         .insertInto('centers')
-        .values({ ...fields, slug, createdBy: a.user.id, publishedAt: new Date() })
+        .values({ ...fields, slug, createdBy: a.user.id, creatorEmailHmac, publishedAt: new Date() })
         .returningAll()
         .executeTakeFirstOrThrow();
       await trx
         .insertInto('centerManagers')
-        .values({ centerId: c.id, userId: a.user.id, createdBy: a.user.id })
+        .values({ centerId: c.id, userId: a.user.id, createdBy: a.user.id, acceptedAt: new Date() })
         .execute();
       await this.centers.replaceNeeds(trx, c.id, needs);
       await this.audit.log({ actorId: a.user.id, action: 'center.created', objectType: 'center', objectId: c.id }, trx);
@@ -238,7 +265,13 @@ export class ManageController {
         .set({ status: 'RESOLVED', resolvedBy: a.user.id, resolvedAt: now })
         .where('centerId', '=', c.id)
         .where('status', '=', 'OPEN')
-        .where('reason', 'in', ['WRONG_INFO', 'NOT_RECEIVING', 'OTHER'])
+        .where(
+          'reason',
+          'in',
+          touchesContact
+            ? ['WRONG_INFO', 'NOT_RECEIVING', 'OTHER', 'MY_DATA']
+            : ['WRONG_INFO', 'NOT_RECEIVING', 'OTHER'],
+        )
         .execute();
       await this.audit.log(
         {
@@ -345,13 +378,18 @@ export class ManageController {
     const rows = await this.db
       .selectFrom('centerManagers')
       .innerJoin('users', 'users.id', 'centerManagers.userId')
-      .select(['users.id', 'users.email', 'users.name', 'centerManagers.createdAt'])
+      .select(['users.id', 'users.email', 'users.name', 'centerManagers.createdAt', 'centerManagers.acceptedAt'])
       .where('centerManagers.centerId', '=', c.id)
       .orderBy('centerManagers.createdAt')
       .execute();
-    return rows.map((r) => ({ ...r, you: r.id === a.user.id }));
+    return rows.map((r) => ({ ...r, you: r.id === a.user.id, pending: !r.acceptedAt }));
   }
 
+  /**
+   * Invitar a un co-responsable. Es una INVITACIÓN: no tiene acceso hasta aceptarla al entrar.
+   * El correo es genérico (sin el nombre del centro en el asunto) y como mucho uno por destinatario
+   * cada 24 h, para que nadie use esto para enviar correos no deseados desde el remitente oficial.
+   */
   @Throttle({ default: { limit: 20, ttl: 60 * 60_000 } })
   @Post('centers/:id/managers')
   async addManager(@Auth() a: AuthContext, @Param('id') id: string, @Body() body: unknown) {
@@ -360,13 +398,27 @@ export class ManageController {
       z.object({ email: z.string().trim().max(254).email('Correo inválido').transform(normalizeEmail) }),
       body,
     );
+    if (email === a.user.email) throw conflict('Ya eres responsable de este centro.');
     const count = await this.db
       .selectFrom('centerManagers')
       .select((eb) => eb.fn.countAll<number>().as('n'))
       .where('centerId', '=', c.id)
       .executeTakeFirstOrThrow();
     if (Number(count.n) >= MAX_MANAGERS)
-      throw new ApiError(400, 'TOO_MANY', `Un centro puede tener hasta ${MAX_MANAGERS} responsables.`);
+      throw new ApiError(
+        400,
+        'TOO_MANY',
+        `Un centro puede tener hasta ${MAX_MANAGERS} responsables (incluidas invitaciones pendientes).`,
+      );
+    const sentToday = await this.db
+      .selectFrom('auditEvents')
+      .select((eb) => eb.fn.countAll<number>().as('n'))
+      .where('actorId', '=', a.user.id)
+      .where('action', '=', 'center.manager_invited')
+      .where('createdAt', '>', sql<Date>`now() - interval '24 hours'`)
+      .executeTakeFirstOrThrow();
+    if (Number(sentToday.n) >= MAX_INVITES_PER_DAY)
+      throw new ApiError(429, 'TOO_MANY', `Puedes enviar hasta ${MAX_INVITES_PER_DAY} invitaciones por día.`);
     await this.db
       .insertInto('users')
       .values({ email })
@@ -374,50 +426,114 @@ export class ManageController {
       .execute();
     const u = await this.db
       .selectFrom('users')
-      .select(['id', 'disabledAt'])
+      .select(['id', 'disabledAt', 'lastInvitedAt'])
       .where('email', '=', email)
       .executeTakeFirstOrThrow();
-    if (u.disabledAt) throw new ApiError(400, 'BLOCKED', 'Ese correo no puede administrar centros.');
-    const ins = await this.db
-      .insertInto('centerManagers')
-      .values({ centerId: c.id, userId: u.id, createdBy: a.user.id })
-      .onConflict((oc) => oc.columns(['centerId', 'userId']).doNothing())
-      .returning('userId')
-      .executeTakeFirst();
-    if (!ins) throw conflict('Esa persona ya es responsable de este centro.');
-    await this.audit.log({ actorId: a.user.id, action: 'center.manager_added', objectType: 'center', objectId: c.id });
-    await this.mail.send({
-      to: email,
-      subject: `Te añadieron como responsable de «${c.name}»`,
-      text: `Alguien que administra «${c.name}» en Acopio Panamá te añadió como responsable.\n\nPuedes actualizar lo que necesitan y confirmar que sigue funcionando en ${this.config.appOrigin}/mis-centros (entras con este correo, sin contraseña).\n\nSi no conoces este centro, ignora el correo.`,
+    // Misma respuesta si la cuenta está bloqueada: no se revela qué correos lo están.
+    if (!u.disabledAt) {
+      const ins = await this.db
+        .insertInto('centerManagers')
+        .values({ centerId: c.id, userId: u.id, createdBy: a.user.id, acceptedAt: null })
+        .onConflict((oc) => oc.columns(['centerId', 'userId']).doNothing())
+        .returning('userId')
+        .executeTakeFirst();
+      if (!ins) throw conflict('Esa persona ya es responsable o ya tiene una invitación pendiente.');
+      const recently = u.lastInvitedAt && Date.now() - u.lastInvitedAt.getTime() < 24 * 3_600_000;
+      if (!recently) {
+        await this.db.updateTable('users').set({ lastInvitedAt: new Date() }).where('id', '=', u.id).execute();
+        await this.mail.send({
+          to: email,
+          subject: 'Te invitaron a administrar un centro de acopio',
+          text: `Alguien que administra un centro de acopio en Acopio Panamá te invitó a ser co-responsable.\n\nPara ver la invitación y aceptarla (o rechazarla), entra en ${this.config.appOrigin}/mis-centros con este correo. Sin contraseñas.\n\nSi no esperabas esta invitación, ignora este correo: no tendrás ningún rol si no la aceptas.`,
+        });
+      }
+    }
+    await this.audit.log({
+      actorId: a.user.id,
+      action: 'center.manager_invited',
+      objectType: 'center',
+      objectId: c.id,
     });
     return { ok: true };
   }
 
+  @Post('centers/:id/invitation/accept')
+  @HttpCode(200)
+  async acceptInvitation(@Auth() a: AuthContext, @Param('id') id: string) {
+    const centerId = parseId(id);
+    const r = await this.db
+      .updateTable('centerManagers')
+      .set({ acceptedAt: new Date() })
+      .where('centerId', '=', centerId)
+      .where('userId', '=', a.user.id)
+      .where('acceptedAt', 'is', null)
+      .returning('centerId')
+      .executeTakeFirst();
+    if (!r) throw notFound();
+    await this.audit.log({
+      actorId: a.user.id,
+      action: 'center.manager_accepted',
+      objectType: 'center',
+      objectId: centerId,
+    });
+    return { ok: true };
+  }
+
+  @Post('centers/:id/invitation/decline')
+  @HttpCode(200)
+  async declineInvitation(@Auth() a: AuthContext, @Param('id') id: string) {
+    const centerId = parseId(id);
+    const r = await this.db
+      .deleteFrom('centerManagers')
+      .where('centerId', '=', centerId)
+      .where('userId', '=', a.user.id)
+      .where('acceptedAt', 'is', null)
+      .executeTakeFirst();
+    if (Number(r.numDeletedRows) === 0) throw notFound();
+    return { ok: true };
+  }
+
+  /**
+   * Quitar a un responsable. Para evitar que alguien recién añadido «tome» un centro: solo puede
+   * quitar a otros quien es responsable desde antes que esa persona (o retirar invitaciones
+   * pendientes). Cualquiera puede retirarse a sí mismo. Se avisa por correo a quien se quita.
+   */
   @Delete('centers/:id/managers/:userId')
   @HttpCode(200)
   async removeManager(@Auth() a: AuthContext, @Param('id') id: string, @Param('userId') u: string) {
     const c = await this.manager(a, id);
     const userId = parseId(u);
-    const count = await this.db
-      .selectFrom('centerManagers')
-      .select((eb) => eb.fn.countAll<number>().as('n'))
-      .where('centerId', '=', c.id)
-      .executeTakeFirstOrThrow();
-    if (Number(count.n) <= 1)
+    const rows = await this.db.selectFrom('centerManagers').selectAll().where('centerId', '=', c.id).execute();
+    const target = rows.find((r) => r.userId === userId);
+    const me = rows.find((r) => r.userId === a.user.id)!;
+    if (!target) throw notFound();
+    const accepted = rows.filter((r) => r.acceptedAt);
+    if (target.acceptedAt && accepted.length <= 1)
       throw conflict('No puedes quitar al único responsable. Añade otro primero o cierra el centro.');
-    const r = await this.db
-      .deleteFrom('centerManagers')
-      .where('centerId', '=', c.id)
-      .where('userId', '=', userId)
-      .executeTakeFirst();
-    if (Number(r.numDeletedRows) === 0) throw notFound();
+    if (userId !== a.user.id && target.acceptedAt && !(me.acceptedAt! < target.acceptedAt)) {
+      throw new ApiError(
+        403,
+        'NOT_ALLOWED',
+        'Solo puede quitar a un responsable quien lo es desde antes. Puedes retirarte tú.',
+      );
+    }
+    await this.db.deleteFrom('centerManagers').where('centerId', '=', c.id).where('userId', '=', userId).execute();
     await this.audit.log({
       actorId: a.user.id,
       action: 'center.manager_removed',
       objectType: 'center',
       objectId: c.id,
     });
+    if (userId !== a.user.id && target.acceptedAt) {
+      const removed = await this.db.selectFrom('users').select('email').where('id', '=', userId).executeTakeFirst();
+      if (removed) {
+        await this.mail.send({
+          to: removed.email,
+          subject: 'Ya no eres responsable de un centro de acopio',
+          text: `Otro responsable te quitó de un centro que administrabas en Acopio Panamá.\n\nSi crees que es un error o un abuso, usa «Reportar un problema» en la ficha del centro o responde a la moderación desde ${this.config.appOrigin}/como-funciona.`,
+        });
+      }
+    }
     return { ok: true };
   }
 }

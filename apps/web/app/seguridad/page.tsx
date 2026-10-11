@@ -69,8 +69,11 @@ function SecurityInner() {
       );
       router.replace(next);
     } catch (err) {
+      // MFA_LOCKED trae su propio mensaje (cuánto esperar); otros 429 vienen del límite de solicitudes.
       setError(
-        err instanceof ApiError && err.status === 429 ? 'Demasiados intentos. Espera unos minutos.' : errorMessage(err),
+        err instanceof ApiError && err.status === 429 && err.code !== 'MFA_LOCKED'
+          ? 'Demasiados intentos. Espera unos minutos.'
+          : errorMessage(err),
       );
       setBusy(false);
     }

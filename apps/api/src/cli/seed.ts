@@ -47,7 +47,7 @@ async function main() {
         addr: 'Frente al parque central (demo)',
         lat: 7.405,
         lng: -80.443,
-        hours: 'Todos los días, 7:00 a. m. – 6:00 p. m.',
+        hours: 'Se recibe a cualquier hora; de noche, toca en la casa cural.',
         by: ana,
         confirmed: 2,
         needs: [
@@ -104,7 +104,7 @@ async function main() {
         addr: 'Oficinas de la junta comunal (demo)',
         lat: 9.358,
         lng: -79.901,
-        hours: '8:00 a. m. – 4:00 p. m.',
+        hours: 'Si la puerta está cerrada, pregunta en la oficina de la junta.',
         by: beto,
         confirmed: 5,
         needs: [

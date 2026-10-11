@@ -52,6 +52,7 @@ export class AccessService {
       .select('centerId')
       .where('userId', '=', userId)
       .where('centerId', '=', centerId)
+      .where('acceptedAt', 'is not', null) // una invitación pendiente no da acceso
       .executeTakeFirst();
     return !!r;
   }

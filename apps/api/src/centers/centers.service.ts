@@ -2,14 +2,14 @@ import { Inject, Injectable } from '@nestjs/common';
 import { sql } from 'kysely';
 import { z } from 'zod';
 import { CONFIG, DATABASE, KEYS } from '../common/core.module';
-import { hmac, Keys } from '../common/crypto';
+import { clientKey, hmac, Keys } from '../common/crypto';
 import { ApiError, shortText, text } from '../common/http';
 import type { AppConfig } from '../config';
 import type { DB } from '../db/db';
 import type { Center } from '../db/types';
 import {
-  asksForMoney,
   EXPIRE_DAYS,
+  textProblem,
   FLAG_THRESHOLD,
   HIDE_THRESHOLD,
   ITEM_KEYS,
@@ -121,6 +121,7 @@ export interface CenterStats {
   lastCommunityConfirmation: Date | null;
   openReports: number;
   seriousReports: number;
+  lastSeriousReportAt: Date | null;
   reportReasons: Partial<Record<ReportReason, number>>;
 }
 
@@ -138,7 +139,10 @@ export interface CenterState {
  *  - Frescura: la última actividad es la confirmación más reciente (de un responsable o de la
  *    comunidad). Sin actividad en 72 h → «sin confirmar»; en 14 días → deja de mostrarse.
  *  - Reportes: 2 o más personas distintas en 72 h → aviso «reportado, verifica antes de ir».
- *    3 o más reportes graves (pide dinero, falso, cerrado) que superen las confirmaciones → oculto.
+ *    3 o más reportes graves (pide dinero, falso, cerrado) que superen las confirmaciones → oculto,
+ *    SALVO que un responsable lo haya confirmado después del último reporte grave: entonces queda
+ *    visible con el aviso (en disputa). Así nadie oculta un centro legítimo sin que su responsable
+ *    pueda responder; la moderación decide los casos de estafa real.
  *  - Nada de pedidos de dinero en las fichas (se bloquea al guardar).
  */
 export function computeState(
@@ -148,12 +152,17 @@ export function computeState(
 ): CenterState {
   const lastActivity = new Date(Math.max(c.managerConfirmedAt.getTime(), s.lastCommunityConfirmation?.getTime() ?? 0));
   const ageH = (now - lastActivity.getTime()) / 3_600_000;
-  const flagged = s.openReports >= FLAG_THRESHOLD;
+  const flagged = s.openReports >= FLAG_THRESHOLD || s.seriousReports >= HIDE_THRESHOLD;
   const isNew = now - c.createdAt.getTime() < 24 * 3_600_000 && s.confirmations === 0;
   let visibility: Visibility;
   if (c.status === 'REMOVED') visibility = 'REMOVED';
   else if (c.status === 'CLOSED') visibility = 'CLOSED';
-  else if (s.seriousReports >= HIDE_THRESHOLD && s.seriousReports > s.confirmations) visibility = 'COMMUNITY_HIDDEN';
+  else if (
+    s.seriousReports >= HIDE_THRESHOLD &&
+    s.seriousReports > s.confirmations &&
+    !(s.lastSeriousReportAt && c.managerConfirmedAt > s.lastSeriousReportAt)
+  )
+    visibility = 'COMMUNITY_HIDDEN';
   else if (ageH > EXPIRE_DAYS * 24) visibility = 'EXPIRED';
   else if (ageH > STALE_HOURS) visibility = 'STALE';
   else visibility = 'VISIBLE';
@@ -205,29 +214,62 @@ export class CentersService {
     this.cache = null;
   }
 
-  /** HMAC diario del origen: cuenta personas distintas sin guardar IPs. */
-  origin(ip: string | undefined): string {
-    const day = new Date().toISOString().slice(0, 10);
-    return hmac(this.keys.email, `origin:${ip ?? 'unknown'}:${day}`);
+  /**
+   * Identificador del origen sin guardar IPs (HMAC con clave propia; IPv6 agrupada por /64).
+   * Confirmaciones: cambia cada día (una por persona y día). Reportes: estable, para que la misma
+   * persona no pueda sumar un reporte nuevo cada día sobre el mismo centro.
+   */
+  origin(ip: string | undefined, daily = true): string {
+    const day = daily ? new Date().toISOString().slice(0, 10) : 'reports';
+    return hmac(this.keys.origin, `${clientKey(ip)}|${day}`);
   }
 
-  validateNoMoney(input: Partial<CenterInput>, needs: { note: string }[] = []) {
-    const texts = [
-      input.name,
-      input.organizerName,
-      input.address,
-      input.hoursNote,
-      input.contactName,
-      input.notes,
-      ...needs.map((n) => n.note),
-    ].filter((t): t is string => typeof t === 'string');
-    if (asksForMoney(...texts)) {
+  /**
+   * Revisa cada texto libre y devuelve el error junto al campo exacto: pedidos de dinero, enlaces
+   * o HTML no se permiten en las fichas (vías típicas de estafa).
+   */
+  validateTexts(input: Partial<CenterInput>, needs: { note: string }[] = []) {
+    const fields: Record<string, string> = {};
+    let money = false;
+    const check = (key: string, value: unknown) => {
+      if (typeof value !== 'string' || !value) return;
+      const p = textProblem(value);
+      if (!p) return;
+      if (p === 'MONEY') money = true;
+      fields[key] =
+        p === 'MONEY'
+          ? 'No se puede pedir dinero, transferencias ni cuentas. Indica solo artículos.'
+          : p === 'URL'
+            ? 'No se permiten enlaces ni direcciones web.'
+            : 'No se permiten los caracteres < y >.';
+    };
+    for (const k of [
+      'name',
+      'organizerName',
+      'district',
+      'community',
+      'address',
+      'hoursNote',
+      'contactName',
+      'notes',
+    ] as const)
+      check(k, input[k]);
+    needs.forEach((n, i) => check(`needs.${i}.note`, n.note));
+    if (Object.keys(fields).length) {
       throw new ApiError(
         400,
-        'MONEY_NOT_ALLOWED',
-        'Las fichas no pueden pedir dinero, transferencias ni números de cuenta: así evitamos estafas. Indica solo qué artículos necesitan. Las donaciones en dinero deben hacerse directamente a organizaciones reconocidas.',
+        money ? 'MONEY_NOT_ALLOWED' : 'TEXT_NOT_ALLOWED',
+        money
+          ? 'Las fichas no pueden pedir dinero, transferencias ni números de cuenta: así evitamos estafas. Indica solo qué artículos necesitan.'
+          : 'Hay texto que no se puede publicar. Revisa los campos marcados.',
+        { fields },
       );
     }
+  }
+
+  /** Compatibilidad con llamadas anteriores. */
+  validateNoMoney(input: Partial<CenterInput>, needs: { note: string }[] = []) {
+    this.validateTexts(input, needs);
   }
 
   async stats(centerIds: string[]): Promise<Map<string, CenterStats>> {
@@ -238,6 +280,7 @@ export class CentersService {
         lastCommunityConfirmation: null,
         openReports: 0,
         seriousReports: 0,
+        lastSeriousReportAt: null,
         reportReasons: {},
       });
     if (centerIds.length === 0) return out;
@@ -257,7 +300,7 @@ export class CentersService {
       .execute();
     const reps = await this.db
       .selectFrom('reports')
-      .select((eb) => ['centerId', 'reason', eb.fn.countAll<number>().as('n')])
+      .select((eb) => ['centerId', 'reason', eb.fn.countAll<number>().as('n'), eb.fn.max('createdAt').as('last')])
       .where('centerId', 'in', centerIds)
       .where('status', '=', 'OPEN')
       .where('createdAt', '>', since)
@@ -270,7 +313,11 @@ export class CentersService {
       const s = out.get(r.centerId)!;
       const n = Number(r.n);
       s.openReports += n;
-      if (SERIOUS_REASONS.includes(r.reason)) s.seriousReports += n;
+      if (SERIOUS_REASONS.includes(r.reason)) {
+        s.seriousReports += n;
+        const last = r.last ? new Date(r.last as unknown as string) : null;
+        if (last && (!s.lastSeriousReportAt || last > s.lastSeriousReportAt)) s.lastSeriousReportAt = last;
+      }
       s.reportReasons[r.reason] = n;
     }
     return out;
@@ -382,6 +429,11 @@ export class CentersService {
       .onConflict((oc) => oc.columns(['centerId', 'originHmac']).where('status', '=', 'OPEN').doNothing())
       .returning('id')
       .executeTakeFirst();
+    if (res && reason === 'MY_DATA') {
+      // Privacidad primero: el contacto se oculta al instante; el responsable puede volver a
+      // publicarlo con consentimiento.
+      await this.db.updateTable('centers').set({ contactConsentAt: null }).where('id', '=', centerId).execute();
+    }
     this.invalidate();
     return !!res;
   }

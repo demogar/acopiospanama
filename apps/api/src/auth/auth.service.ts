@@ -70,12 +70,20 @@ export class AuthService {
 
     // Directorio abierto: cualquiera puede entrar con su correo. La cuenta se crea al pedir el código
     // y queda «sin verificar» hasta usarlo (la retención borra las no verificadas en 1 día).
-    await this.db
-      .insertInto('users')
-      .values({ email })
-      .onConflict((oc) => oc.column('email').doNothing())
-      .execute();
-    const user = await this.db.selectFrom('users').selectAll().where('email', '=', email).executeTakeFirst();
+    const blocked = await this.db
+      .selectFrom('blockedEmails')
+      .select('emailHmac')
+      .where('emailHmac', '=', emailHmac)
+      .executeTakeFirst();
+    if (!blocked)
+      await this.db
+        .insertInto('users')
+        .values({ email })
+        .onConflict((oc) => oc.column('email').doNothing())
+        .execute();
+    const user = blocked
+      ? undefined
+      : await this.db.selectFrom('users').selectAll().where('email', '=', email).executeTakeFirst();
     const eligible = !!user && !user.disabledAt && (await this.access.hasAnyAccess(user.id));
 
     const id = randomUUID();
@@ -368,6 +376,14 @@ export class AuthService {
 
   async mfaVerify(user: User, sessionId: string, input: { code?: string; recoveryCode?: string }) {
     if (!user.totpEnabledAt) throw new ApiError(400, 'MFA_NOT_ENABLED', 'Primero configura tu segundo factor.');
+    const fresh = await this.db
+      .selectFrom('users')
+      .select(['mfaFailedCount', 'mfaLockedUntil'])
+      .where('id', '=', user.id)
+      .executeTakeFirstOrThrow();
+    if (fresh.mfaLockedUntil && fresh.mfaLockedUntil > new Date()) {
+      throw new ApiError(429, 'MFA_LOCKED', 'Demasiados códigos incorrectos. Espera 15 minutos e inténtalo de nuevo.');
+    }
     let ok = false;
     let usedRecovery = false;
     if (input.code) {
@@ -385,9 +401,30 @@ export class AuthService {
       usedRecovery = ok;
     }
     if (!ok) {
-      await this.audit.log({ actorId: user.id, action: 'mfa.failed', objectType: 'user', objectId: user.id });
+      // Bloqueo por cuenta (no por IP): 10 fallos → 15 minutos.
+      const failed = fresh.mfaFailedCount + 1;
+      await this.db
+        .updateTable('users')
+        .set(
+          failed >= 10
+            ? { mfaFailedCount: 0, mfaLockedUntil: new Date(Date.now() + 15 * 60_000) }
+            : { mfaFailedCount: failed },
+        )
+        .where('id', '=', user.id)
+        .execute();
+      await this.audit.log({
+        actorId: user.id,
+        action: failed >= 10 ? 'mfa.locked' : 'mfa.failed',
+        objectType: 'user',
+        objectId: user.id,
+      });
       throw new ApiError(400, 'INVALID_TOTP', 'Código incorrecto.');
     }
+    await this.db
+      .updateTable('users')
+      .set({ mfaFailedCount: 0, mfaLockedUntil: null })
+      .where('id', '=', user.id)
+      .execute();
     const now = new Date();
     await this.db
       .updateTable('sessions')

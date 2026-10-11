@@ -22,6 +22,13 @@ function tone(c: PublicCenter): { color: string; label: string } {
   return { color: v('--color-anil', '#2c3e8f'), label: 'Sin necesidades urgentes' };
 }
 
+/** Leaflet asigna los strings con innerHTML: todo contenido va como nodo de texto. */
+function textNode(text: string): HTMLElement {
+  const el = document.createElement('span');
+  el.textContent = text;
+  return el;
+}
+
 function popupContent(c: PublicCenter, meta: PublicMeta | null): HTMLElement {
   // Construido con nodos de texto: el contenido lo escribe la comunidad y nunca se trata como HTML.
   const root = document.createElement('div');
@@ -42,7 +49,7 @@ function popupContent(c: PublicCenter, meta: PublicMeta | null): HTMLElement {
     root.appendChild(o);
   }
   const a = document.createElement('a');
-  a.href = `/c/${c.slug}`;
+  a.href = `/c/${encodeURIComponent(c.slug)}`;
   a.textContent = 'Ver detalles';
   root.appendChild(a);
   return root;
@@ -120,7 +127,7 @@ export default function CenterMap({
         fillOpacity: 0.95,
       });
       m.bindPopup(() => popupContent(c, meta));
-      m.bindTooltip(`${c.name} — ${t.label}`);
+      m.bindTooltip(textNode(`${c.name} — ${t.label}`));
       m.addTo(layer);
       pts.push([c.lat as number, c.lng as number]);
     }
@@ -132,7 +139,7 @@ export default function CenterMap({
         fillColor: '#1d4ed8',
         fillOpacity: 1,
       })
-        .bindTooltip('Tú (solo en tu teléfono)')
+        .bindTooltip(textNode('Tú (solo en tu teléfono)'))
         .addTo(layer);
       // No se encuadra el mapa en tu posición: las teselas que se piden revelarían tu zona al servidor de mapas.
     }

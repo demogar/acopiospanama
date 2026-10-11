@@ -4,7 +4,17 @@ import { Component, useCallback, useEffect, useMemo, useState } from 'react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { List, LocateFixed, Map as MapIcon, X } from 'lucide-react';
-import { Button, buttonVariants, Callout, EmptyState, SearchInput, Select, Skeleton, Switch } from '@demogar/mola-ui';
+import {
+  Button,
+  buttonVariants,
+  Callout,
+  EmptyState,
+  Field,
+  SearchInput,
+  Select,
+  Skeleton,
+  Switch,
+} from '@demogar/mola-ui';
 import { ErrorState, Loading } from '@/components/states';
 import { useApi } from '@/lib/use-api';
 import { centerTypeLabel, fold, hasCoords, haversineKm } from '@/lib/public-format';
@@ -233,20 +243,19 @@ export function PublicHome({
             disabled={!meta}
           />
           <Select label="Tipo de lugar" items={typeItems} value={ctype} onValueChange={(v) => setCtype(v ?? ALL)} />
-          <div className="grid gap-1.5">
-            <label htmlFor="buscar" className="text-sm font-semibold text-ink">
-              Buscar
-            </label>
-            <SearchInput
-              id="buscar"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              onClear={() => setQuery('')}
-              clearLabel="Borrar búsqueda"
-              placeholder="Nombre, distrito o comunidad"
-              autoComplete="off"
-            />
-          </div>
+          <Field label="Buscar" hint="Nombre, distrito o comunidad">
+            {(c) => (
+              <SearchInput
+                {...c}
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                onClear={() => setQuery('')}
+                clearLabel="Borrar búsqueda"
+                placeholder="Ej.: Tonosí"
+                autoComplete="off"
+              />
+            )}
+          </Field>
         </div>
         <Switch
           label="Abierto ahora"
@@ -294,12 +303,25 @@ export function PublicHome({
           </Button>
         </div>
 
-        <p aria-live="polite" className="text-sm text-ink-2">
-          {centers &&
-            (results.length === 1 ? '1 centro' : `${results.length} centros`) +
-              (origin ? ', ordenados por distancia' : '') +
-              (filtersActive ? ' con estos filtros' : '')}
-        </p>
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+          <p aria-live="polite" className="text-sm text-ink-2">
+            {centers &&
+              (results.length === 1 ? '1 centro' : `${results.length} centros`) +
+                (origin ? ', ordenados por distancia' : '') +
+                (filtersActive ? ' con estos filtros' : '')}
+          </p>
+          {centers && filtersActive && results.length > 0 && (
+            <Button
+              variant="ghost"
+              size="sm"
+              icon={<X aria-hidden="true" />}
+              className="min-h-11"
+              onClick={clearFilters}
+            >
+              Quitar filtros
+            </Button>
+          )}
+        </div>
 
         {showMap && centers && (
           <MapBoundary key={mapKey} onRetry={() => setMapKey((k) => k + 1)}>

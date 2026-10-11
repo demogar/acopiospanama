@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { after, before, describe, it } from 'node:test';
 import { sql } from 'kysely';
 import { LinksService } from '../src/centers/links.service';
+import { clientKey } from '../src/common/crypto';
 import { openNow } from '../src/domain';
 import { JobsService } from '../src/jobs/jobs.service';
 import { centerBody, Client, createCenter, lastCode, login, modLogin, person, setup, TestEnv } from './helpers';
@@ -150,9 +151,26 @@ describe('responsables', () => {
     assert.equal((await stranger.put(`/centers/${c.id}/needs`, { needs: [] })).status, 404);
 
     assert.equal((await owner.post(`/centers/${c.id}/managers`, { email: 'co@x.test' })).status, 201);
-    assert.ok(env.mail.readOutbox('co@x.test').some((m) => /responsable/.test(m.subject)));
+    const invite = env.mail.readOutbox('co@x.test').find((m) => /invitaron/.test(m.subject))!;
+    assert.ok(invite && !invite.subject.includes('Centro con dueños'), 'el asunto no lleva texto del usuario');
     const co = await login(env, 'co@x.test');
+    assert.equal(
+      (await co.put(`/centers/${c.id}/needs`, { needs: [] })).status,
+      404,
+      'invitación pendiente: sin acceso',
+    );
+    assert.equal((await co.get('/me')).body.invitations.length, 1);
+    assert.equal((await co.post(`/centers/${c.id}/invitation/accept`)).status, 200);
     assert.equal((await co.put(`/centers/${c.id}/needs`, { needs: [{ item: 'FOOD', level: 'URGENT' }] })).status, 200);
+    assert.equal(
+      (
+        await co.del(
+          `/centers/${c.id}/managers/${(await co.get(`/centers/${c.id}/managers`)).body.find((m: { you: boolean }) => !m.you).id}`,
+        )
+      ).status,
+      403,
+      'el más nuevo no quita al más antiguo',
+    );
 
     const managers = (await owner.get(`/centers/${c.id}/managers`)).body as { id: string; you: boolean }[];
     const coId = managers.find((m) => !m.you)!.id;
@@ -236,15 +254,20 @@ describe('reglas automáticas (auto-mantenimiento)', () => {
     const hidden = await pub(c.slug);
     assert.equal(hidden.status, 410);
     assert.equal(await listed(c.id), false);
-    for (let i = 0; i < 4; i++)
-      await person(env)
-        .post(`/public/centers/${c.id}/confirm`)
-        .catch(() => undefined);
-    // Oculto: no se puede confirmar públicamente; el responsable sí puede corregir y confirmar.
-    assert.equal((await person(env).post(`/public/centers/${c.id}/confirm`)).status, 404);
     const mine = await u.get(`/centers/${c.id}`);
     assert.equal(mine.body.visibility, 'COMMUNITY_HIDDEN');
     assert.ok(mine.body.reportReasons.ASKS_MONEY >= 1);
+    // Contrapeso 1: el responsable confirma después de los reportes → visible pero marcado (en disputa).
+    assert.equal((await u.post(`/centers/${c.id}/confirm`)).status, 200);
+    const disputed = await pub(c.slug);
+    assert.equal(disputed.status, 200);
+    assert.equal(disputed.body.flagged, true);
+    // Un nuevo reporte grave después de la confirmación lo vuelve a ocultar.
+    await person(env).post(`/public/centers/${c.id}/report`, { reason: 'FAKE' });
+    assert.equal((await pub(c.slug)).status, 410);
+    // Contrapeso 2: la comunidad puede confirmar aunque esté oculto; más confirmaciones que reportes → visible.
+    for (let i = 0; i < 5; i++) assert.equal((await person(env).post(`/public/centers/${c.id}/confirm`)).status, 200);
+    assert.equal((await pub(c.slug)).status, 200);
   });
 
   it('corregir la ficha atiende reportes de información, no los graves', async () => {
@@ -263,6 +286,115 @@ describe('reglas automáticas (auto-mantenimiento)', () => {
       open.map((r) => r.reason),
       ['ASKS_MONEY'],
     );
+  });
+});
+
+describe('abuso', () => {
+  it('la misma persona no suma un reporte nuevo cada día; IPv6 del mismo /64 cuenta como una', async () => {
+    const u = await login(env, 'abuse1@x.test');
+    const c = await createCenter(u, { name: 'Centro atacado' });
+    const ip6 = (n: number) => `2001:db8:abcd:12::${n.toString(16)}`;
+    for (let i = 1; i <= 5; i++) {
+      const r = await new Client(env).req(
+        'POST',
+        `/public/centers/${c.id}/report`,
+        { reason: 'FAKE' },
+        { headers: { 'x-forwarded-for': ip6(i) } },
+      );
+      assert.equal(r.status, 200);
+    }
+    const n = await env.db
+      .selectFrom('reports')
+      .select((eb) => eb.fn.countAll<number>().as('n'))
+      .where('centerId', '=', c.id)
+      .executeTakeFirstOrThrow();
+    assert.equal(Number(n.n), 1);
+    assert.equal((await pub(c.slug)).status, 200);
+  });
+
+  it('textos con enlaces, HTML o dinero disfrazado se rechazan indicando el campo', async () => {
+    const c = await login(env, 'abuse2@x.test');
+    const cases: [Record<string, unknown>, string][] = [
+      [{ name: '<a href=//evil.example>Dona aquí</a>' }, 'name'],
+      [{ notes: 'Más info en donaaqui.com' }, 'notes'],
+      [{ community: 'Y a p p y 6000-0000' }, 'community'],
+      [{ district: 'Yаppy' }, 'district'],
+      [{ needs: [{ item: 'WATER', level: 'URGENT', note: 'BG ahorros 04.01.01.123456.7' }] }, 'needs.0.note'],
+    ];
+    for (const [over, field] of cases) {
+      const r = await c.post('/centers', centerBody(over));
+      assert.equal(r.status, 400, JSON.stringify(over));
+      assert.ok(r.body.fields[field], `${field}: ${JSON.stringify(r.body)}`);
+    }
+    // Referencias normales sí.
+    const ok = await c.post(
+      '/centers',
+      centerBody({ name: 'Frente al banco', address: 'Frente al Banco Nacional, al lado del depósito municipal' }),
+    );
+    assert.equal(ok.status, 201);
+  });
+
+  it('borrar la cuenta no reinicia el límite diario ni evade el bloqueo', async () => {
+    const s = await login(env, 'evade@x.test');
+    const first = await createCenter(s, { name: 'Evasión 1' });
+    await createCenter(s, { name: 'Evasión 2' });
+    await createCenter(s, { name: 'Evasión 3' });
+    assert.equal((await s.del('/me')).status, 200);
+    const again = await login(env, 'evade@x.test');
+    assert.equal((await again.post('/centers', centerBody({ name: 'Evasión 4' }))).status, 429);
+    const admin = await modLogin(env, 'admin@x.test');
+    await env.db.updateTable('sessions').set({ stepUpAt: new Date() }).execute();
+    assert.equal((await admin.post('/mod/users/block', { centerId: first.id, reason: 'Spam' })).status, 200);
+    const rows = await env.db
+      .selectFrom('centers')
+      .select('status')
+      .where('creatorEmailHmac', 'is not', null)
+      .where('name', 'like', 'Evasión%')
+      .execute();
+    assert.ok(rows.every((r) => r.status === 'REMOVED'));
+    // No vuelve a recibir códigos.
+    const before = env.mail.readOutbox('evade@x.test').length;
+    await new Client(env).post('/auth/request-code', { email: 'evade@x.test' });
+    assert.equal(env.mail.readOutbox('evade@x.test').length, before);
+  });
+
+  it('invitar no sirve para enviar correos repetidos a terceros', async () => {
+    const u = await login(env, 'inviter@x.test');
+    const c = await createCenter(u, { name: 'Centro que invita' });
+    const managers = async () => (await u.get(`/centers/${c.id}/managers`)).body as { id: string; you: boolean }[];
+    for (let i = 0; i < 3; i++) {
+      await u.post(`/centers/${c.id}/managers`, { email: 'victima@x.test' });
+      const v = (await managers()).find((m) => !m.you);
+      if (v) await u.del(`/centers/${c.id}/managers/${v.id}`);
+    }
+    assert.equal(env.mail.readOutbox('victima@x.test').length, 1, 'un correo por destinatario cada 24 h');
+  });
+
+  it('«publicaron mis datos sin permiso» oculta el contacto al instante', async () => {
+    const u = await login(env, 'mydata@x.test');
+    const c = await createCenter(u, {
+      name: 'Centro con datos',
+      contactName: 'Tercero',
+      contactPhone: '6000-2222',
+      contactConsent: true,
+    });
+    assert.equal((await pub(c.slug)).body.contactName, 'Tercero');
+    await person(env).post(`/public/centers/${c.id}/report`, { reason: 'MY_DATA' });
+    const p = await pub(c.slug);
+    assert.equal(p.body.contactName, '');
+    assert.equal(p.body.contactPhone, '');
+  });
+
+  it('el segundo factor se bloquea 15 min tras 10 códigos incorrectos', async () => {
+    const m = await modLogin(env, 'mod@x.test');
+    for (let i = 0; i < 10; i++) await m.post('/auth/mfa/verify', { code: '000000' });
+    const locked = await m.post('/auth/mfa/verify', { code: '000000' });
+    assert.equal(locked.status, 429);
+    await env.db
+      .updateTable('users')
+      .set({ mfaLockedUntil: null, mfaFailedCount: 0 })
+      .where('email', '=', 'mod@x.test')
+      .execute();
   });
 });
 
@@ -300,6 +432,12 @@ describe('enlaces de confirmación por correo', () => {
     assert.equal(
       (await env.db.selectFrom('centers').select('status').where('id', '=', c.id).executeTakeFirstOrThrow()).status,
       'CLOSED',
+    );
+    assert.equal((await u.post(`/centers/${c.id}/reopen`)).status, 200);
+    assert.equal(
+      (await anon.post('/public/confirm-link', { token, action: 'CLOSE' })).status,
+      409,
+      'un enlace viejo no vuelve a cerrar',
     );
 
     await env.db.deleteFrom('centerManagers').where('centerId', '=', c.id).execute();
@@ -400,6 +538,15 @@ describe('horario', () => {
     assert.equal(bad.status, 400);
     const bad2 = await c.post('/centers', centerBody({ schedule: { FUNDAY: null } }));
     assert.equal(bad2.status, 400);
+  });
+});
+
+describe('identidad de origen', () => {
+  it('IPv6 se agrupa por /64; IPv4 completa', () => {
+    assert.equal(clientKey('2001:db8:abcd:12::1'), clientKey('2001:db8:abcd:12:ffff::9'));
+    assert.notEqual(clientKey('2001:db8:abcd:12::1'), clientKey('2001:db8:abcd:13::1'));
+    assert.equal(clientKey('::ffff:10.0.0.1'), '10.0.0.1');
+    assert.notEqual(clientKey('10.0.0.1'), clientKey('10.0.0.2'));
   });
 });
 

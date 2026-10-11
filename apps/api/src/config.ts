@@ -4,7 +4,8 @@ const bool = z.enum(['true', 'false', '1', '0']).transform((v) => v === 'true' |
 
 const schema = z
   .object({
-    NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
+    // Por defecto, producción: si falta la variable, se aplican las reglas más estrictas.
+    NODE_ENV: z.enum(['development', 'test', 'production']).default('production'),
     // Versión desplegada (la fija el Dockerfile a partir de package.json y el commit). Se expone en /api/health.
     APP_VERSION: z.string().default('dev'),
     PORT: z.coerce.number().int().positive().default(3001),

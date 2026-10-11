@@ -24,9 +24,13 @@ import { ContactBlock } from './contact-block';
 import { OpenLine } from './open-status';
 import { ScheduleTable } from './schedule-table';
 import { ReportDialog } from './report-dialog';
+import { HiddenCenter } from './hidden-center';
 import { ShareActions } from './share-actions';
 
-type Initial = { ok: true; data: PublicCenter } | { ok: false; status: number; code?: string; message?: string } | null;
+type Initial =
+  | { ok: true; data: PublicCenter }
+  | { ok: false; status: number; code?: string; message?: string; extra?: Record<string, unknown> }
+  | null;
 
 export function CenterDetail({
   slug,
@@ -41,7 +45,12 @@ export function CenterDetail({
   const [center, setCenter] = useState<PublicCenter | null>(initial?.ok ? initial.data : null);
   const [error, setError] = useState<ApiError | null>(
     initial && !initial.ok && initial.status !== 0
-      ? new ApiError(initial.status, initial.code ?? 'ERROR', initial.message ?? 'No se pudo cargar.')
+      ? new ApiError(
+          initial.status,
+          initial.code ?? 'ERROR',
+          initial.message ?? 'No se pudo cargar.',
+          initial.extra ?? {},
+        )
       : null,
   );
   const [loading, setLoading] = useState(!initial || (!initial.ok && initial.status === 0));
@@ -58,7 +67,10 @@ export function CenterDetail({
       setCenter(await api.get<PublicCenter>(`/public/centers/${slug}`));
       setError(null);
     } catch (e) {
-      setError(e instanceof ApiError ? e : new ApiError(0, 'ERROR', 'Ocurrió un error inesperado.'));
+      const err = e instanceof ApiError ? e : new ApiError(0, 'ERROR', 'Ocurrió un error inesperado.');
+      setError(err);
+      // Si pasó a estar oculto o fue retirado mientras la mirabas, se muestra ese estado.
+      if (err.status === 410 || err.status === 404) setCenter(null);
     } finally {
       setLoading(false);
     }
@@ -101,25 +113,9 @@ export function CenterDetail({
       );
     }
     if (error.status === 410) {
-      return (
-        <div className="grid gap-4">
-          <Callout tone="warn" title="Centro oculto por reportes" headingLevel={2}>
-            {error.message}
-          </Callout>
-          <p className="text-ink-2">
-            Mientras tanto, no vayas a este centro sin confirmarlo por otra vía. Hay otros centros en el{' '}
-            <Link href="/">listado</Link>.
-          </p>
-          <div className="flex flex-wrap gap-2">
-            <Link href="/" className={`${buttonVariants({ variant: 'primary' })} no-underline`}>
-              Ver otros centros
-            </Link>
-            <Link href="/mis-centros" className={`${buttonVariants({ variant: 'secondary' })} no-underline`}>
-              Soy responsable
-            </Link>
-          </div>
-        </div>
-      );
+      const id = typeof error.data.id === 'string' ? error.data.id : undefined;
+      const name = typeof error.data.name === 'string' ? error.data.name : undefined;
+      return <HiddenCenter id={id} name={name} message={error.message} onConfirmed={() => void load()} />;
     }
     return <ErrorState error={error} onRetry={load} />;
   }
@@ -132,7 +128,7 @@ export function CenterDetail({
   const today = todayText(center.schedule);
   const shareText = [
     `${center.name} — ${centerTypeShort(meta, center.centerType)} en ${placeLine(meta, center)}.`,
-    today ? `${today}.` : '',
+    today ? (today.endsWith('.') ? today : `${today}.`) : '',
     shareNeeds.length ? `Necesita: ${shareNeeds.join(', ')}.` : '',
     'Confirma antes de ir.',
   ]
@@ -168,7 +164,7 @@ export function CenterDetail({
         )}
         {center.flagged && (
           <Callout tone="danger" title="Reportado: verifica antes de ir" headingLevel={2}>
-            Varias personas reportaron un problema en los últimos días. Confirma por otra vía que sigue recibiendo.
+            Varias personas lo reportaron. Confirma por teléfono antes de ir y nunca envíes dinero.
           </Callout>
         )}
         {(center.visibility === 'STALE' || center.visibility === 'EXPIRED') && (
@@ -183,7 +179,7 @@ export function CenterDetail({
           href={dir.google}
           target="_blank"
           rel="noopener noreferrer"
-          className={`${buttonVariants({ variant: 'primary' })} no-underline w-full sm:w-auto h-auto min-h-11 whitespace-normal py-2 text-center`}
+          className={`${buttonVariants({ variant: closed ? 'secondary' : 'primary' })} no-underline w-full sm:w-auto h-auto! min-h-11 whitespace-normal! py-2 text-center leading-snug`}
         >
           <Navigation aria-hidden="true" className="size-4" />
           Cómo llegar · Google Maps
@@ -200,12 +196,14 @@ export function CenterDetail({
         )}
       </div>
 
-      <section aria-labelledby="necesidades" className="grid gap-3 bg-cloth-pale p-4 shadow-cut">
-        <h2 id="necesidades" className="font-ui text-xl font-bold">
-          Qué necesitan
-        </h2>
-        <NeedsDetail center={center} meta={meta} />
-      </section>
+      {!closed && (
+        <section aria-labelledby="necesidades" className="grid gap-3 bg-cloth-pale p-4 shadow-cut">
+          <h2 id="necesidades" className="font-ui text-xl font-bold">
+            Qué necesitan
+          </h2>
+          <NeedsDetail center={center} meta={meta} />
+        </section>
+      )}
 
       <Callout tone="warn" title="Nunca transfieras dinero a nombre de un centro de esta lista." headingLevel={2}>
         Aquí solo se piden artículos. Si alguien te pide dinero en nombre de este centro, repórtalo.
@@ -242,12 +240,14 @@ export function CenterDetail({
 
       <ContactBlock center={center} />
 
-      <section aria-labelledby="compartir" className="grid gap-3">
-        <h2 id="compartir" className="font-ui text-xl font-bold">
-          Compartir
-        </h2>
-        <ShareActions title={center.name} text={shareText} path={`/c/${center.slug}`} />
-      </section>
+      {!closed && (
+        <section aria-labelledby="compartir" className="grid gap-3">
+          <h2 id="compartir" className="font-ui text-xl font-bold">
+            Compartir
+          </h2>
+          <ShareActions title={center.name} text={shareText} path={`/c/${center.slug}`} />
+        </section>
+      )}
 
       <section aria-labelledby="comunidad" className="grid gap-3 bg-cloth-shade p-4">
         <h2 id="comunidad" className="font-ui text-xl font-bold">

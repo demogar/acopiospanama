@@ -5,7 +5,7 @@ export type { Schedule };
 
 export type Visibility = 'VISIBLE' | 'STALE' | 'EXPIRED' | 'COMMUNITY_HIDDEN' | 'CLOSED' | 'REMOVED';
 export type NeedLevel = 'URGENT' | 'NEEDED' | 'ENOUGH';
-export type ReportReason = 'CLOSED' | 'NOT_RECEIVING' | 'WRONG_INFO' | 'ASKS_MONEY' | 'FAKE' | 'OTHER';
+export type ReportReason = 'CLOSED' | 'NOT_RECEIVING' | 'WRONG_INFO' | 'ASKS_MONEY' | 'FAKE' | 'MY_DATA' | 'OTHER';
 
 export interface Meta {
   provinces: Record<string, string>;
@@ -64,9 +64,19 @@ export interface ManagedCenter extends MyCenter {
   contactConsent: boolean;
 }
 
+export interface Invitation {
+  id: string;
+  name: string;
+  slug: string;
+  province: string;
+  community: string;
+  createdAt: string;
+}
+
 export interface Me {
   user: { id: string; email: string; name: string; isModerator: boolean; isAdmin: boolean };
   centers: MyCenter[];
+  invitations?: Invitation[];
 }
 
 export interface SessionInfo {
@@ -81,6 +91,9 @@ export interface Manager {
   email: string;
   name: string;
   createdAt: string;
+  acceptedAt: string | null;
+  /** Invitación enviada y aún no aceptada: no da acceso. */
+  pending: boolean;
   you: boolean;
 }
 
@@ -193,7 +206,7 @@ export const VISIBILITY_INFO: Record<
   COMMUNITY_HIDDEN: {
     label: 'Oculto por reportes',
     tone: 'danger',
-    help: 'Varias personas lo reportaron y se ocultó mientras tanto. Revisa los avisos de abajo.',
+    help: 'Varias personas lo reportaron y se ocultó mientras tanto. Si sigue funcionando, toca «Sigue funcionando»: vuelve a mostrarse con un aviso de que hay reportes.',
   },
   CLOSED: {
     label: 'Cerrado',
@@ -224,6 +237,10 @@ export const REPORT_FOR_OWNER: Record<ReportReason, { text: string; fix: string 
   FAKE: {
     text: 'no pudieron comprobar que el centro exista',
     fix: 'Añade una referencia clara, el horario y quién lo organiza para que la gente lo encuentre.',
+  },
+  MY_DATA: {
+    text: 'se publicaron sus datos sin permiso',
+    fix: 'El contacto se ocultó. Vuelve a publicarlo solo con el consentimiento de esa persona (pestaña Datos).',
   },
   OTHER: { text: 'hay algo por revisar', fix: 'Revisa que la ficha esté al día y guárdala.' },
 };

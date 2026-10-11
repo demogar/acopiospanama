@@ -9,6 +9,7 @@ import { OwnerReports, StatusBadges } from '@/components/account/center-status';
 import { ErrorSummary } from '@/components/account/error-summary';
 import { Managers } from '@/components/account/managers';
 import {
+  focusNeed,
   needErrors,
   NeedsEditor,
   needsToState,
@@ -82,7 +83,13 @@ function EditInner({ tileHost }: { tileHost: string }) {
       subtitle={<StatusLine c={center} />}
     >
       <Stack gap="md">
-        <OwnerReports c={center} headingLevel={2} />
+        <OwnerReports c={center} headingLevel={2} exclude={['MY_DATA']} />
+        {(center.reportReasons?.MY_DATA ?? 0) > 0 && (
+          <Callout tone="warn" headingLevel={2} title="El contacto se ocultó">
+            Alguien reportó que publicaste sus datos sin permiso: el contacto se ocultó. Vuelve a publicarlo solo con su
+            consentimiento (pestaña «Datos»).
+          </Callout>
+        )}
         {center.visibility === 'CLOSED' && (
           <Callout tone="info" headingLevel={2} title="Este centro está cerrado">
             No aparece en el directorio. Para reabrirlo, ve a{' '}
@@ -143,6 +150,7 @@ function NeedsForm({ center, meta, onSaved }: { center: MyCenter; meta: Meta; on
   const [noteErrs, setNoteErrs] = useState<Record<string, string>>({});
   const dirty = JSON.stringify(stateToNeeds(meta.items, value)) !== JSON.stringify(stateToNeeds(meta.items, original));
   const errRef = useRef<HTMLDivElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
 
   async function save(e: React.FormEvent) {
     e.preventDefault();
@@ -158,26 +166,30 @@ function NeedsForm({ center, meta, onSaved }: { center: MyCenter; meta: Meta; on
       });
       onSaved();
     } catch (err) {
-      if (err instanceof ApiError && err.code === 'VALIDATION') setNoteErrs(needErrors(err.fields, sent));
+      const ne = err instanceof ApiError ? needErrors(err.fields, sent) : {};
+      setNoteErrs(ne);
       setError({
         title:
           err instanceof ApiError && err.code === 'MONEY_NOT_ALLOWED'
-            ? 'No se guardó: una nota menciona dinero'
-            : 'No se pudo guardar',
+            ? 'No se guardó: una nota pide dinero'
+            : err instanceof ApiError && err.code === 'TEXT_NOT_ALLOWED'
+              ? 'No se guardó: una nota tiene texto no permitido'
+              : 'No se pudo guardar',
         text: errorMessage(err),
       });
-      requestAnimationFrame(() => errRef.current?.focus());
+      const firstItem = Object.keys(ne)[0];
+      requestAnimationFrame(() => (firstItem ? focusNeed(formRef.current, firstItem) : errRef.current?.focus()));
     } finally {
       setBusy(false);
     }
   }
 
   return (
-    <form onSubmit={save} noValidate>
+    <form ref={formRef} onSubmit={save} noValidate>
       <Stack gap="sm">
         <Text size="sm" tone={2}>
           Toca el estado de cada artículo; lo que quede «sin indicar» no aparece. «Ya no aceptan» evita que la gente
-          lleve de más. Solo artículos: no pongas dinero ni cuentas.
+          lleve de más. No pongas enlaces ni pidas dinero: solo artículos.
         </Text>
         {error && <ErrorSummary ref={errRef} title={error.title} message={error.text} fields={{}} onPick={() => {}} />}
         <NeedsEditor items={meta.items} value={value} onChange={setValue} errors={noteErrs} />
@@ -251,9 +263,17 @@ function DataForm({
       });
       onSaved();
     } catch (err) {
-      if (err instanceof ApiError && err.code === 'MONEY_NOT_ALLOWED')
-        fail({}, { title: 'No se guardó: la ficha menciona dinero', text: err.message });
-      else if (err instanceof ApiError && err.code === 'VALIDATION' && Object.keys(err.fields).length)
+      if (err instanceof ApiError && (err.code === 'MONEY_NOT_ALLOWED' || err.code === 'TEXT_NOT_ALLOWED')) {
+        fail(err.fields, {
+          title:
+            err.code === 'MONEY_NOT_ALLOWED'
+              ? 'No se guardó: hay texto que pide dinero'
+              : 'No se guardó: hay texto no permitido',
+          text: err.message,
+        });
+        const first = Object.keys(err.fields)[0];
+        if (first) requestAnimationFrame(() => focusField(formRef.current, first));
+      } else if (err instanceof ApiError && err.code === 'VALIDATION' && Object.keys(err.fields).length)
         fail(err.fields, null);
       else fail({}, { title: 'No se pudo guardar', text: errorMessage(err) });
     } finally {
@@ -265,8 +285,8 @@ function DataForm({
     <form ref={formRef} onSubmit={save} noValidate>
       <Stack gap="lg">
         <Text size="sm" tone={2}>
-          Guardar la ficha también resuelve los avisos de «datos por corregir». Solo artículos: no pongas dinero,
-          cuentas ni Yappy.
+          Guardar la ficha también resuelve los avisos de «datos por corregir». No pongas enlaces ni pidas dinero: solo
+          artículos.
         </Text>
         <ErrorSummary
           ref={summaryRef}

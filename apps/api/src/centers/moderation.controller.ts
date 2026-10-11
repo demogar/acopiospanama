@@ -3,8 +3,9 @@ import { sql } from 'kysely';
 import { z } from 'zod';
 import { AccessService } from '../access/access.service';
 import { AuditService } from '../audit/audit.service';
-import { CONFIG, DATABASE } from '../common/core.module';
-import { normalizeEmail } from '../common/crypto';
+import { CONFIG, DATABASE, KEYS } from '../common/core.module';
+import { hmac, Keys, normalizeEmail } from '../common/crypto';
+import { MailService } from '../mail/mail.service';
 import { Auth, AuthContext, notFound, parse, parseId, shortText } from '../common/http';
 import type { AppConfig } from '../config';
 import type { DB } from '../db/db';
@@ -19,9 +20,11 @@ export class ModerationController {
   constructor(
     @Inject(DATABASE) private readonly db: DB,
     @Inject(CONFIG) private readonly config: AppConfig,
+    @Inject(KEYS) private readonly keys: Keys,
     private readonly access: AccessService,
     private readonly centers: CentersService,
     private readonly audit: AuditService,
+    private readonly mail: MailService,
   ) {}
 
   /** Lo que conviene mirar: centros con reportes abiertos y los creados en las últimas 24 h. */
@@ -113,10 +116,12 @@ export class ModerationController {
       body,
     );
     const centerId = parseId(id);
+    // Solo se restaura lo que retiró la moderación; un centro que cerró su responsable sigue cerrado.
     const r = await this.db
       .updateTable('centers')
       .set({ status: 'PUBLISHED', removedReason: '', managerConfirmedAt: new Date(), updatedAt: new Date() })
       .where('id', '=', centerId)
+      .where('status', '!=', 'CLOSED')
       .returning('id')
       .executeTakeFirst();
     if (!r) throw notFound();
@@ -174,46 +179,56 @@ export class ModerationController {
       }),
       body,
     );
-    let userIds: string[] = [];
-    if (input.email) {
-      const u = await this.db.selectFrom('users').select('id').where('email', '=', input.email).executeTakeFirst();
-      if (u) userIds = [u.id];
-    } else if (input.centerId) {
-      // Bloquear «a quien creó este centro» sin que el moderador vea el correo.
+    // Se bloquea el CORREO (como HMAC), no solo la cuenta: borrarla y volver a entrar no sirve.
+    let emailHmac: string | null = null;
+    if (input.email) emailHmac = hmac(this.keys.email, input.email);
+    else if (input.centerId) {
       const c = await this.db
         .selectFrom('centers')
-        .select('createdBy')
+        .select('creatorEmailHmac')
         .where('id', '=', input.centerId)
         .executeTakeFirst();
-      if (c?.createdBy) userIds = [c.createdBy];
+      emailHmac = c?.creatorEmailHmac ?? null;
     }
-    if (userIds.length === 0) throw notFound();
-    const protectedUser = await this.db
-      .selectFrom('users')
-      .select('id')
-      .where('id', 'in', userIds)
-      .where((eb) => eb.or([eb('isModerator', '=', true), eb('isAdmin', '=', true)]))
-      .executeTakeFirst();
-    if (protectedUser) throw notFound();
+    if (!emailHmac) throw notFound();
+    const users = (
+      await this.db.selectFrom('users').select(['id', 'email', 'isModerator', 'isAdmin']).execute()
+    ).filter((u) => hmac(this.keys.email, u.email) === emailHmac);
+    if (users.some((u) => u.isModerator || u.isAdmin)) throw notFound();
+    const userIds = users.map((u) => u.id);
     await this.db.transaction().execute(async (trx) => {
-      await trx.updateTable('users').set({ disabledAt: new Date() }).where('id', 'in', userIds).execute();
       await trx
-        .updateTable('sessions')
-        .set({ revokedAt: new Date() })
-        .where('userId', 'in', userIds)
-        .where('revokedAt', 'is', null)
+        .insertInto('blockedEmails')
+        .values({ emailHmac: emailHmac! })
+        .onConflict((oc) => oc.column('emailHmac').doNothing())
         .execute();
+      if (userIds.length) {
+        await trx.updateTable('users').set({ disabledAt: new Date() }).where('id', 'in', userIds).execute();
+        await trx
+          .updateTable('sessions')
+          .set({ revokedAt: new Date() })
+          .where('userId', 'in', userIds)
+          .where('revokedAt', 'is', null)
+          .execute();
+        await trx.deleteFrom('centerManagers').where('userId', 'in', userIds).execute();
+      }
+      // Retira todo lo que creó ese correo, aunque haya borrado su cuenta.
       await trx
         .updateTable('centers')
         .set({ status: 'REMOVED', removedReason: `Cuenta bloqueada: ${input.reason}`, updatedAt: new Date() })
-        .where('createdBy', 'in', userIds)
+        .where('creatorEmailHmac', '=', emailHmac!)
         .where('status', '!=', 'REMOVED')
         .execute();
-      for (const id of userIds)
-        await this.audit.log(
-          { actorId: a.user.id, action: 'mod.user_blocked', objectType: 'user', objectId: id, reason: input.reason },
-          trx,
-        );
+      await this.audit.log(
+        {
+          actorId: a.user.id,
+          action: 'mod.user_blocked',
+          objectType: 'email_hmac',
+          objectId: emailHmac!.slice(0, 12),
+          reason: input.reason,
+        },
+        trx,
+      );
     });
     this.centers.invalidate();
     return { ok: true };
@@ -261,6 +276,15 @@ export class ModerationController {
         .where('userId', '=', u.id)
         .where('revokedAt', 'is', null)
         .execute();
+    await this.mail.send({
+      to: email,
+      subject: moderator
+        ? 'Ahora eres parte de la moderación de Acopio Panamá'
+        : 'Ya no eres parte de la moderación de Acopio Panamá',
+      text: moderator
+        ? `Te dieron acceso de moderación en Acopio Panamá. Entra en ${this.config.appOrigin}/entrar con este correo; la primera vez configurarás un segundo factor.\n\nLa comunidad mantiene el directorio: interviene solo ante estafas o abusos claros.`
+        : 'Se retiró tu acceso de moderación en Acopio Panamá. Gracias por tu ayuda.',
+    });
     await this.audit.log({
       actorId: a.user.id,
       action: moderator ? 'admin.moderator_added' : 'admin.moderator_removed',

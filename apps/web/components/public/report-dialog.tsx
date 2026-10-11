@@ -112,6 +112,12 @@ export function ReportDialog({
               )}
             </div>
           )}
+          {reason === 'MY_DATA' && (
+            <Callout tone="info">
+              Al enviarlo, el contacto publicado (nombre, teléfono y WhatsApp) se oculta de inmediato hasta que el
+              responsable lo revise. Cuéntanos en los detalles qué dato es tuyo, sin repetirlo.
+            </Callout>
+          )}
           {reason === 'ASKS_MONEY' && (
             <Callout tone="info">
               No transfieras dinero. Si ya lo hiciste, denúncialo también a la policía o a tu banco.

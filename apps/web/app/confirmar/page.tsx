@@ -67,7 +67,7 @@ function ConfirmInner() {
           >
             {network
               ? loadError.message
-              : 'Los enlaces de los correos vencen a los pocos días. Entra con tu correo para confirmar o cerrar tu centro desde «Mis centros».'}
+              : 'Los enlaces de los correos vencen a las 72 horas. Entra con tu correo para confirmar o cerrar tu centro desde «Mis centros».'}
           </Callout>
           {network ? (
             <Button size="lg" onClick={() => window.location.reload()}>

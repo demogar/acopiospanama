@@ -8,10 +8,12 @@ import { Button, buttonVariants, Callout, Heading, Panel, Stack, Text } from '@d
 import { CenterFields, focusField, toBody, validateLocal } from '@/components/account/center-fields';
 import { ErrorSummary } from '@/components/account/error-summary';
 import {
+  focusNeed,
   needErrors,
   NeedsEditor,
   needsToState,
   type NeedsState,
+  needSummaryFields,
   stateToNeeds,
 } from '@/components/account/needs-editor';
 import { ShareButton } from '@/components/account/share-button';
@@ -70,6 +72,15 @@ export function PublishForm({ tileHost }: { tileHost: string }) {
     requestAnimationFrame(() => summaryRef.current?.focus());
   }
 
+  /** Marca los campos y enfoca el primero (en el orden del formulario que devuelve la API). */
+  function focusFirst(f: Record<string, string>) {
+    const first = Object.keys(f)[0];
+    if (!first) return requestAnimationFrame(() => summaryRef.current?.focus());
+    requestAnimationFrame(() =>
+      first.startsWith('needs.') ? focusNeed(formRef.current, first.split('.')[1]) : focusField(formRef.current, first),
+    );
+  }
+
   async function submit(e: React.FormEvent | null, skipDuplicates = false) {
     e?.preventDefault();
     if (!meta) return;
@@ -97,14 +108,25 @@ export function PublishForm({ tileHost }: { tileHost: string }) {
       setCreated(c);
       window.scrollTo({ top: 0 });
     } catch (err) {
-      if (err instanceof ApiError && err.code === 'MONEY_NOT_ALLOWED') {
-        showErrors({}, { title: 'No se puede publicar: la ficha menciona dinero', text: err.message });
+      if (err instanceof ApiError && (err.code === 'MONEY_NOT_ALLOWED' || err.code === 'TEXT_NOT_ALLOWED')) {
+        const sent = stateToNeeds(meta.items, needs);
+        setNeedErrs(needErrors(err.fields, sent));
+        const f = needSummaryFields(err.fields, sent);
+        setFields(f);
+        setMessage({
+          title:
+            err.code === 'MONEY_NOT_ALLOWED'
+              ? 'No se puede publicar: hay texto que pide dinero'
+              : 'No se puede publicar: hay texto no permitido',
+          text: err.message,
+        });
+        focusFirst(f);
       } else if (err instanceof ApiError && err.code === 'TOO_MANY') {
         showErrors({}, { title: 'Llegaste al límite', text: err.message });
       } else if (err instanceof ApiError && err.code === 'VALIDATION') {
-        const f = { ...err.fields };
-        const nErr = needErrors(f, stateToNeeds(meta.items, needs));
-        setNeedErrs(nErr);
+        const sent = stateToNeeds(meta.items, needs);
+        setNeedErrs(needErrors(err.fields, sent));
+        const f = needSummaryFields(err.fields, sent);
         showErrors(f, Object.keys(f).length ? null : { title: 'Revisa estos datos', text: err.message });
       } else {
         showErrors({}, { title: 'No se pudo publicar', text: errorMessage(err) });
@@ -193,7 +215,8 @@ export function PublishForm({ tileHost }: { tileHost: string }) {
       <form ref={formRef} onSubmit={(e) => submit(e)} noValidate>
         <Stack gap="lg">
           <Callout tone="warn" icon={<Ban aria-hidden="true" />} title="Solo artículos">
-            No pidas dinero ni pongas cuentas o Yappy: la publicación se bloquea. Solo artículos.
+            No pongas enlaces ni pidas dinero: solo artículos. Si mencionas cuentas, Yappy o transferencias, la
+            publicación se bloquea.
           </Callout>
 
           <ErrorSummary
@@ -201,10 +224,9 @@ export function PublishForm({ tileHost }: { tileHost: string }) {
             message={message?.text}
             title={message?.title}
             fields={fields}
+            items={meta.items}
             onPick={(k) =>
-              k.startsWith('needs')
-                ? document.getElementById('needs-h')?.scrollIntoView()
-                : focusField(formRef.current, k)
+              k.startsWith('needs.') ? focusNeed(formRef.current, k.split('.')[1]) : focusField(formRef.current, k)
             }
           />
 

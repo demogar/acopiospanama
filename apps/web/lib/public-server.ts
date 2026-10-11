@@ -6,7 +6,9 @@ import type { PublicCenter, PublicMeta } from './public-types';
  */
 const API = process.env.API_INTERNAL_URL ?? 'http://127.0.0.1:3011';
 
-export type Loaded<T> = { ok: true; data: T } | { ok: false; status: number; code?: string; message?: string };
+export type Loaded<T> =
+  | { ok: true; data: T }
+  | { ok: false; status: number; code?: string; message?: string; extra?: Record<string, unknown> };
 
 async function get<T>(path: string, timeoutMs = 2500): Promise<Loaded<T>> {
   try {
@@ -22,6 +24,7 @@ async function get<T>(path: string, timeoutMs = 2500): Promise<Loaded<T>> {
         status: res.status,
         code: body.code as string | undefined,
         message: body.message as string | undefined,
+        extra: body,
       };
     return { ok: true, data: body as T };
   } catch {

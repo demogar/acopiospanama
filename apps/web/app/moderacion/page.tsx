@@ -57,7 +57,7 @@ export default function ModerationPage() {
           description="No hay reportes abiertos ni centros nuevos. La comunidad se está encargando."
         />
       ) : (
-        <ul className="grid gap-4 md:grid-cols-2" aria-label="Centros por revisar">
+        <ul className="grid grid-cols-[minmax(0,1fr)] gap-4 md:grid-cols-2" aria-label="Centros por revisar">
           {items.map((c) => (
             <li key={c.id}>
               <QueueCard c={c} meta={meta} run={run} onChanged={onChanged} />
@@ -73,7 +73,7 @@ export default function ModerationPage() {
           <p className="text-sm text-ink-2">
             Si alguno fue un error, restáuralo. Después de 7 días dejan de aparecer aquí.
           </p>
-          <ul className="grid gap-4 md:grid-cols-2" aria-label="Centros retirados">
+          <ul className="grid grid-cols-[minmax(0,1fr)] gap-4 md:grid-cols-2" aria-label="Centros retirados">
             {removed.map((c) => (
               <li key={c.id}>
                 <QueueCard c={c} meta={meta} run={run} onChanged={onChanged} />

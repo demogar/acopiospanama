@@ -3,7 +3,7 @@ import { buttonVariants } from '@demogar/mola-ui';
 import { telLink, whatsappLink } from '@/lib/public-schedule';
 import type { PublicCenter } from '@/lib/public-types';
 
-const btn = 'no-underline w-full sm:w-auto h-auto min-h-11 whitespace-normal py-2 text-center';
+const btn = 'no-underline w-full sm:w-auto h-auto! min-h-11 whitespace-normal! py-2 text-center leading-snug';
 
 /** Contacto público (solo existe si esa persona aceptó publicarlo). Sin datos, no se muestra. */
 export function ContactBlock({

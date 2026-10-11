@@ -10,7 +10,7 @@ import type { DB } from '../db/db';
 import { MailService } from '../mail/mail.service';
 import { CentersService } from './centers.service';
 
-const TOKEN_DAYS = 7;
+const TOKEN_HOURS = 72;
 const REMIND_AFTER_HOURS = 48;
 const REPORT_NOTICE_GAP_HOURS = 6;
 
@@ -44,13 +44,13 @@ export class LinksService {
 
   makeToken(centerId: string, userId: string): string {
     const payload = Buffer.from(
-      JSON.stringify({ c: centerId, u: userId, e: Date.now() + TOKEN_DAYS * 86_400_000 }),
+      JSON.stringify({ c: centerId, u: userId, i: Date.now(), e: Date.now() + TOKEN_HOURS * 3_600_000 }),
     ).toString('base64url');
     const sig = createHmac('sha256', this.key).update(payload).digest('base64url');
     return `${payload}.${sig}`;
   }
 
-  private verify(token: string): { c: string; u: string } {
+  private verify(token: string): { c: string; u: string; i: number } {
     const [payload, sig] = token.split('.');
     const bad = () =>
       new ApiError(
@@ -61,7 +61,7 @@ export class LinksService {
     if (!payload || !sig) throw bad();
     const expected = createHmac('sha256', this.key).update(payload).digest('base64url');
     if (!safeEqual(sig, expected)) throw bad();
-    let data: { c: string; u: string; e: number };
+    let data: { c: string; u: string; i: number; e: number };
     try {
       data = JSON.parse(Buffer.from(payload, 'base64url').toString('utf8'));
     } catch {
@@ -72,14 +72,15 @@ export class LinksService {
   }
 
   private async load(token: string) {
-    const { c, u } = this.verify(token);
+    const { c, u, i } = this.verify(token);
     const row = await this.db
       .selectFrom('centers')
       .innerJoin('centerManagers', 'centerManagers.centerId', 'centers.id')
       .innerJoin('users', 'users.id', 'centerManagers.userId')
-      .select(['centers.id', 'centers.name', 'centers.slug', 'centers.status', 'users.disabledAt'])
+      .select(['centers.id', 'centers.name', 'centers.slug', 'centers.status', 'centers.updatedAt', 'users.disabledAt'])
       .where('centers.id', '=', c)
       .where('centerManagers.userId', '=', u)
+      .where('centerManagers.acceptedAt', 'is not', null)
       .executeTakeFirst();
     if (!row || row.disabledAt || row.status === 'REMOVED') {
       throw new ApiError(
@@ -88,7 +89,7 @@ export class LinksService {
         'El enlace no es válido o ya venció. Entra con tu correo para actualizar el centro.',
       );
     }
-    return { ...row, userId: u };
+    return { ...row, userId: u, issuedAt: i ?? 0 };
   }
 
   async peekToken(token: string) {
@@ -109,6 +110,15 @@ export class LinksService {
         objectId: r.id,
       });
     } else {
+      // Cerrar con un enlace solo vale una vez: si el centro cambió después de enviar el correo
+      // (se reabrió, se editó), un enlace viejo reenviado ya no puede cerrarlo.
+      if (r.updatedAt.getTime() > r.issuedAt) {
+        throw new ApiError(
+          409,
+          'LINK_USED',
+          'Este enlace ya no sirve para cerrar el centro porque cambió después. Entra con tu correo para hacerlo.',
+        );
+      }
       await this.db
         .updateTable('centers')
         .set({ status: 'CLOSED', closedAt: new Date(), updatedAt: new Date() })
@@ -143,13 +153,14 @@ export class LinksService {
         .innerJoin('users', 'users.id', 'centerManagers.userId')
         .select(['users.id', 'users.email'])
         .where('centerManagers.centerId', '=', c.id)
+        .where('centerManagers.acceptedAt', 'is not', null)
         .where('users.disabledAt', 'is', null)
         .execute();
       for (const m of managers) {
         const link = `${this.config.appOrigin}/confirmar?t=${encodeURIComponent(this.makeToken(c.id, m.id))}`;
         const ok = await mail.send({
           to: m.email,
-          subject: `¿«${c.name}» sigue recibiendo donaciones?`,
+          subject: '¿Tu centro de acopio sigue recibiendo donaciones?',
           text: [
             `Eres responsable de «${c.name}» en Acopio Panamá.`,
             '',
@@ -160,6 +171,7 @@ export class LinksService {
             `${this.config.appOrigin}/mis-centros`,
             '',
             'Si nadie lo confirma, el centro deja de mostrarse automáticamente en unos días.',
+            'El enlace vence en 72 horas.',
           ].join('\n'),
         });
         if (ok) sent++;
@@ -183,12 +195,13 @@ export class LinksService {
       .innerJoin('users', 'users.id', 'centerManagers.userId')
       .select('users.email')
       .where('centerManagers.centerId', '=', centerId)
+      .where('centerManagers.acceptedAt', 'is not', null)
       .where('users.disabledAt', 'is', null)
       .execute();
     for (const m of managers) {
       await mail.send({
         to: m.email,
-        subject: `Alguien reportó «${c.name}»`,
+        subject: 'Alguien reportó uno de tus centros de acopio',
         text: `Una persona reportó un problema con «${c.name}» en Acopio Panamá. Revisa que la información esté al día en ${this.config.appOrigin}/mis-centros\n\nSi varias personas lo reportan, el centro se marca o se oculta automáticamente.`,
       });
     }

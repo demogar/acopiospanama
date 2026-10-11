@@ -164,6 +164,7 @@ export const REPORT_REASONS = {
   WRONG_INFO: 'La información está equivocada',
   ASKS_MONEY: 'Pide dinero o transferencias',
   FAKE: 'Parece falso o una estafa',
+  MY_DATA: 'Publicaron mis datos sin mi permiso',
   OTHER: 'Otro',
 } as const;
 export type ReportReason = keyof typeof REPORT_REASONS;
@@ -180,26 +181,117 @@ export const EXPIRE_DAYS = 14;
 
 /**
  * Las fichas no pueden pedir dinero: así se cierra la vía de estafa más común en emergencias.
- * Las donaciones en efectivo deben ir a organizaciones reconocidas, fuera de este directorio.
+ * El texto se normaliza antes de comparar (Unicode NFKC, caracteres invisibles, homoglifos
+ * cirílicos/griegos, números usados como letras y letras separadas) para que no se evada con
+ * «Y a p p y», «Yаppy» (con «а» cirílica) o «Y4ppy». Mencionar un banco como referencia de
+ * dirección («frente al Banco Nacional») sí se permite.
  */
-const MONEY_PATTERNS: RegExp[] = [
-  /\byappy\b/i,
-  /\bnequi\b/i,
-  /\bpaypal\b/i,
-  /\bzelle\b/i,
-  /\bach\b/i,
-  /\btransferenc/i,
-  /\bdep[oó]sit/i,
-  /\bcuenta\s+(de\s+)?(ahorros?|corriente|bancaria)/i,
-  /\bn[uú]mero\s+de\s+cuenta/i,
-  /\b(banco\s+general|banistmo|bac\s+credomatic|caja\s+de\s+ahorros|banco\s+nacional|global\s+bank|multibank|credicorp|st\.?\s*georges)\b/i,
-  /\bdonaci[oó]n(es)?\s+(en\s+)?(efectivo|monetaria|de\s+dinero)/i,
-  /\b\d{10,}\b/, // números largos: cuentas, no teléfonos (en Panamá son de 7–8 dígitos)
-  /\b(?:\d[ -]?){13,19}\b/, // tarjetas
+const CONFUSABLES: Record<string, string> = {
+  а: 'a',
+  е: 'e',
+  о: 'o',
+  р: 'p',
+  с: 'c',
+  х: 'x',
+  у: 'y',
+  і: 'i',
+  ј: 'j',
+  ѕ: 's',
+  к: 'k',
+  м: 'm',
+  т: 't',
+  в: 'b',
+  н: 'h',
+  α: 'a',
+  ε: 'e',
+  ο: 'o',
+  ρ: 'p',
+  υ: 'y',
+  ι: 'i',
+  κ: 'k',
+  ν: 'v',
+  τ: 't',
+};
+
+function baseNormalize(t: string): string {
+  return t
+    .normalize('NFKC')
+    .replace(/[\p{Cf}\u200B-\u200F\u2060\uFEFF]/gu, '')
+    .toLowerCase()
+    .replace(/[^\p{ASCII}]/gu, (ch) => CONFUSABLES[ch] ?? ch)
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '');
+}
+
+/** Solo letras: «Y a p p y», «y.a.p.p.y», «Y4ppy» → «yappy». */
+function squash(t: string): string {
+  return baseNormalize(t)
+    .replace(/[4@]/g, 'a')
+    .replace(/3/g, 'e')
+    .replace(/[1!|]/g, 'i')
+    .replace(/0/g, 'o')
+    .replace(/5\$/g, 's')
+    .replace(/[^a-z]/g, '');
+}
+
+const SQUASHED_KEYWORDS = [
+  'yappy',
+  'yapy',
+  'nequi',
+  'paypal',
+  'zelle',
+  'westernunion',
+  'moneygram',
+  'binance',
+  'usdt',
+  'bitcoin',
 ];
 
+const MONEY_PATTERNS: RegExp[] = [
+  /\bach\b/,
+  /\btran?s?fer/, // transferencia, tranferencia, transfer
+  /\bdeposit\w*\s+(a|en|al)\s+(\w+\s+){0,3}(cuenta|banco|yappy|numero|banistmo|bac|caja\s+de\s+ahorros|global\s+bank|multibank|credicorp|bg)\b/,
+  /\bcuenta\s+(de\s+)?(ahorros?|corriente|bancaria|banco)/,
+  /\bnumero\s+de\s+cuenta/,
+  /\b(a\s+nombre\s+de)\b/,
+  /\b(cash|efectivo)\b/,
+  /\b(don|envi|mand|aport|deposit|transfier|colabor|contribu)\w*\s+(\w+\s+){0,3}(dinero|plata|efectivo|cash|fondos|monetari)/,
+  /\b(dinero|plata|efectivo|fondos)\s+(\w+\s+){0,2}(al|a\s+la|por|via|a\s+traves)\b/,
+];
+
+/** Enlaces y dominios: no se permiten en textos libres (vía típica de «dona aquí»). */
+const URL_PATTERN =
+  /(https?:\/\/|www\.|\b[a-z0-9-]+\.(com|net|org|pa|io|me|ly|link|info|xyz|app|site|online|shop|store|lat|co|gg|to|bit)\b)/;
+
+/** ¿Hay una secuencia de 10+ dígitos (cuenta/tarjeta) ignorando separadores? Excluye teléfonos panameños con prefijo 507. */
+function hasLongNumber(t: string): boolean {
+  const n = baseNormalize(t);
+  for (const m of n.matchAll(/\d[\d.\-\s/]{8,}\d/g)) {
+    let digits = m[0].replace(/\D/g, '');
+    if (digits.startsWith('507') && digits.length <= 11) digits = digits.slice(3);
+    if (digits.length >= 10) return true;
+  }
+  return false;
+}
+
+export type TextProblem = 'MONEY' | 'URL' | 'HTML';
+
+/** Revisa un texto libre. Devuelve el problema o null. */
+export function textProblem(t: string): TextProblem | null {
+  if (!t) return null;
+  if (/[<>]/.test(t)) return 'HTML';
+  const n = baseNormalize(t);
+  if (URL_PATTERN.test(n)) return 'URL';
+  const sq = squash(t);
+  if (SQUASHED_KEYWORDS.some((k) => sq.includes(k))) return 'MONEY';
+  if (MONEY_PATTERNS.some((re) => re.test(n))) return 'MONEY';
+  if (hasLongNumber(t)) return 'MONEY';
+  return null;
+}
+
+/** Compatibilidad: true si algún texto pide dinero. */
 export function asksForMoney(...texts: string[]): boolean {
-  return texts.some((t) => MONEY_PATTERNS.some((re) => re.test(t)));
+  return texts.some((t) => textProblem(t) === 'MONEY');
 }
 
 export function slugify(name: string): string {

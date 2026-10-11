@@ -60,7 +60,11 @@ export class PublicController {
       throw new ApiError(
         410,
         'HIDDEN',
-        'Este centro está oculto porque varias personas lo reportaron. Si eres su responsable, entra para revisarlo.',
+        'Este centro está oculto porque varias personas lo reportaron. Si estuviste allí y sigue funcionando, puedes confirmarlo. Si eres su responsable, entra para revisarlo.',
+        {
+          id: c.id,
+          name: c.name,
+        },
       );
     }
     return c;
@@ -74,8 +78,8 @@ export class PublicController {
   async confirm(@Param('id') id: string, @Req() req: Request) {
     const centerId = parseId(id);
     const c = await this.centers.one(centerId);
-    if (!c || c.visibility === 'REMOVED' || c.visibility === 'CLOSED' || c.visibility === 'COMMUNITY_HIDDEN')
-      throw notFound();
+    // También se puede confirmar un centro oculto por reportes: es el contrapeso de la comunidad.
+    if (!c || c.visibility === 'REMOVED' || c.visibility === 'CLOSED') throw notFound();
     await this.centers.addConfirmation(centerId, this.centers.origin(req.ip));
     return { message: 'Gracias. Tu confirmación ayuda a otras personas a saber que este centro sigue funcionando.' };
   }
@@ -95,7 +99,12 @@ export class PublicController {
     );
     const c = await this.centers.one(centerId);
     if (!c || c.visibility === 'REMOVED') throw notFound();
-    const created = await this.centers.addReport(centerId, input.reason, input.details, this.centers.origin(req.ip));
+    const created = await this.centers.addReport(
+      centerId,
+      input.reason,
+      input.details,
+      this.centers.origin(req.ip, false),
+    );
     if (created) {
       await this.audit.log({
         action: 'report.created',

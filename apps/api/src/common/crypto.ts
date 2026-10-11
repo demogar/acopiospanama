@@ -19,6 +19,7 @@ export class Keys {
   readonly recovery: Buffer;
   readonly totpEnc: Buffer;
   readonly codeEnc: Buffer;
+  readonly origin: Buffer;
 
   constructor(secret: string) {
     const ikm = Buffer.from(secret, 'utf8');
@@ -29,6 +30,7 @@ export class Keys {
     this.recovery = derive('recovery-code-hmac-v1');
     this.totpEnc = derive('totp-secret-aes-gcm-v1');
     this.codeEnc = derive('otp-code-aes-gcm-v1');
+    this.origin = derive('community-origin-v1');
   }
 }
 
@@ -93,4 +95,26 @@ export function decrypt(key: Buffer, payload: string): string {
 /** Normalización conservadora: solo espacios y mayúsculas. No se quitan puntos ni sufijos «+». */
 export function normalizeEmail(email: string): string {
   return email.trim().toLowerCase();
+}
+
+/**
+ * Clave de agrupación de un cliente para límites y conteos: IPv4 completa; IPv6 por su prefijo /64
+ * (un hogar o teléfono IPv6 tiene millones de direcciones dentro del mismo /64).
+ */
+export function clientKey(ip: string | undefined): string {
+  if (!ip) return 'unknown';
+  const v4 = ip.match(/^(?:::ffff:)?(\d{1,3}(?:\.\d{1,3}){3})$/i);
+  if (v4) return v4[1];
+  const parts = ip.toLowerCase().split('%')[0];
+  // Expandir «::» para quedarse con los 4 primeros grupos.
+  const [head, tail] = parts.split('::');
+  const h = head ? head.split(':') : [];
+  const t = tail !== undefined ? (tail ? tail.split(':') : []) : [];
+  const full = tail !== undefined ? [...h, ...Array(Math.max(0, 8 - h.length - t.length)).fill('0'), ...t] : h;
+  return (
+    full
+      .slice(0, 4)
+      .map((g) => g.replace(/^0+(?=.)/, ''))
+      .join(':') + '::/64'
+  );
 }

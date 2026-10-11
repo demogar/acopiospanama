@@ -27,7 +27,8 @@ export function QueueCard({
   const [dismissing, setDismissing] = useState(false);
   const headingId = `m-${c.id}`;
   const removed = c.status === 'REMOVED';
-  const canRestore = removed || c.visibility === 'COMMUNITY_HIDDEN' || c.status === 'CLOSED';
+  // Un centro que su responsable cerró no se «restaura» desde moderación: lo reabren sus responsables.
+  const canRestore = removed || c.visibility === 'COMMUNITY_HIDDEN';
 
   async function dismiss() {
     setDismissing(true);
@@ -107,7 +108,7 @@ export function QueueCard({
           </Callout>
         )}
 
-        <div className="mt-1 grid grid-cols-1 gap-2 sm:grid-cols-2">
+        <div className="mt-1 grid grid-cols-[minmax(0,1fr)] gap-2 sm:grid-cols-2">
           {!removed && (
             <Button variant="danger" onClick={() => setDialog('remove')}>
               Retirar
@@ -119,12 +120,21 @@ export function QueueCard({
             </Button>
           )}
           {!removed && c.reports.length > 0 && (
-            <Button variant="secondary" loading={dismissing} onClick={dismiss}>
+            <Button
+              variant="secondary"
+              className="h-auto! min-h-11 py-2 text-center leading-snug whitespace-normal!"
+              loading={dismissing}
+              onClick={dismiss}
+            >
               Descartar reportes
             </Button>
           )}
           {!removed && (
-            <Button variant="ghost" onClick={() => setDialog('block')}>
+            <Button
+              variant="ghost"
+              className="h-auto! min-h-11 py-2 text-center leading-snug whitespace-normal!"
+              onClick={() => setDialog('block')}
+            >
               Bloquear a quien lo publicó
             </Button>
           )}
@@ -160,7 +170,7 @@ export function QueueCard({
         open={dialog === 'block'}
         onOpenChange={(o) => !o && setDialog(null)}
         title="Bloquear a quien lo publicó"
-        description="La cuenta que creó este centro no podrá volver a entrar, y se retiran todos los centros que publicó (no solo este). No verás su correo."
+        description="Se bloquea el correo de quien creó este centro: no podrá entrar ni crear otra cuenta con ese correo, aunque haya borrado la suya. Se retira todo lo que publicó (no solo este centro). No verás su correo."
         extra={
           <Callout tone="warn" icon={false}>
             Solo ante abuso claro (estafa, spam). Te pediremos tu código de autenticación.

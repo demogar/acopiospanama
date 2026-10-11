@@ -14,8 +14,10 @@ export const ErrorSummary = forwardRef<
     onPick: (name: string) => void;
     title?: string;
     tone?: 'danger' | 'warn';
+    /** Nombres de artículos para las claves `needs.<ARTÍCULO>`. */
+    items?: Record<string, string>;
   }
->(function ErrorSummary({ message, fields, onPick, title = 'Revisa estos datos', tone = 'danger' }, ref) {
+>(function ErrorSummary({ message, fields, onPick, title = 'Revisa estos datos', tone = 'danger', items }, ref) {
   const entries = Object.entries(fields).filter(([k]) => k !== 'lng' || !fields.lat);
   if (!message && entries.length === 0) return null;
   return (
@@ -34,7 +36,7 @@ export const ErrorSummary = forwardRef<
                     onPick(k);
                   }}
                 >
-                  {labelFor(k)}: {msg}
+                  {labelFor(k, items)}: {msg}
                 </a>
               </li>
             ))}
@@ -45,8 +47,9 @@ export const ErrorSummary = forwardRef<
   );
 });
 
-function labelFor(k: string) {
+function labelFor(k: string, items?: Record<string, string>) {
   const d = k.split('.')[1] as Day | undefined;
+  if (k.startsWith('needs.') && items?.[k.split('.')[1]]) return `Nota de «${items[k.split('.')[1]]}»`;
   if (k.startsWith('schedule.') && d && DAY_LABELS[d]) return `Horario (${DAY_LABELS[d].toLowerCase()})`;
   return fieldLabel(k);
 }
