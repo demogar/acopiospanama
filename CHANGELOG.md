@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2](https://github.com/demogar/acopiospanama/compare/v0.1.1...v0.1.2) (2026-10-11)
+
+
+### Correcciones
+
+* **ci:** construir las imágenes para linux/arm64, la arquitectura del VPS ([#19](https://github.com/demogar/acopiospanama/issues/19)) ([74efb3a](https://github.com/demogar/acopiospanama/commit/74efb3a3558519cd2e05245d1845559a75c0b6b0))
+
 ## [0.1.1](https://github.com/demogar/acopiospanama/compare/v0.1.0...v0.1.1) (2026-10-11)
 
 
