@@ -98,7 +98,10 @@ jobs:
   images:
     name: Imágenes Docker (${{ matrix.name }})
     needs: [api, web, lint, audit]
-    runs-on: ubuntu-latest
+    # El VPS es ARM64 (Hetzner CAX), así que las imágenes se construyen en runners ARM nativos
+    # (gratis en repos públicos): sin emulación y mucho más rápido que QEMU para `next build`.
+    # Si algún día el servidor es amd64, cambia `runs-on` y `platforms` aquí.
+    runs-on: ubuntu-24.04-arm
     timeout-minutes: 30
     permissions:
       contents: read
@@ -139,6 +142,7 @@ jobs:
         with:
           context: ${{ matrix.context }}
           file: ${{ matrix.dockerfile }}
+          platforms: linux/arm64
           # En PR solo se construye (verifica que el Dockerfile funciona); en main se publica.
           push: ${{ github.event_name != 'pull_request' && github.ref == 'refs/heads/main' }}
           tags: ${{ steps.meta.outputs.tags }}

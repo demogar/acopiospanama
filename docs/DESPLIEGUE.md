@@ -10,7 +10,7 @@ merge a main ─────▶ CI otra vez ─▶ imágenes a GHCR (latest + sh
 
 El servidor nunca compila: solo descarga imágenes. Por eso convive bien con otras apps en un VPS pequeño.
 
-Producción hoy: VPS en Hetzner (`46.224.207.173`, Ubuntu, Docker) detrás de Cloudflare, dominio
+Producción hoy: VPS **ARM64** en Hetzner (`46.224.207.173`, Ubuntu, Docker) detrás de Cloudflare, dominio
 `acopiospanama.com`. Todo vive en `/opt/acopiospanama`, propiedad del usuario `deploy`.
 
 ## Puesta en marcha (una vez)
@@ -56,7 +56,8 @@ Todo esto ya está aplicado en `demogar/acopiospanama`; se documenta para poder 
 
 ### 2. Servidor
 
-1. Ubuntu con Docker. Usuario `deploy` (en el grupo `docker`, sin sudo) con la clave pública del punto anterior.
+1. Ubuntu con Docker en ARM64 (las imágenes de GHCR son `linux/arm64`; en otra arquitectura, cambia el runner y
+   `platforms` en `ci-cd.yml`). Usuario `deploy` (en el grupo `docker`, sin sudo) con la clave pública del punto anterior.
 2. `/opt/acopiospanama/` propiedad de `deploy` con:
    - `docker-compose.yml` y `deploy/Caddyfile`, `deploy/desplegar.sh`: copias del repo, el job las refresca en cada despliegue.
    - `.env`: copia `deploy/.env.example` y complétalo (`openssl rand -hex 32` para los secretos). Modo 600.
