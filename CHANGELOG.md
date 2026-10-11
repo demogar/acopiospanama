@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.0](https://github.com/demogar/acopiospanama/compare/v0.3.0...v0.4.0) (2026-10-11)
+
+
+### Novedades
+
+* **datos:** segundo lote de 5 centros verificados en prensa y sitios oficiales ([#32](https://github.com/demogar/acopiospanama/issues/32)) ([87ea586](https://github.com/demogar/acopiospanama/commit/87ea586ca20c9f03a8e9871522a32b17cd14506b))
+* **web:** pie de página en dos franjas con el aviso en ancho de lectura ([#30](https://github.com/demogar/acopiospanama/issues/30)) ([7784510](https://github.com/demogar/acopiospanama/commit/778451051746ea3d81b485ba970ac1c0a0ec9829))
+
 ## [0.3.0](https://github.com/demogar/acopiospanama/compare/v0.2.1...v0.3.0) (2026-10-11)
 
 
