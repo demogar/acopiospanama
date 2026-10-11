@@ -24,7 +24,7 @@ export interface SiteFrameProps {
 
 /** Ancho del sitio (cabecera, pie y páginas `wide`) y márgenes laterales según la pantalla. */
 const SITE = 'mx-auto w-full max-w-[100rem] px-4 sm:px-6 lg:px-8';
-const WIDTHS = { prose: 'max-w-3xl', page: 'max-w-6xl', wide: 'max-w-[100rem]' } as const;
+const WIDTHS = { prose: 'max-w-3xl', page: 'max-w-6xl', wide: '' } as const;
 const VERSION = process.env.NEXT_PUBLIC_APP_VERSION;
 
 const navLink =
@@ -60,26 +60,29 @@ export function SiteFrame({ title, subtitle, back, actions, width = 'page', chil
         </div>
       </header>
 
-      <main id="contenido" className={`mx-auto w-full ${max} flex-1 px-4 pb-12 pt-4 sm:px-6 lg:px-8 lg:pt-6`}>
-        {back && (
-          <Link
-            href={back.href}
-            className="mb-2 -ms-1 inline-flex min-h-11 items-center gap-1 px-1 text-sm text-ink-2 no-underline hover:underline"
-          >
-            <ArrowLeft aria-hidden="true" className="size-4" />
-            {back.label}
-          </Link>
-        )}
-        {(title || actions) && (
-          <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
-            <div className="min-w-0">
-              {title && <h1 className="font-ui text-2xl font-bold leading-tight text-ink sm:text-3xl">{title}</h1>}
-              {subtitle && <p className="mt-1 text-ink-2">{subtitle}</p>}
+      {/* El contenido comparte el margen izquierdo de la cabecera; `max` solo limita el ancho de lectura. */}
+      <main id="contenido" className={`${SITE} flex-1 pb-12 pt-4 lg:pt-6`}>
+        <div className={max}>
+          {back && (
+            <Link
+              href={back.href}
+              className="mb-2 -ms-1 inline-flex min-h-11 items-center gap-1 px-1 text-sm text-ink-2 no-underline hover:underline"
+            >
+              <ArrowLeft aria-hidden="true" className="size-4" />
+              {back.label}
+            </Link>
+          )}
+          {(title || actions) && (
+            <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
+              <div className="min-w-0">
+                {title && <h1 className="font-ui text-2xl font-bold leading-tight text-ink sm:text-3xl">{title}</h1>}
+                {subtitle && <p className="mt-1 text-ink-2">{subtitle}</p>}
+              </div>
+              {actions && <div className="flex flex-wrap gap-2">{actions}</div>}
             </div>
-            {actions && <div className="flex flex-wrap gap-2">{actions}</div>}
-          </div>
-        )}
-        {children}
+          )}
+          {children}
+        </div>
       </main>
 
       <footer className="border-t border-keyline bg-cloth-shade">
@@ -102,6 +105,19 @@ export function SiteFrame({ title, subtitle, back, actions, width = 'page', chil
             . Este directorio no atiende emergencias.
           </p>
         </div>
+        <p className={`${SITE} max-w-none pb-3 text-xs leading-relaxed text-ink-2`}>
+          Acopio Panamá es una iniciativa comunitaria e independiente para la respuesta al terremoto del 9 de octubre de
+          2026. No es un sitio del Gobierno ni del SINAPROC: la información la publican y confirman las propias personas
+          y organizaciones. Datos abiertos bajo licencia{' '}
+          <a
+            href="https://creativecommons.org/licenses/by/4.0/deed.es"
+            className="text-ink-2 hover:underline"
+            rel="noopener noreferrer"
+          >
+            CC BY 4.0
+          </a>
+          .
+        </p>
         {VERSION && (
           <p className={`${SITE} pb-3 text-xs text-ink-2`}>
             <a

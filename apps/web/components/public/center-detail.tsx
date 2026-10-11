@@ -21,6 +21,7 @@ import type { PublicCenter, PublicMeta } from '@/lib/public-types';
 import { FreshnessLine, StatusBadges } from './freshness';
 import { NeedsDetail } from './needs';
 import { ContactBlock } from './contact-block';
+import { Linkify } from './linkify';
 import { OpenLine } from './open-status';
 import { ScheduleTable } from './schedule-table';
 import { ReportDialog } from './report-dialog';
@@ -234,7 +235,9 @@ export function CenterDetail({
           {center.notes && (
             <div>
               <h3 className="font-ui text-base font-bold">Notas del centro</h3>
-              <p className="mt-1 whitespace-pre-line">{center.notes}</p>
+              <p className="mt-1 whitespace-pre-line">
+                <Linkify text={center.notes} />
+              </p>
             </div>
           )}
         </section>
