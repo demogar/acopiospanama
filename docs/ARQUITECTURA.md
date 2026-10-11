@@ -17,16 +17,16 @@
 
 ## Reglas automáticas (`apps/api/src/centers/centers.service.ts` → `computeState`)
 
-| Condición                                                                            | Resultado                                                |
-| ------------------------------------------------------------------------------------ | -------------------------------------------------------- |
-| Última actividad (confirmación de un responsable o de la comunidad) hace más de 72 h | `STALE`: «sin confirmar recientemente», baja en la lista |
-| … hace más de 14 días                                                                | `EXPIRED`: no se lista                                   |
-| Reportes abiertos de 2 o más personas en 72 h                                        | `flagged`: «Reportado: verifica antes de ir»             |
-| 3 o más reportes graves (dinero, falso, cerrado) que superan las confirmaciones      | `COMMUNITY_HIDDEN`: oculto, la ficha responde 410        |
-| Un responsable confirma después del último reporte grave                             | Vuelve a verse, marcado «en disputa»                     |
-| Reporte «publicaron mis datos sin permiso»                                           | El contacto se oculta de inmediato                       |
-| Texto que pide dinero (Yappy, transferencias, cuentas, bancos, números largos)       | No se puede guardar                                      |
-| Texto con enlaces o HTML                                                             | No se puede guardar                                      |
+| Condición                                                                                      | Resultado                                                |
+| ---------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
+| Última actividad (confirmación de un responsable o de la comunidad) hace más de 72 h           | `STALE`: «sin confirmar recientemente», baja en la lista |
+| … hace más de 14 días                                                                          | `EXPIRED`: no se lista                                   |
+| Reportes abiertos de 2 o más personas en 72 h                                                  | `flagged`: «Reportado: verifica antes de ir»             |
+| 3 o más reportes graves (dinero, falso, se aprovechan, cerrado) que superan las confirmaciones | `COMMUNITY_HIDDEN`: oculto, la ficha responde 410        |
+| Un responsable confirma después del último reporte grave                                       | Vuelve a verse, marcado «en disputa»                     |
+| Reporte «publicaron mis datos sin permiso»                                                     | El contacto se oculta de inmediato                       |
+| Texto que pide dinero (Yappy, transferencias, cuentas, bancos, números largos)                 | No se puede guardar                                      |
+| Texto con enlaces o HTML                                                                       | No se puede guardar                                      |
 
 El filtro de texto normaliza antes de comparar (NFKC, letras de otros alfabetos que se parecen, espacios
 intercalados como «Y a p p y»), así que no basta con disfrazar la palabra. Los teléfonos panameños sí se

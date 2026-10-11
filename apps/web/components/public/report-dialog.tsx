@@ -118,6 +118,12 @@ export function ReportDialog({
               responsable lo revise. Cuéntanos en los detalles qué dato es tuyo, sin repetirlo.
             </Callout>
           )}
+          {reason === 'DIVERTED' && (
+            <Callout tone="info">
+              Cuenta en los detalles qué viste, sin datos personales. Si varias personas reportan lo mismo, el centro se
+              oculta hasta que su responsable lo aclare.
+            </Callout>
+          )}
           {reason === 'ASKS_MONEY' && (
             <Callout tone="info">
               No transfieras dinero. Si ya lo hiciste, denúncialo también a la policía o a tu banco.

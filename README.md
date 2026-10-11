@@ -15,7 +15,7 @@ Lo mantiene la comunidad:
 - **Reglas automáticas** deciden qué se muestra. Nadie tiene que estar pendiente:
   - un centro sin confirmar en 72 h pasa a «sin confirmar», y a los 14 días deja de mostrarse;
   - con reportes de 2 personas se marca «verifica antes de ir»;
-  - con 3 reportes graves (que pide dinero, que es falso o que cerró) se oculta, salvo que lo confirmen más personas de las que lo reportan;
+  - con 3 reportes graves (que pide dinero, que es falso, que se aprovechan y las donaciones no llegan a los afectados, o que cerró) se oculta, salvo que lo confirmen más personas de las que lo reportan;
   - las fichas **no pueden pedir dinero**: se bloquea al guardar;
   - quienes responden por un centro reciben un recordatorio de un toque para confirmar que sigue abierto.
 - La moderación humana es solo el último recurso.
@@ -23,6 +23,9 @@ Lo mantiene la comunidad:
 Cada ficha incluye el tipo de centro, quién lo organiza, la ubicación exacta (con botones de Google Maps y Waze),
 el horario por día con «abierto ahora», el contacto (solo si esa persona lo acepta) y qué aceptan, qué es urgente
 y qué ya no reciben.
+
+La web recuerda en la portada, en cada ficha y en «Cómo funciona» que hay gente aprovechándose de la emergencia:
+usa canales verificados, entrega en mano, nunca dinero, y reporta lo que no cuadre.
 
 > Si hay una emergencia, llama al **911**. Este directorio no reemplaza a SINAPROC ni a las autoridades.
 

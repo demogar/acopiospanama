@@ -77,7 +77,8 @@ export default function ComoFunciona() {
           <ul>
             <li>
               Cualquiera puede reportar que un centro cerró, que ya no recibe, que tiene datos equivocados, que pide
-              dinero, que parece falso o que publicaron sus datos sin permiso. El reporte es anónimo.
+              dinero, que parece falso, que se aprovechan y las donaciones no llegan a los afectados, o que publicaron
+              sus datos sin permiso. El reporte es anónimo.
             </li>
             <li>
               La misma persona cuenta <strong>una sola vez</strong> por centro mientras su reporte siga abierto:
@@ -88,8 +89,9 @@ export default function ComoFunciona() {
               <strong>«Reportado: verifica antes de ir»</strong>.
             </li>
             <li>
-              Si <strong>3 o más personas</strong> reportan algo grave (que cerró, que pide dinero o que es falso) y son
-              más que quienes confirmaron que funciona, el centro <strong>se oculta</strong> solo.
+              Si <strong>3 o más personas</strong> reportan algo grave (que cerró, que pide dinero, que es falso o que
+              las donaciones no llegan a los afectados) y son más que quienes confirmaron que funciona, el centro{' '}
+              <strong>se oculta</strong> solo.
             </li>
             <li>
               Un centro oculto <strong>vuelve a mostrarse</strong> si al menos tantas personas confirman que sigue
@@ -113,6 +115,38 @@ export default function ComoFunciona() {
             <strong>Nunca transfieras dinero a nombre de un centro de esta lista.</strong> Si ves que alguno pide
             dinero, repórtalo. Si quieres donar dinero, hazlo directamente a organizaciones reconocidas.
           </p>
+        </section>
+
+        <section id="juega-vivo">
+          <h2>Cómo evitar el «juega vivo»</h2>
+          <p>
+            En cada emergencia aparece gente que se aprovecha de la buena voluntad de los demás. Este directorio no
+            puede comprobar cada centro en persona, pero sí te da señales para decidir, y una regla simple:{' '}
+            <strong>usa siempre canales verificados</strong>.
+          </p>
+          <ul>
+            <li>
+              <strong>Canales verificados.</strong> Instituciones del Estado, municipios, juntas comunales, Cruz Roja,
+              iglesias, escuelas y fundaciones con nombre. Si no hay una organización reconocible detrás, pregunta quién
+              responde por el centro.
+            </li>
+            <li>
+              <strong>Cuándo se confirmó y por cuántas personas.</strong> Un centro con confirmaciones recientes de
+              varias personas es un centro que existe y funciona.
+            </li>
+            <li>
+              <strong>Nunca dinero.</strong> Si te piden dinero, transferencias o Yappy en nombre de un centro de esta
+              lista, no lo des y repórtalo. Si quieres donar dinero, hazlo directamente a organizaciones reconocidas.
+            </li>
+            <li>
+              <strong>Entrega en mano.</strong> Lleva tú la donación al centro y pide que la reciban allí. No la
+              entregues a intermediarios que «pasan a buscarla» ni a cuentas personales en redes.
+            </li>
+            <li>
+              <strong>Reporta lo que veas.</strong> Si sospechas que alguien se está quedando con las donaciones,
+              repórtalo desde la ficha: con varios reportes de personas distintas el centro se oculta solo.
+            </li>
+          </ul>
         </section>
 
         <section>

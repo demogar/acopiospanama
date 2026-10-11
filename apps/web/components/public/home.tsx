@@ -223,6 +223,11 @@ export function PublicHome({
               Cómo funciona
             </Link>
           </div>
+          <Callout tone="warn" title="Hay gente aprovechándose de la emergencia" headingLevel={2}>
+            Dona solo por canales verificados: instituciones, municipios, juntas comunales, iglesias y organizaciones
+            con nombre. Entrega en mano, nunca dinero, y si algo no cuadra, repórtalo.{' '}
+            <Link href="/como-funciona#juega-vivo">Cómo evitar el «juega vivo»</Link>
+          </Callout>
         </section>
 
         <section aria-labelledby="filtros" className="grid gap-3 bg-cloth-shade p-4">

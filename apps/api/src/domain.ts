@@ -164,6 +164,7 @@ export const REPORT_REASONS = {
   WRONG_INFO: 'La información está equivocada',
   ASKS_MONEY: 'Pide dinero o transferencias',
   FAKE: 'Parece falso o una estafa',
+  DIVERTED: 'Se aprovechan: las donaciones no llegan a los afectados',
   MY_DATA: 'Publicaron mis datos sin mi permiso',
   OTHER: 'Otro',
 } as const;
@@ -172,8 +173,8 @@ export const REPORT_KEYS = Object.keys(REPORT_REASONS) as [ReportReason, ...Repo
 
 /** A partir de cuántos reportes distintos (en 72 h) un centro queda «en verificación» o se oculta. */
 export const FLAG_THRESHOLD = 2;
-export const HIDE_THRESHOLD = 3; // solo motivos graves: ASKS_MONEY, FAKE, CLOSED
-export const SERIOUS_REASONS: ReportReason[] = ['ASKS_MONEY', 'FAKE', 'CLOSED'];
+export const HIDE_THRESHOLD = 3; // solo motivos graves: ASKS_MONEY, FAKE, DIVERTED, CLOSED
+export const SERIOUS_REASONS: ReportReason[] = ['ASKS_MONEY', 'FAKE', 'DIVERTED', 'CLOSED'];
 
 /** Frescura: sin confirmar en 72 h baja en la lista; en 14 días deja de mostrarse por defecto. */
 export const STALE_HOURS = 72;

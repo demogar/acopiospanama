@@ -208,7 +208,9 @@ export function CenterDetail({
         )}
 
         <Callout tone="warn" title="Nunca transfieras dinero a nombre de un centro de esta lista." headingLevel={2}>
-          Aquí solo se piden artículos. Si alguien te pide dinero en nombre de este centro, repórtalo.
+          Aquí solo se piden artículos. Hay gente aprovechándose de la emergencia: usa canales verificados, entrega tu
+          donación en mano y, si alguien te pide dinero o algo no cuadra, repórtalo.{' '}
+          <Link href="/como-funciona#juega-vivo">Cómo evitar el «juega vivo»</Link>
         </Callout>
 
         <section aria-labelledby="donde" className="grid gap-3">

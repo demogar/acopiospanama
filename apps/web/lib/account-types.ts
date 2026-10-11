@@ -5,7 +5,8 @@ export type { Schedule };
 
 export type Visibility = 'VISIBLE' | 'STALE' | 'EXPIRED' | 'COMMUNITY_HIDDEN' | 'CLOSED' | 'REMOVED';
 export type NeedLevel = 'URGENT' | 'NEEDED' | 'ENOUGH';
-export type ReportReason = 'CLOSED' | 'NOT_RECEIVING' | 'WRONG_INFO' | 'ASKS_MONEY' | 'FAKE' | 'MY_DATA' | 'OTHER';
+export type ReportReason =
+  'CLOSED' | 'NOT_RECEIVING' | 'WRONG_INFO' | 'ASKS_MONEY' | 'FAKE' | 'DIVERTED' | 'MY_DATA' | 'OTHER';
 
 export interface Meta {
   provinces: Record<string, string>;
@@ -237,6 +238,10 @@ export const REPORT_FOR_OWNER: Record<ReportReason, { text: string; fix: string 
   FAKE: {
     text: 'no pudieron comprobar que el centro exista',
     fix: 'Añade una referencia clara, el horario y quién lo organiza para que la gente lo encuentre.',
+  },
+  DIVERTED: {
+    text: 'dudan de que las donaciones lleguen a las personas afectadas',
+    fix: 'Explica en las notas quién recibe la ayuda y cómo se entrega. Cuanto más claro, menos dudas.',
   },
   MY_DATA: {
     text: 'se publicaron sus datos sin permiso',

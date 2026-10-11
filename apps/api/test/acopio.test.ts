@@ -270,6 +270,23 @@ describe('reglas automáticas (auto-mantenimiento)', () => {
     assert.equal((await pub(c.slug)).status, 200);
   });
 
+  it('«se aprovechan» es grave: 3 personas distintas ocultan el centro y editar la ficha no lo resuelve', async () => {
+    const u = await login(env, 'desvio@x.test');
+    const c = await createCenter(u, { name: 'Centro que desvía' });
+    const meta = await new Client(env).get('/public/meta');
+    assert.ok(meta.body.reportReasons.DIVERTED);
+    for (let i = 0; i < 3; i++) await person(env).post(`/public/centers/${c.id}/report`, { reason: 'DIVERTED' });
+    assert.equal((await pub(c.slug)).status, 410);
+    assert.equal((await u.patch(`/centers/${c.id}`, { notes: 'Lo reparte la junta comunal.' })).status, 200);
+    const open = await env.db
+      .selectFrom('reports')
+      .select((eb) => eb.fn.countAll<number>().as('n'))
+      .where('centerId', '=', c.id)
+      .where('status', '=', 'OPEN')
+      .executeTakeFirstOrThrow();
+    assert.equal(Number(open.n), 3);
+  });
+
   it('corregir la ficha atiende reportes de información, no los graves', async () => {
     const u = await login(env, 'fix@x.test');
     const c = await createCenter(u, { name: 'Centro a corregir' });
