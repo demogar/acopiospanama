@@ -15,6 +15,8 @@ const HELP = `Acopio Panamá — línea de comandos
   import-centers --email <correo> [--file centros.json]
                                   Importa centros anunciados públicamente (JSON por archivo o stdin)
                                   a nombre de ese correo. Ver data/centros/README.md.
+  import-batches                  Importa los lotes de data/centros aún no aplicados, a nombre de
+                                  CENTROS_EMAIL. La API lo ejecuta al arrancar, tras migrate.
 `;
 
 async function main() {
@@ -26,13 +28,17 @@ async function main() {
     strict: true,
   });
 
-  if (cmd === 'retention' || cmd === 'import-centers') {
+  if (cmd === 'retention' || cmd === 'import-centers' || cmd === 'import-batches') {
     const { NestFactory } = await import('@nestjs/core');
     const { AppModule } = await import('../app.module');
     const ctx = await NestFactory.createApplicationContext(AppModule, { logger: ['error'] });
     if (cmd === 'retention') {
       const { JobsService } = await import('../jobs/jobs.service');
       console.log('Retención aplicada:', await ctx.get(JobsService).retention());
+    } else if (cmd === 'import-batches') {
+      const { importBatches } = await import('./import-batches');
+      const r = await importBatches(ctx, { email: process.env.CENTROS_EMAIL, log: console.log });
+      if (!r.length) console.log('No hay lotes de centros pendientes.');
     } else {
       const { importCenters } = await import('./import-centers');
       const r = await importCenters(ctx, { email: values.email ?? '', file: values.file });

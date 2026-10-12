@@ -17,7 +17,7 @@ import { slugify } from '../domain';
  * y quedan a nombre del correo indicado, que puede editarlos o cerrarlos desde «Mis centros».
  * La fuente y su fecha se añaden a las notas del centro, para que cualquiera pueda contrastarla.
  */
-const entrySchema = createCenterSchema
+export const entrySchema = createCenterSchema
   .extend({
     needs: needsSchema.default([]),
     source: z.object({

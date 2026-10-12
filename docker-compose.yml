@@ -52,6 +52,7 @@ services:
       SMTP_URL: ${SMTP_URL:?Define SMTP_URL}
       MAIL_FROM: ${MAIL_FROM:?Define MAIL_FROM}
       TRUST_PROXY: ${TRUST_PROXY:-1}
+      CENTROS_EMAIL: ${CENTROS_EMAIL:-}
       TZ: America/Panama
       NODE_OPTIONS: --max-old-space-size=256
     read_only: true

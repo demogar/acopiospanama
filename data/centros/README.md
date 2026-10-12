@@ -16,11 +16,23 @@ Reglas:
 - El centro queda a nombre del correo indicado en `--email`, que puede editarlo o cerrarlo desde «Mis centros».
   Lo ideal es que la organización lo reclame después: desde «Mis centros» se pueden añadir responsables.
 
-Cargar un lote (en el servidor, desde `/opt/acopiospanama`):
+## Cómo se cargan: como migraciones
+
+Cada lote es un archivo `NNN_nombre.json` (el siguiente número libre, p. ej. `007_septimo-lote.json`). Al
+fusionarlo en `main`, el despliegue lo carga solo: los lotes van dentro de la imagen de la API y, al arrancar,
+tras las migraciones, `import-batches` importa los que falten y los anota en la tabla `center_batches`.
+Cada lote se aplica una sola vez.
+
+- Las pruebas validan todos los lotes (formato del nombre, campos, filtro antidinero): si uno está mal, falla
+  el PR y no el despliegue.
+- Los centros quedan a nombre de `CENTROS_EMAIL` (en el `.env` del servidor). Si falta y hay un lote
+  pendiente, la API nueva no arranca, el despliegue falla avisándolo y la versión anterior sigue sirviendo.
+- Un lote ya aplicado no se edita: para corregir o añadir centros, crea un lote nuevo.
+- Los centros que ya existen (mismo nombre) se saltan, así que un lote que falló a medias se reintenta en el
+  siguiente arranque sin duplicar nada.
+
+A mano, por si hace falta (en el servidor, desde `/opt/acopiospanama`):
 
 ```bash
 docker compose exec -T api node dist/cli/cli.js import-centers --email responsable@ejemplo.com < lote.json
 ```
-
-Los centros que ya existen (mismo nombre) se saltan, así que repetir un lote no duplica nada. Pasan por las
-mismas validaciones que el formulario de publicar, incluido el filtro que bloquea pedir dinero.
