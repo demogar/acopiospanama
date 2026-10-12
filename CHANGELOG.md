@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.12.0](https://github.com/demogar/acopiospanama/compare/v0.11.0...v0.12.0) (2026-10-12)
+
+
+### Novedades
+
+* **data:** quinto lote de centros (35) ([#54](https://github.com/demogar/acopiospanama/issues/54)) ([ff01a63](https://github.com/demogar/acopiospanama/commit/ff01a63b7c1611c01e20f5eabda17ee07be385bc))
+* **web:** la lista de centros va primero en la portada ([#55](https://github.com/demogar/acopiospanama/issues/55)) ([b4d9a51](https://github.com/demogar/acopiospanama/commit/b4d9a511426045aab31e675044b244b85f24993c))
+
 ## [0.11.0](https://github.com/demogar/acopiospanama/compare/v0.10.1...v0.11.0) (2026-10-12)
 
 
