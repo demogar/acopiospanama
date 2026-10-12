@@ -10,7 +10,7 @@ puntos de distribución, comedores y albergues en Panamá, creado tras el terrem
 
 Lo mantiene la comunidad:
 
-- **Cualquiera publica un centro** con su correo (sin contraseñas) y queda como responsable.
+- **Los centros se cargan por lotes** a partir de anuncios públicos (`data/centros`), cada uno con su fuente.
 - **Cualquiera confirma** «estuve aquí y sigue funcionando» o **reporta** un problema.
 - **Reglas automáticas** deciden qué se muestra. Nadie tiene que estar pendiente:
   - lo publicado se da por bueno: un centro sigue en la lista hasta que lo cierren o lo reporten;

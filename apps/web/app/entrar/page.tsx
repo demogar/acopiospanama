@@ -10,7 +10,7 @@ import { safeNext } from '@/lib/nav';
 function LoginInner() {
   const router = useRouter();
   const params = useSearchParams();
-  const next = safeNext(params.get('siguiente'), '/mis-centros');
+  const next = safeNext(params.get('siguiente'), '/moderacion');
   const [step, setStep] = useState<'email' | 'code'>('email');
   const [email, setEmail] = useState('');
   const [code, setCode] = useState('');
@@ -76,7 +76,7 @@ function LoginInner() {
   }
 
   return (
-    <SiteFrame width="prose" title="Entrar" subtitle="Para publicar un centro de acopio o mantener los tuyos al día.">
+    <SiteFrame width="prose" title="Entrar" subtitle="Para el equipo que modera el directorio.">
       <Stack gap="lg">
         <Panel padding="lg">
           {step === 'email' ? (

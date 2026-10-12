@@ -6,10 +6,8 @@
   horario por día (`schedule` en jsonb), contacto público con consentimiento (`contact_consent_at`), notas y estado
   (`PUBLISHED`, `CLOSED` o `REMOVED`).
 - **Qué aceptan** (`center_needs`): artículo con nivel `URGENT` (urgente), `NEEDED` (aceptan) o `ENOUGH` (ya no aceptan).
-- **Responsables** (`center_managers`): personas con correo verificado que pueden editar. Hay hasta 5 por centro,
-  para que no dependa de una sola persona.
-- **Co-responsables por invitación**: no tienen acceso hasta aceptar. Solo quien lleva más tiempo como
-  responsable puede quitar a otro, y no se puede quitar al último.
+- **Carga**: los centros solo entran por lotes con `import-centers` (ver `data/centros/README.md`). Ya no se
+  publican ni se editan desde la web; las tablas `center_managers` y la autoría quedan para los centros ya cargados.
 - **Confirmaciones** y **reportes** de la comunidad: sin datos personales. Se guarda solo un `origin_hmac`
   con clave propia, que permite contar personas distintas sin guardar IPs. Las IPv6 se agrupan por /64.
 - **Autoría**: el centro guarda el HMAC del correo de quien lo creó (no el correo). Así el límite diario y el
@@ -21,7 +19,6 @@
 | ---------------------------------------------------------------------------------------------- | ------------------------------------------------- |
 | Reportes abiertos de 2 o más personas en 72 h                                                  | `flagged`: «Reportado: verifica antes de ir»      |
 | 3 o más reportes graves (dinero, falso, se aprovechan, cerrado) que superan las confirmaciones | `COMMUNITY_HIDDEN`: oculto, la ficha responde 410 |
-| Un responsable confirma después del último reporte grave                                       | Vuelve a verse, marcado «en disputa»              |
 | Reporte «publicaron mis datos sin permiso»                                                     | El contacto se oculta de inmediato                |
 | Texto que pide dinero (Yappy, transferencias, cuentas, bancos, números largos)                 | No se puede guardar                               |
 | Texto con enlaces o HTML                                                                       | No se puede guardar                               |
@@ -34,13 +31,10 @@ Los reportes y confirmaciones cuentan personas distintas: las confirmaciones, un
 reportes, una por persona y centro, sin importar el día. Para el aviso «reportado» cuentan los de las últimas
 72 h. Para ocultar, cuentan los graves que sigan abiertos.
 
-Corregir la ficha resuelve los reportes de información (dato equivocado, ya no recibe, otro). Los graves solo
-caducan (90 días) o los descarta la moderación.
+Los reportes graves caducan (90 días) o los descarta la moderación.
 
 Los centros no caducan por falta de confirmaciones: hay pocas personas manteniendo el directorio, así que lo
-publicado se da por bueno hasta que su responsable lo cierre o la comunidad lo reporte. Ya no se envían
-recordatorios por correo. Los enlaces firmados de correos anteriores siguen sirviendo hasta que vencen (72 h):
-confirman o cierran el centro con un POST, para que los antivirus de correo no lo activen solos.
+publicado se da por bueno hasta que se cierre o la comunidad lo reporte. No se envían correos sobre los centros.
 
 ## Seguridad y privacidad
 

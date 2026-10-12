@@ -13,8 +13,8 @@ import { slugify } from '../domain';
 
 /**
  * Importa centros anunciados públicamente (prensa, redes de las organizaciones) desde un JSON.
- * Pasan por las mismas validaciones que el formulario de publicar (incluido el filtro antidinero)
- * y quedan a nombre del correo indicado, que puede editarlos o cerrarlos desde «Mis centros».
+ * Es la única forma de cargar centros: pasan por las validaciones de siempre (incluido el filtro
+ * antidinero) y quedan a nombre del correo indicado.
  * La fuente y su fecha se añaden a las notas del centro, para que cualquiera pueda contrastarla.
  */
 const entrySchema = createCenterSchema
@@ -28,20 +28,28 @@ const entrySchema = createCenterSchema
   })
   .strict();
 
-export type ImportResult = { created: string[]; skipped: string[] };
+export type ImportResult = { created: string[]; skipped: string[]; ids: string[] };
 
 export async function importCenters(
   ctx: INestApplicationContext,
   opts: { email: string; file?: string },
 ): Promise<ImportResult> {
-  const raw = readFileSync(opts.file ?? 0, 'utf8');
-  const entries = parse(z.array(entrySchema).min(1), JSON.parse(raw));
+  return importEntries(ctx, opts.email, JSON.parse(readFileSync(opts.file ?? 0, 'utf8')));
+}
+
+/** Valida e importa un lote ya leído (lo usan el CLI y las pruebas). */
+export async function importEntries(
+  ctx: INestApplicationContext,
+  rawEmail: string,
+  raw: unknown,
+): Promise<ImportResult> {
+  const entries = parse(z.array(entrySchema).min(1), raw);
   const db = ctx.get<DB>(DATABASE);
   const keys = ctx.get<Keys>(KEYS);
   const centers = ctx.get(CentersService);
   const audit = ctx.get(AuditService);
 
-  const email = normalizeEmail(opts.email);
+  const email = normalizeEmail(rawEmail);
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) throw new Error('Falta --email válido del responsable');
   await db
     .insertInto('users')
@@ -51,7 +59,7 @@ export async function importCenters(
   const user = await db.selectFrom('users').select('id').where('email', '=', email).executeTakeFirstOrThrow();
   const creatorEmailHmac = hmac(keys.email, email);
 
-  const result: ImportResult = { created: [], skipped: [] };
+  const result: ImportResult = { created: [], skipped: [], ids: [] };
   for (const entry of entries) {
     const { needs, source, contactConsent: _c, schedule, ...rest } = entry;
     centers.validateNoMoney(rest, needs);
@@ -109,6 +117,7 @@ export async function importCenters(
       return c;
     });
     result.created.push(`${center.name} → /c/${center.slug}`);
+    result.ids.push(center.id);
   }
   centers.invalidate();
   return result;

@@ -45,15 +45,4 @@ export class AccessService {
       throw new ApiError(403, 'STEP_UP_REQUIRED', 'Confirma con tu código de autenticación para continuar.');
     }
   }
-
-  async isManager(userId: string, centerId: string): Promise<boolean> {
-    const r = await this.db
-      .selectFrom('centerManagers')
-      .select('centerId')
-      .where('userId', '=', userId)
-      .where('centerId', '=', centerId)
-      .where('acceptedAt', 'is not', null) // una invitación pendiente no da acceso
-      .executeTakeFirst();
-    return !!r;
-  }
 }

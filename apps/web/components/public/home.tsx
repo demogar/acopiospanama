@@ -4,18 +4,7 @@ import { Component, useCallback, useEffect, useMemo, useState } from 'react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { List, LocateFixed, Map as MapIcon, SlidersHorizontal, X } from 'lucide-react';
-import {
-  Button,
-  buttonVariants,
-  Callout,
-  Chip,
-  ChipGroup,
-  EmptyState,
-  Field,
-  SearchInput,
-  Select,
-  Skeleton,
-} from '@demogar/mola-ui';
+import { Button, Callout, Chip, ChipGroup, EmptyState, Field, SearchInput, Select, Skeleton } from '@demogar/mola-ui';
 import { ErrorState, Loading } from '@/components/states';
 import { useApi } from '@/lib/use-api';
 import { centerTypeLabel, fold, hasCoords, haversineKm, itemLabel, provinceLabel } from '@/lib/public-format';
@@ -442,23 +431,15 @@ export function PublicHome({
                 description={
                   filtersActive
                     ? 'Prueba otra provincia o quita «Abierto ahora»: muchos centros no han publicado horario.'
-                    : '¿Conoces uno? Publícalo: solo necesitas tu correo.'
+                    : 'Vuelve a intentarlo en un rato.'
                 }
                 headingLevel={3}
                 actions={
-                  <>
-                    {filtersActive && (
-                      <Button variant="primary" onClick={clearFilters}>
-                        Quitar filtros
-                      </Button>
-                    )}
-                    <Link
-                      href="/publicar"
-                      className={`${buttonVariants({ variant: filtersActive ? 'secondary' : 'primary' })} no-underline`}
-                    >
-                      Publicar un centro
-                    </Link>
-                  </>
+                  filtersActive && (
+                    <Button variant="primary" onClick={clearFilters}>
+                      Quitar filtros
+                    </Button>
+                  )
                 }
               />
             ) : groups ? (

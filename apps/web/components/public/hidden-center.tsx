@@ -80,9 +80,6 @@ export function HiddenCenter({
         <Link href="/" className={`${buttonVariants({ variant: 'secondary' })} no-underline`}>
           Ver otros centros
         </Link>
-        <Link href="/mis-centros" className={`${buttonVariants({ variant: 'ghost' })} no-underline`}>
-          Soy responsable
-        </Link>
       </div>
     </article>
   );

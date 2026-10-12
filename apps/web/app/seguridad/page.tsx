@@ -80,8 +80,8 @@ function SecurityInner() {
   }
 
   const skip = (
-    <Link href="/mis-centros" className="inline-flex min-h-11 items-center text-sm underline">
-      Ahora no: ir a mis centros
+    <Link href="/moderacion" className="inline-flex min-h-11 items-center text-sm underline">
+      Ahora no: ir a moderación
     </Link>
   );
 
@@ -106,8 +106,8 @@ function SecurityInner() {
           <Callout tone="info" title="No necesitas segundo factor">
             Entras solo con el código por correo. El segundo factor es para quienes moderan el directorio.
           </Callout>
-          <Link href="/mis-centros" className="inline-flex min-h-11 items-center underline">
-            Ir a mis centros
+          <Link href="/" className="inline-flex min-h-11 items-center underline">
+            Ver los centros
           </Link>
         </Stack>
       </SiteFrame>

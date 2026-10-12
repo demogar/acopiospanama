@@ -114,14 +114,14 @@ export function ReportDialog({
           )}
           {reason === 'MY_DATA' && (
             <Callout tone="info">
-              Al enviarlo, el contacto publicado (nombre, teléfono y WhatsApp) se oculta de inmediato hasta que el
-              responsable lo revise. Cuéntanos en los detalles qué dato es tuyo, sin repetirlo.
+              Al enviarlo, el contacto publicado (nombre, teléfono y WhatsApp) se oculta de inmediato hasta que se
+              revise. Cuéntanos en los detalles qué dato es tuyo, sin repetirlo.
             </Callout>
           )}
           {reason === 'DIVERTED' && (
             <Callout tone="info">
               Cuenta en los detalles qué viste, sin datos personales. Si varias personas reportan lo mismo, el centro se
-              oculta hasta que su responsable lo aclare.
+              oculta hasta que se aclare.
             </Callout>
           )}
           {reason === 'ASKS_MONEY' && (

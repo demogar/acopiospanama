@@ -6,14 +6,12 @@ import { AuditService } from '../audit/audit.service';
 import { ApiError, notFound, parse, parseId, Public, text } from '../common/http';
 import { CENTER_TYPES, DISTRICTS, ITEMS, ORGANIZER_TYPES, PROVINCES, REPORT_KEYS, REPORT_REASONS } from '../domain';
 import { CentersService } from './centers.service';
-import { LinksService } from './links.service';
 
 /** Endpoints públicos: sin cuenta, en caché y con límites por origen. */
 @Controller('public')
 export class PublicController {
   constructor(
     private readonly centers: CentersService,
-    private readonly links: LinksService,
     private readonly audit: AuditService,
   ) {}
 
@@ -101,36 +99,11 @@ export class PublicController {
         objectId: centerId,
         meta: { reason: input.reason },
       });
-      this.links.notifyManagersOfReport(centerId).catch(() => undefined);
     }
     if (!created) return { duplicate: true, message: 'Ya habías reportado este centro. Gracias.' };
     return {
       duplicate: false,
       message: 'Gracias por avisar. Si más personas reportan lo mismo, el centro se marca o se oculta automáticamente.',
     };
-  }
-
-  /** Enlace de los correos de recordatorio: confirmar con un toque (POST, para que los antivirus de correo no lo activen solos). */
-  @Public()
-  @Throttle({ default: { limit: 30, ttl: 60 * 60_000 } })
-  @Post('confirm-link')
-  @HttpCode(200)
-  async confirmLink(@Body() body: unknown) {
-    const { token, action } = parse(
-      z.object({ token: z.string().max(400), action: z.enum(['CONFIRM', 'CLOSE']).default('CONFIRM') }),
-      body,
-    );
-    const r = await this.links.useToken(token, action);
-    return r;
-  }
-
-  /** Ver a qué centro corresponde el enlace (POST: el token no queda en registros de acceso). */
-  @Public()
-  @Throttle({ default: { limit: 60, ttl: 60 * 60_000 } })
-  @Post('confirm-link/peek')
-  @HttpCode(200)
-  async peekLink(@Body() body: unknown) {
-    const { token } = parse(z.object({ token: z.string().max(400) }), body);
-    return this.links.peekToken(token);
   }
 }

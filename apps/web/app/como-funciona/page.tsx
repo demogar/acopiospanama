@@ -10,6 +10,9 @@ export const metadata = pageMeta({
   path: '/como-funciona',
 });
 
+/** El mismo correo que en Privacidad y Accesibilidad. */
+const CONTACT_EMAIL = 'acopiospanama@demogar.com';
+
 export default function ComoFunciona() {
   return (
     <SiteFrame
@@ -29,28 +32,23 @@ export default function ComoFunciona() {
         </section>
 
         <section>
-          <h2>Quién puede publicar</h2>
+          <h2>De dónde salen los centros</h2>
           <p>
-            Cualquier persona que organice o conozca un centro: juntas comunales, iglesias, escuelas, fundaciones,
-            empresas o grupos de vecinos. Solo necesitas tu correo para recibir un código. Quien publica queda como{' '}
-            <strong>responsable</strong> y puede actualizar el centro desde <Link href="/mis-centros">Mis centros</Link>
-            . Tu correo nunca se muestra.
-          </p>
-          <p>
-            Para que el centro no dependa de una sola persona, el responsable puede invitar a{' '}
-            <strong>co-responsables</strong>. La invitación llega por correo y solo da acceso cuando esa persona la{' '}
-            <strong>acepta</strong> al entrar.
+            Los carga el equipo del directorio a partir de lo que anuncian <strong>públicamente</strong> las
+            organizaciones (juntas comunales, alcaldías, iglesias, empresas, fundaciones) o los medios. Cada ficha dice
+            en sus notas de dónde salió y de qué fecha es, para que cualquiera pueda contrastarlo.
           </p>
           <p>
             Cada centro indica qué tipo de lugar es (acopio, distribución, comedor, albergue o mixto), su ubicación y su
             horario por día. Con ese horario se calcula si está <strong>abierto ahora</strong>, en hora de Panamá.
           </p>
           <p>
-            Un <strong>contacto</strong> (nombre, teléfono o WhatsApp) solo se publica si esa persona lo acepta. Se
-            puede quitar en cualquier momento editando el centro.
+            Un <strong>contacto</strong> (nombre, teléfono o WhatsApp) solo se publica si esa persona lo acepta. Si
+            aparecen tus datos sin permiso, repórtalo desde la ficha y se ocultan de inmediato.
           </p>
           <p>
-            <Link href="/publicar">Publicar un centro</Link>
+            ¿Falta un centro o hay un dato equivocado? Escríbenos a <strong>{CONTACT_EMAIL}</strong> con el anuncio o la
+            fuente.
           </p>
         </section>
 
@@ -58,12 +56,12 @@ export default function ComoFunciona() {
           <h2>Cómo se sabe si un centro sigue funcionando</h2>
           <ul>
             <li>
-              Cada vez que el responsable confirma, o alguien que fue pulsa{' '}
-              <strong>«Estuve aquí y sigue funcionando»</strong>, el centro se marca como confirmado en ese momento.
+              Cada vez que alguien que fue pulsa <strong>«Estuve aquí y sigue funcionando»</strong>, el centro se marca
+              como confirmado en ese momento.
             </li>
             <li>
-              Un centro publicado sigue en la lista hasta que su responsable lo cierre o la comunidad lo reporte: no
-              caduca por falta de confirmaciones.
+              Un centro publicado sigue en la lista hasta que cierre o la comunidad lo reporte: no caduca por falta de
+              confirmaciones.
             </li>
             <li>Cada persona cuenta una vez al día por centro, aunque pulse varias veces.</li>
           </ul>
@@ -92,15 +90,13 @@ export default function ComoFunciona() {
             </li>
             <li>
               Un centro oculto <strong>vuelve a mostrarse</strong> si al menos tantas personas confirman que sigue
-              funcionando como las que lo reportaron, o si su responsable lo confirma. En ese caso queda{' '}
-              <strong>en disputa</strong>, con el aviso «Varias personas lo reportaron. Confirma por teléfono antes de
-              ir y nunca envíes dinero».
+              funcionando como las que lo reportaron. En ese caso queda <strong>en disputa</strong>, con el aviso
+              «Varias personas lo reportaron. Confirma por teléfono antes de ir y nunca envíes dinero».
             </li>
             <li>
               Si alguien reporta que publicaron <strong>sus datos sin permiso</strong>, el contacto del centro se oculta
               de inmediato.
             </li>
-            <li>El responsable recibe un aviso por correo cuando su centro es reportado.</li>
           </ul>
         </section>
 

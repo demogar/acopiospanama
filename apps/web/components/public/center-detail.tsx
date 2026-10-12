@@ -162,7 +162,7 @@ export function CenterDetail({
         <div className="grid gap-3" aria-live="polite">
           {closed && (
             <Callout tone="neutral" title="Este centro cerró" headingLevel={2}>
-              Su responsable lo marcó como cerrado. No lleves donaciones aquí.
+              Se marcó como cerrado. No lleves donaciones aquí.
             </Callout>
           )}
           {center.flagged && (
@@ -288,12 +288,6 @@ export function CenterDetail({
           </div>
           {loading && <span className="sr-only">Actualizando…</span>}
         </section>
-
-        <p>
-          <Link href="/mis-centros" className="inline-flex min-h-11 items-center font-semibold">
-            ¿Eres responsable? Actualiza este centro
-          </Link>
-        </p>
       </aside>
 
       <ReportDialog

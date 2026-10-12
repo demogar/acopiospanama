@@ -11,7 +11,7 @@ export default function robots(): MetadataRoute.Robots {
         userAgent: '*',
         allow: '/',
         // Pantallas privadas o de un solo uso: sin valor en los buscadores.
-        disallow: ['/api/', '/entrar', '/confirmar', '/mis-centros', '/moderacion', '/seguridad'],
+        disallow: ['/api/', '/entrar', '/moderacion', '/seguridad'],
       },
     ],
     sitemap: `${SITE_URL}/sitemap.xml`,

@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { Badge, Button, Callout, Heading, Panel, Stack, Text, useToast } from '@demogar/mola-ui';
-import { StatusBadges } from '@/components/account/center-status';
+import { StatusBadges } from './center-status';
 import { NewTab } from '@/components/ui/new-tab';
 import { api, ApiError, errorMessage } from '@/lib/api';
 import { formatDate, type Meta, type ModCenter, timeAgo } from '@/lib/account-types';

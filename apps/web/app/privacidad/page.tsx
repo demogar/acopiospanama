@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { SiteFrame } from '@/components/site-frame';
 import { Prose } from '@/components/public/prose';
 import { pageMeta } from '@/lib/seo';
@@ -29,12 +28,11 @@ export default function Privacidad() {
           </p>
           <ul>
             <li>
-              <strong>Los correos nunca se publican</strong>, ni el de quien publica ni el de quien administra.
+              <strong>Los correos nunca se publican</strong>.
             </li>
             <li>
               Un <strong>contacto</strong> (nombre, teléfono o WhatsApp) solo se publica si esa persona aceptó que se
-              muestre. Se quita en cualquier momento editando el centro desde{' '}
-              <Link href="/mis-centros">Mis centros</Link>, y deja de verse en menos de un minuto.
+              muestre. Si es tuyo y no diste permiso, repórtalo desde la ficha del centro y deja de verse al instante.
             </li>
           </ul>
         </section>
@@ -43,8 +41,8 @@ export default function Privacidad() {
           <h2>Qué se guarda</h2>
           <ul>
             <li>
-              El <strong>correo</strong> (y el nombre, si lo pones) de quien publica o administra un centro, para que
-              pueda entrar con un código y recibir avisos sobre su centro.
+              El <strong>correo</strong> de quienes moderan el directorio, para que puedan entrar con un código, y el de
+              quienes publicaron centros cuando eso se hacía desde la web.
             </li>
             <li>
               Para contar confirmaciones y reportes sin contar dos veces a la misma persona, se guarda un{' '}
@@ -53,7 +51,7 @@ export default function Privacidad() {
             </li>
             <li>Los reportes guardan el motivo y los detalles que escribas, sin tu nombre ni tu correo.</li>
             <li>
-              Un registro de cambios importantes (quién editó, cerró o moderó un centro) para poder revisar abusos.
+              Un registro de cambios importantes (quién cargó, cerró o moderó un centro) para poder revisar abusos.
             </li>
           </ul>
         </section>
@@ -109,17 +107,13 @@ export default function Privacidad() {
             identificadores personales; no se comparte con nadie ni sirve para publicidad. Si la bloqueas, el sitio
             funciona igual.
           </p>
-          <p>
-            No hay publicidad ni cookies de terceros. La única cookie es la de tu sesión, si entras para administrar un
-            centro.
-          </p>
+          <p>No hay publicidad ni cookies de terceros. La única cookie es la de la sesión de quienes moderan.</p>
         </section>
 
         <section>
           <h2>Cómo pedir que se borren tus datos</h2>
           <p>
-            Escríbenos a <strong>{CONTACT_EMAIL}</strong> desde el correo que usaste y dinos qué quieres borrar. Si
-            administras un centro, también puedes cerrarlo desde <Link href="/mis-centros">Mis centros</Link>.
+            Escríbenos a <strong>{CONTACT_EMAIL}</strong> desde el correo que usaste y dinos qué quieres borrar.
           </p>
         </section>
       </Prose>

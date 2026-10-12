@@ -9,10 +9,11 @@ process.env.RELAX_RATE_LIMITS = 'true';
 process.env.COOKIE_SECURE = 'false';
 process.env.TRUST_PROXY = '1';
 
-import type { INestApplication } from '@nestjs/common';
+import { HttpException, type INestApplication } from '@nestjs/common';
 import { sql } from 'kysely';
 import { authenticator } from 'otplib';
 import { resetConfigCache } from '../src/config';
+import { importEntries } from '../src/cli/import-centers';
 import { createDb, DB, migrate } from '../src/db/db';
 import { MailService } from '../src/mail/mail.service';
 import { createApp } from '../src/main';
@@ -202,8 +203,34 @@ export function centerBody(over: Record<string, unknown> = {}) {
   };
 }
 
-export async function createCenter(c: Client, over: Record<string, unknown> = {}) {
-  const r = await c.post('/centers', centerBody(over));
-  if (r.status !== 201) throw new Error(`create ${r.status} ${JSON.stringify(r.body)}`);
-  return r.body as { id: string; slug: string };
+const SOURCE = { title: 'Lote de prueba', date: '2026-10-11' };
+
+/** Importa un lote (la única forma de cargar centros) a nombre de `email`. */
+export async function importBatch(env: TestEnv, entries: Record<string, unknown>[], email = 'lotes@x.test') {
+  return importEntries(
+    env.app,
+    email,
+    entries.map((e) => ({ ...e, source: SOURCE })),
+  );
+}
+
+/** Un centro importado; devuelve su id y slug. */
+export async function createCenter(env: TestEnv, over: Record<string, unknown> = {}, email?: string) {
+  const r = await importBatch(env, [centerBody(over)], email);
+  if (r.ids.length !== 1) throw new Error(`import: ${JSON.stringify(r)}`);
+  return await env.db.selectFrom('centers').select(['id', 'slug']).where('id', '=', r.ids[0]).executeTakeFirstOrThrow();
+}
+
+/** El error con que la importación rechaza un centro. */
+export async function importError(env: TestEnv, over: Record<string, unknown>) {
+  try {
+    await importBatch(env, [centerBody(over)]);
+  } catch (e) {
+    if (!(e instanceof HttpException)) throw e;
+    const body = e.getResponse() as { code: string; fields?: Record<string, string> };
+    // El lote es una lista: «0.lat» se lee como «lat».
+    const fields = Object.fromEntries(Object.entries(body.fields ?? {}).map(([k, v]) => [k.replace(/^0\./, ''), v]));
+    return { status: e.getStatus(), code: body.code, fields };
+  }
+  throw new Error(`se importó: ${JSON.stringify(over)}`);
 }

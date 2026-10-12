@@ -73,11 +73,8 @@ export function SiteFrame({ title, subtitle, back, actions, width = 'page', chil
             Acopio Panamá
           </Link>
           <nav aria-label="Principal" className="-me-2 flex items-center gap-1">
-            <Link href="/publicar" className={navLink}>
-              Publicar un centro
-            </Link>
-            <Link href="/mis-centros" className={navLink}>
-              Mis centros
+            <Link href="/como-funciona" className={navLink}>
+              Cómo funciona
             </Link>
           </nav>
         </div>
