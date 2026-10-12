@@ -1,20 +1,19 @@
+import { CheckCircle2 } from 'lucide-react';
 import { Badge } from '@demogar/mola-ui';
 import { timeAgo } from '@/lib/public-format';
 import type { PublicCenter } from '@/lib/public-types';
 
-/** «Confirmado hace 3 h · Confirmado por 4 personas». */
-export function FreshnessLine({
-  center,
-  now,
-}: {
-  center: Pick<PublicCenter, 'lastActivity' | 'confirmations'>;
-  now?: number;
-}) {
+/** «✓ hace 3 h · 4 personas»: cuándo se confirmó por última vez y cuántas personas lo confirmaron. */
+export function FreshnessShort({ center }: { center: Pick<PublicCenter, 'lastActivity' | 'confirmations'> }) {
   const n = center.confirmations;
   return (
-    <p className="text-sm text-ink-2">
-      Confirmado <span suppressHydrationWarning>{timeAgo(center.lastActivity, now)}</span>
-      {n > 0 && <> · Confirmado por {n === 1 ? '1 persona' : `${n} personas`}</>}
+    <p className="flex items-center gap-1.5 text-sm text-ink-2">
+      <CheckCircle2 aria-hidden="true" className="size-4 shrink-0" />
+      <span>
+        <span className="sr-only">Confirmado </span>
+        <span suppressHydrationWarning>{timeAgo(center.lastActivity)}</span>
+        {n > 0 && <> · {n === 1 ? '1 persona' : `${n} personas`}</>}
+      </span>
     </p>
   );
 }

@@ -2,8 +2,8 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import Link from 'next/link';
-import { CheckCircle2, Flag, Navigation } from 'lucide-react';
-import { Badge, Button, buttonVariants, Callout, EmptyState, useToast } from '@demogar/mola-ui';
+import { CheckCircle2, Flag, MapPin, Navigation } from 'lucide-react';
+import { Button, buttonVariants, Callout, EmptyState, useToast } from '@demogar/mola-ui';
 import { ErrorState, Loading } from '@/components/states';
 import { NewTab } from '@/components/ui/new-tab';
 import { api, ApiError, errorMessage } from '@/lib/api';
@@ -19,7 +19,7 @@ import {
 } from '@/lib/public-format';
 import { todayText } from '@/lib/public-schedule';
 import type { PublicCenter, PublicMeta } from '@/lib/public-types';
-import { FreshnessLine, StatusBadges } from './freshness';
+import { FreshnessShort, StatusBadges } from './freshness';
 import { NeedsDetail } from './needs';
 import { ContactBlock } from './contact-block';
 import { Linkify } from './linkify';
@@ -152,20 +152,20 @@ export function CenterDetail({
     <article className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(20rem,24rem)] lg:gap-x-10">
       <div className="grid min-w-0 gap-6">
         <header className="grid gap-2">
-          <div className="flex flex-wrap gap-1.5">
-            <Badge tone="accent" variant="outline">
-              {centerTypeShort(meta, center.centerType)}
-            </Badge>
+          <div className="flex flex-wrap gap-1.5 empty:hidden">
             <StatusBadges center={center} />
           </div>
           <h1 className="font-ui text-2xl font-bold leading-tight text-ink sm:text-3xl">{center.name}</h1>
-          <p className="text-ink-2">
-            {organizerLabel(meta, center.organizerType)}
+          <p className="flex items-start gap-1.5 text-ink">
+            <MapPin aria-hidden="true" className="mt-1 size-4 shrink-0 text-ink-2" />
+            {placeLine(meta, center)}
+          </p>
+          <OpenLine center={center} />
+          <FreshnessShort center={center} />
+          <p className="text-sm text-ink-2">
+            {centerTypeLabel(meta, center.centerType)} · {organizerLabel(meta, center.organizerType)}
             {center.organizerName && center.organizerName !== center.name ? ` · ${center.organizerName}` : ''}
           </p>
-          <p className="text-ink">{placeLine(meta, center)}</p>
-          <OpenLine center={center} />
-          <FreshnessLine center={center} />
         </header>
 
         <div className="grid gap-3" aria-live="polite">
@@ -214,28 +214,15 @@ export function CenterDetail({
           </section>
         )}
 
-        <Callout tone="warn" title="Nunca transfieras dinero a nombre de un centro de esta lista." headingLevel={2}>
-          Aquí solo se piden artículos. Hay gente aprovechándose de la emergencia: usa canales verificados, entrega tu
-          donación en mano y, si alguien te pide dinero o algo no cuadra, repórtalo.{' '}
-          <Link href="/como-funciona#juega-vivo">Cómo evitar el «juega vivo»</Link>
+        <Callout tone="warn" title="Aquí solo se piden artículos, nunca dinero." headingLevel={2}>
+          ¿Te pidieron una transferencia? Repórtalo. <Link href="/como-funciona#juega-vivo">Evita el «juega vivo»</Link>
         </Callout>
 
         <section aria-labelledby="donde" className="grid gap-3">
           <h2 id="donde" className="font-ui text-xl font-bold">
             Dónde y cuándo
           </h2>
-          <dl className="grid gap-3 sm:grid-cols-[10rem_1fr] sm:gap-x-4">
-            {center.address && (
-              <>
-                <dt className="text-sm font-semibold text-ink-2">Dirección</dt>
-                <dd className="-mt-2 sm:mt-0">{center.address}</dd>
-              </>
-            )}
-            <dt className="text-sm font-semibold text-ink-2">Lugar</dt>
-            <dd className="-mt-2 sm:mt-0">{placeLine(meta, center)}</dd>
-            <dt className="text-sm font-semibold text-ink-2">Tipo</dt>
-            <dd className="-mt-2 sm:mt-0">{centerTypeLabel(meta, center.centerType)}</dd>
-          </dl>
+          {center.address && <p>{center.address}</p>}
           <div className="grid gap-2">
             <h3 className="font-ui text-base font-bold">Horario</h3>
             <ScheduleTable schedule={center.schedule} />
@@ -269,9 +256,7 @@ export function CenterDetail({
           <h2 id="comunidad" className="font-ui text-xl font-bold">
             ¿Fuiste hoy?
           </h2>
-          <p className="text-ink-2">
-            Tu confirmación ayuda a que otras personas sepan que este centro sigue funcionando. Es anónima.
-          </p>
+          <p className="text-sm text-ink-2">Avisa que sigue funcionando. Es anónimo.</p>
           <div className="flex flex-wrap gap-2">
             {canConfirm && (
               <Button

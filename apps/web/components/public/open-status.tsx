@@ -81,3 +81,9 @@ export function OpenLine({ center }: { center: Pick<PublicCenter, 'schedule' | '
     </p>
   );
 }
+
+/** Solo el estado («Abierto ahora», «Abre hoy 2:00 p. m.»), para la tarjeta. Nada si no hay horario. */
+export function OpenStatusBadge({ center }: { center: Pick<PublicCenter, 'schedule' | 'openNow'> }) {
+  const now = useNow();
+  return <OpenBadge status={statusFor(center, now)} />;
+}

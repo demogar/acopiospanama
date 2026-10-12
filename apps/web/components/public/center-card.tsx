@@ -3,16 +3,16 @@ import Link from 'next/link';
 import { MapPin, Navigation } from 'lucide-react';
 import { buttonVariants } from '@demogar/mola-ui';
 import { NewTab } from '@/components/ui/new-tab';
-import { centerTypeShort, directionsLinks, formatKm, organizerLabel, placeLine } from '@/lib/public-format';
-import { OpenLine } from './open-status';
+import { directionsLinks, formatKm, placeLine } from '@/lib/public-format';
+import { OpenStatusBadge } from './open-status';
 import type { PublicCenter, PublicMeta } from '@/lib/public-types';
-import { FreshnessLine, StatusBadges } from './freshness';
+import { FreshnessShort, StatusBadges } from './freshness';
 import { NeedsSummary } from './needs';
 
 /**
- * Tarjeta de la lista. Pensada para leerse de un vistazo en el teléfono: primero si está abierto, luego el
- * nombre, una línea discreta con el tipo y quién organiza, dónde está, y lo que necesitan como lista (no como
- * frase), con aire entre bloques. Cierra con «Cómo llegar» y «Ver centro», que es lo que la gente hace después.
+ * Tarjeta de la lista. Pensada para escanearse, no para leerse: cada dato tiene una forma y un lugar fijos.
+ * Nombre, dónde está, el estado en etiquetas y lo que necesitan como etiquetas (lo urgente en rojo). Tipo y
+ * organizador quedan para la ficha. Cierra con «Cómo llegar» y «Ver», que es lo que la gente hace después.
  *
  * Memorizada: al filtrar, las tarjetas que siguen en la lista no se vuelven a pintar.
  */
@@ -32,45 +32,38 @@ export const CenterCard = memo(function CenterCard({
 }) {
   const Heading = headingLevel === 4 ? 'h4' : 'h3';
   const urgent = center.needs.some((n) => n.level === 'URGENT');
-  const organizer =
-    center.organizerName && center.organizerName !== center.name
-      ? center.organizerName
-      : organizerLabel(meta, center.organizerType);
   const dir = directionsLinks(center, meta);
   return (
     <article
-      className={`flex flex-col gap-5 bg-cloth-pale p-5 shadow-cut transition-shadow focus-within:shadow-[var(--focus-ring)] ${
+      className={`flex flex-col gap-4 bg-cloth-pale p-4 shadow-cut transition-shadow focus-within:shadow-[var(--focus-ring)] ${
         urgent ? 'border-s-4 border-rojo' : 'border-s-4 border-keyline-soft'
       }`}
     >
       <header className="grid gap-2">
-        <div className="flex flex-wrap items-center gap-1.5">
-          <StatusBadges center={center} />
-        </div>
-        <OpenLine center={center} />
         <Heading className="font-ui text-xl font-bold leading-snug text-ink">
           <Link href={`/c/${center.slug}`} className="text-ink no-underline hover:underline">
             {center.name}
           </Link>
         </Heading>
-        <p className="text-sm leading-relaxed text-ink-2">
-          {centerTypeShort(meta, center.centerType)} · {organizer}
-        </p>
-        <p className="flex items-start gap-2 text-sm leading-relaxed text-ink">
-          <MapPin aria-hidden="true" className="mt-1 size-4 shrink-0 text-ink-2" />
+        <p className="flex items-start gap-1.5 text-sm text-ink-2">
+          <MapPin aria-hidden="true" className="mt-0.5 size-4 shrink-0" />
           <span>
             {placeLine(meta, center)}
             {distanceKm != null && (
-              <strong className="ms-1 whitespace-nowrap font-semibold">· {formatKm(distanceKm)}</strong>
+              <strong className="ms-1 whitespace-nowrap font-semibold text-ink">· {formatKm(distanceKm)}</strong>
             )}
           </span>
         </p>
+        <div className="flex flex-wrap items-center gap-1.5 empty:hidden">
+          <OpenStatusBadge center={center} />
+          <StatusBadges center={center} />
+        </div>
       </header>
 
       <NeedsSummary center={center} meta={meta} highlight={highlightItem} />
 
       <footer className="mt-auto flex flex-wrap items-center justify-between gap-x-4 gap-y-3 border-t border-keyline-soft pt-4">
-        <FreshnessLine center={center} />
+        <FreshnessShort center={center} />
         <div className="flex gap-2">
           <a
             href={dir.google}
