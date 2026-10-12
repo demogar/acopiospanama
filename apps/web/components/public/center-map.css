@@ -1,0 +1,101 @@
+/* Marcadores del mapa de centros (center-map.tsx). El área táctil es el icono entero (44 px o más);
+   lo visible es el punto o el círculo con el número. */
+.acp-urgent {
+  --tone: var(--rojo);
+  --tone-ink: #fff;
+}
+.acp-needed {
+  --tone: var(--oro);
+  --tone-ink: var(--ink);
+}
+.acp-ok {
+  --tone: var(--anil);
+  --tone-ink: #fff;
+}
+
+.acp-marker {
+  display: grid;
+  place-items: center;
+  background: none;
+  border: 0;
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+}
+
+.acp-dot {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--tone);
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px var(--ink);
+  transition: transform 120ms ease;
+}
+.acp-marker:hover .acp-dot {
+  transform: scale(1.15);
+}
+.acp-marker.is-selected .acp-dot {
+  transform: scale(1.35);
+  box-shadow:
+    0 0 0 1px var(--ink),
+    0 0 0 4px var(--ink);
+}
+
+.acp-count {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: var(--tone);
+  color: var(--tone-ink);
+  border: 2px solid #fff;
+  /* Halo del mismo color: se lee como «aquí hay varios», también en blanco y negro. */
+  box-shadow:
+    0 0 0 1px var(--ink),
+    0 0 0 6px color-mix(in oklab, var(--tone) 35%, transparent);
+  font-family: var(--font-ui, system-ui), system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  transition: transform 120ms ease;
+}
+.acp-marker:hover .acp-count {
+  transform: scale(1.08);
+}
+.acp-marker.is-selected .acp-count {
+  box-shadow:
+    0 0 0 1px var(--ink),
+    0 0 0 5px var(--ink);
+}
+
+.acp-marker:focus-visible .acp-dot,
+.acp-marker:focus-visible .acp-count {
+  box-shadow: var(--focus-ring);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .acp-dot,
+  .acp-count {
+    transition: none;
+  }
+}
+
+/* Muestras de color de la leyenda y de las listas. */
+.acp-swatch {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--tone);
+  box-shadow: 0 0 0 1px var(--ink);
+}
+
+/* Teclado en el contenedor de Leaflet: el anillo de foco del sistema, no el contorno del navegador. */
+.leaflet-container:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring-inset, var(--focus-ring));
+}
