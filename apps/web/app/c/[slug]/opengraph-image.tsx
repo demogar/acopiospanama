@@ -1,6 +1,6 @@
 import { ogImage, OG_SIZE } from '@/lib/og';
 import { centerTypeShort, itemLabel, placeLine } from '@/lib/public-format';
-import { todayText } from '@/lib/public-schedule';
+import { datesSentence, todayText } from '@/lib/public-schedule';
 import { getPublicCenter, getPublicMeta } from '@/lib/public-server';
 import { SITE_TAGLINE } from '@/lib/site';
 
@@ -21,7 +21,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
   return ogImage({
     kicker: centerTypeShort(m, c.data.centerType),
     title: c.data.name,
-    lines: [placeLine(m, c.data), todayText(c.data.schedule) ?? ''],
+    lines: [placeLine(m, c.data), todayText(c.data.schedule, undefined, c.data) ?? datesSentence(c.data) ?? ''],
     chips: chips.map((x) => (urgent.length ? `Urgente: ${x}` : x)),
     chipTone: urgent.length ? 'rojo' : 'oro',
   });

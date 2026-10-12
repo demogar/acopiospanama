@@ -3,7 +3,7 @@ import { CENTER_TYPES_FALLBACK, type Schedule } from './public-schedule';
 
 export type { Schedule };
 
-export type Visibility = 'VISIBLE' | 'COMMUNITY_HIDDEN' | 'CLOSED' | 'REMOVED';
+export type Visibility = 'VISIBLE' | 'COMMUNITY_HIDDEN' | 'CLOSED' | 'ENDED' | 'REMOVED';
 export type NeedLevel = 'URGENT' | 'NEEDED' | 'ENOUGH';
 export type ReportReason =
   'CLOSED' | 'NOT_RECEIVING' | 'WRONG_INFO' | 'ASKS_MONEY' | 'FAKE' | 'DIVERTED' | 'MY_DATA' | 'OTHER';
@@ -39,6 +39,8 @@ export interface Center {
   lng: number | null;
   schedule: Schedule;
   hoursNote: string;
+  availableFrom: string | null;
+  availableUntil: string | null;
   openNow: boolean | null;
   contactName: string;
   contactPhone: string;
@@ -131,6 +133,11 @@ export interface CenterInput {
   address: string;
   lat: number | null;
   lng: number | null;
+  /** «Solo unos días»: con fechas. Si es false, las fechas se ignoran y se envían vacías. */
+  temporary: boolean;
+  /** `YYYY-MM-DD` o cadena vacía. */
+  availableFrom: string;
+  availableUntil: string;
   schedule: Schedule;
   hoursNote: string;
   contactName: string;
@@ -151,6 +158,9 @@ export const emptyInput: CenterInput = {
   address: '',
   lat: null,
   lng: null,
+  temporary: false,
+  availableFrom: '',
+  availableUntil: '',
   schedule: {},
   hoursNote: '',
   contactName: '',
@@ -172,6 +182,9 @@ export function inputFromCenter(c: ManagedCenter): CenterInput {
     address: c.address,
     lat: c.lat,
     lng: c.lng,
+    temporary: !!(c.availableFrom || c.availableUntil),
+    availableFrom: c.availableFrom ?? '',
+    availableUntil: c.availableUntil ?? '',
     schedule: c.schedule ?? {},
     hoursNote: c.hoursNote,
     contactName: c.contactName,
@@ -202,6 +215,11 @@ export const VISIBILITY_INFO: Record<
     label: 'Cerrado',
     tone: 'neutral',
     help: 'Lo marcaste como cerrado: no aparece. Puedes reabrirlo cuando quieras.',
+  },
+  ENDED: {
+    label: 'Terminó',
+    tone: 'neutral',
+    help: 'Ya pasó su última fecha y no se muestra en el directorio. Si vas a volver a recibir, cambia las fechas.',
   },
   REMOVED: { label: 'Retirado', tone: 'danger', help: 'Moderación lo retiró del directorio.' },
 };

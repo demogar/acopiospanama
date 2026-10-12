@@ -14,7 +14,14 @@ import type { AppConfig } from '../config';
 import type { DB } from '../db/db';
 import { PROVINCE_KEYS, slugify } from '../domain';
 import { MailService } from '../mail/mail.service';
-import { centerInputSchema, CentersService, contactFields, createCenterSchema, needsSchema } from './centers.service';
+import {
+  centerInputSchema,
+  CentersService,
+  checkDates,
+  contactFields,
+  createCenterSchema,
+  needsSchema,
+} from './centers.service';
 
 const MAX_NEW_PER_DAY = 3;
 const MAX_MANAGED = 20;
@@ -177,6 +184,7 @@ export class ManageController {
   async create(@Auth() a: AuthContext, @Body() body: unknown) {
     const input = parse(createCenterSchema.extend({ needs: needsSchema.default([]) }), body);
     const consent = contactFields(input);
+    checkDates(input);
     this.centers.validateNoMoney(input, input.needs);
     // Por correo (HMAC), no por cuenta: borrar la cuenta y volver a entrar no reinicia el límite.
     const creatorEmailHmac = hmac(this.keys.email, a.user.email);
@@ -242,6 +250,10 @@ export class ManageController {
       contactConsent: input.contactConsent ?? (!touchesContact && !!c.contactConsentAt),
     };
     const consent = touchesContact ? contactFields(merged) : {};
+    checkDates({
+      availableFrom: input.availableFrom !== undefined ? input.availableFrom : c.availableFrom,
+      availableUntil: input.availableUntil !== undefined ? input.availableUntil : c.availableUntil,
+    });
     this.centers.validateNoMoney(input);
     const { contactConsent: _c, schedule, ...rest } = input;
     const fields = {

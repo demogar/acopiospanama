@@ -1,6 +1,6 @@
 # Centros con fechas concretas
 
-Fecha: 2026-10-12 · Estado: borrador para revisión
+Fecha: 2026-10-12 · Estado: aprobado e implementado
 
 ## Problema
 
@@ -92,8 +92,9 @@ hasta las 00:00 del día siguiente (el día ya no está en el rango).
 - Ficha (`center-detail.tsx`): encima de `ScheduleTable`, «Solo recibe donaciones del 13 al 15 de
   octubre» (variantes para un solo extremo).
 - Filtro «Abierto ahora» (`home.tsx`): usa el `openNow` nuevo.
-- Enlace directo a un centro `ENDED`: se muestra con `hidden-center.tsx`, con el texto «Este centro
-  recibió donaciones hasta el 15 de octubre». Los enlaces compartidos no se rompen.
+- Enlace directo a un centro `ENDED`: la ficha se sigue viendo (los enlaces compartidos no se rompen), con
+  un aviso «Este centro ya terminó · Recibió donaciones hasta el 15 de octubre», sin confirmaciones y con
+  `noindex`. Se descartó reutilizar `hidden-center.tsx`: está pensado para reportes y ofrece confirmar.
 - SEO (`seo.ts`): `openingHoursSpecification` con `validFrom` / `validThrough` cuando hay fechas.
 
 ### Formulario (publicar y editar)
@@ -129,7 +130,7 @@ En `components/account/center-fields.tsx`, encima de `ScheduleEditor`:
 2. Se presenta al usuario una tabla: centro (slug), texto que lo delata, fechas propuestas, y si quedaría
    oculto al desplegar. Los dudosos se marcan como tales.
 3. Con la lista confirmada, `005_fechas_de_centros.sql` añade un `UPDATE centers SET available_from = …,
-   available_until = … WHERE slug = '…'` por centro. Se usa el slug porque los ids cambian entre entornos;
+available_until = … WHERE slug = '…'` por centro. Se usa el slug porque los ids cambian entre entornos;
    en una base sin ese centro el `UPDATE` no hace nada.
 4. Los centros que ya terminaron quedan ocultos al desplegar, que es el efecto buscado.
 

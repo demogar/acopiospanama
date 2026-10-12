@@ -3,7 +3,7 @@ import { after, before, describe, it } from 'node:test';
 import { sql } from 'kysely';
 import { LinksService } from '../src/centers/links.service';
 import { clientKey } from '../src/common/crypto';
-import { openNow } from '../src/domain';
+import { dateWindow, openNow, panamaToday } from '../src/domain';
 import { JobsService } from '../src/jobs/jobs.service';
 import { centerBody, Client, createCenter, lastCode, login, modLogin, person, setup, TestEnv } from './helpers';
 
@@ -540,6 +540,99 @@ describe('horario', () => {
     assert.equal(bad.status, 400);
     const bad2 = await c.post('/centers', centerBody({ schedule: { FUNDAY: null } }));
     assert.equal(bad2.status, 400);
+  });
+});
+
+describe('centros con fechas', () => {
+  const at = (isoLocal: string) => new Date(`${isoLocal}-05:00`);
+  const day = (offset: number) => new Date(Date.now() - 5 * 3_600_000 + offset * 86_400_000).toISOString().slice(0, 10);
+
+  it('las fechas son días de Panamá y el último cuenta entero', () => {
+    const d = { availableFrom: '2026-10-13', availableUntil: '2026-10-15' };
+    assert.equal(panamaToday(new Date('2026-10-13T04:59:00Z')), '2026-10-12', 'aún lunes en Panamá');
+    assert.equal(dateWindow(null, at('2026-10-12T09:00:00')), 'ALWAYS');
+    assert.equal(dateWindow(d, at('2026-10-12T23:59:00')), 'BEFORE');
+    assert.equal(dateWindow(d, at('2026-10-13T00:00:00')), 'ACTIVE');
+    assert.equal(dateWindow(d, at('2026-10-15T23:59:00')), 'ACTIVE');
+    assert.equal(dateWindow(d, at('2026-10-16T00:00:00')), 'ENDED');
+    assert.equal(
+      dateWindow({ availableFrom: '2026-10-13', availableUntil: null }, at('2026-12-01T09:00:00')),
+      'ACTIVE',
+    );
+    assert.equal(
+      dateWindow({ availableFrom: null, availableUntil: '2026-10-15' }, at('2026-10-01T09:00:00')),
+      'ACTIVE',
+    );
+  });
+
+  it('«abierto ahora» solo dentro de las fechas, aunque el horario semanal diga que sí', () => {
+    const s = { TUE: { open: '08:00', close: '15:00' }, THU: { open: '20:00', close: '02:00' } };
+    const d = { availableFrom: '2026-10-13', availableUntil: '2026-10-15' };
+    assert.equal(openNow(s, at('2026-10-13T09:00:00'), d), true, 'martes 13, dentro');
+    assert.equal(openNow(s, at('2026-10-06T09:00:00'), d), false, 'martes anterior, antes de empezar');
+    assert.equal(openNow(s, at('2026-10-20T09:00:00'), d), false, 'martes siguiente, ya terminó');
+    assert.equal(openNow(s, at('2026-10-15T23:00:00'), d), true, 'jueves 15 de noche');
+    assert.equal(
+      openNow(s, at('2026-10-16T01:00:00'), d),
+      false,
+      'el tramo que cruza la medianoche no pasa del último día',
+    );
+    assert.equal(openNow({}, at('2026-10-06T09:00:00'), d), false, 'sin horario pero fuera de fechas');
+  });
+
+  it('valida el formato y el orden de las fechas', async () => {
+    const c = await login(env, 'fechas1@x.test');
+    const bad = await c.post('/centers', centerBody({ availableFrom: '2026-10-15', availableUntil: '2026-10-13' }));
+    assert.equal(bad.status, 400);
+    assert.ok(bad.body.fields?.availableUntil);
+    assert.equal((await c.post('/centers', centerBody({ availableUntil: '2026-02-30' }))).status, 400);
+    assert.equal((await c.post('/centers', centerBody({ availableUntil: '15/10/2026' }))).status, 400);
+    const ok = await createCenter(c, { name: 'Centro de tres días', availableFrom: day(-1), availableUntil: day(1) });
+    const r = await pub(ok.slug);
+    assert.equal(r.body.availableFrom, day(-1));
+    assert.equal(r.body.availableUntil, day(1));
+    // Al editar se valida con lo que ya tenía: una fecha inicial posterior a la final guardada no pasa.
+    assert.equal((await c.patch(`/centers/${ok.id}`, { availableFrom: day(5) })).status, 400);
+  });
+
+  it('terminado: sale del directorio sin cerrarse; con fechas nuevas vuelve', async () => {
+    const u = await login(env, 'fechas2@x.test');
+    const c = await createCenter(u, {
+      name: 'Centro del fin de semana',
+      availableFrom: day(-3),
+      availableUntil: day(-1),
+    });
+    assert.equal(await listed(c.id), false);
+    assert.equal((await pub(c.slug)).body.visibility, 'ENDED');
+    const mine = await u.get(`/centers/${c.id}`);
+    assert.equal(mine.body.visibility, 'ENDED');
+    assert.equal(mine.body.status, 'PUBLISHED');
+    assert.equal((await new Client(env).post(`/public/centers/${c.id}/confirm`)).status, 404);
+
+    assert.equal((await u.patch(`/centers/${c.id}`, { availableUntil: day(2) })).status, 200);
+    assert.equal(await listed(c.id), true);
+    assert.equal((await u.patch(`/centers/${c.id}`, { availableFrom: null, availableUntil: null })).status, 200);
+    assert.equal((await pub(c.slug)).body.availableUntil, null);
+  });
+
+  it('el que aún no empieza se lista, pero no está abierto', async () => {
+    const u = await login(env, 'fechas3@x.test');
+    const c = await createCenter(u, {
+      name: 'Centro que abre pronto',
+      availableFrom: day(2),
+      availableUntil: day(4),
+      schedule: {
+        MON: { allDay: true },
+        TUE: { allDay: true },
+        WED: { allDay: true },
+        THU: { allDay: true },
+        FRI: { allDay: true },
+        SAT: { allDay: true },
+        SUN: { allDay: true },
+      },
+    });
+    assert.equal(await listed(c.id), true);
+    assert.equal((await pub(c.slug)).body.openNow, false);
   });
 });
 

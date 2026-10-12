@@ -46,8 +46,98 @@ export function hasSchedule(schedule: Schedule | null | undefined): schedule is 
   return !!schedule && Object.keys(schedule).length > 0;
 }
 
-/** ¿Abierto ahora? `null` si no hay horario cargado. */
-export function openNow(schedule: Schedule | null | undefined, at: Date = new Date()): boolean | null {
+/** Fechas de un centro temporal (`YYYY-MM-DD`, hora de Panamá). Ambas null: permanente. */
+export type CenterDates = { availableFrom?: string | null; availableUntil?: string | null };
+export type DateWindow = 'ALWAYS' | 'BEFORE' | 'ACTIVE' | 'ENDED';
+
+/** Fecha de hoy en Panamá como `YYYY-MM-DD`. */
+export function panamaToday(at: Date = new Date()): string {
+  return new Date(at.getTime() - 5 * 3_600_000).toISOString().slice(0, 10);
+}
+
+/** ¿Dónde cae hoy respecto a las fechas del centro? El último día cuenta entero. */
+export function dateWindow(d: CenterDates | null | undefined, at: Date = new Date()): DateWindow {
+  const from = d?.availableFrom ?? null;
+  const until = d?.availableUntil ?? null;
+  if (!from && !until) return 'ALWAYS';
+  const today = panamaToday(at);
+  if (until && today > until) return 'ENDED';
+  if (from && today < from) return 'BEFORE';
+  return 'ACTIVE';
+}
+
+const MONTHS = [
+  'enero',
+  'febrero',
+  'marzo',
+  'abril',
+  'mayo',
+  'junio',
+  'julio',
+  'agosto',
+  'septiembre',
+  'octubre',
+  'noviembre',
+  'diciembre',
+];
+const MONTHS_SHORT = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sept', 'oct', 'nov', 'dic'];
+const dayOf = (iso: string) => Number(iso.slice(8, 10));
+const monthOf = (iso: string) => Number(iso.slice(5, 7)) - 1;
+
+/** «13 de oct» o «13 de octubre». */
+export function formatDay(iso: string, long = false): string {
+  return `${dayOf(iso)} de ${(long ? MONTHS : MONTHS_SHORT)[monthOf(iso)]}`;
+}
+
+/** «13 al 15 de oct», «30 de sept al 2 de oct». */
+function formatRange(from: string, until: string, long: boolean): string {
+  if (monthOf(from) === monthOf(until)) return `${dayOf(from)} al ${formatDay(until, long)}`;
+  return `${formatDay(from, long)} al ${formatDay(until, long)}`;
+}
+
+/**
+ * Etiqueta corta de las fechas para tarjetas y mapa: «Abre el 14 de oct», «Del 13 al 15 de oct»,
+ * «Hasta el 15 de oct», «Último día: hoy» o «Terminó el 15 de oct». `null` si es permanente o ya
+ * empezó y no tiene fecha final.
+ */
+export function datesLabel(d: CenterDates | null | undefined, at: Date = new Date()): string | null {
+  const from = d?.availableFrom ?? null;
+  const until = d?.availableUntil ?? null;
+  const w = dateWindow(d, at);
+  if (w === 'ALWAYS') return null;
+  if (w === 'ENDED') return `Terminó el ${formatDay(until!)}`;
+  if (w === 'BEFORE') return `Abre el ${formatDay(from!)}`;
+  if (!until) return null;
+  if (until === panamaToday(at)) return 'Último día: hoy';
+  if (from && from !== until) return `Del ${formatRange(from, until, false)}`;
+  return `Hasta el ${formatDay(until)}`;
+}
+
+/** Frase para la ficha: «Solo recibe donaciones del 13 al 15 de octubre.» `null` si es permanente. */
+export function datesSentence(d: CenterDates | null | undefined, at: Date = new Date()): string | null {
+  const from = d?.availableFrom ?? null;
+  const until = d?.availableUntil ?? null;
+  if (!from && !until) return null;
+  if (dateWindow(d, at) === 'ENDED') return `Recibió donaciones hasta el ${formatDay(until!, true)}.`;
+  if (from && until)
+    return from === until
+      ? `Solo recibe donaciones el ${formatDay(from, true)}.`
+      : `Solo recibe donaciones del ${formatRange(from, until, true)}.`;
+  if (until) return `Recibe donaciones hasta el ${formatDay(until, true)}.`;
+  return `Recibe donaciones desde el ${formatDay(from!, true)}.`;
+}
+
+/**
+ * ¿Abierto ahora? `null` si no hay horario cargado. Fuera de sus fechas, un centro temporal está
+ * cerrado aunque su horario semanal diga lo contrario.
+ */
+export function openNow(
+  schedule: Schedule | null | undefined,
+  at: Date = new Date(),
+  dates?: CenterDates | null,
+): boolean | null {
+  const w = dateWindow(dates, at);
+  if (w === 'BEFORE' || w === 'ENDED') return false;
   if (!hasSchedule(schedule)) return null;
   const { day, mins } = panamaNow(at);
   const today = schedule[day];
@@ -84,8 +174,17 @@ export function todayKey(at: Date = new Date()): Day {
 
 export type OpenStatus = { state: 'open' | 'closed' | 'opens-today'; label: string } | null;
 
-/** «Abierto ahora», «Abre hoy 8:00 a. m.» o «Cerrado ahora». `null` sin horario. */
-export function openStatus(schedule: Schedule | null | undefined, at: Date = new Date()): OpenStatus {
+/**
+ * «Abierto ahora», «Abre hoy 8:00 a. m.» o «Cerrado ahora». `null` sin horario o fuera de las fechas
+ * del centro (eso lo dice `datesLabel`).
+ */
+export function openStatus(
+  schedule: Schedule | null | undefined,
+  at: Date = new Date(),
+  dates?: CenterDates | null,
+): OpenStatus {
+  const w = dateWindow(dates, at);
+  if (w === 'BEFORE' || w === 'ENDED') return null;
   const open = openNow(schedule, at);
   if (open === null) return null;
   if (open) return { state: 'open', label: 'Abierto ahora' };
@@ -96,9 +195,15 @@ export function openStatus(schedule: Schedule | null | undefined, at: Date = new
   return { state: 'closed', label: 'Cerrado ahora' };
 }
 
-/** «Hoy: 8:00 a. m. – 5:00 p. m.» o `null` si no hay horario. */
-export function todayText(schedule: Schedule | null | undefined, at: Date = new Date()): string | null {
+/** «Hoy: 8:00 a. m. – 5:00 p. m.» o `null` si no hay horario o hoy no está en sus fechas. */
+export function todayText(
+  schedule: Schedule | null | undefined,
+  at: Date = new Date(),
+  dates?: CenterDates | null,
+): string | null {
   if (!hasSchedule(schedule)) return null;
+  const w = dateWindow(dates, at);
+  if (w === 'BEFORE' || w === 'ENDED') return null;
   return `Hoy: ${dayText(schedule[todayKey(at)])}`;
 }
 

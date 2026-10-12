@@ -70,6 +70,9 @@ export interface CentersTable {
   lng: number | null;
   schedule: ColumnType<Schedule, string | undefined, string>;
   hoursNote: Generated<string>;
+  /** Centro temporal: días en que recibe (`YYYY-MM-DD`). Ambas null: permanente. */
+  availableFrom: ColumnType<string | null, string | null | undefined, string | null>;
+  availableUntil: ColumnType<string | null, string | null | undefined, string | null>;
   contactName: Generated<string>;
   contactPhone: Generated<string>;
   contactWhatsapp: Generated<string>;

@@ -108,6 +108,8 @@ function CenterCard({
   const [busy, setBusy] = useState<string | null>(null);
   const [closeOpen, setCloseOpen] = useState(false);
   const closed = c.visibility === 'CLOSED';
+  // Temporal y ya pasó su última fecha: se reabre cambiando las fechas, no confirmándolo.
+  const ended = c.visibility === 'ENDED';
   const headingId = `c-${c.id}`;
   const urgent = c.needs.filter((n) => n.level === 'URGENT').length;
   const needed = c.needs.filter((n) => n.level === 'NEEDED').length;
@@ -150,7 +152,15 @@ function CenterCard({
         </Text>
         <OwnerReports c={c} />
         <div className="mt-1 grid grid-cols-1 gap-2 sm:grid-cols-2">
-          {!closed && (
+          {ended && (
+            <Link
+              href={`/mis-centros/${c.id}?seccion=datos`}
+              className={`${buttonVariants({ size: 'lg' })} h-auto! min-h-(--control-h-lg) py-2 text-center whitespace-normal! no-underline`}
+            >
+              Cambiar las fechas
+            </Link>
+          )}
+          {!closed && !ended && (
             <Button
               size="lg"
               icon={<CheckCircle2 aria-hidden="true" />}

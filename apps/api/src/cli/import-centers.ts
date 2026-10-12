@@ -4,7 +4,7 @@ import type { INestApplicationContext } from '@nestjs/common';
 import { sql } from 'kysely';
 import { z } from 'zod';
 import { AuditService } from '../audit/audit.service';
-import { CentersService, contactFields, createCenterSchema, needsSchema } from '../centers/centers.service';
+import { CentersService, checkDates, contactFields, createCenterSchema, needsSchema } from '../centers/centers.service';
 import { DATABASE, KEYS } from '../common/core.module';
 import { hmac, Keys, normalizeEmail } from '../common/crypto';
 import { parse, shortText } from '../common/http';
@@ -56,6 +56,7 @@ export async function importCenters(
     const { needs, source, contactConsent: _c, schedule, ...rest } = entry;
     centers.validateNoMoney(rest, needs);
     const consent = contactFields(entry);
+    checkDates(entry);
     const existing = await db
       .selectFrom('centers')
       .select(['slug'])

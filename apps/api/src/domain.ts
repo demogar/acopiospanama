@@ -100,8 +100,33 @@ export const DAY_LABELS: Record<Day, string> = {
 export type DaySchedule = { allDay: true } | { open: string; close: string } | null;
 export type Schedule = Partial<Record<Day, DaySchedule>>;
 
-/** ¿Abierto ahora? En hora de Panamá (UTC−5, sin horario de verano). null si no hay horario cargado. */
-export function openNow(schedule: Schedule, at = new Date()): boolean | null {
+/** Fechas en las que recibe un centro temporal (`YYYY-MM-DD`, hora de Panamá). Ambas null: permanente. */
+export type CenterDates = { availableFrom: string | null; availableUntil: string | null };
+export type DateWindow = 'ALWAYS' | 'BEFORE' | 'ACTIVE' | 'ENDED';
+
+/** Fecha de hoy en Panamá (UTC−5, sin horario de verano) como `YYYY-MM-DD`. */
+export function panamaToday(at = new Date()): string {
+  return new Date(at.getTime() - 5 * 3_600_000).toISOString().slice(0, 10);
+}
+
+/** ¿Dónde cae hoy respecto a las fechas del centro? El último día cuenta entero. */
+export function dateWindow(d: Partial<CenterDates> | null | undefined, at = new Date()): DateWindow {
+  const from = d?.availableFrom ?? null;
+  const until = d?.availableUntil ?? null;
+  if (!from && !until) return 'ALWAYS';
+  const today = panamaToday(at);
+  if (until && today > until) return 'ENDED';
+  if (from && today < from) return 'BEFORE';
+  return 'ACTIVE';
+}
+
+/**
+ * ¿Abierto ahora? En hora de Panamá (UTC−5, sin horario de verano). null si no hay horario cargado.
+ * Fuera de sus fechas, un centro temporal está cerrado aunque su horario semanal diga lo contrario.
+ */
+export function openNow(schedule: Schedule, at = new Date(), dates?: Partial<CenterDates> | null): boolean | null {
+  const w = dateWindow(dates, at);
+  if (w === 'BEFORE' || w === 'ENDED') return false;
   const keys = Object.keys(schedule ?? {});
   if (keys.length === 0) return null;
   const local = new Date(at.getTime() - 5 * 3_600_000);

@@ -68,7 +68,7 @@ export class PublicController {
     const centerId = parseId(id);
     const c = await this.centers.one(centerId);
     // También se puede confirmar un centro oculto por reportes: es el contrapeso de la comunidad.
-    if (!c || c.visibility === 'REMOVED' || c.visibility === 'CLOSED') throw notFound();
+    if (!c || c.visibility === 'REMOVED' || c.visibility === 'CLOSED' || c.visibility === 'ENDED') throw notFound();
     await this.centers.addConfirmation(centerId, this.centers.origin(req.ip));
     return { message: 'Gracias. Tu confirmación ayuda a otras personas a saber que este centro sigue funcionando.' };
   }

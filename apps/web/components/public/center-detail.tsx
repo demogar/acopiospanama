@@ -17,7 +17,7 @@ import {
   organizerLabel,
   placeLine,
 } from '@/lib/public-format';
-import { todayText } from '@/lib/public-schedule';
+import { datesSentence, todayText } from '@/lib/public-schedule';
 import type { PublicCenter, PublicMeta } from '@/lib/public-types';
 import { FreshnessShort, StatusBadges } from './freshness';
 import { NeedsDetail } from './needs';
@@ -136,7 +136,8 @@ export function CenterDetail({
   const urgent = needsAt(center, 'URGENT');
   const needed = needsAt(center, 'NEEDED');
   const shareNeeds = [...urgent, ...needed].map((n) => itemLabel(meta, n.item));
-  const today = todayText(center.schedule);
+  const today = todayText(center.schedule, undefined, center);
+  const dates = datesSentence(center);
   const shareText = [
     `${center.name} — ${centerTypeShort(meta, center.centerType)} en ${placeLine(meta, center)}.`,
     today ? (today.endsWith('.') ? today : `${today}.`) : '',
@@ -145,7 +146,9 @@ export function CenterDetail({
   ]
     .filter(Boolean)
     .join(' ');
-  const closed = center.visibility === 'CLOSED';
+  const ended = center.visibility === 'ENDED';
+  // Un centro terminado no recibe: se trata como cerrado (sin «Cómo llegar» destacado ni confirmaciones).
+  const closed = center.visibility === 'CLOSED' || ended;
   const canConfirm = !closed && center.visibility !== 'REMOVED' && center.visibility !== 'COMMUNITY_HIDDEN';
 
   return (
@@ -169,7 +172,13 @@ export function CenterDetail({
         </header>
 
         <div className="grid gap-3" aria-live="polite">
-          {closed && (
+          {ended && (
+            <Callout tone="neutral" title="Este centro ya terminó" headingLevel={2}>
+              {dates} Ya no aparece en el directorio: no lleves donaciones aquí.{' '}
+              <Link href="/">Busca otro centro cercano</Link>.
+            </Callout>
+          )}
+          {closed && !ended && (
             <Callout tone="neutral" title="Este centro cerró" headingLevel={2}>
               Su responsable lo marcó como cerrado. No lleves donaciones aquí.
             </Callout>
@@ -225,6 +234,7 @@ export function CenterDetail({
           {center.address && <p>{center.address}</p>}
           <div className="grid gap-2">
             <h3 className="font-ui text-base font-bold">Horario</h3>
+            {dates && !ended && <p className="font-semibold text-ink">{dates}</p>}
             <ScheduleTable schedule={center.schedule} />
             {center.hoursNote && <p className="whitespace-pre-line text-ink-2">{center.hoursNote}</p>}
           </div>

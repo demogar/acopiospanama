@@ -5,7 +5,7 @@ import { SiteFrame } from '@/components/site-frame';
 import { CenterDetail } from '@/components/public/center-detail';
 import { getPublicCenter, getPublicMeta } from '@/lib/public-server';
 import { centerTypeShort, itemLabel, placeLine } from '@/lib/public-format';
-import { openStatus, todayText } from '@/lib/public-schedule';
+import { datesSentence, openStatus, todayText } from '@/lib/public-schedule';
 import { centerJsonLd, pageMeta } from '@/lib/seo';
 import { SITE_URL } from '@/lib/site';
 import type { PublicCenter, PublicMeta } from '@/lib/public-types';
@@ -16,8 +16,9 @@ type Props = { params: Promise<{ slug: string }> };
 function describe(c: PublicCenter, m: PublicMeta | null): string {
   const urgent = c.needs.filter((n) => n.level === 'URGENT').map((n) => itemLabel(m, n.item));
   const needed = c.needs.filter((n) => n.level === 'NEEDED').map((n) => itemLabel(m, n.item));
-  const today = todayText(c.schedule);
-  const status = openStatus(c.schedule);
+  const today = todayText(c.schedule, undefined, c);
+  const status = openStatus(c.schedule, undefined, c);
+  const dates = datesSentence(c);
   // El enlace se comparte y se ve más tarde: se usa el horario de hoy, no «abierto ahora».
   // «4:00 p. m.» ya termina en punto: no se añade otro.
   const hoy = today ? ` ${today}${today.endsWith('.') ? '' : '.'}` : status ? ` ${status.label}.` : '';
@@ -26,7 +27,7 @@ function describe(c: PublicCenter, m: PublicMeta | null): string {
     : needed.length
       ? ` Necesitan: ${needed.join(', ')}.`
       : '';
-  return `${centerTypeShort(m, c.centerType)} en ${placeLine(m, c)}.${hoy}${needsText}`;
+  return `${centerTypeShort(m, c.centerType)} en ${placeLine(m, c)}.${dates ? ` ${dates}` : ''}${hoy}${needsText}`;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -46,6 +47,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ogTitle: c.data.name,
     description: describe(c.data, m),
     path: `/c/${c.data.slug}`,
+    // Un centro temporal que ya terminó no debe aparecer en buscadores como sitio donde donar.
+    noindex: c.data.visibility === 'ENDED',
   });
 }
 

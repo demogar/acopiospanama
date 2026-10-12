@@ -12,6 +12,9 @@ Reglas:
 - **Sin datos personales**: nada de nombres ni teléfonos de personas. El contacto solo lo añade la propia
   organización desde «Mis centros».
 - Si el anuncio no da horario, `schedule` va vacío y `hoursNote` lo dice («confirma antes de ir»).
+- Si solo recibe **unos días** (una escuela, un evento de fin de semana), pon `availableFrom` y/o `availableUntil`
+  (`"AAAA-MM-DD"`, hora de Panamá; el último día cuenta entero). Pasado `availableUntil`, el centro sale del
+  directorio solo. Sin esas fechas se trata como permanente, hasta nuevo aviso.
 - Lo que no encaja en los artículos del catálogo (abanicos, útiles escolares…) va en `notes`.
 - El centro queda a nombre del correo indicado en `--email`, que puede editarlo o cerrarlo desde «Mis centros».
   Lo ideal es que la organización lo reclame después: desde «Mis centros» se pueden añadir responsables.

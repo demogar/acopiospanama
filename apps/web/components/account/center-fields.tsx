@@ -1,7 +1,7 @@
 'use client';
 
 import { useId } from 'react';
-import { Checkbox, Field, Input, Select, Stack, Textarea } from '@demogar/mola-ui';
+import { Checkbox, Field, Input, Radio, RadioGroup, Select, Stack, Textarea } from '@demogar/mola-ui';
 import { type CenterInput, centerTypes, type Meta } from '@/lib/account-types';
 import { DAYS, type Day } from '@/lib/public-schedule';
 import { LocationField } from './location-field';
@@ -19,6 +19,9 @@ export const FIELD_LABELS: Record<string, string> = {
   address: 'Dirección o referencia',
   lat: 'Ubicación exacta',
   lng: 'Ubicación exacta',
+  temporary: '¿Hasta cuándo recibe?',
+  availableFrom: 'Desde',
+  availableUntil: 'Hasta',
   schedule: 'Horario',
   hoursNote: 'Nota sobre el horario',
   contactName: 'Nombre de contacto',
@@ -206,6 +209,54 @@ export function CenterFields({
         </Stack>
       </fieldset>
 
+      <fieldset className="min-w-0" data-field="temporary">
+        <RadioGroup
+          label="¿Hasta cuándo recibe?"
+          value={value.temporary ? 'dates' : 'always'}
+          onValueChange={(v) =>
+            onChange(v === 'dates' ? { temporary: true } : { temporary: false, availableFrom: '', availableUntil: '' })
+          }
+        >
+          <Radio value="always" label="Siempre, hasta nuevo aviso" />
+          <Radio value="dates" label="Solo unos días (por ejemplo, del 13 al 15 de octubre)" />
+        </RadioGroup>
+        {value.temporary && (
+          <div className="mt-3 grid gap-3 sm:grid-cols-2">
+            <Field
+              data-field="availableFrom"
+              label="Desde"
+              hint="Primer día que recibe. Vacío si ya empezó."
+              error={errors.availableFrom}
+            >
+              {(c) => (
+                <Input
+                  {...c}
+                  type="date"
+                  value={value.availableFrom}
+                  onChange={(e) => onChange({ availableFrom: e.target.value })}
+                />
+              )}
+            </Field>
+            <Field
+              data-field="availableUntil"
+              label="Hasta"
+              hint="Último día que recibe. Después deja de aparecer en el directorio."
+              error={errors.availableUntil}
+            >
+              {(c) => (
+                <Input
+                  {...c}
+                  type="date"
+                  value={value.availableUntil}
+                  min={value.availableFrom || undefined}
+                  onChange={(e) => onChange({ availableUntil: e.target.value })}
+                />
+              )}
+            </Field>
+          </div>
+        )}
+      </fieldset>
+
       <fieldset className="min-w-0" data-field="schedule">
         <legend className="mb-2 font-semibold text-ink">Horario (opcional)</legend>
         <ScheduleEditor
@@ -343,6 +394,11 @@ export function validateLocal(v: CenterInput): Record<string, string> {
   if (!v.province) e.province = 'Elige la provincia o comarca';
   if (v.address.trim().length < 3) e.address = 'Escribe la dirección o una referencia';
   if (v.lat === null || v.lng === null) e.lat = 'Marca la ubicación exacta';
+  if (v.temporary) {
+    if (!v.availableFrom && !v.availableUntil) e.availableUntil = 'Indica al menos hasta qué día recibe';
+    else if (v.availableFrom && v.availableUntil && v.availableFrom > v.availableUntil)
+      e.availableUntil = 'La fecha final es anterior a la inicial';
+  }
   for (const [d, msg] of Object.entries(scheduleErrors(v.schedule))) e[`schedule.${d}`] = msg;
   const pe = phoneError(v.contactPhone);
   if (pe) e.contactPhone = pe;
@@ -356,8 +412,11 @@ export function validateLocal(v: CenterInput): Record<string, string> {
 /** Cuerpo para la API: sin espacios de más; sin consentimiento si no hay contacto. */
 export function toBody(v: CenterInput) {
   const contact = hasContact(v);
+  const { temporary, ...rest } = v;
   return {
-    ...v,
+    ...rest,
+    availableFrom: temporary && v.availableFrom ? v.availableFrom : null,
+    availableUntil: temporary && v.availableUntil ? v.availableUntil : null,
     name: v.name.trim(),
     organizerName: v.organizerName.trim(),
     district: v.district.trim(),
