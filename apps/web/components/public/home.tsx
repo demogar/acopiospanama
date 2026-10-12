@@ -22,9 +22,7 @@ import { centerTypeLabel, fold, hasCoords, haversineKm, itemLabel, provinceLabel
 import { CENTER_TYPES_FALLBACK } from '@/lib/public-schedule';
 import type { PublicCenter, PublicMeta } from '@/lib/public-types';
 import { CenterCard } from './center-card';
-import { ItemPicker } from './item-picker';
 import { isOpenNow, useNow } from './open-status';
-import { UrgentNow } from './urgent-now';
 
 const CenterMap = dynamic(() => import('./center-map'), {
   ssr: false,
@@ -75,9 +73,8 @@ class MapBoundary extends Component<{ children: React.ReactNode; onRetry: () => 
 }
 
 /**
- * Portada. El orden de lectura es el orden de decisión de quien quiere ayudar: qué tengo para dar
- * (artículos con conteos), qué es lo más urgente, y recién después dónde y cuándo (filtros y lista).
- * Todos los conteos salen de la misma lista pública, así que siempre cuadran con lo que se ve abajo.
+ * Portada: la lista de centros va primero, con sus filtros encima. El artículo (`?i=`) ya no tiene botones
+ * en la portada, pero se sigue respetando en enlaces compartidos y se puede quitar con «Quitar filtros».
  */
 export function PublicHome({
   initialCenters,
@@ -155,13 +152,12 @@ export function PublicHome({
 
   const origin = useMemo(() => (geo.state === 'on' ? { lat: geo.lat, lng: geo.lng } : null), [geo]);
 
-  // Un solo filtro con «huecos»: los conteos de artículos ignoran el artículo elegido y los de provincia
-  // ignoran la provincia elegida, para que cada botón diga cuántos centros quedarían al tocarlo.
+  // Un solo filtro con un «hueco»: los conteos de provincia ignoran la provincia elegida, para que cada
+  // botón diga cuántos centros quedarían al tocarlo.
   const passes = useCallback(
-    (c: PublicCenter, skip: 'item' | 'province' | null) => {
+    (c: PublicCenter, skip: 'province' | null) => {
       if (skip !== 'province' && province !== ALL && c.province !== province) return false;
-      if (skip !== 'item' && item !== ALL && !c.needs.some((n) => n.item === item && n.level !== 'ENOUGH'))
-        return false;
+      if (item !== ALL && !c.needs.some((n) => n.item === item && n.level !== 'ENOUGH')) return false;
       if (ctype !== ALL && c.centerType !== ctype) return false;
       if (onlyOpen && isOpenNow(c, now) !== true) return false;
       const q = fold(query.trim());
@@ -171,7 +167,6 @@ export function PublicHome({
     [province, item, ctype, onlyOpen, now, query],
   );
 
-  const poolForItems = useMemo(() => (centers ?? []).filter((c) => passes(c, 'item')), [centers, passes]);
   const provinceCounts = useMemo(() => {
     const counts = new Map<string, number>();
     for (const c of centers ?? []) {
@@ -254,76 +249,17 @@ export function PublicHome({
 
   return (
     <div className="grid gap-8">
-      {/* 1. Presentación: la pregunta de entrada es qué tienes para dar. */}
-      <section
-        aria-labelledby="hero"
-        className="grid gap-5 lg:grid-cols-[minmax(0,7fr)_minmax(0,4fr)] lg:items-start lg:gap-8"
-      >
-        <div className="grid gap-3 lg:content-start">
-          <p className="text-xs font-bold uppercase tracking-wide text-ink-danger">
-            Dónde llevar donaciones y qué necesitan hoy
-          </p>
-          <h1 id="hero" className="font-ui text-3xl font-bold leading-tight text-ink sm:text-4xl">
-            ¿Qué quieres donar?
-          </h1>
-          <p className="max-w-2xl leading-relaxed text-ink-2">
-            Escoge lo que tienes y te mostramos qué centros lo necesitan hoy en todo Panamá. La información la mantiene
-            la comunidad: <strong className="text-ink">confirma con el centro antes de ir</strong>.
-          </p>
-          <div className="flex flex-wrap gap-2">
-            <Link href="/publicar" className={`${buttonVariants({ variant: 'primary' })} no-underline`}>
-              Publicar un centro
-            </Link>
-            <Link href="/como-funciona" className={`${buttonVariants({ variant: 'ghost' })} no-underline`}>
-              Cómo funciona
-            </Link>
-          </div>
-        </div>
-        {/* Aviso corto y plano, como en el diseño: un campo dorado con una marca, sin franja ni icono. */}
-        <aside aria-labelledby="aviso-dinero" className="grid gap-2 bg-oro-soft p-5">
-          <h2 id="aviso-dinero" className="flex items-center gap-2 font-ui text-base font-bold text-ink">
-            <span aria-hidden="true" className="inline-block size-2.5 shrink-0 bg-warn" />
-            Nadie aquí te pedirá dinero
-          </h2>
-          <p className="text-sm leading-relaxed text-ink-2">
-            Solo artículos, entregados en mano por canales verificados. Si un centro pide transferencias o Yappy,
-            repórtalo desde su ficha.
-          </p>
-          <Link href="/como-funciona#juega-vivo" className="justify-self-start text-sm font-bold text-ink">
-            Cómo evitar el «juega vivo»
-          </Link>
-        </aside>
-      </section>
-
-      {/* 2. Lo que piden los centros: artículos con conteos; tocar uno filtra todo lo demás. */}
-      <section aria-labelledby="piden" className="grid gap-4">
-        <div className="grid gap-1">
-          <h2 id="piden" className="font-ui text-xl font-bold text-ink">
-            Lo que piden los centros{province !== ALL ? ` en ${provinceLabel(meta, province)}` : ''}
-          </h2>
-          <p className="text-sm text-ink-2">Toca un artículo para ver solo los centros que lo necesitan.</p>
-        </div>
-        {centers && meta ? (
-          <ItemPicker meta={meta} pool={poolForItems} value={item} onChange={setItem} />
-        ) : (
-          <Skeleton className="h-40 w-full" aria-label="Cargando artículos…" />
-        )}
-      </section>
-
-      {/* 3. Urgente ahora: solo se muestra si algún centro marcó algo como urgente con estos filtros. */}
-      {centers && <UrgentNow centers={results.map((r) => r.c)} meta={meta} item={item} />}
-
-      {/* 4. Dónde y cuándo: filtros y lista. */}
       <section aria-labelledby="resultados" className="grid gap-5">
         <div className="flex flex-wrap items-end justify-between gap-x-4 gap-y-2">
           <div className="grid gap-1">
-            <h2 id="resultados" aria-live="polite" className="font-ui text-2xl font-bold text-ink">
+            <h1 id="resultados" aria-live="polite" className="font-ui text-3xl font-bold leading-tight text-ink">
               {resultTitle}
-            </h2>
+            </h1>
             <p className="text-sm text-ink-2">
               {origin
                 ? 'Ordenados por distancia. Tu ubicación no sale de tu teléfono.'
-                : 'Urgentes primero, luego los confirmados más recientemente.'}
+                : 'Urgentes primero, luego los confirmados más recientemente.'}{' '}
+              <strong className="text-ink">Confirma con el centro antes de ir.</strong>
             </p>
           </div>
           <Button
@@ -337,8 +273,28 @@ export function PublicHome({
           </Button>
         </div>
 
+        {/* Aviso corto y plano: un campo dorado con una marca, en una línea. */}
+        <aside
+          aria-label="Aviso"
+          className="flex items-start gap-2 bg-oro-soft px-4 py-3 text-sm leading-relaxed text-ink-2"
+        >
+          <span aria-hidden="true" className="mt-1.5 inline-block size-2.5 shrink-0 bg-warn" />
+          <p>
+            <strong className="text-ink">Nadie aquí te pedirá dinero.</strong> Si un centro pide transferencias o Yappy,
+            repórtalo desde su ficha.{' '}
+            <Link href="/como-funciona#juega-vivo" className="font-bold text-ink">
+              Cómo evitar el «juega vivo»
+            </Link>
+          </p>
+        </aside>
+
         <div className="grid gap-4">
-          <ChipGroup legend="Provincia o comarca" hideLegend>
+          {/* En el teléfono las provincias van en una fila deslizable en vez de ocupar media pantalla. */}
+          <ChipGroup
+            legend="Provincia o comarca"
+            hideLegend
+            className="max-md:[&>div]:-mx-4 max-md:[&>div]:flex-nowrap max-md:[&>div]:overflow-x-auto max-md:[&>div]:px-4 max-md:[&>div]:pb-1 sm:max-md:[&>div]:-mx-6 sm:max-md:[&>div]:px-6 max-md:[&>div>*]:shrink-0"
+          >
             <Chip
               type="radio"
               size="comfortable"
