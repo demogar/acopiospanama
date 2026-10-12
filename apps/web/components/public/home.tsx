@@ -404,7 +404,8 @@ export function PublicHome({
           )}
         </div>
 
-        {/* Con el mapa abierto, en pantallas anchas va fijo a la derecha de la lista. */}
+        {/* Con el mapa abierto, en pantallas anchas va fijo a la derecha de la lista. «sticky» crea un contexto
+            de apilamiento: en pantalla completa (role=dialog) el envoltorio sube para que la lista no lo tape. */}
         <div
           className={
             showMap && centers
@@ -413,7 +414,7 @@ export function PublicHome({
           }
         >
           {showMap && centers && (
-            <div className="lg:sticky lg:top-6 lg:col-start-2 lg:row-start-1">
+            <div className="lg:sticky lg:top-6 lg:col-start-2 lg:row-start-1 has-[[role=dialog]]:z-[1100]">
               <MapBoundary key={mapKey} onRetry={() => setMapKey((k) => k + 1)}>
                 <CenterMap
                   centers={results.map((r) => r.c)}
@@ -469,11 +470,11 @@ export function PublicHome({
                       {g.rows.length === 1 ? '1 centro' : `${g.rows.length} centros`}
                     </span>
                   </h3>
-                  <CenterList rows={g.rows} meta={meta} item={item} showMap={showMap} headingLevel={4} />
+                  <CenterList rows={g.rows} meta={meta} item={item} headingLevel={4} />
                 </section>
               ))
             ) : (
-              <CenterList rows={results} meta={meta} item={item} showMap={showMap} />
+              <CenterList rows={results} meta={meta} item={item} />
             )}
             {origin && results.some((r) => r.km == null) && (
               <p className="text-sm text-ink-2">Los centros sin ubicación en el mapa aparecen al final.</p>
@@ -489,23 +490,17 @@ function CenterList({
   rows,
   meta,
   item,
-  showMap,
   headingLevel,
 }: {
   rows: { c: PublicCenter; km: number | null }[];
   meta: PublicMeta | null;
   item: string;
-  showMap: boolean;
   headingLevel?: 3 | 4;
 }) {
   return (
-    <ul
-      className={
-        showMap
-          ? 'grid gap-4 md:grid-cols-2 2xl:grid-cols-3'
-          : 'grid gap-4 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4'
-      }
-    >
+    // Tantas columnas como quepan, cada una del ancho mínimo de una tarjeta (sus botones no se parten):
+    // así sirve igual con el mapa abierto o cerrado y en cualquier ancho de pantalla.
+    <ul className="grid grid-cols-[repeat(auto-fill,minmax(min(100%,20rem),1fr))] gap-4">
       {rows.map(({ c, km }) => (
         <li key={c.id} className="grid">
           <CenterCard
