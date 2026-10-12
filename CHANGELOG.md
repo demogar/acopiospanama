@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.19.0](https://github.com/demogar/acopiospanama/compare/v0.18.0...v0.19.0) (2026-10-12)
+
+
+### Novedades
+
+* **data:** Tic Tac Toe Kids como centro de acopio ([#81](https://github.com/demogar/acopiospanama/issues/81)) ([f37f22d](https://github.com/demogar/acopiospanama/commit/f37f22d77251c5a4cae8e86a203e3dd50d70c886))
+
 ## [0.18.0](https://github.com/demogar/acopiospanama/compare/v0.17.0...v0.18.0) (2026-10-12)
 
 
