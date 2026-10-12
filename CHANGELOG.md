@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.13.0](https://github.com/demogar/acopiospanama/compare/v0.12.0...v0.13.0) (2026-10-12)
+
+
+### Novedades
+
+* **api:** los lotes de centros se cargan solos al desplegar, como migraciones ([#63](https://github.com/demogar/acopiospanama/issues/63)) ([6723e1c](https://github.com/demogar/acopiospanama/commit/6723e1c5665b243bf02a9485081234d3fddb7985))
+* **data:** sexto lote de centros (14) ([#59](https://github.com/demogar/acopiospanama/issues/59)) ([8abe2df](https://github.com/demogar/acopiospanama/commit/8abe2dfad9bec452806cd028d42e6dc521608a7d))
+* lo publicado no caduca y ya no se envían recordatorios ([#57](https://github.com/demogar/acopiospanama/issues/57)) ([38bdb81](https://github.com/demogar/acopiospanama/commit/38bdb81dcd1e51cc8dd709982d9592c37d2e8630))
+* **web:** crédito a los colaboradores del repo en el pie ([#58](https://github.com/demogar/acopiospanama/issues/58)) ([d583178](https://github.com/demogar/acopiospanama/commit/d58317840f88cc4d4dbc79550db03f7b200cb2b8))
+
 ## [0.12.0](https://github.com/demogar/acopiospanama/compare/v0.11.0...v0.12.0) (2026-10-12)
 
 
