@@ -219,16 +219,17 @@ export function PublicHome({
       .map((key) => ({ key, label: provinceLabel(meta, key), count: provinceCounts.get(key) ?? 0 }));
   }, [meta, provinceCounts]);
 
-  const typeItems = useMemo(
-    () => [
+  // Solo los tipos que tienen al menos un centro publicado: no se ofrece «Albergue» si no hay ninguno. El tipo
+  // elegido se conserva aunque se quede sin centros (p. ej. llegó por la URL), para que el selector lo muestre.
+  const typeItems = useMemo(() => {
+    const present = new Set((centers ?? []).map((c) => c.centerType));
+    return [
       { value: ALL, label: 'Todos los tipos' },
-      ...Object.keys(meta?.centerTypes ?? CENTER_TYPES_FALLBACK).map((value) => ({
-        value,
-        label: centerTypeLabel(meta, value),
-      })),
-    ],
-    [meta],
-  );
+      ...Object.keys(meta?.centerTypes ?? CENTER_TYPES_FALLBACK)
+        .filter((value) => !centers || present.has(value) || value === ctype)
+        .map((value) => ({ value, label: centerTypeLabel(meta, value) })),
+    ];
+  }, [centers, meta, ctype]);
 
   const filtersActive = province !== ALL || item !== ALL || ctype !== ALL || onlyOpen || query.trim() !== '';
   const clearFilters = () => {
