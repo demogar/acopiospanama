@@ -97,7 +97,8 @@ jobs:
 
   images:
     name: Imágenes Docker (${{ matrix.name }})
-    needs: [api, web, lint, audit]
+    # Sin `needs`: corre en paralelo con las pruebas. En main solo publica la etiqueta sha-…, que nadie
+    # usa hasta que `deploy` (que sí espera a las pruebas) la despliega y la marca como `latest`.
     # El VPS es ARM64 (Hetzner CAX), así que las imágenes se construyen en runners ARM nativos
     # (gratis en repos públicos): sin emulación y mucho más rápido que QEMU para `next build`.
     # Si algún día el servidor es amd64, cambia `runs-on` y `platforms` aquí.
@@ -135,9 +136,7 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: ghcr.io/${{ github.repository_owner }}/acopiospanama-${{ matrix.name }}
-          tags: |
-            type=sha,format=long
-            type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
+          tags: type=sha,format=long
       - uses: docker/build-push-action@v6
         with:
           context: ${{ matrix.context }}
@@ -150,11 +149,13 @@ jobs:
           build-args: |
             APP_VERSION=${{ steps.version.outputs.value }}
           cache-from: type=gha,scope=${{ matrix.name }}
-          cache-to: type=gha,mode=max,scope=${{ matrix.name }}
+          # Exportar la caché cuesta más que el propio build (~80 s la web), y la de un PR queda limitada a
+          # su rama: solo main la escribe y los PR la leen.
+          cache-to: ${{ github.event_name == 'push' && format('type=gha,mode=max,scope={0}', matrix.name) || '' }}
 
   deploy:
     name: Desplegar en el VPS
-    needs: [images]
+    needs: [api, web, lint, audit, images]
     if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -163,7 +164,7 @@ jobs:
     environment: production
     permissions:
       contents: read
-      packages: read
+      packages: write
     steps:
       - uses: actions/checkout@v4
       - name: Preparar SSH
@@ -200,3 +201,13 @@ jobs:
             sleep 10
           done
           echo "::error::$PUBLIC_URL/api/health no respondió en 5 minutos"; exit 1
+      - name: Marcar las imágenes desplegadas como latest
+        env:
+          OWNER: ${{ github.repository_owner }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "$GH_TOKEN" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
+          for name in api web backup; do
+            img="ghcr.io/$OWNER/acopiospanama-$name"
+            docker buildx imagetools create -t "$img:latest" "$img:sha-$GITHUB_SHA"
+          done
