@@ -292,11 +292,12 @@ export function PublicHome({
         </aside>
 
         <div className="grid gap-4">
-          {/* En el teléfono las provincias van en una fila deslizable en vez de ocupar media pantalla. */}
+          {/* En el teléfono las provincias van en una fila deslizable en vez de ocupar media pantalla. El aire
+              arriba y abajo evita que el desplazamiento recorte el borde (una sombra) y el anillo de foco. */}
           <ChipGroup
             legend="Provincia o comarca"
             hideLegend
-            className="max-md:[&>div]:-mx-4 max-md:[&>div]:flex-nowrap max-md:[&>div]:overflow-x-auto max-md:[&>div]:px-4 max-md:[&>div]:pb-1 sm:max-md:[&>div]:-mx-6 sm:max-md:[&>div]:px-6 max-md:[&>div>*]:shrink-0"
+            className="max-md:[&>div]:-mx-4 max-md:[&>div]:flex-nowrap max-md:[&>div]:overflow-x-auto max-md:[&>div]:px-4 max-md:[&>div]:py-2 sm:max-md:[&>div]:-mx-6 sm:max-md:[&>div]:px-6 max-md:[&>div>*]:shrink-0"
           >
             <Chip
               type="radio"
