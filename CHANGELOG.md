@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.17.0](https://github.com/demogar/acopiospanama/compare/v0.16.0...v0.17.0) (2026-10-12)
+
+
+### Novedades
+
+* **data:** centros de acopio desde redes (2026-10-11) ([#77](https://github.com/demogar/acopiospanama/issues/77)) ([50f4c8b](https://github.com/demogar/acopiospanama/commit/50f4c8bfa22275a1a7b9bcc854e852ea33ad01b3))
+
 ## [0.16.0](https://github.com/demogar/acopiospanama/compare/v0.15.0...v0.16.0) (2026-10-12)
 
 
