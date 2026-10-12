@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.16.0](https://github.com/demogar/acopiospanama/compare/v0.15.0...v0.16.0) (2026-10-12)
+
+
+### Novedades
+
+* **data:** centros de acopio desde redes (2026-10-11) ([#74](https://github.com/demogar/acopiospanama/issues/74)) ([edbf546](https://github.com/demogar/acopiospanama/commit/edbf546f73b0367e7c823d3b82a677e51bb06fe4))
+
+
+### Correcciones
+
+* **web:** el filtro de tipo solo ofrece los tipos con centros publicados ([#76](https://github.com/demogar/acopiospanama/issues/76)) ([1364fc0](https://github.com/demogar/acopiospanama/commit/1364fc02ed12b087d42fa1c9d5406baf78233955))
+
 ## [0.15.0](https://github.com/demogar/acopiospanama/compare/v0.14.2...v0.15.0) (2026-10-12)
 
 
