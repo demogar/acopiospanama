@@ -1,0 +1,5370 @@
+[
+  {
+    "name": "Agropetshop Vetcare",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Agropetshop Vetcare y Ayudemos a un Michi",
+    "province": "VERAGUAS",
+    "district": "Santiago",
+    "community": "santiago",
+    "address": "Calle Segunda, Edificio Yoani Josela, Local 4, Santiago de Veraguas",
+    "lat": 8.0964204,
+    "lng": -80.9837129,
+    "schedule": {},
+    "hoursNote": "Lunes 12 de octubre a las 8:00 a. m.",
+    "notes": "Centro de acopio de alimentos para mascotas (perros y gatos) organizado por Agropetshop Vetcare junto con el grupo de rescatistas 'Ayudemos a un Michi'.",
+    "needs": [
+      {
+        "item": "PET_FOOD",
+        "level": "NEEDED",
+        "note": "Alimento para perros y gatos"
+      }
+    ],
+    "source": {
+      "title": "@ayudemosaunmichi en Instagram, @agropetshop_vetcare04 en Instagram",
+      "url": "https://www.instagram.com/p/DeXptGUxSWP/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Clínica Orthopedics Plus",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Clínica Orthopedics Plus",
+    "province": "COCLE",
+    "district": "Penonomé",
+    "community": "",
+    "address": "Vía Interamericana, La Sorpresa Mall, detrás del KFC, a un costado de ACODECO",
+    "lat": 8.5087337,
+    "lng": -80.3614081,
+    "schedule": {},
+    "hoursNote": "A partir del lunes 12 de octubre desde las 8:00 a.m.",
+    "notes": "Centro de acopio privado en Penonomé para recibir donaciones de artículos de aseo, primera necesidad y frazadas.",
+    "needs": [
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Toallitas húmedas sin alcohol, jabón líquido, pasta y cepillos de dientes"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pañales Pampers (niños y adultos), leche en polvo para niños"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Jugos sin azúcar para personas con diabetes"
+      },
+      {
+        "item": "BEDDING",
+        "level": "NEEDED",
+        "note": "Frazadas"
+      }
+    ],
+    "source": {
+      "title": "@orthopedicsplus en Instagram",
+      "url": "https://www.instagram.com/p/DeXELGuiCBW/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Junta Comunal de Jaramillo",
+    "centerType": "ACOPIO",
+    "organizerType": "JUNTA_COMUNAL",
+    "organizerName": "Junta Comunal de Jaramillo",
+    "province": "CHIRIQUI",
+    "district": "Boquete",
+    "community": "Jaramillo",
+    "address": "Junta Comunal de Jaramillo, al lado de Café Parador",
+    "lat": 8.7607066,
+    "lng": -82.407577,
+    "schedule": {},
+    "hoursNote": "A partir del lunes 12 de octubre desde las 8:00 a.m.",
+    "notes": "Centro de acopio habilitado por la Junta Comunal para recibir donaciones de alimentos, agua y medicamentos. No aceptan ropa.",
+    "needs": [
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos no perecederos"
+      },
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Medicamentos"
+      },
+      {
+        "item": "CLOTHES",
+        "level": "ENOUGH",
+        "note": "No se estará recibiendo ropa"
+      }
+    ],
+    "source": {
+      "title": "@juntacomunaljaramillo en Instagram",
+      "url": "https://www.instagram.com/p/DeW77mAyqug/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Rey Sabanitas",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Rey",
+    "province": "COLON",
+    "district": "Colón",
+    "community": "Sabanitas",
+    "address": "Sucursal Rey Sabanitas",
+    "lat": 9.3473434,
+    "lng": -79.8071978,
+    "schedule": {},
+    "hoursNote": "Sin horario específico indicado en la fuente",
+    "notes": "Centro de acopio habilitado por Supermercados Rey para recibir donaciones.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua embotellada"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos enlatados, secos y leche"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pañales para bebés y adultos"
+      }
+    ],
+    "source": {
+      "title": "@sm_rey en Instagram, @panamacapitaldeemociones en Instagram",
+      "url": "https://www.instagram.com/p/DeVkzADjWaW/",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Centro de Acopio Parque Sergio González Ruiz",
+    "centerType": "ACOPIO",
+    "organizerType": "MUNICIPIO",
+    "organizerName": "Municipio de Las Tablas",
+    "province": "LOS_SANTOS",
+    "district": "Las Tablas",
+    "community": "",
+    "address": "Parque Sergio González Ruiz, frente al Municipio de Las Tablas",
+    "lat": 7.7703532,
+    "lng": -80.2762601,
+    "schedule": {
+      "MON": {
+        "open": "08:00",
+        "close": "17:00"
+      }
+    },
+    "hoursNote": "Lunes 12 de octubre de 2026, de 8:00 a.m. a 5:00 p.m.",
+    "notes": "Jornada de apoyo para familias damnificadas por el terremoto. Reciben donaciones de alimentos, agua, higiene y artículos de bebé.",
+    "needs": [
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos y enlatados no perecederos"
+      },
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua potable embotellada"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Artículos de higiene personal y productos de limpieza"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pañales y artículos para bebés"
+      }
+    ],
+    "source": {
+      "title": "@verbumpanishomeschoolacademy en Instagram, @municipiodelastablas en Instagram",
+      "url": "https://www.instagram.com/p/DeYIwofjpiH/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Policía de Chitré",
+    "centerType": "ACOPIO",
+    "organizerType": "GOBIERNO",
+    "organizerName": "Despacho de la Primera Dama / Gobierno Nacional",
+    "province": "HERRERA",
+    "district": "Chitré",
+    "community": "Villas del Golf",
+    "address": "Policía de Chitré",
+    "lat": 7.9668036,
+    "lng": -80.4436917,
+    "schedule": {},
+    "hoursNote": "Horario no publicado: confirma antes de ir.",
+    "notes": "Centro de acopio listado en el afiche oficial del Despacho de la Primera Dama.",
+    "needs": [
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Arroz, frijoles, pasta, aceite, sal, huevos y enlatados"
+      },
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua potable"
+      },
+      {
+        "item": "TOOLS",
+        "level": "NEEDED",
+        "note": "Implementos para cocinar: estufas, pailas grandes y cucharones"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED",
+        "note": "Desechables: platos, vasos, cubiertos, envases, servilletas y bolsas de basura"
+      },
+      {
+        "item": "BEDDING",
+        "level": "NEEDED",
+        "note": "Sábanas, toallas y frazadas NUEVAS; Colchonetas"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche de bebé, leche en polvo y pañales (Pampers)"
+      }
+    ],
+    "source": {
+      "title": "@primeradamapma en Instagram, @TReporta en X",
+      "url": "https://x.com/TReporta/status/2109464741890449748",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Restaurante Corotú",
+    "centerType": "ACOPIO",
+    "organizerType": "ONG",
+    "organizerName": "Fundación La Chorrera Off Road / Club Jimny West",
+    "province": "PANAMA_OESTE",
+    "district": "La Chorrera",
+    "community": "",
+    "address": "La Chorrera",
+    "lat": 8.8830045,
+    "lng": -79.7808934,
+    "schedule": {},
+    "hoursNote": "Recepción de donaciones del 12 al 16 de octubre. Horario específico no indicado.",
+    "notes": "Punto de acopio para llevar ayuda a comunidades de difícil acceso en la Península de Azuero afectadas por el terremoto. Entrega final programada para 16-18 de octubre.",
+    "needs": [
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos (arroz, frijoles, pastas, etc.)"
+      },
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua en botellas o galones"
+      },
+      {
+        "item": "CLOTHES",
+        "level": "NEEDED",
+        "note": "Ropa y sábanas en buen estado"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche en polvo o líquida"
+      }
+    ],
+    "source": {
+      "title": "@lachorrera4x4offroad en Instagram",
+      "url": "https://www.instagram.com/p/DeYGX0Sulpb/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Centro Integral de Parque Lefevre",
+    "centerType": "ACOPIO",
+    "organizerType": "JUNTA_COMUNAL",
+    "organizerName": "Junta Comunal de Parque Lefevre",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Parque Lefevre",
+    "address": "Centro Integral de calle 8va, Parque Lefevre",
+    "lat": 9.0129031,
+    "lng": -79.498019,
+    "schedule": {
+      "MON": {
+        "open": "08:00",
+        "close": "19:00"
+      },
+      "TUE": {
+        "open": "08:00",
+        "close": "19:00"
+      },
+      "WED": {
+        "open": "08:00",
+        "close": "19:00"
+      },
+      "THU": {
+        "open": "08:00",
+        "close": "19:00"
+      },
+      "FRI": {
+        "open": "08:00",
+        "close": "19:00"
+      },
+      "SAT": {
+        "open": "08:00",
+        "close": "19:00"
+      },
+      "SUN": {
+        "open": "08:00",
+        "close": "19:00"
+      }
+    },
+    "hoursNote": "8:00 a.m. a 7:00 p.m.",
+    "notes": "Recolección de donaciones para Isla Cañas y provincias centrales. No se acepta ropa usada.",
+    "needs": [
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos enlatados, alimentos secos, arroz"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche en polvo para recién nacidos, pañales desechables"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Wipes (toallitas húmedas)"
+      },
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua"
+      }
+    ],
+    "source": {
+      "title": "@parque.lefevre en Instagram",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Centro de Acopio Fundasis",
+    "centerType": "ACOPIO",
+    "organizerType": "ONG",
+    "organizerName": "Fundasis",
+    "province": "PANAMA",
+    "district": "PANAMA",
+    "community": "San Miguelito",
+    "address": "En San Miguelito a un costado del Machetazo",
+    "lat": 9.0305906,
+    "lng": -79.5088007,
+    "schedule": {},
+    "hoursNote": "Horario no publicado: confirma antes de ir.",
+    "notes": "Centro de acopio enfocado en donaciones para animales afectados por el terremoto.",
+    "needs": [
+      {
+        "item": "PET_FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos para animales"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Medicamentos para animales"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Artículos de higiene"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED",
+        "note": "Artículos de limpieza"
+      }
+    ],
+    "source": {
+      "title": "@ponteenalgo en Instagram",
+      "url": "https://www.instagram.com/p/DeX_q0CEZs9/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Fonda 9 (Mercado San Felipe Neri)",
+    "centerType": "ACOPIO",
+    "organizerType": "ONG",
+    "organizerName": "Fundación Rescate de Alimentos",
+    "province": "PANAMA",
+    "district": "Panama",
+    "community": "San Felipe",
+    "address": "Fonda 9, Mercado San Felipe Neri",
+    "lat": 8.9577493,
+    "lng": -79.5389725,
+    "schedule": {},
+    "hoursNote": "Horario no publicado: confirma antes de ir.",
+    "notes": "Punto de acopio de donaciones (agua y alimentos secos) para la preparación de comidas calientes por parte de la Fundación Rescate de Alimentos.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua para preparar comidas"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos para preparar comidas"
+      }
+    ],
+    "source": {
+      "title": "@ponteenalgo en Instagram, @fundacionrescatedealimentos en Instagram, @eltrapichepty en Instagram",
+      "url": "https://www.instagram.com/p/DeX_q0CEZs9/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "La Cocina de Sofy",
+    "centerType": "ACOPIO",
+    "organizerType": "ONG",
+    "organizerName": "Fundación Rescate de Alimentos",
+    "province": "PANAMA",
+    "district": "Panama",
+    "community": "San Francisco",
+    "address": "La Cocina de Sofy",
+    "lat": 8.9928958,
+    "lng": -79.5102241,
+    "schedule": {},
+    "hoursNote": "Horario no publicado: confirma antes de ir.",
+    "notes": "Punto de acopio de donaciones (agua y alimentos secos) para la preparación de comidas calientes por parte de la Fundación Rescate de Alimentos.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua para preparar comidas"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos para preparar comidas"
+      }
+    ],
+    "source": {
+      "title": "@ponteenalgo en Instagram, @fundacionrescatedealimentos en Instagram, @eltrapichepty en Instagram",
+      "url": "https://www.instagram.com/p/DeX_q0CEZs9/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Riesen",
+    "centerType": "ACOPIO",
+    "organizerType": "ONG",
+    "organizerName": "Fundación Rescate de Alimentos",
+    "province": "PANAMA",
+    "district": "Panama",
+    "community": "Bella Vista",
+    "address": "Riesen",
+    "lat": 8.9863958,
+    "lng": -79.5261688,
+    "schedule": {},
+    "hoursNote": "Horario no publicado: confirma antes de ir.",
+    "notes": "Punto de acopio de donaciones (agua y alimentos secos) para la preparación de comidas calientes por parte de la Fundación Rescate de Alimentos.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua para preparar comidas"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos para preparar comidas"
+      }
+    ],
+    "source": {
+      "title": "@ponteenalgo en Instagram, @fundacionrescatedealimentos en Instagram, @eltrapichepty en Instagram",
+      "url": "https://www.instagram.com/p/DeX_q0CEZs9/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Restaurante El Trapiche",
+    "centerType": "ACOPIO",
+    "organizerType": "ONG",
+    "organizerName": "Fundación Rescate de Alimentos",
+    "province": "PANAMA",
+    "district": "Panama",
+    "community": "San Francisco",
+    "address": "Restaurante El Trapiche",
+    "lat": 8.9884091,
+    "lng": -79.5078232,
+    "schedule": {},
+    "hoursNote": "Horario no publicado: confirma antes de ir.",
+    "notes": "Punto de acopio de donaciones (agua y alimentos secos) para la preparación de comidas calientes por parte de la Fundación Rescate de Alimentos.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua para preparar comidas"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos para preparar comidas"
+      }
+    ],
+    "source": {
+      "title": "@ponteenalgo en Instagram, @fundacionrescatedealimentos en Instagram, @eltrapichepty en Instagram",
+      "url": "https://www.instagram.com/p/DeX_q0CEZs9/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "CenterFit Panamá",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "CenterFit Panamá",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "San Francisco",
+    "address": "Calle 72, San Francisco, Plaza Casa 78",
+    "lat": 8.99116,
+    "lng": -79.5076657,
+    "schedule": {
+      "MON": {
+        "open": "08:00",
+        "close": "17:00"
+      },
+      "TUE": {
+        "open": "08:00",
+        "close": "17:00"
+      },
+      "WED": {
+        "open": "08:00",
+        "close": "17:00"
+      }
+    },
+    "hoursNote": "Reciben donaciones hasta el miércoles 14 de octubre de 2026, de 8:00 a.m. a 5:00 p.m.",
+    "notes": "Centro de acopio privado para recolectar donaciones destinadas a las familias afectadas por el sismo en Herrera y Los Santos (Macaracas, Llano de Piedra).",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua potable"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos enlatados"
+      },
+      {
+        "item": "TARPS",
+        "level": "NEEDED",
+        "note": "Carpas, toldos y lonas"
+      },
+      {
+        "item": "LIGHTS",
+        "level": "NEEDED",
+        "note": "Linternas"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pañales de bebé y adulto mayor"
+      },
+      {
+        "item": "BEDDING",
+        "level": "NEEDED",
+        "note": "Cobijas"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Papel higiénico y artículos de higiene personal"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Medicinas"
+      }
+    ],
+    "source": {
+      "title": "@centerfitpa en Instagram",
+      "url": "https://www.instagram.com/p/DeX-s0HMUaM/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Administración del Colegio Javier",
+    "centerType": "ACOPIO",
+    "organizerType": "ESCUELA",
+    "organizerName": "Asociación de Padres de Familia del Colegio Javier (APFCJ)",
+    "province": "PANAMA",
+    "district": "Panama",
+    "community": "",
+    "address": "Administración del Colegio Javier",
+    "lat": 9.0035012,
+    "lng": -79.5610083,
+    "schedule": {},
+    "hoursNote": "Hasta el 16 de octubre de 2026. No especifica horario de apertura.",
+    "notes": "Campaña de solidaridad y recolección de donaciones para afectados por el terremoto del 9 de octubre. Organizada por la APFCJ.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua embotellada"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos no perecederos, leche en polvo, fórmulas de bebé, enlatados, granola, Milo, avena, cereales"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Pampers (niños y adultos), jabón, pasta/cepillo dental, papel higiénico, toallas húmedas/sanitarias, alcohol"
+      },
+      {
+        "item": "CLOTHES",
+        "level": "ENOUGH",
+        "note": "Por el momento, no se recibirá ropa"
+      }
+    ],
+    "source": {
+      "title": "@apfcolegiojavier en Instagram",
+      "url": "https://www.instagram.com/p/DeX7tnSlsM1/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "CF Santidad a Jehová",
+    "centerType": "ACOPIO",
+    "organizerType": "IGLESIA",
+    "organizerName": "CF Santidad a Jehová",
+    "province": "PANAMA_OESTE",
+    "district": "Arraiján",
+    "community": "Nuevo Arraiján",
+    "address": "CF Santidad a Jehová",
+    "lat": 8.9533574,
+    "lng": -79.6988833,
+    "schedule": {
+      "MON": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "TUE": {
+        "open": "09:00",
+        "close": "17:00"
+      },
+      "WED": {
+        "open": "09:00",
+        "close": "17:00"
+      }
+    },
+    "hoursNote": "Lunes 12 al miércoles 14 de 9:00 a. m. a 5:00 p. m.",
+    "notes": "Centro de acopio de la iglesia CF Santidad a Jehová para apoyar a las provincias centrales. Reciben alimentos, higiene, medicinas y artículos varios.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua embotellada"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos no perecederos (enlatados, arroz, pasta, avena, café, té)"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche en polvo, fórmulas de bebé, pañales, ropa para bebés"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Jabones, cepillos, pasta dental, toallas sanitarias, papel higiénico, desodorantes"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Gasas, vendas, curitas, guantes, alcohol, solución salina, mascarillas, botiquines"
+      },
+      {
+        "item": "CLOTHES",
+        "level": "NEEDED",
+        "note": "Ropa para niños y adultos"
+      },
+      {
+        "item": "BEDDING",
+        "level": "NEEDED",
+        "note": "Colchones"
+      },
+      {
+        "item": "TARPS",
+        "level": "NEEDED",
+        "note": "Toldas"
+      },
+      {
+        "item": "PET_FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos para mascotas"
+      }
+    ],
+    "source": {
+      "title": "@cfsantidadajehova en Instagram",
+      "url": "https://www.instagram.com/p/DeX6FJ6pEpj/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Parlacén Panamá (Punto de Acopio Bahía Honda)",
+    "centerType": "ACOPIO",
+    "organizerType": "ONG",
+    "organizerName": "Ñeque Aventuras",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "DownTown",
+    "address": "Parlacén Panamá, entrando por DownTown",
+    "lat": 8.9387922,
+    "lng": -79.5463562,
+    "schedule": {},
+    "hoursNote": "A partir de las 2:00 p.m. (sin día específico indicado)",
+    "notes": "Centro de acopio en Ciudad de Panamá para recaudar ayuda humanitaria destinada a Bahía Honda, Veraguas. La ayuda será trasladada vía marítima directamente a la comunidad afectada.",
+    "needs": [
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos enlatados listos para consumo (atún, sardinas, frijoles, sopas, vegetales)"
+      },
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua embotellada"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pañales, toallitas, leche en polvo, alimentos para bebé"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Jabón, pasta dental, toallas sanitarias, papel higiénico, toallitas húmedas"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED",
+        "note": "Cloro, desinfectantes, escobas, bolsas de basura"
+      },
+      {
+        "item": "VOLUNTEERS",
+        "level": "NEEDED",
+        "note": "Voluntarios con vehículos 4x4 para recolección y traslado"
+      },
+      {
+        "item": "CLOTHES",
+        "level": "ENOUGH",
+        "note": "NO NECESITAMOS ROPA por el momento"
+      }
+    ],
+    "source": {
+      "title": "@licaldo888 en Instagram, @mendeez_20 en Instagram, @parlacenpa en Instagram, @Areh25 en X, @nequeaventuras en Instagram",
+      "url": "https://www.instagram.com/p/DeXzwqSR4cf/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Entrada de TVN",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "TVN Media",
+    "province": "PANAMA",
+    "district": "Panama",
+    "community": "Condado del Rey II",
+    "address": "Entrada de TVN",
+    "lat": 9.0319229,
+    "lng": -79.5196269,
+    "schedule": {
+      "MON": {
+        "open": "07:00",
+        "close": "11:00"
+      }
+    },
+    "hoursNote": "Lunes 12 de octubre de 2026, de 7:00 a.m. a 11:00 a.m.",
+    "notes": "Campaña de acopio de donaciones para familias afectadas por el sismo. Se solicita que los artículos estén limpios y en buen estado.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua embotellada"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos enlatados y no perecederos (sellados y no vencidos)"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pañales para bebés y adultos"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Toallas sanitarias y artículos de higiene personal"
+      },
+      {
+        "item": "BEDDING",
+        "level": "NEEDED",
+        "note": "Frazadas y mantas"
+      }
+    ],
+    "source": {
+      "title": "@traficocpanama en Instagram, @freddyvelasquez12 en Instagram, @hechoenpanama en Instagram",
+      "url": "https://www.instagram.com/p/DeXzRPVIKji/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "SUNTRACS - Proyectos",
+    "centerType": "ACOPIO",
+    "organizerType": "ONG",
+    "organizerName": "Sindicato Único Nacional de Trabajadores de la Industria de la Construcción y Similares (SUNTRACS)",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Parque Lefevre",
+    "address": "En Proyectos",
+    "lat": 9.0175551,
+    "lng": -79.4881739,
+    "schedule": {
+      "MON": {
+        "open": "08:00",
+        "close": "18:00"
+      },
+      "TUE": {
+        "open": "08:00",
+        "close": "18:00"
+      },
+      "WED": {
+        "open": "08:00",
+        "close": "18:00"
+      }
+    },
+    "hoursNote": "Del 12 al 14 de octubre, de 8:00 a.m. a 6:00 p.m.",
+    "notes": "Centro de acopio solidario para afectados por el terremoto del 9 de octubre.",
+    "needs": [
+      {
+        "item": "HOT_MEALS",
+        "level": "NEEDED",
+        "note": "Comida"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Mercancía seca"
+      },
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua embotellada"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED",
+        "note": "Productos de limpieza"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Medicamentos"
+      }
+    ],
+    "source": {
+      "title": "@paradigma.507 en Instagram",
+      "url": "https://www.instagram.com/p/DeXupb_REEs/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Hyatt Regency Panama City",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Hyatt Regency Panama City",
+    "province": "PANAMA",
+    "district": "Panama",
+    "community": "Bella Vista",
+    "address": "Salón Portobelo, lobby del hotel",
+    "lat": 8.9816536,
+    "lng": -79.5244507,
+    "schedule": {},
+    "hoursNote": "Del lunes 12 al viernes 16 de octubre",
+    "notes": "Centro de acopio solidario para apoyar a las comunidades afectadas en las provincias centrales tras el terremoto.",
+    "needs": [
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Medicamentos"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pañales para bebés"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Insumos de aseo personal"
+      }
+    ],
+    "source": {
+      "title": "@hyattregencypanama en Instagram",
+      "url": "https://www.instagram.com/p/DeXuauZpCce/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Centro de Acopio UTP - Lobby Edificio de Facilidades Estudiantiles",
+    "centerType": "ACOPIO",
+    "organizerType": "ESCUELA",
+    "organizerName": "Universidad Tecnológica de Panamá (Vicerrectoría de Vida Universitaria)",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Ciudad Universitaria",
+    "address": "Lobby del Edificio de Facilidades Estudiantiles, UTP",
+    "lat": 9.023669,
+    "lng": -79.5324659,
+    "schedule": {
+      "MON": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "TUE": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "WED": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "THU": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "FRI": {
+        "open": "08:00",
+        "close": "16:00"
+      }
+    },
+    "hoursNote": "8:00 a. m. a 4:00 p. m.",
+    "notes": "Campaña de solidaridad de la Vicerrectoría de Vida Universitaria de la UTP para recolectar donaciones para afectados por el terremoto.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua embotellada"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos enlatados y no perecederos"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Artículos de higiene personal"
+      },
+      {
+        "item": "BEDDING",
+        "level": "NEEDED",
+        "note": "Cobijas y mantas"
+      },
+      {
+        "item": "LIGHTS",
+        "level": "NEEDED",
+        "note": "Linternas y pilas"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pañales para niños y adultos"
+      }
+    ],
+    "source": {
+      "title": "@vidauutp en Instagram",
+      "url": "https://www.instagram.com/p/DeXuRvXpxsB/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Federación Panameña de Fútbol (FPF)",
+    "centerType": "ACOPIO",
+    "organizerType": "OTRO",
+    "organizerName": "Federación Panameña de Fútbol",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Campo Lindbergh",
+    "address": "Ciudad Deportiva Irving Saladino",
+    "lat": 9.0347732,
+    "lng": -79.4703538,
+    "schedule": {
+      "MON": {
+        "open": "10:00",
+        "close": "17:00"
+      },
+      "TUE": {
+        "open": "10:00",
+        "close": "17:00"
+      }
+    },
+    "hoursNote": "Lunes y martes de 10:00 a. m. a 5:00 p. m.",
+    "notes": "Centro de acopio oficial de la FPF y las jugadoras de la Selección Nacional para recibir donaciones.",
+    "needs": [
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos no perecederos"
+      },
+      {
+        "item": "PET_FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos para mascotas"
+      },
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua potable"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Insumos de primeros auxilios"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Productos de higiene y artículos de primera necesidad"
+      }
+    ],
+    "source": {
+      "title": "@fepafut en Instagram",
+      "url": "https://www.instagram.com/p/DeXs8sgRhRq/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Centro de Acopio Parque de La Palma",
+    "centerType": "ACOPIO",
+    "organizerType": "MUNICIPIO",
+    "organizerName": "Alcaldía de Chepigana",
+    "province": "DARIEN",
+    "district": "Chepigana",
+    "community": "La Palma",
+    "address": "Parque de La Palma",
+    "lat": 8.4087257,
+    "lng": -78.1397064,
+    "schedule": {},
+    "hoursNote": "Durante toda esta semana desde las 8:00 A.M.",
+    "notes": "El Municipio de Chepigana solicita donaciones para los damnificados del terremoto.",
+    "needs": [
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos: Arroz, Pasta, Enlatados, Leche en polvo, Otros no perecederos"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Utensilios de aseo: Jabón, Papel higiénico, Toallas sanitarias, Cepillos y pasta dental"
+      }
+    ],
+    "source": {
+      "title": "@munidechepigana en Instagram",
+      "url": "https://www.instagram.com/p/DeXrRFxBjJF/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Edificio 365 (Órgano Judicial)",
+    "centerType": "ACOPIO",
+    "organizerType": "GOBIERNO",
+    "organizerName": "Órgano Judicial",
+    "province": "PANAMA",
+    "district": "PANAMA",
+    "community": "Ciudad de Panamá",
+    "address": "Edificio 365",
+    "lat": 8.9549382,
+    "lng": -79.542878,
+    "schedule": {},
+    "hoursNote": "Horario no publicado: confirma antes de ir.",
+    "notes": "Punto de acopio central del Órgano Judicial en la capital.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "En botellas o presentaciones grandes"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos no perecederos, enlatados, conservas, snacks, leche en polvo"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pañales"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Insumos médicos"
+      },
+      {
+        "item": "BEDDING",
+        "level": "NEEDED",
+        "note": "Colchonetas, sábanas y mantas"
+      },
+      {
+        "item": "TARPS",
+        "level": "NEEDED",
+        "note": "Colchas o carpas"
+      }
+    ],
+    "source": {
+      "title": "@OJudicialPanama en X",
+      "url": "https://x.com/OJudicialPanama/status/2109402984778178921",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Asistencia Administrativa de Los Santos",
+    "centerType": "ACOPIO",
+    "organizerType": "GOBIERNO",
+    "organizerName": "Órgano Judicial",
+    "province": "LOS_SANTOS",
+    "district": "Las Tablas",
+    "community": "",
+    "address": "Las Asistencias Administrativas de Los Santos",
+    "lat": 7.7829625,
+    "lng": -80.2734844,
+    "schedule": {},
+    "hoursNote": "Horario no publicado: confirma antes de ir.",
+    "notes": "Punto de acopio del Órgano Judicial para damnificados del terremoto.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "En botellas o presentaciones grandes"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos no perecederos, enlatados, conservas, snacks, leche en polvo"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pañales"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Insumos médicos"
+      },
+      {
+        "item": "BEDDING",
+        "level": "NEEDED",
+        "note": "Colchonetas, sábanas y mantas"
+      },
+      {
+        "item": "TARPS",
+        "level": "NEEDED",
+        "note": "Colchas o carpas"
+      }
+    ],
+    "source": {
+      "title": "@OJudicialPanama en X",
+      "url": "https://x.com/OJudicialPanama/status/2109402984778178921",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Asistencia Administrativa de Herrera",
+    "centerType": "ACOPIO",
+    "organizerType": "GOBIERNO",
+    "organizerName": "Órgano Judicial",
+    "province": "HERRERA",
+    "district": "Chitré",
+    "community": "Brisas de los Guayacanes",
+    "address": "Las Asistencias Administrativas de Herrera",
+    "lat": 7.9472924,
+    "lng": -80.4250187,
+    "schedule": {},
+    "hoursNote": "Horario no publicado: confirma antes de ir.",
+    "notes": "Punto de acopio del Órgano Judicial para damnificados del terremoto.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "En botellas o presentaciones grandes"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos no perecederos, enlatados, conservas, snacks, leche en polvo"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pañales"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Insumos médicos"
+      },
+      {
+        "item": "BEDDING",
+        "level": "NEEDED",
+        "note": "Colchonetas, sábanas y mantas"
+      },
+      {
+        "item": "TARPS",
+        "level": "NEEDED",
+        "note": "Colchas o carpas"
+      }
+    ],
+    "source": {
+      "title": "@OJudicialPanama en X",
+      "url": "https://x.com/OJudicialPanama/status/2109402984778178921",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Asistencia Administrativa de Coclé",
+    "centerType": "ACOPIO",
+    "organizerType": "GOBIERNO",
+    "organizerName": "Órgano Judicial",
+    "province": "COCLE",
+    "district": "Penonomé",
+    "community": "",
+    "address": "Las Asistencias Administrativas de Coclé",
+    "lat": 8.488844,
+    "lng": -80.3588778,
+    "schedule": {},
+    "hoursNote": "Horario no publicado: confirma antes de ir.",
+    "notes": "Punto de acopio del Órgano Judicial para damnificados del terremoto.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "En botellas o presentaciones grandes"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos no perecederos, enlatados, conservas, snacks, leche en polvo"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pañales"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Insumos médicos"
+      },
+      {
+        "item": "BEDDING",
+        "level": "NEEDED",
+        "note": "Colchonetas, sábanas y mantas"
+      },
+      {
+        "item": "TARPS",
+        "level": "NEEDED",
+        "note": "Colchas o carpas"
+      }
+    ],
+    "source": {
+      "title": "@OJudicialPanama en X",
+      "url": "https://x.com/OJudicialPanama/status/2109402984778178921",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Asistencia Administrativa de Chiriquí",
+    "centerType": "ACOPIO",
+    "organizerType": "GOBIERNO",
+    "organizerName": "Órgano Judicial",
+    "province": "CHIRIQUI",
+    "district": "David",
+    "community": "Alto Verde",
+    "address": "Las Asistencias Administrativas de Chiriquí",
+    "lat": 8.4078793,
+    "lng": -82.4321258,
+    "schedule": {},
+    "hoursNote": "Horario no publicado: confirma antes de ir.",
+    "notes": "Punto de acopio del Órgano Judicial para damnificados del terremoto.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "En botellas o presentaciones grandes"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos no perecederos, enlatados, conservas, snacks, leche en polvo"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pañales"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Insumos médicos"
+      },
+      {
+        "item": "BEDDING",
+        "level": "NEEDED",
+        "note": "Colchonetas, sábanas y mantas"
+      },
+      {
+        "item": "TARPS",
+        "level": "NEEDED",
+        "note": "Colchas o carpas"
+      }
+    ],
+    "source": {
+      "title": "@OJudicialPanama en X",
+      "url": "https://x.com/OJudicialPanama/status/2109402984778178921",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Asistencia Administrativa de Panamá Oeste",
+    "centerType": "ACOPIO",
+    "organizerType": "GOBIERNO",
+    "organizerName": "Órgano Judicial",
+    "province": "PANAMA_OESTE",
+    "district": "La Chorrera",
+    "community": "Residencial Vista Mar",
+    "address": "Las Asistencias Administrativas de Panamá Oeste",
+    "lat": 8.8608692,
+    "lng": -79.7681338,
+    "schedule": {},
+    "hoursNote": "Horario no publicado: confirma antes de ir.",
+    "notes": "Punto de acopio del Órgano Judicial para damnificados del terremoto.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "En botellas o presentaciones grandes"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos no perecederos, enlatados, conservas, snacks, leche en polvo"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pañales"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Insumos médicos"
+      },
+      {
+        "item": "BEDDING",
+        "level": "NEEDED",
+        "note": "Colchonetas, sábanas y mantas"
+      },
+      {
+        "item": "TARPS",
+        "level": "NEEDED",
+        "note": "Colchas o carpas"
+      }
+    ],
+    "source": {
+      "title": "@OJudicialPanama en X",
+      "url": "https://x.com/OJudicialPanama/status/2109402984778178921",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Edificio de la Administración del Canal",
+    "centerType": "ACOPIO",
+    "organizerType": "GOBIERNO",
+    "organizerName": "Canal de Panamá",
+    "province": "PANAMA",
+    "district": "Panama",
+    "community": "",
+    "address": "Edificio de la Administración del Canal, Equipo de Responsabilidad Social",
+    "lat": 8.9594695,
+    "lng": -79.5550504,
+    "schedule": {},
+    "hoursNote": "Horario no publicado: confirma antes de ir.",
+    "notes": "Punto de acopio para donación de insumos a familias afectadas por el terremoto del 9 de octubre.",
+    "needs": [
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos no perecederos (arroz, pasta, enlatados, avena)"
+      },
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua embotellada"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche en polvo, fórmulas para bebés y pañales"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Insumos de primera necesidad"
+      }
+    ],
+    "source": {
+      "title": "@canaldepanama en Instagram",
+      "url": "https://www.instagram.com/p/DeXq81nveex/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Pacífica Salud Costa del Este",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Pacífica Salud",
+    "province": "PANAMA",
+    "district": "PANAMA",
+    "community": "Costa del Este",
+    "address": "Atrio (Lobby) con Departamento de ATC",
+    "lat": 9.0219015,
+    "lng": -79.462575,
+    "schedule": {},
+    "hoursNote": "A partir del 12 de octubre de 2026. Horario específico no indicado.",
+    "notes": "Colecta de donaciones para afectados por el sismo en el interior del país.",
+    "needs": [
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos: arroz, pastas, granos, enlatados, aceite"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Insumos de aseo: pañales, toallas húmedas, artículos de aseo personal"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pamper"
+      }
+    ],
+    "source": {
+      "title": "@atriocostadeleste en Instagram, @pacificasalud en Instagram",
+      "url": "https://www.instagram.com/p/DeXqX_0tPQq/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Centro de Acopio Independiente Nexus Rescue",
+    "centerType": "ACOPIO",
+    "organizerType": "ONG",
+    "organizerName": "Nexus Rescue",
+    "province": "VERAGUAS",
+    "district": "Santiago",
+    "community": "Barriada Don Bosco",
+    "address": "Detrás de la Escuela Manuel H. de Pérez",
+    "lat": 8.1005614,
+    "lng": -80.9744001,
+    "schedule": {},
+    "hoursNote": "No especifica horario de atención en la publicación.",
+    "notes": "Centro de acopio independiente organizado por Nexus Rescue junto a voluntarios e influencers para recolectar donaciones para las zonas afectadas por el terremoto del 9 de octubre.",
+    "needs": [
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos no perecederos"
+      },
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua embotellada"
+      },
+      {
+        "item": "CLOTHES",
+        "level": "NEEDED",
+        "note": "Ropa y calzado en buen estado"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Artículos de higiene personal"
+      },
+      {
+        "item": "BEDDING",
+        "level": "NEEDED",
+        "note": "Colchas, cobijas"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Insumos médicos"
+      },
+      {
+        "item": "TOOLS",
+        "level": "NEEDED",
+        "note": "Insumos y materiales de apoyo"
+      }
+    ],
+    "source": {
+      "title": "@soloenveraguas en Instagram, @nexus_rescue en Instagram",
+      "url": "https://www.instagram.com/p/DeXqE8rCRvh/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Casa del Pueblo de Aguadulce",
+    "centerType": "ACOPIO",
+    "organizerType": "MUNICIPIO",
+    "organizerName": "Alcaldía Municipal de Aguadulce y Oficina Circuital",
+    "province": "COCLE",
+    "district": "Aguadulce",
+    "community": "Aguadulce",
+    "address": "Casa del Pueblo de Aguadulce",
+    "lat": 8.2436581,
+    "lng": -80.5393221,
+    "schedule": {},
+    "hoursNote": "A partir de hoy, domingo 11 de octubre, desde las 12:00 del mediodía.",
+    "notes": "Centro de acopio solidario para recibir donaciones destinadas a las familias afectadas por los acontecimientos del pasado viernes (terremoto).",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua potable"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos y no perecederos"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Artículos de primera necesidad"
+      }
+    ],
+    "source": {
+      "title": "@alcaldiadeaguadulce en Instagram, @djrafypanama en Instagram",
+      "url": "https://www.instagram.com/p/DeXp4J1pPFk/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Colegio San Vicente de Panamá",
+    "centerType": "ACOPIO",
+    "organizerType": "ESCUELA",
+    "organizerName": "Colegio San Vicente de Panamá y Prom Azairus",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Los Ríos",
+    "address": "Colegio San Vicente de Panamá",
+    "lat": 8.9798065,
+    "lng": -79.56919,
+    "schedule": {},
+    "hoursNote": "Miércoles 14 y jueves 15 de octubre",
+    "notes": "Colecta de donaciones organizada por el Colegio San Vicente de Panamá y la Prom Azairus para afectados por el terremoto.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Comida enlatada, Alimentos no perecederos"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED",
+        "note": "Artículos de limpieza"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Artículos de aseo personal, Toallas sanitarias"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pampers"
+      },
+      {
+        "item": "BEDDING",
+        "level": "NEEDED",
+        "note": "Frazadas, Colchones"
+      },
+      {
+        "item": "TARPS",
+        "level": "NEEDED",
+        "note": "Carpas"
+      }
+    ],
+    "source": {
+      "title": "@promazairus.26 en Instagram",
+      "url": "https://www.instagram.com/p/DeXjyI9Rv2f/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Edificio sede de la Administración - Zona Libre de Colón",
+    "centerType": "ACOPIO",
+    "organizerType": "GOBIERNO",
+    "organizerName": "Zona Libre de Colón",
+    "province": "COLON",
+    "district": "Colón",
+    "community": "",
+    "address": "Edificio sede de la Administración, Zona Libre de Colón",
+    "lat": 9.3540959,
+    "lng": -79.8962337,
+    "schedule": {},
+    "hoursNote": "A partir del lunes 12 de octubre de 2026. No se especifican horarios de apertura y cierre.",
+    "notes": "Centro de acopio habilitado por la Zona Libre de Colón para recibir donaciones de las empresas usuarias destinadas a familias damnificadas por el sismo.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua"
+      },
+      {
+        "item": "BEDDING",
+        "level": "NEEDED",
+        "note": "Colchonetas, frazadas y sábanas nuevas"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche en polvo, fórmula para bebés, pañales para bebés y adultos"
+      },
+      {
+        "item": "TARPS",
+        "level": "NEEDED",
+        "note": "Abanicos y carpas"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos enlatados y granos secos"
+      }
+    ],
+    "source": {
+      "title": "@zolicol en Instagram",
+      "url": "https://www.instagram.com/p/DeXiGKZJn2Z/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Edificio Solendeg",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Radio Ancón (Fabulosa Estéreo, Cabina en Vivo, TropiQ)",
+    "province": "PANAMA",
+    "district": "Panama",
+    "community": "Bella Vista",
+    "address": "Calle 50, Edificio Solendeg",
+    "lat": 8.9804549,
+    "lng": -79.5235814,
+    "schedule": {
+      "MON": {
+        "open": "09:00",
+        "close": "18:00"
+      }
+    },
+    "hoursNote": "Lunes 12 de octubre de 2026, de 9:00 a. m. a 6:00 p. m.",
+    "notes": "Campaña de recolección de donaciones para la región de Azuero. Se solicita NO llevar ropa.",
+    "needs": [
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos no perecederos"
+      },
+      {
+        "item": "TOOLS",
+        "level": "NEEDED",
+        "note": "Implementos para cocinar (ollas, sartenes)"
+      },
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua embotellada"
+      },
+      {
+        "item": "BEDDING",
+        "level": "NEEDED",
+        "note": "Colchonetas, toallas y frazadas"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche de bebé y leche en polvo"
+      },
+      {
+        "item": "PET_FOOD",
+        "level": "NEEDED",
+        "note": "Alimento para perros y gatos"
+      }
+    ],
+    "source": {
+      "title": "@tropiq997 en Instagram, @radioanconpa en Instagram",
+      "url": "https://www.instagram.com/p/DeXgxdWRcQS/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Frente al Centro Educativo José E. Escala",
+    "centerType": "ACOPIO",
+    "organizerType": "OTRO",
+    "organizerName": "Banda de Música Blue Hydra B.M.J.E.E.",
+    "province": "PANAMA_OESTE",
+    "district": "La Chorrera",
+    "community": "Santa Rita",
+    "address": "Frente al Centro Educativo José E. Escala",
+    "lat": 8.8596466,
+    "lng": -79.879051,
+    "schedule": {
+      "MON": {
+        "allDay": true
+      }
+    },
+    "hoursNote": "Lunes 12 de octubre",
+    "notes": "Punto de recolección de donaciones para afectados por el sismo. Las donaciones serán enviadas al interior del país.",
+    "needs": [
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos"
+      },
+      {
+        "item": "CLOTHES",
+        "level": "NEEDED",
+        "note": "Ropa en buen estado"
+      },
+      {
+        "item": "BEDDING",
+        "level": "NEEDED",
+        "note": "Sábanas"
+      },
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua potable"
+      }
+    ],
+    "source": {
+      "title": "@bmjee_2025 en Instagram",
+      "url": "https://www.instagram.com/p/DeXcoojTHrU/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Colegio Pureza de María Panamá",
+    "centerType": "ACOPIO",
+    "organizerType": "ESCUELA",
+    "organizerName": "Colegio Pureza de María Panamá",
+    "province": "PANAMA",
+    "district": "San Miguelito",
+    "community": "San Miguelito",
+    "address": "Colegio Pureza de María Panamá",
+    "lat": 9.0477404,
+    "lng": -79.4806103,
+    "schedule": {
+      "TUE": {
+        "allDay": true
+      },
+      "WED": {
+        "allDay": true
+      }
+    },
+    "hoursNote": "Recibirá donaciones los días 13 y 14 de octubre.",
+    "notes": "Punto de acopio escolar con lista específica de necesidades.",
+    "needs": [
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos no perecederos"
+      },
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua embotellada"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Artículos de higiene"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Insumos de primeros auxilios"
+      },
+      {
+        "item": "BEDDING",
+        "level": "NEEDED",
+        "note": "Colchas"
+      },
+      {
+        "item": "PET_FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos para mascotas"
+      }
+    ],
+    "source": {
+      "title": "@jdlvillalucre en Instagram",
+      "url": "https://www.instagram.com/p/DeXccYDIyAK/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Oficinas UNCAP (Unión Nacional de Corredores de Aduanas de Panamá)",
+    "centerType": "ACOPIO",
+    "organizerType": "ONG",
+    "organizerName": "Unión Nacional de Corredores de Aduanas de Panamá (UNCAP) - Comisión de Responsabilidad Social",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Clayton",
+    "address": "Clayton, entrando por calle Hocker, Maritza Alabarca, frente al edificio de la Caja de Seguro Social, Ciudad de Panamá.",
+    "lat": 9.0038708,
+    "lng": -79.5685863,
+    "schedule": {},
+    "hoursNote": "No especifica horario de atención en la publicación.",
+    "notes": "Punto de recepción de víveres para familias afectadas por la emergencia. Se solicita donación directa en oficinas.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua embotellada"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos no perecederos"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED",
+        "note": "Artículos de limpieza"
+      }
+    ],
+    "source": {
+      "title": "@uncap_panama en Instagram",
+      "url": "https://www.instagram.com/p/DeXadJeRMWl/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Twins West Workshop",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Twins West Workshop",
+    "province": "PANAMA_OESTE",
+    "district": "La Chorrera",
+    "community": "",
+    "address": "Twins West Workshop, Panamá Oeste",
+    "lat": 8.8621079,
+    "lng": -79.8060108,
+    "schedule": {},
+    "hoursNote": "Hoy (11 de octubre) y Mañana (12 de octubre)",
+    "notes": "Recolecta solidaria para llevar ayuda a Tonosí. Los organizadores llevarán las donaciones personalmente.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua potable"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos no perecederos (enlatados, arroz, pastas)"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Artículos de higiene personal (jabón, pasta dental, pañales)"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED",
+        "note": "Productos de limpieza (detergente, cloro, toallas)"
+      },
+      {
+        "item": "CLOTHES",
+        "level": "NEEDED",
+        "note": "Ropa en buen estado para todas las edades"
+      }
+    ],
+    "source": {
+      "title": "@twinswest_workshop en Instagram",
+      "url": "https://www.instagram.com/p/DeXZXlDNS3B/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Cooperativa Joaquina H. De Torrijo",
+    "centerType": "ACOPIO",
+    "organizerType": "OTRO",
+    "organizerName": "Cooperativa Joaquina H. De Torrijo",
+    "province": "VERAGUAS",
+    "district": "Santiago",
+    "community": "San Martín",
+    "address": "Frente al ITPV - Verguas, San Martín",
+    "lat": 8.1107001,
+    "lng": -80.9702263,
+    "schedule": {},
+    "hoursNote": "Horario no publicado: confirma antes de ir.",
+    "notes": "Punto de acopio en Santiago de Veraguas para entregas en especie, coordinado con la Fundación Agua y Tierra.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Según lista de prioridades de la fundación"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Según lista de prioridades de la fundación"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Según lista de prioridades de la fundación"
+      },
+      {
+        "item": "BEDDING",
+        "level": "NEEDED",
+        "note": "Según lista de prioridades de la fundación"
+      },
+      {
+        "item": "LIGHTS",
+        "level": "NEEDED",
+        "note": "Según lista de prioridades de la fundación"
+      }
+    ],
+    "source": {
+      "title": "@fundacionaguaytierra en Instagram",
+      "url": "https://www.instagram.com/p/DeXW9_BRM-y/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Oficinas de TGS Travel",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "TGS Travel",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Mi Condado",
+    "address": "Mi Condado Plaza, Oficina 81, Piso 4",
+    "lat": 9.0277242,
+    "lng": -79.5227201,
+    "schedule": {},
+    "hoursNote": "Horario no publicado: confirma antes de ir.",
+    "notes": "Punto de acopio en Ciudad de Panamá para entregas en especie, coordinado con la Fundación Agua y Tierra.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Según lista de prioridades de la fundación"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Según lista de prioridades de la fundación"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Según lista de prioridades de la fundación"
+      },
+      {
+        "item": "BEDDING",
+        "level": "NEEDED",
+        "note": "Según lista de prioridades de la fundación"
+      },
+      {
+        "item": "LIGHTS",
+        "level": "NEEDED",
+        "note": "Según lista de prioridades de la fundación"
+      }
+    ],
+    "source": {
+      "title": "@fundacionaguaytierra en Instagram",
+      "url": "https://www.instagram.com/p/DeXW9_BRM-y/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Centro de Visitantes de la Tortuga Marina",
+    "centerType": "ACOPIO",
+    "organizerType": "ONG",
+    "organizerName": "Fundación Agua y Tierra",
+    "province": "VERAGUAS",
+    "district": "Mariato",
+    "community": "Quebrada de Piedra / Mata Oscura",
+    "address": "Proyecto de tortugas, Centro de visitantes de la tortuga marina",
+    "lat": 7.4644505,
+    "lng": -80.9317578,
+    "schedule": {},
+    "hoursNote": "Horario no publicado: confirma antes de ir.",
+    "notes": "Centro de acopio gestionado por la Fundación Agua y Tierra para apoyar a las comunidades de Mata Oscura y Quebró. Recibe donaciones en especie.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "URGENT",
+        "note": "Galones de agua"
+      },
+      {
+        "item": "FOOD",
+        "level": "URGENT",
+        "note": "Sal, aceite, frijoles, leche, café, arroz, enlatados"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "URGENT",
+        "note": "Cepillo de dientes, pasta, jabón, desodorante, papel higiénico"
+      },
+      {
+        "item": "BEDDING",
+        "level": "NEEDED",
+        "note": "Sábanas y toallas"
+      },
+      {
+        "item": "LIGHTS",
+        "level": "NEEDED",
+        "note": "Linternas"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED",
+        "note": "Platos y vasos plásticos"
+      }
+    ],
+    "source": {
+      "title": "@fundacionaguaytierra en Instagram",
+      "url": "https://www.instagram.com/p/DeXW9_BRM-y/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Estacionamientos Financiera Central de Créditos",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Central de Créditos",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Calidonia",
+    "address": "Ave. Perú",
+    "lat": 8.9698711,
+    "lng": -79.5371845,
+    "schedule": {},
+    "hoursNote": "Lunes 12 de octubre de 2026, a partir de las 8:00 a. m.",
+    "notes": "Punto de recolección de donaciones para afectados en el interior del país. Sucursal Santiago cerrada.",
+    "needs": [
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos no perecederos"
+      },
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua potable"
+      },
+      {
+        "item": "CLOTHES",
+        "level": "NEEDED",
+        "note": "Ropa en buen estado"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Artículos de higiene personal"
+      }
+    ],
+    "source": {
+      "title": "@centraldecreditospanama en Instagram",
+      "url": "https://www.instagram.com/p/DeXR-B3RV93/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Plaza OnDGo – Parque de Niño",
+    "centerType": "ACOPIO",
+    "organizerType": "ONG",
+    "organizerName": "Asociación de Educadores Veragüenses (A.E.V.E.)",
+    "province": "VERAGUAS",
+    "district": "Santiago",
+    "community": "barriada paraiso",
+    "address": "Plaza OnDGo – Parque de Niño",
+    "lat": 8.1024128,
+    "lng": -80.9747621,
+    "schedule": {
+      "MON": {
+        "open": "09:00",
+        "close": "13:00"
+      }
+    },
+    "hoursNote": "Lunes 12 de octubre de 2026, de 9:00 a.m. a 1:00 p.m.",
+    "notes": "Campaña de acopio de la Junta Directiva de A.E.V.E. para damnificados del terremoto.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Productos secos"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Artículos de higiene"
+      },
+      {
+        "item": "BEDDING",
+        "level": "NEEDED",
+        "note": "Colchas y mantas"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Insumos de primera necesidad"
+      }
+    ],
+    "source": {
+      "title": "@aevepanama en Instagram",
+      "url": "https://www.instagram.com/p/DeXOp2SvkJ4/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Pacífica Salud Punta Pacífica",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Pacífica Salud",
+    "province": "PANAMA",
+    "district": "PANAMA",
+    "community": "Punta Pacífica",
+    "address": "Departamento de RRHH en Sótano 1",
+    "lat": 8.9816134,
+    "lng": -79.5103328,
+    "schedule": {},
+    "hoursNote": "A partir del 12 de octubre de 2026. Horario específico no indicado.",
+    "notes": "Colecta de donaciones para afectados por el sismo en el interior del país.",
+    "needs": [
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos: arroz, pastas, granos, enlatados, aceite"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Insumos de aseo: pañales, toallas húmedas, artículos de aseo personal"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pamper"
+      }
+    ],
+    "source": {
+      "title": "@pacificasalud en Instagram",
+      "url": "https://www.instagram.com/p/DeXOFB4S8Q7/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Rey Centennial",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Rey",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "",
+    "address": "Rey Centennial",
+    "lat": 9.0303319,
+    "lng": -79.5315733,
+    "schedule": {},
+    "hoursNote": "Horario no publicado: confirma antes de ir.",
+    "notes": "Centro de acopio en tienda Rey.",
+    "needs": [],
+    "source": {
+      "title": "@kaitleinpmd en X, @panamacapitaldeemociones en Instagram",
+      "url": "https://x.com/kaitleinpmd/status/2109336299333427532",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Junta Comunal de 24 de Diciembre",
+    "centerType": "ACOPIO",
+    "organizerType": "JUNTA_COMUNAL",
+    "organizerName": "Junta Comunal de 24 de Diciembre",
+    "province": "PANAMA",
+    "district": "Panamá Oeste",
+    "community": "24 de Diciembre",
+    "address": "Sector 3 en el corregimiento, 24 de diciembre",
+    "lat": 9.0978621,
+    "lng": -79.361664,
+    "schedule": {},
+    "hoursNote": "No especifica horario de atención en la publicación.",
+    "notes": "Centro de acopio para damnificados del sismo del interior. Se aceptan donaciones de alimentos secos y otros aportes.",
+    "needs": [
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Especialmente alimentos secos"
+      },
+      {
+        "item": "CLOTHES",
+        "level": "NEEDED",
+        "note": "Ropa visible en la imagen del afiche"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Artículos de higiene visibles en la imagen del afiche"
+      }
+    ],
+    "source": {
+      "title": "@juntacomunal24dic_ en Instagram",
+      "url": "https://www.instagram.com/p/DeXJyBdT5pk/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Adarys Beauty Salon",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Adarys Beauty Salon",
+    "province": "PANAMA",
+    "district": "PANAMA",
+    "community": "Pedregal",
+    "address": "Pedregal, la entrada de Villalobos, detrás de la parada segundo piso.",
+    "lat": 9.0699529,
+    "lng": -79.4292741,
+    "schedule": {},
+    "hoursNote": "No especifica horario de atención en la publicación.",
+    "notes": "Punto de acopio privado que recolecta donaciones para trasladarlas al centro de acopio del municipio y al Parque Omar. No aceptan ropa.",
+    "needs": [
+      {
+        "item": "CLOTHES",
+        "level": "ENOUGH",
+        "note": "NO ESTAMOS RECIBIENDO ROPA"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Donaciones generales (excepto ropa)"
+      },
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Donaciones generales (excepto ropa)"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Donaciones generales (excepto ropa)"
+      }
+    ],
+    "source": {
+      "title": "@adarysbeauty en Instagram",
+      "url": "https://www.instagram.com/p/DeXIVD5JTbn/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Alcaldía de San Miguelito",
+    "centerType": "ACOPIO",
+    "organizerType": "MUNICIPIO",
+    "organizerName": "Alcaldía de San Miguelito",
+    "province": "PANAMA",
+    "district": "San Miguelito",
+    "community": "San Miguelito",
+    "address": "Alcaldía de San Miguelito",
+    "lat": 9.042063,
+    "lng": -79.501737,
+    "schedule": {},
+    "hoursNote": "Confirma el punto de recepción.",
+    "notes": "Centro de acopio en la ciudad de Panamá.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua embotellada"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos no perecederos"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Artículos de higiene y toallas sanitarias"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pañales para bebés y adultos"
+      },
+      {
+        "item": "BEDDING",
+        "level": "NEEDED",
+        "note": "Sábanas, frazadas y colchonetas"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Gasas, vendas y guantes"
+      }
+    ],
+    "source": {
+      "title": "@comunidadpanamanorte en Instagram",
+      "url": "https://www.instagram.com/p/DeW_LK3kfQD/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Veterinaria Animal Health",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Veterinaria Animal Health / AMVEPE",
+    "province": "VERAGUAS",
+    "district": "Santiago",
+    "community": "Barriada San Vicente",
+    "address": "Barriada San Vicente. Entrando por el IDAAN, primera entrada a mano derecha.",
+    "lat": 8.0961647,
+    "lng": -80.9853691,
+    "schedule": {},
+    "hoursNote": "No especifica horario de atención en la publicación.",
+    "notes": "Centro de acopio habilitado por la veterinaria y la Asociación de Médicos Veterinarios de Pequeñas Especies (AMVEPE) para recibir donaciones para afectados por el terremoto.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua embotellada"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos y enlatados"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Productos de higiene personal"
+      },
+      {
+        "item": "PET_FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos para mascotas"
+      }
+    ],
+    "source": {
+      "title": "@vetanimalhealthsa en Instagram",
+      "url": "https://www.instagram.com/p/DeW88mJxiJq/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Híper Rey Los Pueblos",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Rey",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Los Pueblos",
+    "address": "Híper Rey Los Pueblos",
+    "lat": 9.0502564,
+    "lng": -79.446892,
+    "schedule": {},
+    "hoursNote": "No especificado en la publicación",
+    "notes": "Centro de acopio de donaciones para afectados por el terremoto.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua embotellada"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos enlatados y secos"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pañales para bebés y adultos"
+      }
+    ],
+    "source": {
+      "title": "@sm_rey en Instagram, @panamacapitaldeemociones en Instagram",
+      "url": "https://www.instagram.com/p/DeViVtojXTV/",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Centro de Acopio Universidad de Panamá - Campus Harmodio Arias Madrid",
+    "centerType": "ACOPIO",
+    "organizerType": "ESCUELA",
+    "organizerName": "Universidad de Panamá",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Ciudad de Panamá",
+    "address": "Parada a un costado de la piscina, Campus Harmodio Arias Madrid (Domo universitario)",
+    "lat": 8.9803822,
+    "lng": -79.5456243,
+    "schedule": {
+      "MON": {
+        "open": "10:00",
+        "close": "18:00"
+      },
+      "TUE": {
+        "open": "10:00",
+        "close": "18:00"
+      }
+    },
+    "hoursNote": "Domingo 11, Lunes 12 y Martes 13 de octubre de 2026, de 10:00 a.m. a 6:00 p.m.",
+    "notes": "Recolección de donaciones para damnificados por el terremoto en provincias centrales. Todo lo recolectado será llevado a las regiones afectadas.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "En botellas o presentaciones grandes"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos no perecederos, enlatados, conservas, snacks"
+      },
+      {
+        "item": "BEDDING",
+        "level": "NEEDED",
+        "note": "Colchas"
+      },
+      {
+        "item": "TARPS",
+        "level": "NEEDED",
+        "note": "Carpas para que las familias descansen"
+      }
+    ],
+    "source": {
+      "title": "@pat_universidad en Instagram, @feupconproyecto en Instagram",
+      "url": "https://www.instagram.com/p/DeXb6WKyGag/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Sede de la Cruz Roja Panameña, Comité Local Chitré",
+    "centerType": "ACOPIO",
+    "organizerType": "CRUZ_ROJA",
+    "organizerName": "Cruz Roja Panameña",
+    "province": "HERRERA",
+    "district": "Chitré",
+    "community": "Llano Bonito",
+    "address": "Sede de la Cruz Roja Panameña, Comité Local Chitré",
+    "lat": 7.9684125,
+    "lng": -80.4268712,
+    "schedule": {},
+    "hoursNote": "Abiertos desde las 9:00am en adelante",
+    "notes": "Centro de acopio para damnificados del terremoto. Reciben donaciones de higiene, agua, comida seca y pañales.",
+    "needs": [
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Artículos de aseo personal"
+      },
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Comida seca y enlatados"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pampers"
+      }
+    ],
+    "source": {
+      "title": "@maseventos.pty en Instagram",
+      "url": "https://www.instagram.com/p/DeVe4ZHO9lR/",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Mr. Precio Santiago",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Mr. Precio",
+    "province": "VERAGUAS",
+    "district": "Santiago",
+    "community": "Urbanización Verdún",
+    "address": "Mr. Precio Santiago",
+    "lat": 8.097179,
+    "lng": -80.9749057,
+    "schedule": {},
+    "hoursNote": "Horario no publicado: confirma antes de ir.",
+    "notes": "Centro de acopio en tienda Mr. Precio.",
+    "needs": [],
+    "source": {
+      "title": "@panamacapitaldeemociones en Instagram",
+      "url": "https://www.instagram.com/p/DeVapSyFVeW/",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Rey Calle 50",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Rey",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "San Francisco",
+    "address": "Rey Calle 50",
+    "lat": 8.9928045,
+    "lng": -79.5036239,
+    "schedule": {},
+    "hoursNote": "Horario no publicado: confirma antes de ir.",
+    "notes": "Centro de acopio en tienda Rey.",
+    "needs": [],
+    "source": {
+      "title": "@panamacapitaldeemociones en Instagram",
+      "url": "https://www.instagram.com/p/DeVapSyFVeW/",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Rey Albrook",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Rey",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "",
+    "address": "Rey Albrook",
+    "lat": 8.9713217,
+    "lng": -79.5602512,
+    "schedule": {},
+    "hoursNote": "Horario no publicado: confirma antes de ir.",
+    "notes": "Centro de acopio en tienda Rey.",
+    "needs": [],
+    "source": {
+      "title": "@panamacapitaldeemociones en Instagram",
+      "url": "https://www.instagram.com/p/DeVapSyFVeW/",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Parroquia San Agustín",
+    "centerType": "ACOPIO",
+    "organizerType": "IGLESIA",
+    "organizerName": "Parroquia San Agustín",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Villa Zaita",
+    "address": "Villa Zaita",
+    "lat": 9.0821402,
+    "lng": -79.5108244,
+    "schedule": {},
+    "hoursNote": "Horario no publicado: confirma antes de ir.",
+    "notes": "Centro de acopio en Villa Zaita. Se solicitan carpas, toldas, colchones y sábanas. No se recibe ropa.",
+    "needs": [
+      {
+        "item": "TARPS",
+        "level": "NEEDED",
+        "note": "Carpas y toldas"
+      },
+      {
+        "item": "BEDDING",
+        "level": "NEEDED",
+        "note": "Colchones y sábanas"
+      },
+      {
+        "item": "CLOTHES",
+        "level": "ENOUGH",
+        "note": "No se está recogiendo ropa"
+      }
+    ],
+    "source": {
+      "title": "@comunidadpanamanorte en Instagram",
+      "url": "https://www.instagram.com/p/DeVRVruCdZT/",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Centro Regional Universitario de San Miguelito (CRUSAM)",
+    "centerType": "ACOPIO",
+    "organizerType": "ESCUELA",
+    "organizerName": "Democracia Estudiantil - Centro de Estudiantes de San Miguelito (CRUSAM)",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "San Miguelito",
+    "address": "Pasillo principal del CRUSAM",
+    "lat": 9.026211,
+    "lng": -79.5064305,
+    "schedule": {},
+    "hoursNote": "A partir del lunes 12 de octubre",
+    "notes": "Centro de acopio organizado por Democracia Estudiantil en el CRUSAM para apoyar a los afectados por el sismo. Las donaciones se entregan a los compañeros o a seguridad.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua embotellada"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos (arroz, pastas, avena, enlatados, etc.)"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Productos de higiene personal (jabón, papel higiénico, toallas, etc.)"
+      }
+    ],
+    "source": {
+      "title": "@democraciaestudiantil en Instagram",
+      "url": "https://www.instagram.com/p/DeVRCRJOSPH/",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Edificio Mateo Iturralde",
+    "centerType": "ACOPIO",
+    "organizerType": "MUNICIPIO",
+    "organizerName": "Alcaldía de Colón",
+    "province": "COLON",
+    "district": "Colón",
+    "community": "",
+    "address": "Calle 2 Central - Recepción",
+    "lat": 9.3643651,
+    "lng": -79.9041042,
+    "schedule": {},
+    "hoursNote": "Horario no publicado: confirma antes de ir.",
+    "notes": "Punto de acopio de la colecta solidaria de la Alcaldía de Colón.",
+    "needs": [
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos no perecederos"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Productos de higiene personal"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED",
+        "note": "Artículos de limpieza"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pañales para recién nacidos"
+      },
+      {
+        "item": "CLOTHES",
+        "level": "NEEDED",
+        "note": "Ropa para niños y adultos (nuevos o buen estado)"
+      },
+      {
+        "item": "BEDDING",
+        "level": "NEEDED",
+        "note": "Ropa de cama, toallas, etc."
+      }
+    ],
+    "source": {
+      "title": "@traficocpanama en Instagram, @tvnnoticias en Instagram",
+      "url": "https://www.instagram.com/p/DeVQZ4xDOkH/",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Centro Familiar Cristiano de David",
+    "centerType": "ACOPIO",
+    "organizerType": "IGLESIA",
+    "organizerName": "Centro Familiar Cristiano de Calle 4ta",
+    "province": "CHIRIQUI",
+    "district": "David",
+    "community": "Barrio Bolívar",
+    "address": "Calle 4ta, después de la bomba 3 de Noviembre",
+    "lat": 8.4249841,
+    "lng": -82.427329,
+    "schedule": {},
+    "hoursNote": "Desde el domingo 11 de octubre hasta fecha indefinida. A partir de las 8:00 a.m.",
+    "notes": "Centro de acopio para ayudar a los afectados en las provincias centrales tras el terremoto del 9 de octubre.",
+    "needs": [
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Comidas enlatadas, barras de cereal, galletas, leche en polvo, café, arroz, pasta, avena, agua."
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Jabones, cepillos, pasta dental, toallas sanitarias, pañales, papel higiénico, toallitas, desodorantes, pampers."
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Gasas, vendas, curitas, guantes, alcohol, solución salina, mascarillas, botiquines."
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Fórmulas de bebé, pañales, pampers."
+      },
+      {
+        "item": "PET_FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos para mascotas."
+      }
+    ],
+    "source": {
+      "title": "@iglesiacuadrangular_david en Instagram",
+      "url": "https://www.instagram.com/p/DeVIOh5PWyZ/",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Colegio Bilingüe Ávila Panamá",
+    "centerType": "ACOPIO",
+    "organizerType": "ESCUELA",
+    "organizerName": "Colegio Bilingüe Ávila Panamá",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "San Francisco",
+    "address": "Colegio Bilingüe Ávila Panamá (Sedes Preescolar y Primaria)",
+    "lat": 8.9909836,
+    "lng": -79.5104084,
+    "schedule": {},
+    "hoursNote": "Recepción a partir del lunes 12 de octubre, desde las 7:00 a. m.",
+    "notes": "Centro de acopio escolar para recibir donaciones destinadas a familias afectadas por el terremoto. Coordinan con instituciones para la distribución.",
+    "needs": [
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos no perecederos: Enlatados, arroz, pasta, leche en polvo, entre otros."
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Insumos de primeros auxilios: Gasas, vendas, curitas, antisépticos y materiales básicos de curación."
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Artículos de higiene personal: Jabón, papel higiénico, pañales, toallas sanitarias."
+      }
+    ],
+    "source": {
+      "title": "@colegioavilapanama en Instagram",
+      "url": "https://www.instagram.com/p/DeVFdDPSNLV/",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Centro de Acopio Parque de la Calle Abajo",
+    "centerType": "ACOPIO",
+    "organizerType": "MUNICIPIO",
+    "organizerName": "Alcaldía de Macaracas",
+    "province": "LOS_SANTOS",
+    "district": "Macaracas",
+    "community": "Macaracas",
+    "address": "Parque de la Calle Abajo de Macaracas, frente a los Bomberos",
+    "lat": 7.7351588,
+    "lng": -80.5510066,
+    "schedule": {},
+    "hoursNote": "Horario no publicado: confirma antes de ir.",
+    "notes": "Centro de acopio establecido por el municipio de Macaracas para recibir donaciones para las familias afectadas por los sismos.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua potable"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Comida seca y alimentos no perecederos"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche y Pañales desechables (Pampers)"
+      }
+    ],
+    "source": {
+      "title": "@adalpa_ en Instagram",
+      "url": "https://www.instagram.com/p/DeVEcRoJYAf/",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Centro de Ayuda - Tolda Roja El Supercentro El Dorado",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "El Supercentro El Dorado",
+    "province": "PANAMA",
+    "district": "Panama",
+    "community": "Betania",
+    "address": "Entrada principal (central) de El Supercentro El Dorado",
+    "lat": 9.0095409,
+    "lng": -79.5345495,
+    "schedule": {},
+    "hoursNote": "No especificado en la fuente",
+    "notes": "Punto de acopio de donaciones ubicado en una tolda roja en la entrada del centro comercial. Reciben agua, alimentos, pañales, leche, insumos de salud y comida para mascotas.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pañales para bebés y adultos"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Insumos de salud"
+      },
+      {
+        "item": "PET_FOOD",
+        "level": "NEEDED",
+        "note": "Comida para perros y gatos"
+      }
+    ],
+    "source": {
+      "title": "@china507pma en Instagram",
+      "url": "https://www.instagram.com/p/DeVDzmRRzgN/",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Centro Óptico Azuero Chiriquí",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Centro Óptico Azuero Chiriquí",
+    "province": "CHIRIQUI",
+    "district": "David",
+    "community": "San Mateo",
+    "address": "Plaza Golden, avenida F Sur, San Mateo, David, Chiriquí",
+    "lat": 8.4279817,
+    "lng": -82.4405167,
+    "schedule": {
+      "MON": {
+        "open": "08:00",
+        "close": "17:00"
+      },
+      "TUE": {
+        "open": "08:00",
+        "close": "17:00"
+      },
+      "WED": {
+        "open": "08:00",
+        "close": "17:00"
+      },
+      "THU": {
+        "open": "08:00",
+        "close": "17:00"
+      },
+      "FRI": {
+        "open": "08:00",
+        "close": "17:00"
+      },
+      "SAT": {
+        "open": "08:00",
+        "close": "17:00"
+      },
+      "SUN": {
+        "open": "08:00",
+        "close": "17:00"
+      }
+    },
+    "hoursNote": "Todos los días, de 8:00 a.m. a 5:00 p.m.",
+    "notes": "Campaña de recolección de donaciones para afectados por el terremoto en Azuero, Penonomé y Veraguas, así como familiares de colaboradores.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua embotellada"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos no perecederos, leche, comida enlatada"
+      },
+      {
+        "item": "CLOTHES",
+        "level": "NEEDED",
+        "note": "Ropa en buen estado (nueva o usada)"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Artículos de higiene personal y limpieza"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pañales para bebés y adultos"
+      },
+      {
+        "item": "BEDDING",
+        "level": "NEEDED",
+        "note": "Cobijas y sábanas"
+      },
+      {
+        "item": "TOOLS",
+        "level": "NEEDED",
+        "note": "Utensilios de cocina y desechables"
+      },
+      {
+        "item": "LIGHTS",
+        "level": "NEEDED",
+        "note": "Linternas y pilas"
+      },
+      {
+        "item": "PET_FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos para mascotas"
+      }
+    ],
+    "source": {
+      "title": "@chirinetinforma_ en Instagram, @anabelistuperiodista en Instagram",
+      "url": "https://www.instagram.com/p/DeU6aLGtgfQ/",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Centro de Acopio Mansa Furniture",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Mansa Furniture",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Marbella",
+    "address": "Calle 51 Este, Marbella, Ciudad de Panamá, Panamá.",
+    "lat": 8.9783096,
+    "lng": -79.521076,
+    "schedule": {
+      "MON": {
+        "open": "08:00",
+        "close": "18:00"
+      },
+      "TUE": {
+        "open": "08:00",
+        "close": "18:00"
+      },
+      "WED": {
+        "open": "08:00",
+        "close": "18:00"
+      },
+      "THU": {
+        "open": "08:00",
+        "close": "18:00"
+      },
+      "FRI": {
+        "open": "08:00",
+        "close": "18:00"
+      },
+      "SAT": {
+        "open": "08:00",
+        "close": "18:00"
+      },
+      "SUN": {
+        "open": "08:00",
+        "close": "18:00"
+      }
+    },
+    "hoursNote": "Todos los días de 8:00 a.m. a 6:00 p.m.",
+    "notes": "La empresa habilita su edificio como centro de acopio y utiliza su camión para transportar las donaciones hacia las provincias centrales afectadas por los sismos.",
+    "needs": [
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Comidas enlatadas, arroz, pasta, avena, galletas, leche en polvo, café, agua embotellada."
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Jabones, cepillos, toallas sanitarias, pañales (niños y adultos), papel higiénico, desodorantes."
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Gasas, vendas, curitas, guantes, alcohol, solución salina, mascarillas, botiquines."
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Fórmulas de bebé, pañales y pampers para niños."
+      }
+    ],
+    "source": {
+      "title": "@lalili_507 en Instagram, @mansa.furniture en Instagram",
+      "url": "https://www.instagram.com/p/DeU2fFRFMTM/",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Camerino by Alex Olivero",
+    "centerType": "ACOPIO",
+    "organizerType": "OTRO",
+    "organizerName": "Regala una Sonrisa Panamá",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Bella Vista",
+    "address": "Camerino by Alex Olivero",
+    "lat": 8.9877046,
+    "lng": -79.5296887,
+    "schedule": {},
+    "hoursNote": "Recepción sábado 10 y lunes 12 de octubre. Horario no especificado.",
+    "notes": "Centro de acopio de insumos médicos, higiene y alimentos para damnificados por el terremoto. Iniciativa de Regala una Sonrisa Panamá.",
+    "needs": [
+      {
+        "item": "FIRST_AID",
+        "level": "URGENT",
+        "note": "Gasas, vendas, curitas, cinta micropore, suero, antisépticos, kits"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "URGENT",
+        "note": "Guantes, mascarillas, alcohol 70%, gel, termómetros, pañales, toallas, jabón, papel higiénico"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos no perecederos"
+      },
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua potable"
+      }
+    ],
+    "source": {
+      "title": "@alexoliveromua en Instagram",
+      "url": "https://www.instagram.com/p/DeUy2HVJyeC/",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Farmacias Revilla - Sucursal Terronal",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Farmacias Revilla",
+    "province": "CHIRIQUI",
+    "district": "David",
+    "community": "Terronal",
+    "address": "Sucursal Terronal",
+    "lat": 8.446753,
+    "lng": -82.4216385,
+    "schedule": {},
+    "hoursNote": "Del sábado 10 al lunes 12 de octubre. Horario de apertura no especificado.",
+    "notes": "Centro de acopio habilitado por Farmacias Revilla para apoyar a afectados por el terremoto.",
+    "needs": [
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Medicamentos de uso básico, insumos médicos, suplementos y vitaminas"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Artículos de higiene personal"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos no perecederos"
+      },
+      {
+        "item": "CLOTHES",
+        "level": "ENOUGH",
+        "note": "No se está recibiendo ropa por el momento"
+      }
+    ],
+    "source": {
+      "title": "@farmaciasrevilla en Instagram",
+      "url": "https://www.instagram.com/p/DeUxDXXJR_W/",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Melo Pet and Garden - Sucursal Villa Lucre",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Melo Pet and Garden",
+    "province": "PANAMA",
+    "district": "Panama",
+    "community": "Juan Díaz",
+    "address": "Tienda Villa Lucre",
+    "lat": 9.0385886,
+    "lng": -79.4828613,
+    "schedule": {},
+    "hoursNote": "No especificado",
+    "notes": "Centro de acopio para damnificados de la Península de Azuero. Reciben donaciones para mascotas.",
+    "needs": [
+      {
+        "item": "PET_FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos y húmedos para mascotas"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche de cachorros"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Productos de higiene"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Medicinas"
+      }
+    ],
+    "source": {
+      "title": "@melopetandgarden en Instagram",
+      "url": "https://www.instagram.com/p/DeUttLtstZF/",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Centro de Acopio UIP",
+    "centerType": "ACOPIO",
+    "organizerType": "ESCUELA",
+    "organizerName": "Universidad Interamericana de Panamá (CEMCA)",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Betania",
+    "address": "Oficinas de Extensión y TCU",
+    "lat": 9.0304948,
+    "lng": -79.5171,
+    "schedule": {
+      "MON": {
+        "open": "08:00",
+        "close": "18:00"
+      },
+      "TUE": {
+        "open": "08:00",
+        "close": "18:00"
+      },
+      "WED": {
+        "open": "08:00",
+        "close": "18:00"
+      },
+      "THU": {
+        "open": "08:00",
+        "close": "18:00"
+      },
+      "FRI": {
+        "open": "08:00",
+        "close": "18:00"
+      }
+    },
+    "hoursNote": "A partir del lunes 12 de octubre, de 8:00 a.m. a 6:00 p.m.",
+    "notes": "Campaña de solidaridad de la comunidad universitaria para apoyar a los hermanos del interior del país.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua embotellada"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos no perecederos"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Artículos de aseo personal"
+      },
+      {
+        "item": "BEDDING",
+        "level": "NEEDED",
+        "note": "Mantas y sábanas"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pañales desechables"
+      }
+    ],
+    "source": {
+      "title": "@cemca.uip en Instagram",
+      "url": "https://www.instagram.com/p/DeUtRkakQxa/",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Piñas Lokas - Sucursal Arraiján Town Center",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Piñas Lokas",
+    "province": "PANAMA_OESTE",
+    "district": "Arraiján",
+    "community": "Burunga",
+    "address": "Arraiján Town Center",
+    "lat": 8.9580821,
+    "lng": -79.6535668,
+    "schedule": {},
+    "hoursNote": "No especificado en la fuente",
+    "notes": "Centro de acopio para donaciones a afectados por el sismo. Se aceptan varios tipos de ayuda.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua embotellada"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos no perecederos"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Productos de higiene personal"
+      },
+      {
+        "item": "CLOTHES",
+        "level": "NEEDED",
+        "note": "Ropa y cobijas en buen estado"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Medicamentos (básicos)"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Artículos para bebés"
+      }
+    ],
+    "source": {
+      "title": "@pinas_lokas.pa en Instagram",
+      "url": "https://www.instagram.com/p/DeUq-4FpQXO/",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "MASCOSTYLE Veterinaria & Spa",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Mascostyle",
+    "province": "PANAMA_OESTE",
+    "district": "La Chorrera",
+    "community": "",
+    "address": "Plaza On D Go, La Chorrera, Panamá Oeste. Justo al lado de Carbon Store.",
+    "lat": 8.8776581,
+    "lng": -79.7609645,
+    "schedule": {
+      "MON": {
+        "open": "09:00",
+        "close": "19:00"
+      },
+      "TUE": {
+        "open": "09:00",
+        "close": "19:00"
+      },
+      "WED": {
+        "open": "09:00",
+        "close": "19:00"
+      },
+      "THU": {
+        "open": "09:00",
+        "close": "19:00"
+      },
+      "FRI": {
+        "open": "09:00",
+        "close": "19:00"
+      },
+      "SAT": {
+        "open": "09:00",
+        "close": "19:00"
+      },
+      "SUN": {
+        "open": "09:00",
+        "close": "19:00"
+      }
+    },
+    "hoursNote": "Todos los días hasta las 7:00 p.m.",
+    "notes": "Primer centro de acopio privado para recibir donaciones destinadas a las personas afectadas por el terremoto.",
+    "needs": [
+      {
+        "item": "BEDDING",
+        "level": "NEEDED",
+        "note": "Sábanas, almohadas, colchones y colchonetas"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Comida seca y alimentos no perecederos"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Medicamentos, gasas y alcohol"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche, Pampers y otros enseres para bebés"
+      }
+    ],
+    "source": {
+      "title": "@m3mosky1 en Instagram",
+      "url": "https://www.instagram.com/p/DeUp8WJxWa8/",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Vieni Qua - Boulevard Costa Verde",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Vieni Qua (Restaurante Italiano)",
+    "province": "PANAMA_OESTE",
+    "district": "La Chorrera",
+    "community": "Costa Verde",
+    "address": "Boulevard Costa Verde",
+    "lat": 8.89355,
+    "lng": -79.7513417,
+    "schedule": {},
+    "hoursNote": "No especifica horario de atención en la publicación.",
+    "notes": "Centro de acopio de ayuda humanitaria para afectados por el terremoto en el interior del país.",
+    "needs": [
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos no perecederos"
+      },
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua embotellada"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Medicinas e insumos de primeros auxilios"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Artículos de higiene personal"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pañales y productos para bebés"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED",
+        "note": "Artículos de limpieza"
+      },
+      {
+        "item": "CLOTHES",
+        "level": "NEEDED",
+        "note": "Ropa"
+      },
+      {
+        "item": "BEDDING",
+        "level": "NEEDED",
+        "note": "Frazadas y colchas"
+      }
+    ],
+    "source": {
+      "title": "@vieniquapty en Instagram",
+      "url": "https://www.instagram.com/p/DeUojp1ufbi/",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Vieni Qua - Pan Canal Plaza Albrook",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Vieni Qua (Restaurante Italiano)",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Albrook",
+    "address": "Pan Canal Plaza Albrook",
+    "lat": 8.9716801,
+    "lng": -79.5639572,
+    "schedule": {},
+    "hoursNote": "No especifica horario de atención en la publicación.",
+    "notes": "Centro de acopio de ayuda humanitaria para afectados por el terremoto en el interior del país.",
+    "needs": [
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos no perecederos"
+      },
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua embotellada"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Medicinas e insumos de primeros auxilios"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Artículos de higiene personal"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pañales y productos para bebés"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED",
+        "note": "Artículos de limpieza"
+      },
+      {
+        "item": "CLOTHES",
+        "level": "NEEDED",
+        "note": "Ropa"
+      },
+      {
+        "item": "BEDDING",
+        "level": "NEEDED",
+        "note": "Frazadas y colchas"
+      }
+    ],
+    "source": {
+      "title": "@vieniquapty en Instagram",
+      "url": "https://www.instagram.com/p/DeUojp1ufbi/",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Club de Leones",
+    "centerType": "ACOPIO",
+    "organizerType": "OTRO",
+    "organizerName": "Movimiento Todo Chiriquí",
+    "province": "CHIRIQUI",
+    "district": "Bugaba",
+    "community": "La Concepción",
+    "address": "Club de Leones",
+    "lat": 8.5692274,
+    "lng": -82.6340864,
+    "schedule": {},
+    "hoursNote": "Horario no publicado: confirma antes de ir.",
+    "notes": "Centro de acopio en Bugaba organizado por el movimiento Todo Chiriquí.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua embotellada"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos no perecederos"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Artículos de higiene personal"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pañales, toallitas húmedas"
+      },
+      {
+        "item": "BEDDING",
+        "level": "NEEDED",
+        "note": "Frazadas"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED",
+        "note": "Productos de limpieza"
+      }
+    ],
+    "source": {
+      "title": "@coberturaaquiyahora en Instagram, @revistamcunachi en Instagram, @amech_unachi en Instagram",
+      "url": "https://www.instagram.com/p/DeX0dOyMBhm/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Centro de Acopio SENAFRONT Chepo",
+    "centerType": "ACOPIO",
+    "organizerType": "MUNICIPIO",
+    "organizerName": "Alcaldía de Chepo y SENAFRONT",
+    "province": "PANAMA",
+    "district": "Chepo",
+    "community": "Chepo",
+    "address": "Sala de guardia de SENAFRONT, en la garita de Chepo",
+    "lat": 9.1706399,
+    "lng": -79.1055838,
+    "schedule": {},
+    "hoursNote": "No especificado en la publicación",
+    "notes": "Centro habilitado por la Alcaldía de Chepo en alianza con SENAFRONT para recibir donaciones destinadas a los afectados por el terremoto en el interior del país.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua embotellada"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos no perecederos"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Artículos de higiene personal"
+      },
+      {
+        "item": "CLOTHES",
+        "level": "NEEDED",
+        "note": "Ropa y artículos de primera necesidad en buen estado"
+      }
+    ],
+    "source": {
+      "title": "@alcaldiadechepo en Instagram",
+      "url": "https://www.instagram.com/p/DeUnRK_pH3A/",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Cancha Municipal de Las Minas",
+    "centerType": "ACOPIO",
+    "organizerType": "MUNICIPIO",
+    "organizerName": "Municipio de Las Minas",
+    "province": "HERRERA",
+    "district": "Las Minas",
+    "community": "Las Minas",
+    "address": "Cancha Municipal, Las Minas",
+    "lat": 7.7997222,
+    "lng": -80.7477778,
+    "schedule": {},
+    "hoursNote": "No especifica horario de atención en la publicación.",
+    "notes": "El Municipio de Las Minas habilitó la cancha municipal como punto de acopio para recibir donaciones destinadas a las familias afectadas por el sismo.",
+    "needs": [
+      {
+        "item": "CLOTHES",
+        "level": "NEEDED",
+        "note": "Ropa en buen estado"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos no perecederos"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche y productos para niños"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Mercancía y artículos de primera necesidad"
+      }
+    ],
+    "source": {
+      "title": "@lasminas.herrera en Instagram",
+      "url": "https://www.instagram.com/p/DeUd0g4M6kC/",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "FONPETS",
+    "centerType": "ACOPIO",
+    "organizerType": "ONG",
+    "organizerName": "FONPETS, Grupo Zeus y Amigos de Huellas",
+    "province": "PANAMA",
+    "district": "Panama",
+    "community": "San Francisco",
+    "address": "San Francisco, calle 68 Este",
+    "lat": 8.9909255,
+    "lng": -79.5104827,
+    "schedule": {},
+    "hoursNote": "Horario no publicado: confirma antes de ir.",
+    "notes": "Punto de recolección de alimentos para mascotas afectadas o abandonadas por el terremoto.",
+    "needs": [
+      {
+        "item": "PET_FOOD",
+        "level": "NEEDED",
+        "note": "Alimento para perros y gatos"
+      }
+    ],
+    "source": {
+      "title": "@amigosdehuellas en Instagram",
+      "url": "https://www.instagram.com/p/DeUaGIZsMPZ/",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "UMIP - Dirección de Recursos Humanos",
+    "centerType": "ACOPIO",
+    "organizerType": "ESCUELA",
+    "organizerName": "Universidad Marítima Internacional de Panamá (UMIP)",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "La Boca",
+    "address": "Edificio 917, Dirección de Recursos Humanos, salón de reuniones, UMIP",
+    "lat": 8.9455402,
+    "lng": -79.5614517,
+    "schedule": {
+      "MON": {
+        "open": "08:00",
+        "close": "16:00"
+      }
+    },
+    "hoursNote": "Lunes 12 de octubre, de 8:00 a. m. a 4:00 p. m. Confirma antes de ir.",
+    "notes": "Campaña de recolección de donaciones para familias afectadas por el terremoto.",
+    "needs": [
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos: arroz, pasta, frijoles, lentejas, atún, harina, aceite"
+      },
+      {
+        "item": "BEDDING",
+        "level": "NEEDED",
+        "note": "Cobijas nuevas o en buen estado"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Útiles de aseo: jabón, shampoo, pasta dental, cepillos, papel higiénico, toallas sanitarias"
+      },
+      {
+        "item": "CLOTHES",
+        "level": "NEEDED",
+        "note": "Ropa en buen estado"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED",
+        "note": "Enseres: utensilios de cocina, vajilla, colchones, artículos de limpieza"
+      }
+    ],
+    "source": {
+      "title": "@umaritima en Instagram",
+      "url": "https://www.instagram.com/p/DeUZAArOsSR/",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Agropecuaria San Cristóbal",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Agropecuaria San Cristóbal",
+    "province": "PANAMA_OESTE",
+    "district": "La Chorrera",
+    "community": "",
+    "address": "Detrás de la Sociedad China",
+    "lat": 8.8779613,
+    "lng": -79.7854005,
+    "schedule": {},
+    "hoursNote": "No especifica horario de atención en la publicación.",
+    "notes": "Centro de acopio para damnificados del sismo en el interior del país. Se solicita donación de alimentos, agua e higiene.",
+    "needs": [
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos no perecederos"
+      },
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua embotellada"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Productos de higiene personal"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Otros insumos de primera necesidad"
+      }
+    ],
+    "source": {
+      "title": "@agropecuaria_sancristobal en Instagram",
+      "url": "https://www.instagram.com/p/DeUUW2dgB_p/",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Iglesia Casa de Vida Internacional",
+    "centerType": "ACOPIO",
+    "organizerType": "IGLESIA",
+    "organizerName": "Alianza Evangélica de Panamá, capítulo de Chiriquí",
+    "province": "CHIRIQUI",
+    "district": "David",
+    "community": "El Vedado",
+    "address": "Avenida Segunda, detrás del Parque 28 de Noviembre, cerca de la Escuela José María Roy y de la parada de la Cadena de Frío",
+    "lat": 8.4187922,
+    "lng": -82.4306147,
+    "schedule": {},
+    "hoursNote": "Fecha de Recolección: 10 al 17 de Octubre de 2026",
+    "notes": "Centro de acopio para afectados por el terremoto. No solicitan ropa usada de segunda mano.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua potable (envasada)"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos no perecederos, enlatados o secos (arroz, frijoles, pasta)"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche, pañales para bebés, alimentos para bebés"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Artículos de aseo personal (jabón, shampoo, pasta dental)"
+      },
+      {
+        "item": "BEDDING",
+        "level": "NEEDED",
+        "note": "Frazadas (nuevas o en buen estado)"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Medicamentos básicos (analgésicos, antipiréticos)"
+      },
+      {
+        "item": "LIGHTS",
+        "level": "NEEDED",
+        "note": "Linternas, pilas"
+      }
+    ],
+    "source": {
+      "title": "@lingmendez en Instagram",
+      "url": "https://www.instagram.com/p/DeUTOxwxWgA/",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Centro de Acopio Parque Rufina Alfaro",
+    "centerType": "ACOPIO",
+    "organizerType": "MUNICIPIO",
+    "organizerName": "Municipio de Los Santos",
+    "province": "LOS_SANTOS",
+    "district": "Los Santos",
+    "community": "La Villa de Los Santos",
+    "address": "Parque Rufina Alfaro, La Villa de Los Santos",
+    "lat": 7.93436,
+    "lng": -80.4120726,
+    "schedule": {},
+    "hoursNote": "No especificado en la fuente",
+    "notes": "El Municipio de Los Santos habilitó este centro para recibir donaciones destinadas a las familias afectadas por el sismo del 9 de octubre de 2026.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua embotellada"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos no perecederos"
+      },
+      {
+        "item": "CLOTHES",
+        "level": "NEEDED",
+        "note": "Ropa en buen estado"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Artículos de higiene personal"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Otros insumos de primera necesidad"
+      }
+    ],
+    "source": {
+      "title": "@acisaechi en Instagram, @azueroinforma en Instagram",
+      "url": "https://www.instagram.com/p/DeUPO_hPWc9/",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Centro de Acopio Alcaldía de Los Pozos",
+    "centerType": "ACOPIO",
+    "organizerType": "MUNICIPIO",
+    "organizerName": "Alcaldía de Los Pozos",
+    "province": "HERRERA",
+    "district": "Los Pozos",
+    "community": "Las Minas",
+    "address": "Alcaldía de Los Pozos",
+    "lat": 7.7879625,
+    "lng": -80.6463906,
+    "schedule": {},
+    "hoursNote": "No especificado en la fuente",
+    "notes": "La Alcaldía de Los Pozos habilita un centro de acopio para recibir donaciones destinadas a las familias damnificadas por el terremoto.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua potable"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos"
+      },
+      {
+        "item": "BEDDING",
+        "level": "NEEDED",
+        "note": "Colchones"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Productos de aseo personal y limpieza"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Medicamentos"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED",
+        "note": "Otros artículos de primera necesidad"
+      }
+    ],
+    "source": {
+      "title": "@municipiodelospozos en Instagram",
+      "url": "https://www.instagram.com/p/DeUE4CQhU5L/",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Parque de Altos del Tecal",
+    "centerType": "MIXTO",
+    "organizerType": "MUNICIPIO",
+    "organizerName": "Alcaldía de Arraiján",
+    "province": "PANAMA_OESTE",
+    "district": "Arraiján",
+    "community": "Vacamonte",
+    "address": "Parque de Altos del Tecal",
+    "lat": 8.900464,
+    "lng": -79.7019653,
+    "schedule": {
+      "MON": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "TUE": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "WED": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "THU": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "FRI": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "SAT": {
+        "open": "10:00",
+        "close": "15:00"
+      },
+      "SUN": {
+        "open": "10:00",
+        "close": "15:00"
+      }
+    },
+    "hoursNote": "Lunes a viernes de 8:00 am a 4:00 pm. Sábado y domingo de 10:00 am a 3:00 pm.",
+    "notes": "Punto de referencia, resguardo y acopio de donaciones.",
+    "needs": [],
+    "source": {
+      "title": "@lanuevaalcaldiadearraijan en Instagram",
+      "url": "https://www.instagram.com/p/DeT1i7ukf9Q/",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Sport Center",
+    "centerType": "MIXTO",
+    "organizerType": "MUNICIPIO",
+    "organizerName": "Alcaldía de Arraiján",
+    "province": "PANAMA_OESTE",
+    "district": "Arraiján",
+    "community": "Juan D. Arosemena",
+    "address": "Sport Center, en Brisas del Golf",
+    "lat": 8.9769844,
+    "lng": -79.7170956,
+    "schedule": {
+      "MON": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "TUE": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "WED": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "THU": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "FRI": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "SAT": {
+        "open": "10:00",
+        "close": "15:00"
+      },
+      "SUN": {
+        "open": "10:00",
+        "close": "15:00"
+      }
+    },
+    "hoursNote": "Lunes a viernes de 8:00 am a 4:00 pm. Sábado y domingo de 10:00 am a 3:00 pm.",
+    "notes": "Punto de referencia, resguardo y acopio de donaciones.",
+    "needs": [],
+    "source": {
+      "title": "@lanuevaalcaldiadearraijan en Instagram",
+      "url": "https://www.instagram.com/p/DeT1i7ukf9Q/",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Cancha de Nuevo Arraiján",
+    "centerType": "MIXTO",
+    "organizerType": "MUNICIPIO",
+    "organizerName": "Alcaldía de Arraiján",
+    "province": "PANAMA_OESTE",
+    "district": "Arraiján",
+    "community": "Juan D. Arosemena",
+    "address": "Cancha de Nuevo Arraiján, ubicada detrás del Centro de Salud Artemio Jaén",
+    "lat": 8.9259476,
+    "lng": -79.7202931,
+    "schedule": {
+      "MON": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "TUE": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "WED": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "THU": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "FRI": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "SAT": {
+        "open": "10:00",
+        "close": "15:00"
+      },
+      "SUN": {
+        "open": "10:00",
+        "close": "15:00"
+      }
+    },
+    "hoursNote": "Lunes a viernes de 8:00 am a 4:00 pm. Sábado y domingo de 10:00 am a 3:00 pm.",
+    "notes": "Punto de referencia, resguardo y acopio de donaciones.",
+    "needs": [],
+    "source": {
+      "title": "@lanuevaalcaldiadearraijan en Instagram",
+      "url": "https://www.instagram.com/p/DeT1i7ukf9Q/",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Casa Cultural de Vista Alegre",
+    "centerType": "MIXTO",
+    "organizerType": "MUNICIPIO",
+    "organizerName": "Alcaldía de Arraiján",
+    "province": "PANAMA_OESTE",
+    "district": "Arraiján",
+    "community": "Vista Alegre",
+    "address": "Casa Cultural de Vista Alegre",
+    "lat": 8.9280705,
+    "lng": -79.6997826,
+    "schedule": {
+      "MON": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "TUE": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "WED": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "THU": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "FRI": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "SAT": {
+        "open": "10:00",
+        "close": "15:00"
+      },
+      "SUN": {
+        "open": "10:00",
+        "close": "15:00"
+      }
+    },
+    "hoursNote": "Lunes a viernes de 8:00 am a 4:00 pm. Sábado y domingo de 10:00 am a 3:00 pm.",
+    "notes": "Punto de referencia, resguardo y acopio de donaciones.",
+    "needs": [],
+    "source": {
+      "title": "@lanuevaalcaldiadearraijan en Instagram",
+      "url": "https://www.instagram.com/p/DeT1i7ukf9Q/",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Parque central de Veracruz",
+    "centerType": "MIXTO",
+    "organizerType": "MUNICIPIO",
+    "organizerName": "Alcaldía de Arraiján",
+    "province": "PANAMA_OESTE",
+    "district": "Arraiján",
+    "community": "Veracruz",
+    "address": "Parque central de Veracruz",
+    "lat": 8.8907278,
+    "lng": -79.6221136,
+    "schedule": {
+      "MON": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "TUE": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "WED": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "THU": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "FRI": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "SAT": {
+        "open": "10:00",
+        "close": "15:00"
+      },
+      "SUN": {
+        "open": "10:00",
+        "close": "15:00"
+      }
+    },
+    "hoursNote": "Lunes a viernes de 8:00 am a 4:00 pm. Sábado y domingo de 10:00 am a 3:00 pm.",
+    "notes": "Punto de referencia, resguardo y acopio de donaciones.",
+    "needs": [],
+    "source": {
+      "title": "@lanuevaalcaldiadearraijan en Instagram",
+      "url": "https://www.instagram.com/p/DeT1i7ukf9Q/",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Cancha de San Vicente de Bique",
+    "centerType": "MIXTO",
+    "organizerType": "MUNICIPIO",
+    "organizerName": "Alcaldía de Arraiján",
+    "province": "PANAMA_OESTE",
+    "district": "Arraiján",
+    "community": "Cerro Silvestre",
+    "address": "San Vicente de Bique",
+    "lat": 8.9342125,
+    "lng": -79.6869531,
+    "schedule": {
+      "MON": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "TUE": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "WED": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "THU": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "FRI": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "SAT": {
+        "open": "10:00",
+        "close": "15:00"
+      },
+      "SUN": {
+        "open": "10:00",
+        "close": "15:00"
+      }
+    },
+    "hoursNote": "Lunes a viernes de 8 am a 4 pm; sábado y domingo de 10 am a 3 pm.",
+    "notes": "Punto de referencia, resguardo y acopio ante emergencias.",
+    "needs": [],
+    "source": {
+      "title": "@lanuevaalcaldiadearraijan en Instagram",
+      "url": "https://www.instagram.com/p/DeT1i7ukf9Q/",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Urbanización San Antonio (Las Torres)",
+    "centerType": "ACOPIO",
+    "organizerType": "MUNICIPIO",
+    "organizerName": "Alcaldía de Santiago",
+    "province": "VERAGUAS",
+    "district": "Santiago",
+    "community": "Las Torres",
+    "address": "Urbanización San Antonio",
+    "lat": 8.0846925,
+    "lng": -80.9304361,
+    "schedule": {},
+    "hoursNote": "No especificado en el comunicado",
+    "notes": "Punto de recolección de donaciones para familias afectadas.",
+    "needs": [
+      {
+        "item": "FOOD",
+        "level": "URGENT",
+        "note": "Alimentos para las familias"
+      },
+      {
+        "item": "WATER",
+        "level": "URGENT",
+        "note": "Agua para las familias"
+      }
+    ],
+    "source": {
+      "title": "@alcaldia_stgo en Instagram",
+      "url": "https://www.instagram.com/p/DeS2NKUDerA/",
+      "date": "2026-10-09"
+    }
+  },
+  {
+    "name": "Hospital Regional Dr. Luis \"Chicho\" Fábrega",
+    "centerType": "ACOPIO",
+    "organizerType": "MUNICIPIO",
+    "organizerName": "Alcaldía de Santiago",
+    "province": "VERAGUAS",
+    "district": "Atalaya",
+    "community": "san antonio",
+    "address": "Santiago, Veraguas",
+    "lat": 8.077034,
+    "lng": -80.9371102,
+    "schedule": {},
+    "hoursNote": "No especificado en el comunicado",
+    "notes": "Punto de recolección de donaciones solicitado por la Alcaldía de Santiago.",
+    "needs": [
+      {
+        "item": "TARPS",
+        "level": "URGENT",
+        "note": "Toldas para el hospital"
+      }
+    ],
+    "source": {
+      "title": "@alcaldia_stgo en Instagram",
+      "url": "https://www.instagram.com/p/DeS2NKUDerA/",
+      "date": "2026-10-09"
+    }
+  },
+  {
+    "name": "Yanna Pizzería Cucina",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Yanna Pizzería Cucina",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "San Francisco",
+    "address": "Entrada de San Francisco, Avenida Panamericana, Plaza Texaco, Local #03",
+    "lat": 8.9879364,
+    "lng": -79.5047629,
+    "schedule": {},
+    "hoursNote": "No especifica horario de atención en la publicación.",
+    "notes": "Punto de recolección de donaciones de alimentos y medicamentos para damnificados por el terremoto. Organizado por negocio local.",
+    "needs": [
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos no perecederos: enlatados, arroz, pasta, avena, galletas, barras de cereal."
+      },
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua embotellada."
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche en polvo, fórmulas de bebé, pañales (niños y adultos)."
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Jabones, cepillos y pastas dentales, toallas sanitarias, papel higiénico, toallitas húmedas, desodorantes."
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Gasas, vendas, curitas, guantes, alcohol, solución salina, mascarillas, botiquines."
+      },
+      {
+        "item": "PET_FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos para mascotas."
+      },
+      {
+        "item": "CLOTHES",
+        "level": "ENOUGH",
+        "note": "IMPORTANTE: Por el momento, no se estará recibiendo ropa."
+      }
+    ],
+    "source": {
+      "title": "@yannapizzeriacucina en Instagram",
+      "url": "https://www.instagram.com/p/DeS1GwEM4f5/",
+      "date": "2026-10-09"
+    }
+  },
+  {
+    "name": "SIU Pet Grooming",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "SIU Pet Grooming",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Parque Lefevre",
+    "address": "Parque Lefevre, Frente a la Escuela María Ossa de Amador",
+    "lat": 9.0110701,
+    "lng": -79.5002219,
+    "schedule": {},
+    "hoursNote": "No especifica horario de atención en la publicación.",
+    "notes": "Centro de acopio para damnificados de Macaracas. Reciben donaciones de todo tipo, incluyendo artículos para mascotas.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pañales"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Leche, Alimentos enlatados para personas y mascotas, Alimentos secos para personas y mascotas"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Medicinas"
+      },
+      {
+        "item": "CLOTHES",
+        "level": "NEEDED",
+        "note": "Ropa en buen estado, Zapatos en buen estado"
+      },
+      {
+        "item": "TARPS",
+        "level": "NEEDED",
+        "note": "Casas de campaña, Lonas azules"
+      },
+      {
+        "item": "LIGHTS",
+        "level": "NEEDED",
+        "note": "Linternas, Velas"
+      }
+    ],
+    "source": {
+      "title": "@siupetgrooming_pty en Instagram",
+      "url": "https://www.instagram.com/p/DeXryRWPn69/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Punto de acopio Parque Feuillet",
+    "centerType": "ACOPIO",
+    "organizerType": "OTRO",
+    "organizerName": "SpacioWest",
+    "province": "PANAMA_OESTE",
+    "district": "La Chorrera",
+    "community": "Parque Feuillet",
+    "address": "Parque Feuillet",
+    "lat": 8.8801958,
+    "lng": -79.7810221,
+    "schedule": {},
+    "hoursNote": "Horario no publicado: confirma antes de ir.",
+    "notes": "Punto de acopio ubicado en el Parque Feuillet, organizado por SpacioWest. En la imagen se observa una carpa roja con cajas y personas, indicando actividad de recolección.",
+    "needs": [],
+    "source": {
+      "title": "@spaciowest en Instagram",
+      "url": "https://www.instagram.com/p/DeXakIWElRN/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Veterinaria Megavet",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Megavet PTY / AMVEPE",
+    "province": "PANAMA",
+    "district": "PANAMA",
+    "community": "Bella Vista",
+    "address": "Calle 56 este",
+    "lat": 8.9822859,
+    "lng": -79.5178938,
+    "schedule": {},
+    "hoursNote": "Horario no publicado: confirma antes de ir.",
+    "notes": "Centro de acopio para apoyar a las personas afectadas por el terremoto. Organizado por Megavet PTY y la Asociación de Médicos Veterinarios de Pequeñas Especies de Panamá (AMVEPE).",
+    "needs": [
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pañales y fórmula infantil"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos y enlatados"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Productos de higiene personal"
+      }
+    ],
+    "source": {
+      "title": "@veterinariamegavetpty en Instagram",
+      "url": "https://www.instagram.com/p/DeXNRkfRWvp/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Punto de acopio municipal de Ocú",
+    "centerType": "ACOPIO",
+    "organizerType": "MUNICIPIO",
+    "organizerName": "Municipio de Ocú",
+    "province": "HERRERA",
+    "district": "Ocú",
+    "community": "Ocú",
+    "address": "Punto de acopio municipal, Ocú",
+    "lat": 7.9452878,
+    "lng": -80.7784547,
+    "schedule": {},
+    "hoursNote": "Hoy, domingo 11 de octubre, desde las 9:00 a.m.",
+    "notes": "El Municipio de Ocú habilitó un centro de acopio para recibir donaciones para los afectados por el terremoto y réplicas.",
+    "needs": [
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Productos de higiene personal"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pampers"
+      },
+      {
+        "item": "LIGHTS",
+        "level": "NEEDED",
+        "note": "Linternas"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Artículos de primeros auxilios"
+      },
+      {
+        "item": "BEDDING",
+        "level": "NEEDED",
+        "note": "Cobijas y colchonetas"
+      },
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua embotellada"
+      }
+    ],
+    "source": {
+      "title": "@radioreforma en Instagram",
+      "url": "https://www.instagram.com/p/DeXINN1RL4f/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Centro de Acopio Westland Premium Outlets",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Westland Premium Outlets",
+    "province": "PANAMA_OESTE",
+    "district": "Arraiján",
+    "community": "Juan Díaz",
+    "address": "Centro de Información, entrada 2, hacia Conway, a un costado de Energy",
+    "lat": 8.9219479,
+    "lng": -79.7049881,
+    "schedule": {
+      "MON": {
+        "open": "12:00",
+        "close": "20:00"
+      },
+      "TUE": {
+        "open": "12:00",
+        "close": "20:00"
+      },
+      "WED": {
+        "open": "12:00",
+        "close": "20:00"
+      },
+      "THU": {
+        "open": "12:00",
+        "close": "20:00"
+      },
+      "FRI": {
+        "open": "12:00",
+        "close": "20:00"
+      },
+      "SUN": {
+        "open": "12:00",
+        "close": "19:00"
+      }
+    },
+    "hoursNote": "Desde el 11 de octubre. Lunes a viernes: 12:00 p.m. – 8:00 p.m. | Domingo: 12:00 p.m. – 7:00 p.m.",
+    "notes": "Campaña de recolección de donaciones para familias afectadas por el sismo.",
+    "needs": [
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos no perecederos"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Artículos de higiene y cuidado personal"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Alimento y artículos para bebés"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Insumos médicos y medicamentos"
+      },
+      {
+        "item": "PET_FOOD",
+        "level": "NEEDED",
+        "note": "Comida para perros y gatos"
+      },
+      {
+        "item": "BEDDING",
+        "level": "NEEDED",
+        "note": "Frazadas"
+      },
+      {
+        "item": "TARPS",
+        "level": "NEEDED",
+        "note": "Carpas"
+      },
+      {
+        "item": "LIGHTS",
+        "level": "NEEDED",
+        "note": "Linternas"
+      }
+    ],
+    "source": {
+      "title": "@westland_mall en Instagram, @heydivita__ en Instagram",
+      "url": "https://www.instagram.com/p/DeVpbURAZSg/",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Centro de Acopio Yajois - La Arena",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Yajois",
+    "province": "HERRERA",
+    "district": "Chitré",
+    "community": "La Arena",
+    "address": "Elegant Design La Arena, edificio Yajois Premium La Arena",
+    "lat": 7.9706083,
+    "lng": -80.460321,
+    "schedule": {},
+    "hoursNote": "No especifica horario de atención en la publicación.",
+    "notes": "Centro de acopio de la empresa Yajois para recibir donaciones para los afectados por el terremoto.",
+    "needs": [
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Se observan paquetes de arroz, pasta y pollo enlatado en la imagen."
+      },
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Se observan botellas de agua en la imagen."
+      }
+    ],
+    "source": {
+      "title": "@yajois en Instagram",
+      "url": "https://www.instagram.com/p/DeW_Ogox5N_/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "MBOX Sport Center",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "MBOX Sport Center",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Don Bosco",
+    "address": "Vía Tocumen, airport commercial park, Las Acacias",
+    "lat": 9.059983,
+    "lng": -79.4231965,
+    "schedule": {
+      "MON": {
+        "allDay": true
+      }
+    },
+    "hoursNote": "Lunes de Solidaridad (2026-10-12)",
+    "notes": "Centro de acopio privado para apoyar a familias afectadas en Tonosí tras el sismo. Priorizan alimentos no perecederos e insumos médicos.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "URGENT",
+        "note": "Agua embotellada (prioridad alta)"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos no perecederos, enlatados, arroz, pasta, avena, galletas, leche en polvo"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Jabón, pasta dental, papel higiénico, toallas sanitarias, desodorantes"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Gasas, vendas, curitas, alcohol, solución salina, botiquines"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pañales para niños y adultos, fórmulas para bebés"
+      },
+      {
+        "item": "PET_FOOD",
+        "level": "NEEDED",
+        "note": "Alimento para mascotas (perros y gatos)"
+      },
+      {
+        "item": "BEDDING",
+        "level": "NEEDED",
+        "note": "Mantas y toallas limpias"
+      },
+      {
+        "item": "TOOLS",
+        "level": "NEEDED",
+        "note": "Cargadores solares"
+      },
+      {
+        "item": "CLOTHES",
+        "level": "ENOUGH",
+        "note": "No se está solicitando ropa por el momento"
+      }
+    ],
+    "source": {
+      "title": "@mboxsportcenter en Instagram",
+      "url": "https://www.instagram.com/p/DeXAQ2kRQys/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Centro Infantil Creates Kids Panamá",
+    "centerType": "ACOPIO",
+    "organizerType": "ESCUELA",
+    "organizerName": "Creates Panama Kids",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Perejil",
+    "address": "Calle 42, Perejil, Panamá",
+    "lat": 8.9748806,
+    "lng": -79.5332288,
+    "schedule": {
+      "TUE": {
+        "allDay": true
+      }
+    },
+    "hoursNote": "El día martes (13 de octubre de 2026) estarán recolectando.",
+    "notes": "Punto de acopio en centro infantil para recolectar ayuda para las provincias afectadas por el terremoto.",
+    "needs": [
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos"
+      },
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pañales (Pampers)"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Medicinas"
+      }
+    ],
+    "source": {
+      "title": "@creates_panama en Instagram",
+      "url": "https://www.instagram.com/p/DeW_E0ICQfC/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Stylish Salón & Spa / VaLau Beauty Supply",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Stylish Salón & Spa y VaLau Beauty Supply",
+    "province": "HERRERA",
+    "district": "Chitré",
+    "community": "Llano Bonito",
+    "address": "Chitré, detrás de La Cajetita de Fósforo, antes de Refrigeración Ulloa",
+    "lat": 7.9682795,
+    "lng": -80.4269413,
+    "schedule": {},
+    "hoursNote": "Desde el lunes 12 de octubre a partir de las 9:00 a. m.",
+    "notes": "Centro de acopio privado que recibe donaciones para distribuirlas directamente a hospitales y familias damnificadas en la provincia de Herrera.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua embotellada"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos no perecederos (enlatados, arroz, pastas)"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Artículos de higiene personal (jabón, pasta dental, pañales, toallas)"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED",
+        "note": "Productos de limpieza (cloro, desinfectantes, detergentes)"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Insumos médicos básicos (gasas, alcohol, curitas, medicamentos no vencidos)"
+      },
+      {
+        "item": "CLOTHES",
+        "level": "NEEDED",
+        "note": "Ropa en buen estado"
+      },
+      {
+        "item": "BEDDING",
+        "level": "NEEDED",
+        "note": "Cobijas en buen estado"
+      }
+    ],
+    "source": {
+      "title": "@stylishsalonchitre_ en Instagram",
+      "url": "https://www.instagram.com/p/DeYIIzqx69H/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Festideas Panamá",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Kiwanis Distrito Panamá",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Betania",
+    "address": "Avenida 13 C Norte, Altos de Betania, Betania",
+    "lat": 9.0127076,
+    "lng": -79.5249431,
+    "schedule": {},
+    "hoursNote": "Horario no publicado: confirma antes de ir.",
+    "notes": "Centro de acopio de donaciones para las provincias centrales.",
+    "needs": [],
+    "source": {
+      "title": "@ponteenalgo en Instagram, @distritokiwanispma en Instagram, @maticespanama en Instagram",
+      "url": "https://www.instagram.com/p/DeX_q0CEZs9/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Casa Club de Kiwanis Panamá",
+    "centerType": "ACOPIO",
+    "organizerType": "ONG",
+    "organizerName": "Kiwanis Distrito Panamá",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Llanos de Curundú",
+    "address": "Llanos de Curundú, Ancón, Distrito de Panamá",
+    "lat": 8.9798868,
+    "lng": -79.5482234,
+    "schedule": {},
+    "hoursNote": "Horario no publicado: confirma antes de ir.",
+    "notes": "Centro de acopio de donaciones para las provincias centrales.",
+    "needs": [],
+    "source": {
+      "title": "@ponteenalgo en Instagram, @menlisconsulting en Instagram, @distritokiwanispma en Instagram, @kiwanispma en Instagram",
+      "url": "https://www.instagram.com/p/DeX_q0CEZs9/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Casa Hogar El Buen Samaritano",
+    "centerType": "ACOPIO",
+    "organizerType": "OTRO",
+    "organizerName": "Casa Hogar El Buen Samaritano",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Juan Díaz",
+    "address": "Ciudad Radial, Juan Díaz, Distrito de Panamá",
+    "lat": 9.0426596,
+    "lng": -79.4439063,
+    "schedule": {},
+    "hoursNote": "Horario no publicado: confirma antes de ir.",
+    "notes": "Punto de acopio para campaña de donación por el terremoto.",
+    "needs": [
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos no perecederos: arroz, pasta, granos, enlatados y aceite"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Artículos de higiene personal: jabón, papel higiénico, crema dental"
+      },
+      {
+        "item": "CLOTHES",
+        "level": "NEEDED",
+        "note": "Ropa y calzado en buen estado (niños y adultos)"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Insumos médicos: gasas, alcohol, vendajes y medicamentos básicos"
+      },
+      {
+        "item": "TARPS",
+        "level": "NEEDED",
+        "note": "Carpas y tiendas de campaña, sacos de dormir y esterillas"
+      }
+    ],
+    "source": {
+      "title": "@menlisconsulting en Instagram",
+      "url": "https://www.instagram.com/p/DeX7nQtBnFS/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Punto de Acopio Club Leo de Betania",
+    "centerType": "ACOPIO",
+    "organizerType": "ONG",
+    "organizerName": "Club Leo de Betania",
+    "province": "PANAMA",
+    "district": "PANAMA",
+    "community": "Betania",
+    "address": "Calle 73, El Ingenio, Betania",
+    "lat": 9.0108335,
+    "lng": -79.52166,
+    "schedule": {},
+    "hoursNote": "Coordinación por mensaje privado. Recibiendo donaciones hasta completar carga para partir a Ocú.",
+    "notes": "Recolección de donaciones para llevar a comunidades de difícil acceso en Ocú, Herrera. Indican que aún no han reunido lo necesario para partir.",
+    "needs": [
+      {
+        "item": "FOOD",
+        "level": "URGENT",
+        "note": "Alimentos secos y no perecederos"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "URGENT",
+        "note": "Productos de higiene personal"
+      },
+      {
+        "item": "BABY",
+        "level": "URGENT",
+        "note": "Pañales desechables"
+      },
+      {
+        "item": "LIGHTS",
+        "level": "URGENT",
+        "note": "Linternas y baterías"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "URGENT",
+        "note": "Artículos de primeros auxilios"
+      },
+      {
+        "item": "BEDDING",
+        "level": "URGENT",
+        "note": "Cobijas y colchonetas"
+      },
+      {
+        "item": "WATER",
+        "level": "URGENT",
+        "note": "Agua embotellada"
+      }
+    ],
+    "source": {
+      "title": "@leones.betania en Instagram, @clubleobetania en Instagram, @payn0ck en Instagram",
+      "url": "https://www.instagram.com/p/DeXvePnitTV/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "El Jardín de la Cuadra",
+    "centerType": "ACOPIO",
+    "organizerType": "OTRO",
+    "organizerName": "El Jardín de la Cuadra (Centro de Aprendizaje Creativo)",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Parque Lefevre",
+    "address": "Boulevard Costa del Este, Parque Lefevre, Distrito de Panamá",
+    "lat": 9.0105078,
+    "lng": -79.4759338,
+    "schedule": {
+      "MON": {
+        "open": "08:00",
+        "close": "12:00"
+      }
+    },
+    "hoursNote": "Lunes 12 de octubre de 8:00 a.m. a 12:00 p.m. y durante el resto de la semana estaremos recibiendo donaciones.",
+    "notes": "Centro de acopio para apoyar a las familias damnificadas de Las Minas, Herrera. Reciben donaciones para llevar apoyo a quienes más lo necesitan.",
+    "needs": [
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos"
+      },
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua"
+      },
+      {
+        "item": "TARPS",
+        "level": "NEEDED",
+        "note": "Carpas"
+      },
+      {
+        "item": "BEDDING",
+        "level": "NEEDED",
+        "note": "Frazadas"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Artículos de aseo de primera necesidad"
+      }
+    ],
+    "source": {
+      "title": "@eljardindelacuadra en Instagram",
+      "url": "https://www.instagram.com/p/DeXe7RWCDwh/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Sociedad Española de Beneficencia de Panamá",
+    "centerType": "ACOPIO",
+    "organizerType": "ONG",
+    "organizerName": "Sociedad Española de Beneficencia de Panamá",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Pueblo Nuevo",
+    "address": "Avenida 4a C Norte, La Loma, Pueblo Nuevo",
+    "lat": 9.0070638,
+    "lng": -79.5149995,
+    "schedule": {},
+    "hoursNote": "Horario no publicado: confirma antes de ir.",
+    "notes": "Campaña de recolección de donaciones para familias afectadas por sismos. Se solicita traer donaciones a la sede. No se aceptan ropas.",
+    "needs": [
+      {
+        "item": "TARPS",
+        "level": "NEEDED",
+        "note": "Tiendas de campaña"
+      },
+      {
+        "item": "BEDDING",
+        "level": "NEEDED",
+        "note": "Colchones o colchonetas"
+      },
+      {
+        "item": "LIGHTS",
+        "level": "NEEDED",
+        "note": "Lámparas de baterías"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos no perecederos"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Artículos de higiene personal"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Insumos médicos y primeros auxilios"
+      },
+      {
+        "item": "PET_FOOD",
+        "level": "NEEDED",
+        "note": "Artículos útiles y alimentos para mascotas"
+      },
+      {
+        "item": "CLOTHES",
+        "level": "ENOUGH",
+        "note": "No estaremos recibiendo donaciones de ropa por el momento"
+      }
+    ],
+    "source": {
+      "title": "@sebpanama_oficial en Instagram",
+      "url": "https://www.instagram.com/p/DeXXuWURjpT/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Centro Sagrado Corazón",
+    "centerType": "ACOPIO",
+    "organizerType": "IGLESIA",
+    "organizerName": "Centro Sagrado Corazón",
+    "province": "CHIRIQUI",
+    "district": "Boquete",
+    "community": "Alto Boquete",
+    "address": "Boquete",
+    "lat": 8.7399413,
+    "lng": -82.4334637,
+    "schedule": {},
+    "hoursNote": "Horario no publicado: confirma antes de ir.",
+    "notes": "Centro de acopio para ayudar a Soná. Reciben agua, alimento no perecedero, leche y pañales.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimento no perecedero"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pampers"
+      }
+    ],
+    "source": {
+      "title": "@AvenCarmen en X",
+      "url": "https://x.com/AvenCarmen/status/2109349638922723609",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Loving Dogs Clínica Veterinaria",
+    "centerType": "ACOPIO",
+    "organizerType": "ONG",
+    "organizerName": "Fundación Ángeles sin Voz Panamá / Loving Dogs",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "El Carmen",
+    "address": "El Carmen, Calle Primera, PH Glamour Tower, Planta Baja",
+    "lat": 8.993741,
+    "lng": -79.5210546,
+    "schedule": {},
+    "hoursNote": "No especificado en la imagen",
+    "notes": "Centro de acopio para ayudar a Macaracas y comunidades aledañas. Reciben donaciones físicas.",
+    "needs": [
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos y enlatados para personas y mascotas"
+      },
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pañales"
+      },
+      {
+        "item": "PET_FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos para mascotas"
+      }
+    ],
+    "source": {
+      "title": "@fundacionangelessinvoz_ en Instagram",
+      "url": "https://www.instagram.com/p/DeXSaEyRs5i/",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Baterias Los Hernandez",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Canajagua Ultra Trail / Soy La Marca / Baterias Los Hernandez",
+    "province": "LOS_SANTOS",
+    "district": "Las Tablas",
+    "community": "",
+    "address": "Calle Rogelio Gaez, Las Tablas",
+    "lat": 7.7673545,
+    "lng": -80.2734703,
+    "schedule": {},
+    "hoursNote": "Horario no publicado: confirma antes de ir.",
+    "notes": "Centro de acopio oficial para ayudar a los afectados por el terremoto en Tonosí.",
+    "needs": [
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos (arroz, lentejas, enlatados)"
+      },
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua embotellada"
+      },
+      {
+        "item": "CLOTHES",
+        "level": "NEEDED",
+        "note": "Ropa en buen estado"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Artículos de aseo"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pañales (pampers) y leche"
+      }
+    ],
+    "source": {
+      "title": "@canajaguaultratrail en Instagram",
+      "url": "https://www.instagram.com/p/DeVcnHGRyDz/",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Universidad Americana de Panamá (UAM) - Bienestar Estudiantil",
+    "centerType": "ACOPIO",
+    "organizerType": "ESCUELA",
+    "organizerName": "Universidad Americana de Panamá (UAM)",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Juan Díaz",
+    "address": "Universidad Americana de Panamá (UAM), Bienestar Estudiantil",
+    "lat": 9.0544315,
+    "lng": -79.4390516,
+    "schedule": {
+      "TUE": {
+        "open": "07:00",
+        "close": "13:00"
+      }
+    },
+    "hoursNote": "Martes 13 de octubre. El texto dice 7:30 a.m. a 1:00 p.m., la imagen dice 7:00 a.m. a 1:00 p.m.",
+    "notes": "Recolección de donaciones para las comunidades del interior afectadas por el sismo.",
+    "needs": [
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pañales para recién nacidos"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Solución salina estéril, gasas estériles"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Papel higiénico, toallitas húmedas"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos enlatados (tuna, sardinas, maíz), galletas de sal"
+      }
+    ],
+    "source": {
+      "title": "@villarreall25_ en Instagram",
+      "url": "https://www.instagram.com/p/DeVTlKWpu6j/",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Centro de Acopio Junta Comunal de Sabanitas",
+    "centerType": "ACOPIO",
+    "organizerType": "JUNTA_COMUNAL",
+    "organizerName": "Junta Comunal de Sabanitas",
+    "province": "COLON",
+    "district": "Colon",
+    "community": "Sabanitas",
+    "address": "Junta Comunal de Sabanitas",
+    "lat": 9.3477985,
+    "lng": -79.8081062,
+    "schedule": {
+      "MON": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "TUE": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "WED": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "THU": {
+        "open": "08:00",
+        "close": "16:00"
+      },
+      "FRI": {
+        "open": "08:00",
+        "close": "16:00"
+      }
+    },
+    "hoursNote": "Lunes a viernes, de 8:00 a. m. a 4:00 p. m.",
+    "notes": "Recolección de donaciones para apoyar a las familias afectadas en el interior del país.",
+    "needs": [
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos y enlatados"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Artículos de aseo"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Artículos de bebé (leche, pañales desechables)"
+      },
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua embotellada"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Insumos médicos"
+      },
+      {
+        "item": "CLOTHES",
+        "level": "NEEDED",
+        "note": "Ropa en buen estado"
+      }
+    ],
+    "source": {
+      "title": "@juntacomunalsabanitas en Instagram",
+      "url": "https://www.instagram.com/p/DeVRI3KofZC/",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Centro de Acopio Movimiento Todo Chiriquí",
+    "centerType": "ACOPIO",
+    "organizerType": "ONG",
+    "organizerName": "Movimiento Todo Chiriquí",
+    "province": "CHIRIQUI",
+    "district": "David",
+    "community": "San Mateo",
+    "address": "Calle Miguel Ángel Brenes C., San Mateo, David Sur",
+    "lat": 8.4274819,
+    "lng": -82.4375558,
+    "schedule": {},
+    "hoursNote": "Horario no publicado: confirma antes de ir.",
+    "notes": "Centro de acopio activo gestionado por voluntarios de la sociedad civil para recibir, clasificar y embalar insumos para las zonas afectadas por el sismo.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Se observa recepción de botellas y garrafones de agua"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Se observa recepción de bolsas con alimentos secos"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Se observa recepción de productos de limpieza e higiene"
+      }
+    ],
+    "source": {
+      "title": "@camarachiriqui en Instagram",
+      "url": "https://www.instagram.com/p/DeVEbvlmjzL/",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Parque de Guararé",
+    "centerType": "ACOPIO",
+    "organizerType": "OTRO",
+    "organizerName": "Promoción CLASS OF 2k26",
+    "province": "LOS_SANTOS",
+    "district": "Guararé",
+    "community": "Guararé",
+    "address": "Parque de Guararé",
+    "lat": 7.8217039,
+    "lng": -80.2811823,
+    "schedule": {},
+    "hoursNote": "Desde las 9:00 a. m. (día no especificado explícitamente, asumido para la fecha de la publicación)",
+    "notes": "Recolecta de insumos para los afectados por el terremoto. Aceptan donaciones físicas en el parque.",
+    "needs": [
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos no perecederos (latas, granos, pasta, aceite)"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Artículos de uso personal (aseo, toallas, cepillos)"
+      }
+    ],
+    "source": {
+      "title": "@valkhor26 en Instagram",
+      "url": "https://www.instagram.com/p/DeX_4_kTLzS/",
+      "date": "2026-10-11"
+    }
+  }
+]
