@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.14.1](https://github.com/demogar/acopiospanama/compare/v0.14.0...v0.14.1) (2026-10-12)
+
+
+### Correcciones
+
+* **web:** adaptar efectos a las reglas del compilador de React ([#66](https://github.com/demogar/acopiospanama/issues/66)) ([bab86ab](https://github.com/demogar/acopiospanama/commit/bab86aba1b082334f55d5edd98228be2e8241211))
+* **web:** el mapa no tapa ni queda tapado por las tarjetas ([#68](https://github.com/demogar/acopiospanama/issues/68)) ([1edaf3a](https://github.com/demogar/acopiospanama/commit/1edaf3a8fdd37c4ceb4cd2406b609379068f30ef))
+
 ## [0.14.0](https://github.com/demogar/acopiospanama/compare/v0.13.0...v0.14.0) (2026-10-12)
 
 
