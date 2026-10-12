@@ -1,0 +1,366 @@
+[
+  {
+    "name": "Fastbox Vista Hermosa",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Fastbox",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Vista Hermosa",
+    "address": "FC Plaza, locales 12 y 13, Vía Fernández de Córdoba",
+    "lat": 9.0029064,
+    "lng": -79.5195913,
+    "schedule": {
+      "MON": {
+        "open": "09:00",
+        "close": "18:00"
+      },
+      "TUE": {
+        "open": "09:00",
+        "close": "18:00"
+      },
+      "WED": {
+        "open": "09:00",
+        "close": "18:00"
+      },
+      "THU": {
+        "open": "09:00",
+        "close": "18:00"
+      },
+      "FRI": {
+        "open": "09:00",
+        "close": "18:00"
+      },
+      "SAT": {
+        "open": "08:00",
+        "close": "13:00"
+      }
+    },
+    "hoursNote": "Horario de la sucursal: lunes a viernes de 9:00 a. m. a 6:00 p. m. y sábados de 8:00 a. m. a 1:00 p. m. Confirma antes de ir.",
+    "notes": "Campaña «Juntos por Panamá»: las sucursales de Fastbox reciben donaciones y la empresa las lleva a las zonas afectadas por el terremoto.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "URGENT",
+        "note": "Agua embotellada (prioridad principal)"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Enlatados (atún, sardinas), arroz, pasta, granos, avena y galletas"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Jabón, cepillos y pasta dental, papel higiénico, toallitas húmedas y toallas sanitarias"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pañales (bebés y adultos), leche en polvo y fórmulas para bebés"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Gasas, vendas, curitas, guantes, alcohol, solución salina, mascarillas y medicamentos de uso común (no vencidos)"
+      },
+      {
+        "item": "TARPS",
+        "level": "NEEDED",
+        "note": "Toldas grandes"
+      },
+      {
+        "item": "BEDDING",
+        "level": "NEEDED",
+        "note": "Catres, frazadas, mantas, colchonetas, sábanas y almohadas"
+      },
+      {
+        "item": "LIGHTS",
+        "level": "NEEDED",
+        "note": "Linternas y baterías de repuesto"
+      },
+      {
+        "item": "PET_FOOD",
+        "level": "NEEDED",
+        "note": "Comida seca o húmeda para perros y gatos, platos, bebederos y arena para gatos"
+      }
+    ],
+    "source": {
+      "title": "Afiche «Juntos por Panamá» de Fastbox (@fastboxpty)",
+      "date": "2026-10-12"
+    }
+  },
+  {
+    "name": "Fastbox San Francisco",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Fastbox",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "San Francisco",
+    "address": "Calle 73 Este, Edificio 5, planta baja, antes del Banco General",
+    "lat": 8.996054,
+    "lng": -79.507242,
+    "schedule": {
+      "MON": {
+        "open": "09:00",
+        "close": "18:00"
+      },
+      "TUE": {
+        "open": "09:00",
+        "close": "18:00"
+      },
+      "WED": {
+        "open": "09:00",
+        "close": "18:00"
+      },
+      "THU": {
+        "open": "09:00",
+        "close": "18:00"
+      },
+      "FRI": {
+        "open": "09:00",
+        "close": "18:00"
+      },
+      "SAT": {
+        "open": "08:00",
+        "close": "13:00"
+      }
+    },
+    "hoursNote": "Horario de la sucursal: lunes a viernes de 9:00 a. m. a 6:00 p. m. y sábados de 8:00 a. m. a 1:00 p. m. Confirma antes de ir.",
+    "notes": "Campaña «Juntos por Panamá»: las sucursales de Fastbox reciben donaciones y la empresa las lleva a las zonas afectadas por el terremoto.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "URGENT",
+        "note": "Agua embotellada (prioridad principal)"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Enlatados (atún, sardinas), arroz, pasta, granos, avena y galletas"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Jabón, cepillos y pasta dental, papel higiénico, toallitas húmedas y toallas sanitarias"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pañales (bebés y adultos), leche en polvo y fórmulas para bebés"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Gasas, vendas, curitas, guantes, alcohol, solución salina, mascarillas y medicamentos de uso común (no vencidos)"
+      },
+      {
+        "item": "TARPS",
+        "level": "NEEDED",
+        "note": "Toldas grandes"
+      },
+      {
+        "item": "BEDDING",
+        "level": "NEEDED",
+        "note": "Catres, frazadas, mantas, colchonetas, sábanas y almohadas"
+      },
+      {
+        "item": "LIGHTS",
+        "level": "NEEDED",
+        "note": "Linternas y baterías de repuesto"
+      },
+      {
+        "item": "PET_FOOD",
+        "level": "NEEDED",
+        "note": "Comida seca o húmeda para perros y gatos, platos, bebederos y arena para gatos"
+      }
+    ],
+    "source": {
+      "title": "Afiche «Juntos por Panamá» de Fastbox (@fastboxpty)",
+      "date": "2026-10-12"
+    }
+  },
+  {
+    "name": "Fastbox Costa Verde",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Fastbox",
+    "province": "PANAMA_OESTE",
+    "district": "La Chorrera",
+    "community": "Costa Verde",
+    "address": "Uniplaza, local C27, planta baja, Boulevard Costa Verde",
+    "lat": 8.8961487,
+    "lng": -79.7545116,
+    "schedule": {
+      "MON": {
+        "open": "09:00",
+        "close": "18:00"
+      },
+      "TUE": {
+        "open": "09:00",
+        "close": "18:00"
+      },
+      "WED": {
+        "open": "09:00",
+        "close": "18:00"
+      },
+      "THU": {
+        "open": "09:00",
+        "close": "18:00"
+      },
+      "FRI": {
+        "open": "09:00",
+        "close": "18:00"
+      },
+      "SAT": {
+        "open": "08:00",
+        "close": "13:00"
+      }
+    },
+    "hoursNote": "Horario de la sucursal: lunes a viernes de 9:00 a. m. a 6:00 p. m. y sábados de 8:00 a. m. a 1:00 p. m. Confirma antes de ir.",
+    "notes": "Campaña «Juntos por Panamá»: las sucursales de Fastbox reciben donaciones y la empresa las lleva a las zonas afectadas por el terremoto.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "URGENT",
+        "note": "Agua embotellada (prioridad principal)"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Enlatados (atún, sardinas), arroz, pasta, granos, avena y galletas"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Jabón, cepillos y pasta dental, papel higiénico, toallitas húmedas y toallas sanitarias"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pañales (bebés y adultos), leche en polvo y fórmulas para bebés"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Gasas, vendas, curitas, guantes, alcohol, solución salina, mascarillas y medicamentos de uso común (no vencidos)"
+      },
+      {
+        "item": "TARPS",
+        "level": "NEEDED",
+        "note": "Toldas grandes"
+      },
+      {
+        "item": "BEDDING",
+        "level": "NEEDED",
+        "note": "Catres, frazadas, mantas, colchonetas, sábanas y almohadas"
+      },
+      {
+        "item": "LIGHTS",
+        "level": "NEEDED",
+        "note": "Linternas y baterías de repuesto"
+      },
+      {
+        "item": "PET_FOOD",
+        "level": "NEEDED",
+        "note": "Comida seca o húmeda para perros y gatos, platos, bebederos y arena para gatos"
+      }
+    ],
+    "source": {
+      "title": "Afiche «Juntos por Panamá» de Fastbox (@fastboxpty)",
+      "date": "2026-10-12"
+    }
+  },
+  {
+    "name": "Fastbox Coronado",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Fastbox",
+    "province": "PANAMA_OESTE",
+    "district": "Chame",
+    "community": "Coronado",
+    "address": "Avenida Roberto Eisenmann, seguido al Banco General",
+    "lat": 8.5420034,
+    "lng": -79.9131259,
+    "schedule": {
+      "MON": {
+        "open": "09:00",
+        "close": "18:00"
+      },
+      "TUE": {
+        "open": "09:00",
+        "close": "18:00"
+      },
+      "WED": {
+        "open": "09:00",
+        "close": "18:00"
+      },
+      "THU": {
+        "open": "09:00",
+        "close": "18:00"
+      },
+      "FRI": {
+        "open": "09:00",
+        "close": "18:00"
+      },
+      "SAT": {
+        "open": "09:00",
+        "close": "14:00"
+      }
+    },
+    "hoursNote": "Horario de la sucursal: lunes a viernes de 9:00 a. m. a 6:00 p. m. y sábados de 9:00 a. m. a 2:00 p. m. Confirma antes de ir.",
+    "notes": "Campaña «Juntos por Panamá»: las sucursales de Fastbox reciben donaciones y la empresa las lleva a las zonas afectadas por el terremoto.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "URGENT",
+        "note": "Agua embotellada (prioridad principal)"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Enlatados (atún, sardinas), arroz, pasta, granos, avena y galletas"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Jabón, cepillos y pasta dental, papel higiénico, toallitas húmedas y toallas sanitarias"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pañales (bebés y adultos), leche en polvo y fórmulas para bebés"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Gasas, vendas, curitas, guantes, alcohol, solución salina, mascarillas y medicamentos de uso común (no vencidos)"
+      },
+      {
+        "item": "TARPS",
+        "level": "NEEDED",
+        "note": "Toldas grandes"
+      },
+      {
+        "item": "BEDDING",
+        "level": "NEEDED",
+        "note": "Catres, frazadas, mantas, colchonetas, sábanas y almohadas"
+      },
+      {
+        "item": "LIGHTS",
+        "level": "NEEDED",
+        "note": "Linternas y baterías de repuesto"
+      },
+      {
+        "item": "PET_FOOD",
+        "level": "NEEDED",
+        "note": "Comida seca o húmeda para perros y gatos, platos, bebederos y arena para gatos"
+      }
+    ],
+    "source": {
+      "title": "Afiche «Juntos por Panamá» de Fastbox (@fastboxpty)",
+      "date": "2026-10-12"
+    }
+  }
+]
