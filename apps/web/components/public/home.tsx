@@ -1,6 +1,6 @@
 'use client';
 
-import { Component, useCallback, useEffect, useMemo, useState } from 'react';
+import { Component, useCallback, useDeferredValue, useEffect, useMemo, useState } from 'react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { List, LocateFixed, Map as MapIcon, SlidersHorizontal, X } from 'lucide-react';
@@ -148,19 +148,28 @@ export function PublicHome({
 
   const origin = useMemo(() => (geo.state === 'on' ? { lat: geo.lat, lng: geo.lng } : null), [geo]);
 
+  // La lista se arma con los filtros diferidos: el chip o la letra se pintan al instante y la lista llega
+  // justo después. Si entra otra tecla antes de terminar, React descarta ese trabajo en vez de trabar el teléfono.
+  const fProvince = useDeferredValue(province);
+  const fItem = useDeferredValue(item);
+  const fCtype = useDeferredValue(ctype);
+  const fOnlyOpen = useDeferredValue(onlyOpen);
+  const fQuery = useDeferredValue(query);
+  const fOrigin = useDeferredValue(origin);
+
   // Un solo filtro con un «hueco»: los conteos de provincia ignoran la provincia elegida, para que cada
   // botón diga cuántos centros quedarían al tocarlo.
+  const q = fold(fQuery.trim());
   const passes = useCallback(
     (c: PublicCenter, skip: 'province' | null) => {
-      if (skip !== 'province' && province !== ALL && c.province !== province) return false;
-      if (item !== ALL && !c.needs.some((n) => n.item === item && n.level !== 'ENOUGH')) return false;
-      if (ctype !== ALL && c.centerType !== ctype) return false;
-      if (onlyOpen && isOpenNow(c, now) !== true) return false;
-      const q = fold(query.trim());
+      if (skip !== 'province' && fProvince !== ALL && c.province !== fProvince) return false;
+      if (fItem !== ALL && !c.needs.some((n) => n.item === fItem && n.level !== 'ENOUGH')) return false;
+      if (fCtype !== ALL && c.centerType !== fCtype) return false;
+      if (fOnlyOpen && isOpenNow(c, now) !== true) return false;
       if (q && !fold(`${c.name} ${c.district} ${c.community}`).includes(q)) return false;
       return true;
     },
-    [province, item, ctype, onlyOpen, now, query],
+    [fProvince, fItem, fCtype, fOnlyOpen, now, q],
   );
 
   const provinceCounts = useMemo(() => {
@@ -178,26 +187,30 @@ export function PublicHome({
       .filter((c) => passes(c, null))
       .map((c) => ({
         c,
-        km: origin && hasCoords(c) ? haversineKm(origin, { lat: c.lat as number, lng: c.lng as number }) : null,
+        km: fOrigin && hasCoords(c) ? haversineKm(fOrigin, { lat: c.lat as number, lng: c.lng as number }) : null,
       }));
-    if (origin) {
+    if (fOrigin) {
       // Orden estable: los que tienen coordenadas por distancia; los que no, al final en el orden de la API.
       rows.sort((a, b) => (a.km == null ? 1 : 0) - (b.km == null ? 1 : 0) || (a.km ?? 0) - (b.km ?? 0));
     }
     return rows;
-  }, [centers, passes, origin]);
+  }, [centers, passes, fOrigin]);
 
   // Sin provincia elegida ni orden por distancia, la lista se agrupa por provincia en el orden del catálogo.
   const groups = useMemo(() => {
-    if (province !== ALL || origin) return null;
+    if (fProvince !== ALL || fOrigin) return null;
     const order = Object.keys(meta?.provinces ?? {});
     const rank = (k: string) => (order.includes(k) ? order.indexOf(k) : order.length);
     const byProvince = new Map<string, typeof results>();
-    for (const r of results) byProvince.set(r.c.province, [...(byProvince.get(r.c.province) ?? []), r]);
+    for (const r of results) {
+      const rows = byProvince.get(r.c.province);
+      if (rows) rows.push(r);
+      else byProvince.set(r.c.province, [r]);
+    }
     return [...byProvince.entries()]
       .sort(([a], [b]) => rank(a) - rank(b) || a.localeCompare(b))
       .map(([key, rows]) => ({ key, label: provinceLabel(meta, key), rows }));
-  }, [province, origin, meta, results]);
+  }, [fProvince, fOrigin, meta, results]);
 
   const provinceChips = useMemo(() => {
     const order = Object.keys(meta?.provinces ?? {});
@@ -241,7 +254,7 @@ export function PublicHome({
   const n = results.length;
   const resultTitle = !centers
     ? 'Centros de acopio'
-    : `${n === 1 ? '1 centro' : `${n} centros`}${item !== ALL ? ` ${n === 1 ? 'pide' : 'piden'} ${itemLabel(meta, item).toLowerCase()}` : ''}`;
+    : `${n === 1 ? '1 centro' : `${n} centros`}${fItem !== ALL ? ` ${n === 1 ? 'pide' : 'piden'} ${itemLabel(meta, fItem).toLowerCase()}` : ''}`;
 
   return (
     <div className="grid gap-8">
@@ -420,7 +433,7 @@ export function PublicHome({
                   centers={results.map((r) => r.c)}
                   meta={meta}
                   tileHost={tileHost}
-                  origin={origin}
+                  origin={fOrigin}
                   heightClass="h-[min(60vh,420px)] lg:h-[calc(100dvh-8rem)]"
                 />
               </MapBoundary>
@@ -470,13 +483,13 @@ export function PublicHome({
                       {g.rows.length === 1 ? '1 centro' : `${g.rows.length} centros`}
                     </span>
                   </h3>
-                  <CenterList rows={g.rows} meta={meta} item={item} headingLevel={4} />
+                  <CenterList rows={g.rows} meta={meta} item={fItem} headingLevel={4} />
                 </section>
               ))
             ) : (
-              <CenterList rows={results} meta={meta} item={item} />
+              <CenterList rows={results} meta={meta} item={fItem} />
             )}
-            {origin && results.some((r) => r.km == null) && (
+            {fOrigin && results.some((r) => r.km == null) && (
               <p className="text-sm text-ink-2">Los centros sin ubicación en el mapa aparecen al final.</p>
             )}
           </div>

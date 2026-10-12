@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import Link from 'next/link';
 import { MapPin, Navigation } from 'lucide-react';
 import { buttonVariants } from '@demogar/mola-ui';
@@ -12,8 +13,10 @@ import { NeedsSummary } from './needs';
  * Tarjeta de la lista. Pensada para leerse de un vistazo en el teléfono: primero si está abierto, luego el
  * nombre, una línea discreta con el tipo y quién organiza, dónde está, y lo que necesitan como lista (no como
  * frase), con aire entre bloques. Cierra con «Cómo llegar» y «Ver centro», que es lo que la gente hace después.
+ *
+ * Memorizada: al filtrar, las tarjetas que siguen en la lista no se vuelven a pintar.
  */
-export function CenterCard({
+export const CenterCard = memo(function CenterCard({
   center,
   meta,
   distanceKm,
@@ -87,4 +90,4 @@ export function CenterCard({
       </footer>
     </article>
   );
-}
+});
