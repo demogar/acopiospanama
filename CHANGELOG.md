@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.18.0](https://github.com/demogar/acopiospanama/compare/v0.17.0...v0.18.0) (2026-10-12)
+
+
+### Novedades
+
+* **data:** sucursales de Fastbox como centros de acopio ([#79](https://github.com/demogar/acopiospanama/issues/79)) ([45c0e91](https://github.com/demogar/acopiospanama/commit/45c0e9109e8c89f72fda07283adf2d27d6010b2a))
+
 ## [0.17.0](https://github.com/demogar/acopiospanama/compare/v0.16.0...v0.17.0) (2026-10-12)
 
 
