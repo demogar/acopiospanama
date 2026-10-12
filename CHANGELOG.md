@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.14.2](https://github.com/demogar/acopiospanama/compare/v0.14.1...v0.14.2) (2026-10-12)
+
+
+### Rendimiento
+
+* **web:** filtros de la portada sin trabar el teléfono ([#69](https://github.com/demogar/acopiospanama/issues/69)) ([122fd8e](https://github.com/demogar/acopiospanama/commit/122fd8ec9a8ba456c600368d8c1e151923616d27))
+
 ## [0.14.1](https://github.com/demogar/acopiospanama/compare/v0.14.0...v0.14.1) (2026-10-12)
 
 
