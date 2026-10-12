@@ -17,16 +17,14 @@
 
 ## Reglas automáticas (`apps/api/src/centers/centers.service.ts` → `computeState`)
 
-| Condición                                                                                      | Resultado                                                |
-| ---------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
-| Última actividad (confirmación de un responsable o de la comunidad) hace más de 72 h           | `STALE`: «sin confirmar recientemente», baja en la lista |
-| … hace más de 14 días                                                                          | `EXPIRED`: no se lista                                   |
-| Reportes abiertos de 2 o más personas en 72 h                                                  | `flagged`: «Reportado: verifica antes de ir»             |
-| 3 o más reportes graves (dinero, falso, se aprovechan, cerrado) que superan las confirmaciones | `COMMUNITY_HIDDEN`: oculto, la ficha responde 410        |
-| Un responsable confirma después del último reporte grave                                       | Vuelve a verse, marcado «en disputa»                     |
-| Reporte «publicaron mis datos sin permiso»                                                     | El contacto se oculta de inmediato                       |
-| Texto que pide dinero (Yappy, transferencias, cuentas, bancos, números largos)                 | No se puede guardar                                      |
-| Texto con enlaces o HTML                                                                       | No se puede guardar                                      |
+| Condición                                                                                      | Resultado                                         |
+| ---------------------------------------------------------------------------------------------- | ------------------------------------------------- |
+| Reportes abiertos de 2 o más personas en 72 h                                                  | `flagged`: «Reportado: verifica antes de ir»      |
+| 3 o más reportes graves (dinero, falso, se aprovechan, cerrado) que superan las confirmaciones | `COMMUNITY_HIDDEN`: oculto, la ficha responde 410 |
+| Un responsable confirma después del último reporte grave                                       | Vuelve a verse, marcado «en disputa»              |
+| Reporte «publicaron mis datos sin permiso»                                                     | El contacto se oculta de inmediato                |
+| Texto que pide dinero (Yappy, transferencias, cuentas, bancos, números largos)                 | No se puede guardar                               |
+| Texto con enlaces o HTML                                                                       | No se puede guardar                               |
 
 El filtro de texto normaliza antes de comparar (NFKC, letras de otros alfabetos que se parecen, espacios
 intercalados como «Y a p p y»), así que no basta con disfrazar la palabra. Los teléfonos panameños sí se
@@ -37,9 +35,12 @@ reportes, una por persona y centro, sin importar el día. Para el aviso «report
 72 h. Para ocultar, cuentan los graves que sigan abiertos.
 
 Corregir la ficha resuelve los reportes de información (dato equivocado, ya no recibe, otro). Los graves solo
-caducan (90 días) o los descarta la moderación. Los recordatorios por correo se envían cada 48 h a los
-responsables de centros sin confirmar, con un enlace firmado de un solo propósito. Ese enlace confirma o cierra
-el centro con un POST, para que los antivirus de correo no lo activen solos.
+caducan (90 días) o los descarta la moderación.
+
+Los centros no caducan por falta de confirmaciones: hay pocas personas manteniendo el directorio, así que lo
+publicado se da por bueno hasta que su responsable lo cierre o la comunidad lo reporte. Ya no se envían
+recordatorios por correo. Los enlaces firmados de correos anteriores siguen sirviendo hasta que vencen (72 h):
+confirman o cierran el centro con un POST, para que los antivirus de correo no lo activen solos.
 
 ## Seguridad y privacidad
 

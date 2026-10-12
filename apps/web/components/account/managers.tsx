@@ -73,8 +73,8 @@ export function Managers({ centerId }: { centerId: string }) {
   return (
     <Stack gap="md">
       <Text>
-        Tener <strong>2 o 3 responsables</strong> evita que el centro desaparezca del directorio si una persona no puede
-        responder los recordatorios. Cualquiera de ustedes puede actualizarlo, confirmarlo o cerrarlo.
+        Tener <strong>2 o 3 responsables</strong> ayuda a que la ficha siga al día si una persona no puede atenderla.
+        Cualquiera de ustedes puede actualizarlo, confirmarlo o cerrarlo.
       </Text>
       {list.error ? (
         <ErrorState error={list.error} onRetry={list.reload} />
@@ -185,7 +185,7 @@ export function Managers({ centerId }: { centerId: string }) {
         }
         description={
           removing?.you
-            ? 'Ya no verás este centro en «Mis centros» ni recibirás recordatorios.'
+            ? 'Ya no verás este centro en «Mis centros».'
             : removing?.pending
               ? 'Ya no podrá aceptarla.'
               : 'Ya no podrá actualizar este centro. Le avisaremos por correo.'

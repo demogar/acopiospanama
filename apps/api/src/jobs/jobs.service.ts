@@ -4,14 +4,12 @@ import { CronJob } from 'cron';
 import { sql } from 'kysely';
 import { AuditService } from '../audit/audit.service';
 import { CentersService } from '../centers/centers.service';
-import { LinksService } from '../centers/links.service';
 import { CONFIG, DATABASE } from '../common/core.module';
 import type { AppConfig } from '../config';
 import type { DB } from '../db/db';
 
 /**
  * Tareas automáticas (lo que hace que nadie tenga que estar pendiente):
- *  - cada hora: recordatorio «¿sigue funcionando?» a responsables de centros sin confirmar;
  *  - cada día: retención (borra lo que ya no hace falta).
  */
 @Injectable()
@@ -22,22 +20,16 @@ export class JobsService implements OnModuleInit {
     @Inject(DATABASE) private readonly db: DB,
     @Inject(CONFIG) private readonly config: AppConfig,
     private readonly scheduler: SchedulerRegistry,
-    private readonly links: LinksService,
     private readonly centers: CentersService,
     private readonly audit: AuditService,
   ) {}
 
   onModuleInit() {
     if (this.config.NODE_ENV === 'test') return;
-    const reminders = new CronJob('0 15 * * * *', () => {
-      this.links.sendReminders().catch((e) => this.logger.error(`Recordatorios: ${(e as Error).name}`));
-    });
     const retention = new CronJob(this.config.RETENTION_CRON, () => {
       this.retention().catch((e) => this.logger.error(`Retención: ${(e as Error).name}`));
     });
-    this.scheduler.addCronJob('reminders', reminders);
     this.scheduler.addCronJob('retention', retention);
-    reminders.start();
     retention.start();
   }
 
@@ -108,18 +100,14 @@ export class JobsService implements OnModuleInit {
           .executeTakeFirst()
       ).numDeletedRows,
     );
-    // Centros cerrados, retirados o abandonados (sin actividad) por más de 180 días.
+    // Centros cerrados o retirados hace más de 180 días. Los publicados no caducan.
     add(
       'centers',
       (
         await this.db
           .deleteFrom('centers')
-          .where((eb) =>
-            eb.or([
-              eb.and([eb('status', '!=', 'PUBLISHED'), eb('updatedAt', '<', sql<Date>`now() - interval '180 days'`)]),
-              eb('managerConfirmedAt', '<', sql<Date>`now() - interval '180 days'`),
-            ]),
-          )
+          .where('status', '!=', 'PUBLISHED')
+          .where('updatedAt', '<', sql<Date>`now() - interval '180 days'`)
           .executeTakeFirst()
       ).numDeletedRows,
     );

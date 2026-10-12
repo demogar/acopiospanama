@@ -11,7 +11,6 @@ const HELP = `Acopio Panamá — línea de comandos
   revoke-role --email <correo>    Quita moderación y administración.
   reset-mfa --email <correo>      Quita el segundo factor (si se perdió el teléfono).
   retention                       Aplica la retención ahora.
-  reminders                       Envía ahora los recordatorios «¿sigue funcionando?».
   revoke-all-sessions             Cierra todas las sesiones (tras restaurar un respaldo).
   import-centers --email <correo> [--file centros.json]
                                   Importa centros anunciados públicamente (JSON por archivo o stdin)
@@ -27,27 +26,19 @@ async function main() {
     strict: true,
   });
 
-  if (cmd === 'retention' || cmd === 'reminders' || cmd === 'import-centers') {
+  if (cmd === 'retention' || cmd === 'import-centers') {
     const { NestFactory } = await import('@nestjs/core');
     const { AppModule } = await import('../app.module');
     const ctx = await NestFactory.createApplicationContext(AppModule, { logger: ['error'] });
     if (cmd === 'retention') {
       const { JobsService } = await import('../jobs/jobs.service');
       console.log('Retención aplicada:', await ctx.get(JobsService).retention());
-    } else if (cmd === 'import-centers') {
+    } else {
       const { importCenters } = await import('./import-centers');
       const r = await importCenters(ctx, { email: values.email ?? '', file: values.file });
       for (const c of r.created) console.log(`+ ${c}`);
       for (const c of r.skipped) console.log(`= ${c}`);
       console.log(`${r.created.length} centro(s) importado(s), ${r.skipped.length} ya existían.`);
-    } else {
-      const { LinksService } = await import('../centers/links.service');
-      const { MailService } = await import('../mail/mail.service');
-      console.log('Recordatorios:', await ctx.get(LinksService).sendReminders());
-      // En desarrollo (MAIL_MODE=outbox) los correos quedan en la memoria de este proceso: se imprimen.
-      if (process.env.MAIL_MODE === 'outbox') {
-        for (const m of ctx.get(MailService).readOutbox()) console.log(`\n— Para: ${m.to}\n  ${m.subject}\n${m.text}`);
-      }
     }
     await ctx.close();
     return;

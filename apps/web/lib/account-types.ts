@@ -3,7 +3,7 @@ import { CENTER_TYPES_FALLBACK, type Schedule } from './public-schedule';
 
 export type { Schedule };
 
-export type Visibility = 'VISIBLE' | 'STALE' | 'EXPIRED' | 'COMMUNITY_HIDDEN' | 'CLOSED' | 'REMOVED';
+export type Visibility = 'VISIBLE' | 'COMMUNITY_HIDDEN' | 'CLOSED' | 'REMOVED';
 export type NeedLevel = 'URGENT' | 'NEEDED' | 'ENOUGH';
 export type ReportReason =
   'CLOSED' | 'NOT_RECEIVING' | 'WRONG_INFO' | 'ASKS_MONEY' | 'FAKE' | 'DIVERTED' | 'MY_DATA' | 'OTHER';
@@ -16,7 +16,6 @@ export interface Meta {
   /** Puede faltar en versiones antiguas de la API: usar `centerTypes(meta)`. */
   centerTypes?: Record<string, string>;
   reportReasons: Record<ReportReason, string>;
-  rules: { staleHours: number; expireDays: number };
 }
 
 export interface Need {
@@ -194,16 +193,6 @@ export const VISIBILITY_INFO: Record<
   { label: string; tone: 'success' | 'warn' | 'danger' | 'neutral'; help: string }
 > = {
   VISIBLE: { label: 'Publicado', tone: 'success', help: 'Aparece en el directorio.' },
-  STALE: {
-    label: 'Sin confirmar',
-    tone: 'warn',
-    help: 'Nadie lo ha confirmado en 3 días: baja en la lista. Toca «Sigue funcionando» para subirlo.',
-  },
-  EXPIRED: {
-    label: 'Vencido',
-    tone: 'danger',
-    help: 'Pasaron más de 14 días sin confirmar y ya no aparece. Toca «Sigue funcionando» para volver a mostrarlo.',
-  },
   COMMUNITY_HIDDEN: {
     label: 'Oculto por reportes',
     tone: 'danger',

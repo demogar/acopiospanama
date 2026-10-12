@@ -62,11 +62,8 @@ export default function ComoFunciona() {
               <strong>«Estuve aquí y sigue funcionando»</strong>, el centro se marca como confirmado en ese momento.
             </li>
             <li>
-              Si pasan <strong>3 días</strong> sin que nadie lo confirme, aparece como{' '}
-              <strong>«Sin confirmar recientemente»</strong> y baja en la lista.
-            </li>
-            <li>
-              Si pasan <strong>14 días</strong> sin confirmación, deja de mostrarse.
+              Un centro publicado sigue en la lista hasta que su responsable lo cierre o la comunidad lo reporte: no
+              caduca por falta de confirmaciones.
             </li>
             <li>Cada persona cuenta una vez al día por centro, aunque pulse varias veces.</li>
           </ul>

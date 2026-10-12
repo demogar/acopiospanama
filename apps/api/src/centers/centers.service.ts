@@ -8,7 +8,6 @@ import type { AppConfig } from '../config';
 import type { DB } from '../db/db';
 import type { Center } from '../db/types';
 import {
-  EXPIRE_DAYS,
   textProblem,
   FLAG_THRESHOLD,
   HIDE_THRESHOLD,
@@ -23,7 +22,6 @@ import {
   Schedule,
   ReportReason,
   SERIOUS_REASONS,
-  STALE_HOURS,
 } from '../domain';
 
 const WINDOW_HOURS = 72;
@@ -125,7 +123,7 @@ export interface CenterStats {
   reportReasons: Partial<Record<ReportReason, number>>;
 }
 
-export type Visibility = 'VISIBLE' | 'STALE' | 'EXPIRED' | 'COMMUNITY_HIDDEN' | 'CLOSED' | 'REMOVED';
+export type Visibility = 'VISIBLE' | 'COMMUNITY_HIDDEN' | 'CLOSED' | 'REMOVED';
 
 export interface CenterState {
   visibility: Visibility;
@@ -136,8 +134,8 @@ export interface CenterState {
 
 /**
  * Reglas automáticas (la comunidad mantiene el directorio; nadie tiene que estar pendiente):
- *  - Frescura: la última actividad es la confirmación más reciente (de un responsable o de la
- *    comunidad). Sin actividad en 72 h → «sin confirmar»; en 14 días → deja de mostrarse.
+ *  - Lo publicado se da por bueno: un centro no caduca por falta de confirmaciones. Sigue en la
+ *    lista hasta que su responsable lo cierre o la comunidad lo reporte.
  *  - Reportes: 2 o más personas distintas en 72 h → aviso «reportado, verifica antes de ir».
  *    3 o más reportes graves (pide dinero, falso, cerrado) que superen las confirmaciones → oculto,
  *    SALVO que un responsable lo haya confirmado después del último reporte grave: entonces queda
@@ -151,7 +149,6 @@ export function computeState(
   now = Date.now(),
 ): CenterState {
   const lastActivity = new Date(Math.max(c.managerConfirmedAt.getTime(), s.lastCommunityConfirmation?.getTime() ?? 0));
-  const ageH = (now - lastActivity.getTime()) / 3_600_000;
   const flagged = s.openReports >= FLAG_THRESHOLD || s.seriousReports >= HIDE_THRESHOLD;
   const isNew = now - c.createdAt.getTime() < 24 * 3_600_000 && s.confirmations === 0;
   let visibility: Visibility;
@@ -163,8 +160,6 @@ export function computeState(
     !(s.lastSeriousReportAt && c.managerConfirmedAt > s.lastSeriousReportAt)
   )
     visibility = 'COMMUNITY_HIDDEN';
-  else if (ageH > EXPIRE_DAYS * 24) visibility = 'EXPIRED';
-  else if (ageH > STALE_HOURS) visibility = 'STALE';
   else visibility = 'VISIBLE';
   return { visibility, flagged, isNew, lastActivity };
 }
@@ -373,19 +368,13 @@ export class CentersService {
     });
   }
 
-  /** Lista pública (en caché 30 s): visibles y «sin confirmar»; nunca ocultos, vencidos ni retirados. */
+  /** Lista pública (en caché 30 s): solo visibles; nunca ocultos, cerrados ni retirados. */
   async publicList(): Promise<PublicCenter[]> {
     if (this.cache && Date.now() - this.cache.at < CentersService.CACHE_MS) return this.cache.list;
-    const rows = await this.db
-      .selectFrom('centers')
-      .selectAll()
-      .where('status', '=', 'PUBLISHED')
-      .where('managerConfirmedAt', '>', sql<Date>`now() - make_interval(days => ${EXPIRE_DAYS * 2})`)
-      .execute();
+    const rows = await this.db.selectFrom('centers').selectAll().where('status', '=', 'PUBLISHED').execute();
     const list = (await this.toPublic(rows))
-      .filter((c) => c.visibility === 'VISIBLE' || c.visibility === 'STALE')
+      .filter((c) => c.visibility === 'VISIBLE')
       .sort((a, b) => {
-        if (a.visibility !== b.visibility) return a.visibility === 'VISIBLE' ? -1 : 1;
         if (a.flagged !== b.flagged) return a.flagged ? 1 : -1;
         const ua = a.needs.filter((n) => n.level === 'URGENT').length;
         const ub = b.needs.filter((n) => n.level === 'URGENT').length;

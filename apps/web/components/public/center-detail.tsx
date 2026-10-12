@@ -170,11 +170,6 @@ export function CenterDetail({
               Varias personas lo reportaron. Confirma por teléfono antes de ir y nunca envíes dinero.
             </Callout>
           )}
-          {(center.visibility === 'STALE' || center.visibility === 'EXPIRED') && (
-            <Callout tone="warn" title="Sin confirmar recientemente" headingLevel={2}>
-              Nadie ha confirmado en los últimos días que siga funcionando. Si puedes, llama o pregunta antes de ir.
-            </Callout>
-          )}
         </div>
 
         <div className="flex flex-wrap gap-2">

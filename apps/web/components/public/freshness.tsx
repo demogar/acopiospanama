@@ -19,7 +19,7 @@ export function FreshnessLine({
   );
 }
 
-/** Etiquetas de estado: «Nuevo», «Sin confirmar recientemente», «Reportado: verifica antes de ir», «Cerrado». */
+/** Etiquetas de estado: «Nuevo», «Reportado: verifica antes de ir», «Cerrado». */
 export function StatusBadges({ center }: { center: Pick<PublicCenter, 'isNew' | 'visibility' | 'flagged'> }) {
   const items: React.ReactNode[] = [];
   if (center.visibility === 'CLOSED')
@@ -32,12 +32,6 @@ export function StatusBadges({ center }: { center: Pick<PublicCenter, 'isNew' | 
     items.push(
       <Badge key="flag" tone="danger" variant="soft" dot>
         Reportado: verifica antes de ir
-      </Badge>,
-    );
-  if (center.visibility === 'STALE' || center.visibility === 'EXPIRED')
-    items.push(
-      <Badge key="stale" tone="warn" variant="soft" dot>
-        Sin confirmar recientemente
       </Badge>,
     );
   if (center.isNew)

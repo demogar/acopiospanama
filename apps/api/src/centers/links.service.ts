@@ -1,6 +1,5 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
 import { createHmac, hkdfSync } from 'node:crypto';
-import { sql } from 'kysely';
 import { AuditService } from '../audit/audit.service';
 import { CONFIG, DATABASE } from '../common/core.module';
 import { safeEqual } from '../common/crypto';
@@ -11,11 +10,11 @@ import { MailService } from '../mail/mail.service';
 import { CentersService } from './centers.service';
 
 const TOKEN_HOURS = 72;
-const REMIND_AFTER_HOURS = 48;
 const REPORT_NOTICE_GAP_HOURS = 6;
 
 /**
- * Enlaces firmados de un solo propósito para los correos: «¿sigue funcionando?» con un toque.
+ * Enlaces firmados de un solo propósito: «¿sigue funcionando?» con un toque. Ya no se envían
+ * recordatorios, pero los enlaces de correos anteriores siguen sirviendo hasta que vencen.
  * No inician sesión ni dan acceso a nada más: solo confirman o cierran ese centro.
  */
 @Injectable()
@@ -128,57 +127,6 @@ export class LinksService {
     }
     this.centers.invalidate();
     return { ok: true, name: r.name, slug: r.slug, action };
-  }
-
-  /** Recordatorio a responsables de centros sin confirmar en 48 h (como mucho uno cada 48 h). */
-  async sendReminders() {
-    const mail = this.mail;
-    const due = await this.db
-      .selectFrom('centers')
-      .select(['id', 'name', 'slug'])
-      .where('status', '=', 'PUBLISHED')
-      .where('managerConfirmedAt', '<', sql<Date>`now() - make_interval(hours => ${REMIND_AFTER_HOURS})`)
-      .where((eb) =>
-        eb.or([
-          eb('lastReminderAt', 'is', null),
-          eb('lastReminderAt', '<', sql<Date>`now() - make_interval(hours => ${REMIND_AFTER_HOURS})`),
-        ]),
-      )
-      .limit(500)
-      .execute();
-    let sent = 0;
-    for (const c of due) {
-      const managers = await this.db
-        .selectFrom('centerManagers')
-        .innerJoin('users', 'users.id', 'centerManagers.userId')
-        .select(['users.id', 'users.email'])
-        .where('centerManagers.centerId', '=', c.id)
-        .where('centerManagers.acceptedAt', 'is not', null)
-        .where('users.disabledAt', 'is', null)
-        .execute();
-      for (const m of managers) {
-        const link = `${this.config.appOrigin}/confirmar?t=${encodeURIComponent(this.makeToken(c.id, m.id))}`;
-        const ok = await mail.send({
-          to: m.email,
-          subject: '¿Tu centro de acopio sigue recibiendo donaciones?',
-          text: [
-            `Eres responsable de «${c.name}» en Acopio Panamá.`,
-            '',
-            'Para que la gente no llegue a un centro cerrado, confírmanos que sigue funcionando (un toque):',
-            link,
-            '',
-            'Si ya cerró, en ese mismo enlace puedes marcarlo como cerrado. Para cambiar lo que necesitan, entra en',
-            `${this.config.appOrigin}/mis-centros`,
-            '',
-            'Si nadie lo confirma, el centro deja de mostrarse automáticamente en unos días.',
-            'El enlace vence en 72 horas.',
-          ].join('\n'),
-        });
-        if (ok) sent++;
-      }
-      await this.db.updateTable('centers').set({ lastReminderAt: new Date() }).where('id', '=', c.id).execute();
-    }
-    return { centers: due.length, sent };
   }
 
   /** Aviso genérico a los responsables cuando alguien reporta su centro (como mucho uno cada 6 h). */

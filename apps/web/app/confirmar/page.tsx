@@ -15,7 +15,7 @@ interface Peek {
   status: string;
 }
 
-/** Destino del botón de los correos de recordatorio: confirmar o cerrar sin iniciar sesión. */
+/** Destino del botón de los correos de recordatorio (ya no se envían; los enlaces vigentes siguen sirviendo). */
 function ConfirmInner() {
   const token = useSearchParams().get('t') ?? '';
   const [peek, setPeek] = useState<Peek | null>(null);

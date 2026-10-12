@@ -349,8 +349,7 @@ function Invitations({
           Te invitaron a administrar
         </Heading>
         <Text size="sm" tone={2}>
-          Al aceptar podrás editar ese centro, actualizar lo que aceptan y recibir sus recordatorios. Si no conoces el
-          centro, recházala.
+          Al aceptar podrás editar ese centro y actualizar lo que aceptan. Si no conoces el centro, recházala.
         </Text>
         <ul className="divide-y divide-keyline-soft border-y border-keyline-soft">
           {items.map((inv) => (

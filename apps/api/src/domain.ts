@@ -176,10 +176,6 @@ export const FLAG_THRESHOLD = 2;
 export const HIDE_THRESHOLD = 3; // solo motivos graves: ASKS_MONEY, FAKE, DIVERTED, CLOSED
 export const SERIOUS_REASONS: ReportReason[] = ['ASKS_MONEY', 'FAKE', 'DIVERTED', 'CLOSED'];
 
-/** Frescura: sin confirmar en 72 h baja en la lista; en 14 días deja de mostrarse por defecto. */
-export const STALE_HOURS = 72;
-export const EXPIRE_DAYS = 14;
-
 /**
  * Las fichas no pueden pedir dinero: así se cierra la vía de estafa más común en emergencias.
  * El texto se normaliza antes de comparar (Unicode NFKC, caracteres invisibles, homoglifos

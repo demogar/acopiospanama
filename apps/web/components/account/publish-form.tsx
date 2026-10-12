@@ -178,12 +178,8 @@ export function PublishForm({ tileHost }: { tileHost: string }) {
               </Heading>
               <ul className="list-disc space-y-2 ps-5 text-ink">
                 <li>
-                  Si en 2 días nadie lo confirma, te enviaremos un correo con un botón para decir{' '}
-                  <strong>«sigue funcionando»</strong> o <strong>«ya cerró»</strong>, sin entrar.
-                </li>
-                <li>
-                  Sin confirmar en 3 días, baja en la lista; en 14 días deja de mostrarse. Así el directorio se mantiene
-                  al día solo.
+                  Sigue en la lista hasta que lo cierres. Si deja de recibir, ciérralo desde «Mis centros» para que
+                  nadie vaya en vano.
                 </li>
                 <li>Cuando cambie lo que aceptan, actualízalo desde «Mis centros»: toma 20 segundos.</li>
                 <li>Añade a 1 o 2 personas más como responsables, por si no puedes responder.</li>

@@ -200,27 +200,19 @@ describe('responsables', () => {
 });
 
 describe('reglas automáticas (auto-mantenimiento)', () => {
-  it('frescura: sin confirmar en 72 h → «sin confirmar»; en 14 días deja de listarse; una confirmación de la comunidad lo revive', async () => {
+  it('lo publicado no caduca: sin confirmaciones sigue visible y en la lista, y la retención no lo borra', async () => {
     const u = await login(env, 'fresh@x.test');
-    const c = await createCenter(u, { name: 'Centro que envejece' });
+    const c = await createCenter(u, { name: 'Centro sin confirmar' });
     await env.db
       .updateTable('centers')
-      .set({ managerConfirmedAt: ago(80) })
+      .set({ managerConfirmedAt: ago(200 * 24) })
       .where('id', '=', c.id)
       .execute();
     invalidate();
-    assert.equal((await pub(c.slug)).body.visibility, 'STALE');
-    assert.equal(await listed(c.id), true);
-    await env.db
-      .updateTable('centers')
-      .set({ managerConfirmedAt: ago(15 * 24) })
-      .where('id', '=', c.id)
-      .execute();
-    invalidate();
-    assert.equal(await listed(c.id), false);
-    assert.equal((await person(env).post(`/public/centers/${c.id}/confirm`)).status, 200);
     assert.equal((await pub(c.slug)).body.visibility, 'VISIBLE');
     assert.equal(await listed(c.id), true);
+    await env.app.get(JobsService).retention();
+    assert.ok(await env.db.selectFrom('centers').select('id').where('id', '=', c.id).executeTakeFirst());
   });
 
   it('confirmaciones: una por persona y día', async () => {
@@ -416,23 +408,16 @@ describe('abuso', () => {
 });
 
 describe('enlaces de confirmación por correo', () => {
-  it('recordatorio a las 48 h con enlace firmado: confirmar o cerrar; no sirve alterado ni a quien ya no es responsable', async () => {
+  it('enlace firmado: confirmar o cerrar; no sirve alterado ni a quien ya no es responsable', async () => {
     const u = await login(env, 'remind@x.test');
     const c = await createCenter(u, { name: 'Centro para recordar' });
-    await env.db
-      .updateTable('centers')
-      .set({ managerConfirmedAt: ago(50), lastReminderAt: null })
-      .where('id', '=', c.id)
-      .execute();
     const links = env.app.get(LinksService);
-    const r = await links.sendReminders();
-    assert.ok(r.sent >= 1);
-    const mail = env.mail
-      .readOutbox('remind@x.test')
-      .filter((m) => /sigue recibiendo/.test(m.subject))
-      .at(-1)!;
-    const token = decodeURIComponent(/\?t=([^\s]+)/.exec(mail.text)![1]);
-    assert.equal((await links.sendReminders()).centers, 0, 'no repite antes de 48 h');
+    const user = await env.db
+      .selectFrom('users')
+      .select('id')
+      .where('email', '=', 'remind@x.test')
+      .executeTakeFirstOrThrow();
+    const token = links.makeToken(c.id, user.id);
 
     const anon = new Client(env);
     const peek = await anon.post('/public/confirm-link/peek', { token });
@@ -568,7 +553,7 @@ describe('identidad de origen', () => {
 });
 
 describe('retención', () => {
-  it('borra cuentas no verificadas, confirmaciones viejas y centros abandonados', async () => {
+  it('borra cuentas no verificadas, confirmaciones viejas y centros cerrados hace más de 180 días', async () => {
     await new Client(env).post('/auth/request-code', { email: 'nunca@x.test' });
     await env.db
       .updateTable('users')
@@ -576,10 +561,10 @@ describe('retención', () => {
       .where('email', '=', 'nunca@x.test')
       .execute();
     const u = await login(env, 'old@x.test');
-    const c = await createCenter(u, { name: 'Centro abandonado' });
+    const c = await createCenter(u, { name: 'Centro cerrado hace tiempo' });
     await env.db
       .updateTable('centers')
-      .set({ managerConfirmedAt: ago(200 * 24) })
+      .set({ status: 'CLOSED', updatedAt: ago(200 * 24) })
       .where('id', '=', c.id)
       .execute();
     await env.db

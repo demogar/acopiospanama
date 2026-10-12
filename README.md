@@ -13,11 +13,10 @@ Lo mantiene la comunidad:
 - **Cualquiera publica un centro** con su correo (sin contraseñas) y queda como responsable.
 - **Cualquiera confirma** «estuve aquí y sigue funcionando» o **reporta** un problema.
 - **Reglas automáticas** deciden qué se muestra. Nadie tiene que estar pendiente:
-  - un centro sin confirmar en 72 h pasa a «sin confirmar», y a los 14 días deja de mostrarse;
+  - lo publicado se da por bueno: un centro sigue en la lista hasta que lo cierren o lo reporten;
   - con reportes de 2 personas se marca «verifica antes de ir»;
   - con 3 reportes graves (que pide dinero, que es falso, que se aprovechan y las donaciones no llegan a los afectados, o que cerró) se oculta, salvo que lo confirmen más personas de las que lo reportan;
   - las fichas **no pueden pedir dinero**: se bloquea al guardar;
-  - quienes responden por un centro reciben un recordatorio de un toque para confirmar que sigue abierto.
 - La moderación humana es solo el último recurso.
 
 Cada ficha incluye el tipo de centro, quién lo organiza, la ubicación exacta (con botones de Google Maps y Waze),

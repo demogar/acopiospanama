@@ -13,7 +13,7 @@ Reglas:
   organización desde «Mis centros».
 - Si el anuncio no da horario, `schedule` va vacío y `hoursNote` lo dice («confirma antes de ir»).
 - Lo que no encaja en los artículos del catálogo (abanicos, útiles escolares…) va en `notes`.
-- El centro queda a nombre del correo indicado en `--email`, que recibe los recordatorios de confirmación.
+- El centro queda a nombre del correo indicado en `--email`, que puede editarlo o cerrarlo desde «Mis centros».
   Lo ideal es que la organización lo reclame después: desde «Mis centros» se pueden añadir responsables.
 
 Cargar un lote (en el servidor, desde `/opt/acopiospanama`):

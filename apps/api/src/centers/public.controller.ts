@@ -4,17 +4,7 @@ import type { Request } from 'express';
 import { z } from 'zod';
 import { AuditService } from '../audit/audit.service';
 import { ApiError, notFound, parse, parseId, Public, text } from '../common/http';
-import {
-  CENTER_TYPES,
-  DISTRICTS,
-  ITEMS,
-  ORGANIZER_TYPES,
-  PROVINCES,
-  REPORT_KEYS,
-  REPORT_REASONS,
-  EXPIRE_DAYS,
-  STALE_HOURS,
-} from '../domain';
+import { CENTER_TYPES, DISTRICTS, ITEMS, ORGANIZER_TYPES, PROVINCES, REPORT_KEYS, REPORT_REASONS } from '../domain';
 import { CentersService } from './centers.service';
 import { LinksService } from './links.service';
 
@@ -38,7 +28,6 @@ export class PublicController {
       centerTypes: CENTER_TYPES,
       organizerTypes: ORGANIZER_TYPES,
       reportReasons: REPORT_REASONS,
-      rules: { staleHours: STALE_HOURS, expireDays: EXPIRE_DAYS },
     };
   }
 

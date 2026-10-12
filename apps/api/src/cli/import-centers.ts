@@ -14,7 +14,7 @@ import { slugify } from '../domain';
 /**
  * Importa centros anunciados públicamente (prensa, redes de las organizaciones) desde un JSON.
  * Pasan por las mismas validaciones que el formulario de publicar (incluido el filtro antidinero)
- * y quedan a nombre del correo indicado, que recibirá los recordatorios de confirmación.
+ * y quedan a nombre del correo indicado, que puede editarlos o cerrarlos desde «Mis centros».
  * La fuente y su fecha se añaden a las notas del centro, para que cualquiera pueda contrastarla.
  */
 const entrySchema = createCenterSchema

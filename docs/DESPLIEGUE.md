@@ -87,7 +87,7 @@ cd /opt/acopiospanama && docker compose exec api node dist/cli/cli.js make-admin
 ```
 
 Entra en `/entrar` con ese correo y configura el segundo factor. Desde `/moderacion` puedes nombrar a otros
-moderadores. Otros comandos: `make-moderator`, `revoke-role`, `reset-mfa`, `retention`, `reminders`,
+moderadores. Otros comandos: `make-moderator`, `revoke-role`, `reset-mfa`, `retention`,
 `revoke-all-sessions` e `import-centers` (carga centros anunciados públicamente; ver `data/centros/README.md`).
 
 ## Despliegue sin caída

@@ -4,7 +4,7 @@ import type { Schedule } from './public-schedule';
 export type CenterType = 'ACOPIO' | 'DISTRIBUCION' | 'COMEDOR' | 'ALBERGUE' | 'MIXTO';
 
 export type NeedLevel = 'URGENT' | 'NEEDED' | 'ENOUGH';
-export type Visibility = 'VISIBLE' | 'STALE' | 'EXPIRED' | 'COMMUNITY_HIDDEN' | 'CLOSED' | 'REMOVED';
+export type Visibility = 'VISIBLE' | 'COMMUNITY_HIDDEN' | 'CLOSED' | 'REMOVED';
 
 export interface PublicNeed {
   item: string;
@@ -52,5 +52,4 @@ export interface PublicMeta {
   /** Puede faltar en versiones viejas de la API: usar `CENTER_TYPES_FALLBACK`. */
   centerTypes?: Record<string, string>;
   reportReasons: Record<string, string>;
-  rules: { staleHours: number; expireDays: number };
 }
