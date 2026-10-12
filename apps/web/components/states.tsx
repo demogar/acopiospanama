@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Button, buttonVariants, Callout, EmptyState, Skeleton, Stack } from '@demogar/mola-ui';
 import type { ApiError } from '@/lib/api';
 
@@ -16,6 +17,7 @@ export function Loading({ label = 'Cargando…' }: { label?: string }) {
 }
 
 export function ErrorState({ error, onRetry }: { error: ApiError; onRetry?: () => void }) {
+  const pathname = usePathname();
   if (error.status === 404) {
     return (
       <EmptyState
@@ -36,13 +38,12 @@ export function ErrorState({ error, onRetry }: { error: ApiError; onRetry?: () =
         tone="warn"
         title="Verifica tu segundo factor"
         actions={
-          <Button
-            onClick={() =>
-              window.location.assign(`/seguridad?siguiente=${encodeURIComponent(window.location.pathname)}`)
-            }
+          <Link
+            href={`/seguridad?siguiente=${encodeURIComponent(pathname)}`}
+            className={`${buttonVariants()} no-underline`}
           >
             Verificar
-          </Button>
+          </Link>
         }
       >
         Para ver esta sección necesitas confirmar tu código de autenticación.

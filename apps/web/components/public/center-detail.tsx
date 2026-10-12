@@ -63,26 +63,35 @@ export function CenterDetail({
   const [reportOpen, setReportOpen] = useState(false);
   const [reported, setReported] = useState(false);
 
+  // Pide la ficha y guarda el resultado; no marca «cargando» (la carga inicial ya parte en true).
+  const fetchCenter = useCallback(
+    () =>
+      api
+        .get<PublicCenter>(`/public/centers/${slug}`)
+        .then((c) => {
+          setCenter(c);
+          setError(null);
+        })
+        .catch((e) => {
+          const err = e instanceof ApiError ? e : new ApiError(0, 'ERROR', 'Ocurrió un error inesperado.');
+          setError(err);
+          // Si pasó a estar oculto o fue retirado mientras la mirabas, se muestra ese estado.
+          if (err.status === 410 || err.status === 404) setCenter(null);
+        })
+        .finally(() => setLoading(false)),
+    [slug],
+  );
+
   const load = useCallback(async () => {
     setLoading(true);
-    try {
-      setCenter(await api.get<PublicCenter>(`/public/centers/${slug}`));
-      setError(null);
-    } catch (e) {
-      const err = e instanceof ApiError ? e : new ApiError(0, 'ERROR', 'Ocurrió un error inesperado.');
-      setError(err);
-      // Si pasó a estar oculto o fue retirado mientras la mirabas, se muestra ese estado.
-      if (err.status === 410 || err.status === 404) setCenter(null);
-    } finally {
-      setLoading(false);
-    }
-  }, [slug]);
+    await fetchCenter();
+  }, [fetchCenter]);
 
   // Sin datos del servidor (p. ej. la API no respondió a tiempo): se piden desde el navegador.
   const needsClientLoad = !initial || (!initial.ok && initial.status === 0);
   useEffect(() => {
-    if (needsClientLoad) void load();
-  }, [needsClientLoad, load]);
+    if (needsClientLoad) void fetchCenter();
+  }, [needsClientLoad, fetchCenter]);
 
   const confirm = async () => {
     if (!center) return;

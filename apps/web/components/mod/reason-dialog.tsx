@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Button, Dialog, Field, Stack, Text, Textarea } from '@demogar/mola-ui';
 import { DialogContentEs } from '@/components/ui/dialog-es';
 import { ApiError, errorMessage } from '@/lib/api';
@@ -29,12 +29,15 @@ export function ReasonDialog({
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
 
-  useEffect(() => {
+  // Cada vez que se abre, empieza en blanco.
+  const [wasOpen, setWasOpen] = useState(open);
+  if (open !== wasOpen) {
+    setWasOpen(open);
     if (open) {
       setReason('');
       setError(null);
     }
-  }, [open]);
+  }
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();

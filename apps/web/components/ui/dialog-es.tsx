@@ -26,31 +26,30 @@ import {
  * `finalFocus`, o se enfoca al desmontar si el diálogo desaparece del árbol sin animación de cierre.
  */
 
-type Opener = { current: HTMLElement | null };
+type OpenerRef = { current: HTMLElement | null };
 
-function OpenerMemo({ opener }: { opener: Opener }) {
-  useState(() => {
+function OpenerMemo({ openerRef }: { openerRef: OpenerRef }) {
+  // El inicializador corre en el primer render, antes de que el foco entre al panel.
+  const [opener] = useState(() => {
     const a = typeof document !== 'undefined' ? (document.activeElement as HTMLElement | null) : null;
-    opener.current = a && a !== document.body ? a : null;
-    return null;
+    return a && a !== document.body ? a : null;
   });
-  useEffect(
-    () => () => {
-      const target = opener.current;
+  useEffect(() => {
+    openerRef.current = opener;
+    return () => {
       requestAnimationFrame(() => {
         const active = document.activeElement;
-        if (target?.isConnected && (!active || active === document.body || !active.isConnected)) target.focus();
+        if (opener?.isConnected && (!active || active === document.body || !active.isConnected)) opener.focus();
       });
-    },
-    [opener],
-  );
+    };
+  }, [openerRef, opener]);
   return null;
 }
 
 function useOpener() {
-  const opener = useRef<HTMLElement | null>(null);
-  const finalFocus = () => (opener.current?.isConnected ? opener.current : true);
-  return { opener, finalFocus };
+  const openerRef = useRef<HTMLElement | null>(null);
+  const finalFocus = () => (openerRef.current?.isConnected ? openerRef.current : true);
+  return { openerRef, finalFocus };
 }
 
 const closeClass = 'absolute end-2 top-[calc(11px+0.5rem)] z-10';
@@ -64,7 +63,7 @@ export function DialogContentEs({ title, children, hideClose = false, finalFocus
       hideClose
       title={<span className="block pe-12">{title}</span>}
     >
-      <OpenerMemo opener={o.opener} />
+      <OpenerMemo openerRef={o.openerRef} />
       {!hideClose && (
         <DialogClose
           render={
@@ -88,7 +87,7 @@ export function DrawerContentEs({ title, children, hideClose = false, finalFocus
       hideClose
       title={<span className="block pe-12">{title}</span>}
     >
-      <OpenerMemo opener={o.opener} />
+      <OpenerMemo openerRef={o.openerRef} />
       {!hideClose && (
         <DrawerClose
           render={

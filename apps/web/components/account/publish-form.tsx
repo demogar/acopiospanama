@@ -39,7 +39,9 @@ export function PublishForm({ tileHost }: { tileHost: string }) {
   const session = useApi<SessionInfo>('/auth/session');
   const { meta, error: metaError, reload: reloadMeta } = useMeta();
   const [value, setValue] = useState<CenterInput>(emptyInput);
-  const [needs, setNeeds] = useState<NeedsState>({});
+  // Hasta que se toque algo, el estado de las necesidades sale del catálogo (todas sin indicar).
+  const [editedNeeds, setNeeds] = useState<NeedsState | null>(null);
+  const needs = editedNeeds ?? (meta ? needsToState(meta.items, []) : {});
   const [fields, setFields] = useState<Record<string, string>>({});
   const [needErrs, setNeedErrs] = useState<Record<string, string>>({});
   const [message, setMessage] = useState<{ title: string; text: string } | null>(null);
@@ -53,10 +55,6 @@ export function PublishForm({ tileHost }: { tileHost: string }) {
   useEffect(() => {
     if (session.error?.status === 401) router.replace('/entrar?siguiente=/publicar');
   }, [session.error, router]);
-
-  useEffect(() => {
-    if (meta && Object.keys(needs).length === 0) setNeeds(needsToState(meta.items, []));
-  }, [meta, needs]);
 
   function patch(p: Partial<CenterInput>) {
     setValue((v) => ({ ...v, ...p }));

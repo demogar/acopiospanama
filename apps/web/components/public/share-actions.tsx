@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useSyncExternalStore } from 'react';
 import { Copy, MessageCircle, Share2 } from 'lucide-react';
 import { Button, buttonVariants, useToast } from '@demogar/mola-ui';
 import { NewTab } from '@/components/ui/new-tab';
@@ -29,16 +29,22 @@ async function copyText(text: string): Promise<boolean> {
   }
 }
 
+const noSubscribe = () => () => {};
+
 /** Compartir (Web Share API), copiar enlace y enviar por WhatsApp. */
 export function ShareActions({ title, text, path }: { title: string; text: string; path: string }) {
   const toast = useToast();
-  const [url, setUrl] = useState(path);
-  const [canShare, setCanShare] = useState(false);
-
-  useEffect(() => {
-    setUrl(new URL(path, window.location.origin).toString());
-    setCanShare(typeof navigator.share === 'function');
-  }, [path]);
+  // En el servidor (y en la hidratación) no hay `window`: ruta relativa y sin botón de compartir.
+  const url = useSyncExternalStore(
+    noSubscribe,
+    () => new URL(path, window.location.origin).toString(),
+    () => path,
+  );
+  const canShare = useSyncExternalStore(
+    noSubscribe,
+    () => typeof navigator.share === 'function',
+    () => false,
+  );
 
   const share = async () => {
     try {

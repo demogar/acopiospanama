@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense, useEffect, useMemo, useRef, useState } from 'react';
+import { Suspense, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import { Button, Callout, Stack, Tabs, TabsList, TabsPanel, TabsTab, Text, useToast } from '@demogar/mola-ui';
@@ -41,11 +41,12 @@ function EditInner({ tileHost }: { tileHost: string }) {
   const me = useApi<ManagedCenter>(/^[0-9a-f-]{36}$/i.test(id) ? `/centers/${id}` : null);
   const { meta, error: metaError, reload: reloadMeta } = useMeta();
   const initial = params.get('seccion') as Section | null;
-  const [section, setSection] = useState<Section>(initial && SECTIONS.includes(initial) ? initial : 'necesidades');
-
-  useEffect(() => {
-    if (typeof window !== 'undefined' && window.location.hash === '#responsables') setSection('responsables');
-  }, []);
+  // Las pestañas solo se pintan con el centro ya cargado en el navegador, así que leer el «#» aquí no
+  // descuadra la hidratación.
+  const [section, setSection] = useState<Section>(() => {
+    if (typeof window !== 'undefined' && window.location.hash === '#responsables') return 'responsables';
+    return initial && SECTIONS.includes(initial) ? initial : 'necesidades';
+  });
 
   const center = me.data;
   const badId = !/^[0-9a-f-]{36}$/i.test(id);

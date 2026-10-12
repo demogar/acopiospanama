@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { api, ApiError } from './api';
 
 /** Carga datos de la API con estados de carga/error y `reload()`. */
@@ -9,23 +9,27 @@ export function useApi<T>(path: string | null) {
   const [error, setError] = useState<ApiError | null>(null);
   const [loading, setLoading] = useState(!!path);
   const [tick, setTick] = useState(0);
-  const pathRef = useRef(path);
-  pathRef.current = path;
+
+  // Al cambiar la ruta o pedir `reload()`, pasa a «cargando» en el mismo render (no en el efecto).
+  const [prev, setPrev] = useState({ path, tick });
+  if (prev.path !== path || prev.tick !== tick) {
+    setPrev({ path, tick });
+    if (path) setLoading(true);
+  }
 
   useEffect(() => {
     if (!path) return;
     const ctrl = new AbortController();
-    setLoading(true);
     api
       .get<T>(path, { signal: ctrl.signal })
       .then((d) => {
-        if (pathRef.current === path) {
-          setData(d);
-          setError(null);
-        }
+        // Una respuesta que llega tras cambiar de ruta ya no vale.
+        if (ctrl.signal.aborted) return;
+        setData(d);
+        setError(null);
       })
       .catch((e) => {
-        if ((e as Error).name === 'AbortError') return;
+        if ((e as Error).name === 'AbortError' || ctrl.signal.aborted) return;
         setError(e instanceof ApiError ? e : new ApiError(0, 'ERROR', 'Ocurrió un error inesperado.'));
       })
       .finally(() => {

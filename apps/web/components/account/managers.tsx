@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { UserPlus } from 'lucide-react';
 import { AlertDialog, Badge, Button, Callout, Field, Input, Stack, Text, useToast } from '@demogar/mola-ui';
 import { ErrorState, Loading } from '@/components/states';
@@ -16,6 +17,7 @@ import { useApi } from '@/lib/use-api';
  */
 export function Managers({ centerId }: { centerId: string }) {
   const toast = useToast();
+  const router = useRouter();
   const list = useApi<Manager[]>(`/centers/${centerId}/managers`);
   const [email, setEmail] = useState('');
   const [error, setError] = useState<string | null>(null);
@@ -54,7 +56,7 @@ export function Managers({ centerId }: { centerId: string }) {
             ? 'Invitación retirada'
             : 'Responsable quitado',
       });
-      if (m.you) window.location.assign('/mis-centros');
+      if (m.you) router.push('/mis-centros');
       else list.reload();
     } catch (err) {
       toast.error({ title: 'No se pudo', description: errorMessage(err) });

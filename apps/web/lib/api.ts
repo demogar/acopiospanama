@@ -65,6 +65,8 @@ async function request<T>(
     );
     if (res.status === 401 && typeof window !== 'undefined' && !path.startsWith('/auth/')) {
       const next = window.location.pathname + window.location.search;
+      // Fuera de React no hay router; la recarga completa además descarta el estado de la sesión vencida.
+      // eslint-disable-next-line @next/next/no-location-assign-relative-destination
       window.location.assign(`/entrar?siguiente=${encodeURIComponent(next)}`);
     }
     throw err;

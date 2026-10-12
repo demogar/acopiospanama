@@ -244,6 +244,8 @@ function Account({
     } catch {
       /* si ya no había sesión, igual salimos */
     }
+    // Recarga completa a propósito: no queda nada de la sesión en la memoria de la página.
+    // eslint-disable-next-line @next/next/no-location-assign-relative-destination
     window.location.assign('/');
   }
 
@@ -259,6 +261,8 @@ function Account({
     } catch {
       /* la sesión ya no existe junto con la cuenta */
     }
+    // Recarga completa a propósito: no queda nada de la sesión en la memoria de la página.
+    // eslint-disable-next-line @next/next/no-location-assign-relative-destination
     window.location.assign('/');
   }
 

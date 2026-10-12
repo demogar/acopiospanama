@@ -19,24 +19,23 @@ interface Peek {
 function ConfirmInner() {
   const token = useSearchParams().get('t') ?? '';
   const [peek, setPeek] = useState<Peek | null>(null);
-  const [loadError, setLoadError] = useState<ApiError | null>(null);
+  const [fetchError, setFetchError] = useState<ApiError | null>(null);
   const [done, setDone] = useState<'CONFIRM' | 'CLOSE' | null>(null);
   const [busy, setBusy] = useState<'CONFIRM' | 'CLOSE' | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [closeOpen, setCloseOpen] = useState(false);
 
+  const loadError = token ? fetchError : new ApiError(400, 'NO_TOKEN', 'Falta el enlace.');
+
   useEffect(() => {
-    if (!token) {
-      setLoadError(new ApiError(400, 'NO_TOKEN', 'Falta el enlace.'));
-      return;
-    }
+    if (!token) return;
     let alive = true;
     // POST: así el token no queda en los registros de acceso.
     api
       .post<Peek>('/public/confirm-link/peek', { token })
       .then((p) => alive && setPeek(p))
       .catch((e) => {
-        if (alive) setLoadError(e instanceof ApiError ? e : new ApiError(0, 'ERROR', errorMessage(e)));
+        if (alive) setFetchError(e instanceof ApiError ? e : new ApiError(0, 'ERROR', errorMessage(e)));
       });
     return () => {
       alive = false;

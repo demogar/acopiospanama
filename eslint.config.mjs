@@ -18,12 +18,10 @@ export default defineConfig([
     extends: [...nextVitals, ...nextTs],
     settings: { next: { rootDir: 'apps/web' } },
     rules: {
-      // Reglas del compilador de React (eslint-plugin-react-hooks 6+). Hay usos previos que hay que
-      // refactorizar con calma (ver issue «Adaptar efectos a las reglas del compilador de React»);
-      // mientras tanto avisan sin romper la CI. No añadas casos nuevos.
-      'react-hooks/set-state-in-effect': 'warn',
-      'react-hooks/refs': 'warn',
-      'react-hooks/immutability': 'warn',
+      // Reglas del compilador de React (eslint-plugin-react-hooks 6+), como error.
+      'react-hooks/set-state-in-effect': 'error',
+      'react-hooks/refs': 'error',
+      'react-hooks/immutability': 'error',
     },
   },
   {

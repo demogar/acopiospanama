@@ -97,9 +97,13 @@ export function PublicHome({
   const centers = centersQ.data ?? initialCenters;
   const meta = metaQ.data ?? initialMeta;
 
-  const [province, setProvince] = useState<string>(initialProvince ?? ALL);
-  const [item, setItem] = useState<string>(initialItem ?? ALL);
-  const [ctype, setCtype] = useState<string>(initialType ?? ALL);
+  const [rawProvince, setProvince] = useState<string>(initialProvince ?? ALL);
+  const [rawItem, setItem] = useState<string>(initialItem ?? ALL);
+  const [rawCtype, setCtype] = useState<string>(initialType ?? ALL);
+  // Descarta valores de la URL que no existen en el catálogo.
+  const province = meta && !meta.provinces[rawProvince] ? ALL : rawProvince;
+  const item = meta && !meta.items[rawItem] ? ALL : rawItem;
+  const ctype = meta && !(meta.centerTypes ?? CENTER_TYPES_FALLBACK)[rawCtype] ? ALL : rawCtype;
   const [onlyOpen, setOnlyOpen] = useState(false);
   const now = useNow();
   const [query, setQuery] = useState('');
@@ -107,14 +111,6 @@ export function PublicHome({
   const [geo, setGeo] = useState<Geo>({ state: 'off' });
   const [showMap, setShowMap] = useState(false);
   const [mapKey, setMapKey] = useState(0);
-
-  // Descarta valores de la URL que no existen en el catálogo.
-  useEffect(() => {
-    if (!meta) return;
-    if (province !== ALL && !meta.provinces[province]) setProvince(ALL);
-    if (item !== ALL && !meta.items[item]) setItem(ALL);
-    if (ctype !== ALL && !(meta.centerTypes ?? CENTER_TYPES_FALLBACK)[ctype]) setCtype(ALL);
-  }, [meta, province, item, ctype]);
 
   // Refleja provincia y artículo en la URL (no son datos personales). La ubicación y el texto, nunca.
   useEffect(() => {
