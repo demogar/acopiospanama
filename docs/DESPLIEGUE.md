@@ -10,7 +10,7 @@ merge a main ─────▶ CI otra vez ─▶ imágenes a GHCR (latest + sh
 
 El servidor nunca compila: solo descarga imágenes. Por eso convive bien con otras apps en un VPS pequeño.
 
-Producción hoy: VPS **ARM64** en Hetzner (`46.224.207.173`, Ubuntu, Docker) detrás de Cloudflare, dominio
+Producción hoy: VPS **ARM64** en Hetzner (Ubuntu, Docker) detrás de Cloudflare, dominio
 `acopiospanama.com`. Todo vive en `/opt/acopiospanama`, propiedad del usuario `deploy`.
 
 ## Puesta en marcha (una vez)
