@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.11.0](https://github.com/demogar/acopiospanama/compare/v0.10.1...v0.11.0) (2026-10-12)
+
+
+### Novedades
+
+* **data:** cuarto lote de centros (79) ([#52](https://github.com/demogar/acopiospanama/issues/52)) ([f51179a](https://github.com/demogar/acopiospanama/commit/f51179a351733996e1c82ca335a457757e8f871c))
+
 ## [0.10.1](https://github.com/demogar/acopiospanama/compare/v0.10.0...v0.10.1) (2026-10-11)
 
 
