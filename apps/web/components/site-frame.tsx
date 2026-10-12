@@ -150,13 +150,13 @@ export function SiteFrame({ title, subtitle, back, actions, width = 'page', chil
             .
           </p>
           <p>
-            Iniciativa de{' '}
+            Iniciativa de un{' '}
             <a
-              href="https://www.demogar.com"
+              href="https://github.com/demogar/acopiospanama/graphs/contributors"
               className="text-ink-2 underline underline-offset-2"
               rel="noopener noreferrer"
             >
-              Demóstenes García
+              grupo de colaboradores panameños
             </a>
             .
           </p>
