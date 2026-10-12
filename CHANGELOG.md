@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.15.0](https://github.com/demogar/acopiospanama/compare/v0.14.2...v0.15.0) (2026-10-12)
+
+
+### Novedades
+
+* **web:** tarjetas y ficha más fáciles de escanear ([#72](https://github.com/demogar/acopiospanama/issues/72)) ([adcd505](https://github.com/demogar/acopiospanama/commit/adcd5051639862e84555951119724804a8d3b873))
+
 ## [0.14.2](https://github.com/demogar/acopiospanama/compare/v0.14.1...v0.14.2) (2026-10-12)
 
 
