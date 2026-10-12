@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.14.0](https://github.com/demogar/acopiospanama/compare/v0.13.0...v0.14.0) (2026-10-12)
+
+
+### Novedades
+
+* **web:** mapa con grupos, zoom más fácil y ficha al pulsar un centro ([#64](https://github.com/demogar/acopiospanama/issues/64)) ([6417ce1](https://github.com/demogar/acopiospanama/commit/6417ce14cfa306feb940b610827c3c933e323a16))
+
 ## [0.13.0](https://github.com/demogar/acopiospanama/compare/v0.12.0...v0.13.0) (2026-10-12)
 
 
