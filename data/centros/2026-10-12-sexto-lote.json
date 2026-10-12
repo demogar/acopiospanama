@@ -1,0 +1,674 @@
+[
+  {
+    "name": "APEDE Azuero (Chitré)",
+    "centerType": "ACOPIO",
+    "organizerType": "ONG",
+    "organizerName": "Asociación Panameña de Ejecutivos de Empresa (APEDE), capítulo de Azuero",
+    "province": "HERRERA",
+    "district": "Chitré",
+    "community": "San Juan Bautista",
+    "address": "Calle El Progreso y Paseo Enrique Geenzier, Chitré",
+    "lat": 7.9652,
+    "lng": -80.4338,
+    "schedule": {
+      "MON": {
+        "open": "10:00",
+        "close": "14:00"
+      },
+      "TUE": {
+        "open": "10:00",
+        "close": "14:00"
+      }
+    },
+    "hoursNote": "Solo el lunes 12 y el martes 13 de octubre, de 10:00 a. m. a 2:00 p. m. Confirma antes de ir.",
+    "notes": "Centro de acopio de APEDE en Azuero, «Solidaridad con Azuero». Piden alimentos no perecederos (enlatados, agua, sopas instantáneas, leche en polvo, fórmula infantil, arroz, pasta, avena, galletas), higiene personal y sanitaria, pañales de niño y adulto, primeros auxilios, carpas, sábanas y sillas plegables.",
+    "needs": [
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Enlatados, sopas instantáneas, arroz, pasta, avena, galletas"
+      },
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua embotellada"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche en polvo, fórmula infantil, pañales de niño y adulto"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Jabón, toallas sanitarias, papel higiénico, toallitas, cepillo y pasta dental"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Gasas, vendas, curitas, guantes, mascarillas, alcohol, solución salina, botiquines"
+      },
+      {
+        "item": "TARPS",
+        "level": "NEEDED",
+        "note": "Carpas"
+      },
+      {
+        "item": "BEDDING",
+        "level": "NEEDED",
+        "note": "Sábanas"
+      }
+    ],
+    "source": {
+      "title": "Afiche de APEDE compartido en X por @Sarahrosasarias",
+      "url": "https://x.com/Sarahrosasarias/status/2109294155084018069",
+      "date": "2026-10-11"
+    }
+  },
+  {
+    "name": "Casa Club Activo 20-30 de Chitré",
+    "centerType": "ACOPIO",
+    "organizerType": "ONG",
+    "organizerName": "Club Activo 20-30 de Chitré",
+    "province": "HERRERA",
+    "district": "Chitré",
+    "community": "La Arena",
+    "address": "Casa Club Activo 20-30 de Chitré, Calle Andrés Batista, parque industrial de La Arena",
+    "lat": 7.9646,
+    "lng": -80.4629,
+    "schedule": {},
+    "hoursNote": "Afiche difundido el 10 de octubre, sin horario publicado. Confirma antes de ir.",
+    "notes": "Acopio de agua para los hospitales de Chitré: los pacientes atendidos en los estacionamientos de los centros de salud tras el sismo necesitan hidratación. Piden agua embotellada de 500 ml, 1 litro o en paquetes, en buen estado y sellada.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "URGENT",
+        "note": "Botellas de 500 ml, 1 litro o paquetes, selladas"
+      }
+    ],
+    "source": {
+      "title": "Afiche del Club Activo 20-30 de Chitré compartido en X por @sonomirenkirin",
+      "url": "https://x.com/sonomirenkirin/status/2108876075879297373",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Clínica SerSalud+ (Soná)",
+    "centerType": "ACOPIO",
+    "organizerType": "ONG",
+    "organizerName": "Impulsa Impacta Foundation y VEF",
+    "province": "VERAGUAS",
+    "district": "Soná",
+    "community": "Soná",
+    "address": "Clínica SerSalud+, Avenida Central, Soná",
+    "lat": 8.0074,
+    "lng": -81.3155,
+    "schedule": {},
+    "hoursNote": "El afiche anunció la recepción desde el sábado 10 de octubre a las 8:00 a. m., sin fecha de cierre. Confirma antes de ir.",
+    "notes": "Centro de acopio de ayuda humanitaria para las familias afectadas por el sismo en Azuero y el sur de Veraguas. Piden agua, enlatados, alimentos secos, higiene personal, primeros auxilios, ropa limpia y en buen estado, insumos para bebés, adultos mayores y personas con discapacidad, y equipo de protección para voluntarios.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Enlatados y alimentos secos"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Higiene personal"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Primeros auxilios y salud"
+      },
+      {
+        "item": "CLOTHES",
+        "level": "NEEDED",
+        "note": "Limpia, seca y en buen estado"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Bebés, adultos mayores y personas con discapacidad"
+      },
+      {
+        "item": "TOOLS",
+        "level": "NEEDED",
+        "note": "Equipo de protección para voluntarios"
+      }
+    ],
+    "source": {
+      "title": "Afiche de Impulsa Impacta Foundation y VEF compartido en X por @sonomirenkirin",
+      "url": "https://x.com/sonomirenkirin/status/2108878957936615741",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Pro Eco Azuero (Pedasí)",
+    "centerType": "ACOPIO",
+    "organizerType": "ONG",
+    "organizerName": "Fundación Pro Eco Azuero",
+    "province": "LOS_SANTOS",
+    "district": "Pedasí",
+    "community": "Pedasí",
+    "address": "Oficina de Pro Eco Azuero, Calle Las Malvinas (vía a Playa El Arenal), frente a Distribuidora Libadi, Pedasí",
+    "lat": 7.5344,
+    "lng": -80.0258,
+    "schedule": {},
+    "hoursNote": "El afiche del 10 de octubre no dice dónde ni a qué hora entregar; la oficina de la fundación está en Pedasí. Confirma antes de ir.",
+    "notes": "Campaña «Azuero nos necesita» para familias de comunidades rurales afectadas. Reciben alimentos no perecederos, agua en galones, botiquines, higiene personal, pañales de bebé y adulto, colchonetas, sábanas, mantas, toldos impermeables, linternas, baterías y productos de limpieza.",
+    "needs": [
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Arroz, frijoles, pasta, atún, sardinas, leche en polvo, enlatados"
+      },
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "En galones"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Gasas, vendas, antisépticos, medicamentos básicos"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Jabón, pasta dental, papel higiénico, toallas sanitarias"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pañales de bebé y adulto, toallitas"
+      },
+      {
+        "item": "BEDDING",
+        "level": "NEEDED",
+        "note": "Colchonetas, sábanas, mantas"
+      },
+      {
+        "item": "TARPS",
+        "level": "NEEDED",
+        "note": "Toldos impermeables"
+      },
+      {
+        "item": "LIGHTS",
+        "level": "NEEDED",
+        "note": "Linternas, baterías, lámparas recargables"
+      },
+      {
+        "item": "CLEANING",
+        "level": "NEEDED",
+        "note": "Cloro, detergente, bolsas de basura, guantes"
+      }
+    ],
+    "source": {
+      "title": "Afiche de Pro Eco Azuero compartido en X por @4oclocklq",
+      "url": "https://x.com/4oclocklq/status/2108954446239502425",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Gobernación de Herrera",
+    "centerType": "ACOPIO",
+    "organizerType": "GOBIERNO",
+    "organizerName": "Gobernación de Herrera",
+    "province": "HERRERA",
+    "district": "Chitré",
+    "community": "Chitré",
+    "address": "Gobernación de Herrera, Avenida Dr. Belisario Porras, Chitré",
+    "lat": 7.9559,
+    "lng": -80.427,
+    "schedule": {},
+    "hoursNote": "Horario no publicado. Confirma antes de ir.",
+    "notes": "Según Sumarse, las gobernaciones de todas las provincias reciben donaciones para los afectados por el sismo.",
+    "needs": [
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos no perecederos"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Aseo personal"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Insumos médicos y de primeros auxilios"
+      },
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      }
+    ],
+    "source": {
+      "title": "Lista compartida en X por @Sumarse",
+      "url": "https://x.com/Sumarse/status/2109047318494462289",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Gobernación de Los Santos",
+    "centerType": "ACOPIO",
+    "organizerType": "GOBIERNO",
+    "organizerName": "Gobernación de Los Santos",
+    "province": "LOS_SANTOS",
+    "district": "Las Tablas",
+    "community": "Las Tablas",
+    "address": "Palacio de Gobernación Moisés Espino, Calle Carlos L. López, Las Tablas",
+    "lat": 7.7703,
+    "lng": -80.2769,
+    "schedule": {},
+    "hoursNote": "Horario no publicado. Confirma antes de ir.",
+    "notes": "Según Sumarse, las gobernaciones de todas las provincias reciben donaciones para los afectados por el sismo.",
+    "needs": [
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos no perecederos"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Aseo personal"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Insumos médicos y de primeros auxilios"
+      },
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      }
+    ],
+    "source": {
+      "title": "Lista compartida en X por @Sumarse",
+      "url": "https://x.com/Sumarse/status/2109047318494462289",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Gobernación de Colón",
+    "centerType": "ACOPIO",
+    "organizerType": "GOBIERNO",
+    "organizerName": "Gobernación de Colón",
+    "province": "COLON",
+    "district": "Colón",
+    "community": "Barrio Norte",
+    "address": "Gobernación de Colón, Calle 6, Barrio Norte, Colón",
+    "lat": 9.3602,
+    "lng": -79.9044,
+    "schedule": {},
+    "hoursNote": "Horario no publicado. Confirma antes de ir.",
+    "notes": "Según Sumarse, las gobernaciones de todas las provincias reciben donaciones para los afectados por el sismo.",
+    "needs": [
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos no perecederos"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Aseo personal"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Insumos médicos y de primeros auxilios"
+      },
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      }
+    ],
+    "source": {
+      "title": "Lista compartida en X por @Sumarse",
+      "url": "https://x.com/Sumarse/status/2109047318494462289",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Gobernación de Panamá Oeste",
+    "centerType": "ACOPIO",
+    "organizerType": "GOBIERNO",
+    "organizerName": "Gobernación de Panamá Oeste",
+    "province": "PANAMA_OESTE",
+    "district": "La Chorrera",
+    "community": "La Chorrera",
+    "address": "Gobernación de Panamá Oeste, Carretera Panamericana, junto a Anclas Mall, La Chorrera",
+    "lat": 8.8906,
+    "lng": -79.7643,
+    "schedule": {},
+    "hoursNote": "Horario no publicado. Confirma antes de ir.",
+    "notes": "Según Sumarse, las gobernaciones de todas las provincias reciben donaciones para los afectados por el sismo.",
+    "needs": [
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos secos no perecederos"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Aseo personal"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Insumos médicos y de primeros auxilios"
+      },
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      }
+    ],
+    "source": {
+      "title": "Lista compartida en X por @Sumarse",
+      "url": "https://x.com/Sumarse/status/2109047318494462289",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Riba Smith Versalles",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Supermercados Riba Smith",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Don Bosco",
+    "address": "Riba Smith Selecto Versalles, Avenida Costanera, Versalles",
+    "lat": 9.0426,
+    "lng": -79.4141,
+    "schedule": {},
+    "hoursNote": "Recibe en horario de la tienda. Anunciado el 10 de octubre. Confirma antes de ir.",
+    "notes": "Riba Smith anunció que todos sus supermercados (excepto Chitré) son punto de acopio para los damnificados de la península de Azuero. Piden agua embotellada, alimentos enlatados y secos, pañales para bebés y adultos, leche e insumos de salud y medicamentos.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua embotellada"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Alimentos enlatados y secos"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pañales para bebés y adultos; leche"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Insumos de salud y medicamentos"
+      }
+    ],
+    "source": {
+      "title": "Riba Smith (Instagram oficial), compartido en X por @MiryAyala",
+      "url": "https://x.com/MiryAyala/status/2108969018367324478",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Junta Comunal de Don Bosco",
+    "centerType": "ACOPIO",
+    "organizerType": "JUNTA_COMUNAL",
+    "organizerName": "Junta Comunal de Don Bosco",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Don Bosco",
+    "address": "Junta Comunal de Don Bosco, Avenida Costanera, Urbanización Anasa, Don Bosco",
+    "lat": 9.042,
+    "lng": -79.4192,
+    "schedule": {},
+    "hoursNote": "Listada el 10 de octubre como centro de acopio, sin horario publicado. Confirma antes de ir.",
+    "notes": "Centro de acopio para las familias afectadas por el sismo en el interior. No se publicó una lista de artículos; lo más pedido en general es agua, alimentos no perecederos e higiene personal.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "No perecederos"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED"
+      }
+    ],
+    "source": {
+      "title": "Lista de centros de acopio en X de @raulconte10",
+      "url": "https://x.com/raulconte10/status/2108948205937295844",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Parroquia Inmaculada Concepción (La Chorrera)",
+    "centerType": "ACOPIO",
+    "organizerType": "IGLESIA",
+    "organizerName": "Cáritas Arquidiocesana de Panamá",
+    "province": "PANAMA_OESTE",
+    "district": "La Chorrera",
+    "community": "Altos de San Francisco",
+    "address": "Parroquia Inmaculada Concepción, Avenida de la Inmaculada Concepción, Altos de San Francisco, La Chorrera",
+    "lat": 8.8649,
+    "lng": -79.7964,
+    "schedule": {
+      "MON": {
+        "open": "08:30",
+        "close": "15:30"
+      },
+      "TUE": {
+        "open": "08:30",
+        "close": "15:30"
+      },
+      "WED": {
+        "open": "08:30",
+        "close": "15:30"
+      },
+      "THU": {
+        "open": "08:30",
+        "close": "15:30"
+      },
+      "FRI": {
+        "open": "08:30",
+        "close": "15:30"
+      }
+    },
+    "hoursNote": "Del lunes 12 al viernes 16 de octubre, de 8:30 a. m. a 3:30 p. m. Confirma antes de ir.",
+    "notes": "Campaña de Solidaridad por Panamá de Cáritas. Reciben agua, alimentos no perecederos, insumos de primeros auxilios, higiene personal de adultos y niños y comida para perros y gatos. No reciben ropa.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "No perecederos"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "De adultos y niños"
+      },
+      {
+        "item": "PET_FOOD",
+        "level": "NEEDED",
+        "note": "Perros y gatos"
+      }
+    ],
+    "source": {
+      "title": "Comunicado de la Arquidiócesis de Panamá",
+      "url": "https://arquidiocesisdepanama.org/caritas-arquidiocesana-inicia-campana-de-solidaridad-para-apoyar-a-familias-afectadas-por-el-sismo-en-panama/",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Parroquia Nuestra Señora del Carmen (Juan Díaz)",
+    "centerType": "ACOPIO",
+    "organizerType": "IGLESIA",
+    "organizerName": "Cáritas Arquidiocesana de Panamá",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Juan Díaz",
+    "address": "Parroquia Nuestra Señora del Carmen, Calle 140 Este, Juan Díaz",
+    "lat": 9.0452,
+    "lng": -79.4449,
+    "schedule": {
+      "MON": {
+        "open": "08:30",
+        "close": "15:30"
+      },
+      "TUE": {
+        "open": "08:30",
+        "close": "15:30"
+      },
+      "WED": {
+        "open": "08:30",
+        "close": "15:30"
+      },
+      "THU": {
+        "open": "08:30",
+        "close": "15:30"
+      },
+      "FRI": {
+        "open": "08:30",
+        "close": "15:30"
+      }
+    },
+    "hoursNote": "Del lunes 12 al viernes 16 de octubre, de 8:30 a. m. a 3:30 p. m. Confirma antes de ir.",
+    "notes": "Campaña de Solidaridad por Panamá de Cáritas. Reciben agua, alimentos no perecederos, insumos de primeros auxilios, higiene personal de adultos y niños y comida para perros y gatos. No reciben ropa.",
+    "needs": [
+      {
+        "item": "WATER",
+        "level": "NEEDED"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "No perecederos"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "De adultos y niños"
+      },
+      {
+        "item": "PET_FOOD",
+        "level": "NEEDED",
+        "note": "Perros y gatos"
+      }
+    ],
+    "source": {
+      "title": "Comunicado de la Arquidiócesis de Panamá",
+      "url": "https://arquidiocesisdepanama.org/caritas-arquidiocesana-inicia-campana-de-solidaridad-para-apoyar-a-familias-afectadas-por-el-sismo-en-panama/",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "Club Deportivo Jubasa (La Villa de Los Santos)",
+    "centerType": "ACOPIO",
+    "organizerType": "VECINOS",
+    "organizerName": "Voluntarios de La Villa de Los Santos",
+    "province": "LOS_SANTOS",
+    "district": "Los Santos",
+    "community": "La Villa de Los Santos",
+    "address": "Club Jubasa, La Villa de Los Santos",
+    "lat": 7.939,
+    "lng": -80.411,
+    "schedule": {},
+    "hoursNote": "Difundido el 10 de octubre; horario no publicado. Confirma antes de ir.",
+    "notes": "Centro de acopio para La Colorada de Los Santos, donde muchas casas quedaron inhabitables. Piden carpas o tiendas de acampar, colchones (también inflables) y artículos de primera necesidad.",
+    "needs": [
+      {
+        "item": "TARPS",
+        "level": "URGENT",
+        "note": "Carpas y tiendas de acampar"
+      },
+      {
+        "item": "BEDDING",
+        "level": "URGENT",
+        "note": "Colchones, también inflables"
+      }
+    ],
+    "source": {
+      "title": "Publicación en X de @kaitleinpmd sobre La Colorada",
+      "url": "https://x.com/kaitleinpmd/status/2109087175803375631",
+      "date": "2026-10-10"
+    }
+  },
+  {
+    "name": "DeConos, Contenedor Plaza (Cerro Viento)",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "DeConos",
+    "province": "PANAMA",
+    "district": "San Miguelito",
+    "community": "Rufina Alfaro",
+    "address": "Local de DeConos, Contenedor Plaza, entrada de Cerro Viento, frente a Metromall",
+    "lat": 9.0524,
+    "lng": -79.4543,
+    "schedule": {
+      "MON": {
+        "open": "08:00",
+        "close": "22:00"
+      },
+      "TUE": {
+        "open": "08:00",
+        "close": "22:00"
+      }
+    },
+    "hoursNote": "Recibe hasta el martes 13 de octubre, de 8:00 a. m. a 10:00 p. m. Confirma antes de ir.",
+    "notes": "Gran recolecta para las familias afectadas en Los Santos, Herrera y Veraguas. Piden arroz, menestras, aceite, enlatados, pastas, leche de fórmula, pañales, toallitas húmedas, agua potable, jabón, pasta dental y papel higiénico.",
+    "needs": [
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Arroz, menestras, aceite, enlatados, pastas"
+      },
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Leche de fórmula, pañales, toallitas húmedas"
+      },
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua potable"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Jabón, pasta dental, papel higiénico"
+      }
+    ],
+    "source": {
+      "title": "Afiche compartido en X por @Areh25",
+      "url": "https://x.com/Areh25/status/2109069609378693156",
+      "date": "2026-10-10"
+    }
+  }
+]
