@@ -1,0 +1,61 @@
+[
+  {
+    "name": "Tic Tac Toe Kids",
+    "centerType": "ACOPIO",
+    "organizerType": "ESCUELA",
+    "organizerName": "Tic Tac Toe Kids (preescolar)",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Bella Vista",
+    "address": "Entrada de Tic Tac Toe Kids, Calle 47 y Avenida 5ta B Sur, Marbella",
+    "lat": 8.9763072,
+    "lng": -79.5267723,
+    "schedule": {
+      "TUE": {
+        "open": "08:00",
+        "close": "15:00"
+      },
+      "WED": {
+        "open": "08:00",
+        "close": "15:00"
+      },
+      "THU": {
+        "open": "08:00",
+        "close": "15:00"
+      }
+    },
+    "hoursNote": "Solo del martes 13 al jueves 15 de octubre, de 8:00 a. m. a 3:00 p. m.",
+    "notes": "Para las familias afectadas por los sismos; lo recolectado va a zonas de difícil acceso del interior. Todo nuevo, cerrado y sin vencer. También reciben platos, vasos y cubiertos desechables.",
+    "needs": [
+      {
+        "item": "BABY",
+        "level": "NEEDED",
+        "note": "Pañales, toallitas y fórmula de bebé"
+      },
+      {
+        "item": "WATER",
+        "level": "NEEDED",
+        "note": "Agua embotellada"
+      },
+      {
+        "item": "FOOD",
+        "level": "NEEDED",
+        "note": "Enlatados, de preferencia que abran sin abrelatas"
+      },
+      {
+        "item": "HYGIENE",
+        "level": "NEEDED",
+        "note": "Jabón, pasta y cepillo de dientes, toallas sanitarias"
+      },
+      {
+        "item": "FIRST_AID",
+        "level": "NEEDED",
+        "note": "Botiquín básico"
+      }
+    ],
+    "source": {
+      "title": "@tictactoepty en Instagram",
+      "date": "2026-10-12"
+    }
+  }
+]
