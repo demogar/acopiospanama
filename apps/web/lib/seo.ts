@@ -75,6 +75,9 @@ export function centerJsonLd(c: PublicCenter, meta: PublicMeta | null, url: stri
         dayOfWeek: DAY_NAMES[day as Day],
         opens: allDay ? '00:00' : ds.open,
         closes: allDay ? '23:59' : ds.close,
+        // Centro temporal: el horario solo vale en esas fechas.
+        validFrom: c.availableFrom ?? undefined,
+        validThrough: c.availableUntil ?? undefined,
       },
     ];
   });

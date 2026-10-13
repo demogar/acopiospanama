@@ -16,6 +16,7 @@ import {
   NEED_LEVELS,
   NeedLevel,
   CENTER_TYPE_KEYS,
+  dateWindow,
   openNow,
   ORGANIZER_KEYS,
   PROVINCE_KEYS,
@@ -48,6 +49,15 @@ export const scheduleSchema = z
   .partial()
   .strict();
 
+/** Día de calendario `YYYY-MM-DD` que exista (no «2026-02-30»). */
+const isoDate = z
+  .string()
+  .regex(/^\d{4}-\d{2}-\d{2}$/, 'Fecha inválida (AAAA-MM-DD)')
+  .refine((s) => {
+    const d = new Date(`${s}T00:00:00Z`);
+    return !Number.isNaN(d.getTime()) && d.toISOString().slice(0, 10) === s;
+  }, 'Esa fecha no existe');
+
 const phone = z
   .string()
   .max(30)
@@ -69,6 +79,9 @@ export const centerInputSchema = z.object({
   lng: z.number().min(-83.1, 'Fuera de Panamá').max(-77.1, 'Fuera de Panamá').nullable().default(null),
   schedule: scheduleSchema.default({}),
   hoursNote: shortText(200).default(''),
+  /** Centro temporal: primer y último día en que recibe. Ambos null: permanente, hasta nuevo aviso. */
+  availableFrom: isoDate.nullable().default(null),
+  availableUntil: isoDate.nullable().default(null),
   contactName: shortText(80).default(''),
   contactPhone: phone,
   contactWhatsapp: phone,
@@ -110,6 +123,15 @@ export function contactFields(input: {
 }
 export type CenterInput = z.infer<typeof centerInputSchema>;
 
+/** Las fechas de un centro temporal van en orden. Se valida con los valores finales (tras fusionar una edición). */
+export function checkDates(d: { availableFrom?: string | null; availableUntil?: string | null }) {
+  if (d.availableFrom && d.availableUntil && d.availableFrom > d.availableUntil) {
+    throw new ApiError(400, 'VALIDATION', 'La fecha final es anterior a la inicial.', {
+      fields: { availableUntil: 'La fecha final es anterior a la inicial' },
+    });
+  }
+}
+
 export const needsSchema = z
   .array(z.object({ item: z.enum(ITEM_KEYS), level: z.enum(NEED_LEVELS), note: shortText(120).default('') }))
   .max(ITEM_KEYS.length);
@@ -123,7 +145,7 @@ export interface CenterStats {
   reportReasons: Partial<Record<ReportReason, number>>;
 }
 
-export type Visibility = 'VISIBLE' | 'COMMUNITY_HIDDEN' | 'CLOSED' | 'REMOVED';
+export type Visibility = 'VISIBLE' | 'COMMUNITY_HIDDEN' | 'CLOSED' | 'ENDED' | 'REMOVED';
 
 export interface CenterState {
   visibility: Visibility;
@@ -142,9 +164,11 @@ export interface CenterState {
  *    visible con el aviso (en disputa). Así nadie oculta un centro legítimo sin que su responsable
  *    pueda responder; la moderación decide los casos de estafa real.
  *  - Nada de pedidos de dinero en las fichas (se bloquea al guardar).
+ *  - Un centro temporal cuya última fecha ya pasó queda terminado (ENDED): sale del directorio sin
+ *    cerrarse ni borrarse, y vuelve en cuanto su responsable le pone fechas nuevas.
  */
 export function computeState(
-  c: Pick<Center, 'status' | 'managerConfirmedAt' | 'createdAt'>,
+  c: Pick<Center, 'status' | 'managerConfirmedAt' | 'createdAt'> & Partial<Pick<Center, 'availableUntil'>>,
   s: CenterStats,
   now = Date.now(),
 ): CenterState {
@@ -154,6 +178,7 @@ export function computeState(
   let visibility: Visibility;
   if (c.status === 'REMOVED') visibility = 'REMOVED';
   else if (c.status === 'CLOSED') visibility = 'CLOSED';
+  else if (dateWindow({ availableUntil: c.availableUntil ?? null }, new Date(now)) === 'ENDED') visibility = 'ENDED';
   else if (
     s.seriousReports >= HIDE_THRESHOLD &&
     s.seriousReports > s.confirmations &&
@@ -179,6 +204,8 @@ export interface PublicCenter {
   lng: number | null;
   schedule: Schedule;
   hoursNote: string;
+  availableFrom: string | null;
+  availableUntil: string | null;
   openNow: boolean | null;
   contactName: string;
   contactPhone: string;
@@ -348,7 +375,9 @@ export class CentersService {
         lng: c.lng,
         schedule: c.schedule ?? {},
         hoursNote: c.hoursNote,
-        openNow: openNow(c.schedule ?? {}),
+        availableFrom: c.availableFrom,
+        availableUntil: c.availableUntil,
+        openNow: openNow(c.schedule ?? {}, new Date(), c),
         contactName: c.contactConsentAt ? c.contactName : '',
         contactPhone: c.contactConsentAt ? c.contactPhone : '',
         contactWhatsapp: c.contactConsentAt ? c.contactWhatsapp : '',

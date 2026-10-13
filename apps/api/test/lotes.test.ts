@@ -7,7 +7,7 @@ import { sql } from 'kysely';
 import { z } from 'zod';
 import { BATCH_FILE, findBatchesDir, importBatches } from '../src/cli/import-batches';
 import { entrySchema } from '../src/cli/import-centers';
-import { CentersService } from '../src/centers/centers.service';
+import { CentersService, checkDates } from '../src/centers/centers.service';
 import { parse } from '../src/common/http';
 import { centerBody, setup, TestEnv } from './helpers';
 
@@ -26,7 +26,10 @@ describe('lotes de data/centros', () => {
     for (const f of readdirSync(dir).filter((f) => f.endsWith('.json'))) {
       assert.match(f, BATCH_FILE, `${f}: debe llamarse NNN_nombre.json para aplicarse`);
       const entries = parse(z.array(entrySchema).min(1), JSON.parse(readFileSync(join(dir, f), 'utf8')));
-      for (const e of entries) centers.validateNoMoney(e, e.needs);
+      for (const e of entries) {
+        centers.validateNoMoney(e, e.needs);
+        checkDates(e);
+      }
     }
   });
 

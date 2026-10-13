@@ -4,7 +4,7 @@ import type { Schedule } from './public-schedule';
 export type CenterType = 'ACOPIO' | 'DISTRIBUCION' | 'COMEDOR' | 'ALBERGUE' | 'MIXTO';
 
 export type NeedLevel = 'URGENT' | 'NEEDED' | 'ENOUGH';
-export type Visibility = 'VISIBLE' | 'COMMUNITY_HIDDEN' | 'CLOSED' | 'REMOVED';
+export type Visibility = 'VISIBLE' | 'COMMUNITY_HIDDEN' | 'CLOSED' | 'ENDED' | 'REMOVED';
 
 export interface PublicNeed {
   item: string;
@@ -27,6 +27,9 @@ export interface PublicCenter {
   lng: number | null;
   schedule: Schedule;
   hoursNote: string;
+  /** Centro temporal: primer y último día en que recibe (`YYYY-MM-DD`). Ambos null: permanente. */
+  availableFrom: string | null;
+  availableUntil: string | null;
   /** Calculado por la API (lista en caché 30 s): recalcular con `openNow` de `public-schedule`. */
   openNow: boolean | null;
   /** Contacto público: cadenas vacías si la persona no dio su consentimiento. */

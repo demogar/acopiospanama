@@ -28,6 +28,7 @@ import {
   type MyCenter,
   timeAgo,
 } from '@/lib/account-types';
+import { formatDay } from '@/lib/public-schedule';
 import { useApi } from '@/lib/use-api';
 
 type Section = 'necesidades' | 'datos' | 'responsables';
@@ -98,6 +99,17 @@ function EditInner({ tileHost }: { tileHost: string }) {
               Mis centros
             </Link>{' '}
             y toca «Reabrir».
+          </Callout>
+        )}
+        {center.visibility === 'ENDED' && (
+          <Callout tone="info" headingLevel={2} title={`Terminó el ${formatDay(center.availableUntil ?? '', true)}`}>
+            <p>
+              Ya pasó su última fecha y no aparece en el directorio. Si vas a volver a recibir, cambia las fechas en la
+              pestaña «Datos» y vuelve a mostrarse.
+            </p>
+            <Button variant="secondary" className="mt-2" onClick={() => change('datos')}>
+              Cambiar las fechas
+            </Button>
           </Callout>
         )}
         <Tabs value={section} onValueChange={(v) => change(v as Section)} className="min-w-0">
@@ -247,7 +259,7 @@ function DataForm({
     const orig = toBody(original);
     const diff: Record<string, unknown> = {};
     const CONTACT = ['contactName', 'contactPhone', 'contactWhatsapp', 'contactConsent'] as const;
-    for (const k of Object.keys(body) as (keyof CenterInput)[]) {
+    for (const k of Object.keys(body) as (keyof typeof body)[]) {
       if ((CONTACT as readonly string[]).includes(k)) continue;
       if (JSON.stringify(body[k]) !== JSON.stringify(orig[k])) diff[k] = body[k];
     }

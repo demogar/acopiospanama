@@ -1,9 +1,9 @@
 'use client';
 
 import { useSyncExternalStore } from 'react';
-import { Clock } from 'lucide-react';
+import { CalendarDays, Clock } from 'lucide-react';
 import { Badge } from '@demogar/mola-ui';
-import { openNow, openStatus, todayText, type OpenStatus } from '@/lib/public-schedule';
+import { dateWindow, datesLabel, openNow, openStatus, todayText, type OpenStatus } from '@/lib/public-schedule';
 import type { PublicCenter } from '@/lib/public-types';
 
 /*
@@ -43,13 +43,18 @@ export function useNow(): Date | null {
   return useSyncExternalStore(subscribe, getNow, getServerNow);
 }
 
+type Timed = Pick<PublicCenter, 'schedule' | 'openNow' | 'availableFrom' | 'availableUntil'>;
+
 /** ¿Abierto ahora? Con la hora del navegador si ya la hay; si no, lo que calculó la API. */
-export function isOpenNow(c: Pick<PublicCenter, 'schedule' | 'openNow'>, now: Date | null): boolean | null {
-  return now ? openNow(c.schedule, now) : c.openNow;
+export function isOpenNow(c: Timed, now: Date | null): boolean | null {
+  return now ? openNow(c.schedule, now, c) : c.openNow;
 }
 
-export function statusFor(c: Pick<PublicCenter, 'schedule' | 'openNow'>, now: Date | null): OpenStatus {
-  if (now) return openStatus(c.schedule, now);
+export function statusFor(c: Timed, now: Date | null): OpenStatus {
+  if (now) return openStatus(c.schedule, now, c);
+  // Fuera de sus fechas no se dice «Cerrado ahora»: lo dice la etiqueta de fechas.
+  const w = dateWindow(c);
+  if (w === 'BEFORE' || w === 'ENDED') return null;
   if (c.openNow === null) return null;
   return c.openNow ? { state: 'open', label: 'Abierto ahora' } : { state: 'closed', label: 'Cerrado ahora' };
 }
@@ -64,26 +69,50 @@ export function OpenBadge({ status }: { status: OpenStatus }) {
   );
 }
 
-/** «[Abierto ahora] Hoy: 8:00 a. m. – 5:00 p. m.» para tarjetas y ficha. */
-export function OpenLine({ center }: { center: Pick<PublicCenter, 'schedule' | 'openNow'> }) {
+/** «Abre el 14 de oct», «Del 13 al 15 de oct»…: solo en centros temporales. */
+export function DatesBadge({ center }: { center: Pick<PublicCenter, 'availableFrom' | 'availableUntil'> }) {
+  const now = useNow();
+  const label = datesLabel(center, now ?? undefined);
+  if (!label) return null;
+  const w = dateWindow(center, now ?? undefined);
+  return (
+    <Badge tone={w === 'BEFORE' ? 'info' : 'warn'} variant="soft">
+      <CalendarDays aria-hidden="true" className="size-3.5" />
+      <span suppressHydrationWarning>{label}</span>
+    </Badge>
+  );
+}
+
+/** «[Abierto ahora] [Del 13 al 15 de oct] Hoy: 8:00 a. m. – 5:00 p. m.» para tarjetas y ficha. */
+export function OpenLine({ center }: { center: Timed }) {
   const now = useNow();
   const status = statusFor(center, now);
-  const raw = todayText(center.schedule, now ?? undefined);
+  const raw = todayText(center.schedule, now ?? undefined, center);
+  const dated = !!datesLabel(center, now ?? undefined);
   // «Hoy: Cerrado» junto a «Cerrado ahora» repite lo mismo; «Hoy: Sin dato» no aporta nada.
   const today =
     !raw || raw.endsWith('Sin dato') || (raw.endsWith('Cerrado') && status?.state === 'closed') ? null : raw;
-  if (!status && !today) return null;
+  if (!status && !today && !dated) return null;
   return (
     <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-ink">
       <Clock aria-hidden="true" className="size-4 shrink-0 text-ink-2" />
       <OpenBadge status={status} />
+      <DatesBadge center={center} />
       {today && <span suppressHydrationWarning>{today}</span>}
     </p>
   );
 }
 
-/** Solo el estado («Abierto ahora», «Abre hoy 2:00 p. m.»), para la tarjeta. Nada si no hay horario. */
-export function OpenStatusBadge({ center }: { center: Pick<PublicCenter, 'schedule' | 'openNow'> }) {
+/**
+ * Solo el estado («Abierto ahora», «Abre hoy 2:00 p. m.») y, si es temporal, sus fechas, para la
+ * tarjeta. Nada si no hay horario ni fechas.
+ */
+export function OpenStatusBadge({ center }: { center: Timed }) {
   const now = useNow();
-  return <OpenBadge status={statusFor(center, now)} />;
+  return (
+    <>
+      <OpenBadge status={statusFor(center, now)} />
+      <DatesBadge center={center} />
+    </>
+  );
 }

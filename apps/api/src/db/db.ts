@@ -6,6 +6,8 @@ import type { Database } from './types';
 
 // int8 (count(*)) como número: los conteos de esta app nunca superan 2^53.
 types.setTypeParser(20, (v) => Number(v));
+// date como texto `YYYY-MM-DD`: son días de calendario en Panamá, sin hora ni zona.
+types.setTypeParser(1082, (v) => v);
 
 export type DB = Kysely<Database>;
 
