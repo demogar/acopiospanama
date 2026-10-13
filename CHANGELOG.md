@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.21.0](https://github.com/demogar/acopiospanama/compare/v0.20.0...v0.21.0) (2026-10-13)
+
+
+### Novedades
+
+* **web:** los filtros del directorio se guardan en la URL ([#85](https://github.com/demogar/acopiospanama/issues/85)) ([5db5d38](https://github.com/demogar/acopiospanama/commit/5db5d38213b85720d908fa538ab6033b843f3bec))
+
 ## [0.20.0](https://github.com/demogar/acopiospanama/compare/v0.19.0...v0.20.0) (2026-10-13)
 
 
