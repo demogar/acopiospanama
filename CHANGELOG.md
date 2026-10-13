@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.22.0](https://github.com/demogar/acopiospanama/compare/v0.21.0...v0.22.0) (2026-10-13)
+
+
+### Novedades
+
+* **web:** logo nuevo y enlace para donar desde el extranjero ([#87](https://github.com/demogar/acopiospanama/issues/87)) ([7f0eaa1](https://github.com/demogar/acopiospanama/commit/7f0eaa1e4ad0fdbbfc7073d629fd6cf22c47bbce))
+* **web:** mapa con fondo claro y marcadores por prioridad; README nuevo ([#88](https://github.com/demogar/acopiospanama/issues/88)) ([8abe8af](https://github.com/demogar/acopiospanama/commit/8abe8afdc3bbf8b976905a32a4083b2017068b84))
+
 ## [0.21.0](https://github.com/demogar/acopiospanama/compare/v0.20.0...v0.21.0) (2026-10-13)
 
 
