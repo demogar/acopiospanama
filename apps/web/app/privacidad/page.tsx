@@ -92,8 +92,8 @@ export default function Privacidad() {
         <section>
           <h2>Mapa y enlaces externos</h2>
           <p>
-            El mapa es opcional y solo se carga si pulsas «Ver mapa». Sus imágenes vienen de OpenStreetMap, que recibe
-            tu conexión como cualquier sitio web, pero no tu ubicación ni qué centro miras. Los botones «Cómo llegar»,
+            El mapa es opcional y solo se carga si pulsas «Ver mapa». Sus imágenes vienen de Stadia Maps, que recibe tu
+            conexión como cualquier sitio web, pero no tu ubicación ni qué centro miras. Los botones «Cómo llegar»,
             «Waze» y «WhatsApp» abren esos servicios, con sus propias reglas de privacidad.
           </p>
         </section>

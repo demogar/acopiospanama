@@ -129,8 +129,9 @@ con un token personal de solo lectura (`read:packages`) o vuelve a lanzar el wor
 - Otra app necesitaría su propio compose y su propia base de datos; si también quiere 80/443, comparte este
   Caddy (añade su bloque al `Caddyfile` y únela a la red) en vez de levantar otro proxy.
 - La lista pública se cachea 30 s en la API y se sirve con `Cache-Control: public`. Cloudflare absorbe los picos.
-- El mapa usa las teselas de OpenStreetMap, que exige atribución y no admite tráfico masivo. Si el sitio crece,
-  cambia `MAP_TILE_HOST` a un proveedor propio (MapTiler, Stadia, etc.).
+- El mapa usa las teselas de Stadia Maps («Alidade Smooth»). Stadia autoriza por dominio, sin clave: registra el
+  dominio de producción en su panel (cuenta gratuita para proyectos sin fines de lucro) o el mapa no cargará. Para
+  volver a OpenStreetMap, pon `MAP_TILE_HOST=https://tile.openstreetmap.org`.
 
 ## Respaldos
 
