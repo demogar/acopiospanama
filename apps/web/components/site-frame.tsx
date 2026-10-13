@@ -1,6 +1,7 @@
 import Link from 'next/link';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, ExternalLink } from 'lucide-react';
 import { BrandMark } from './brand-mark';
+import { NewTab } from './ui/new-tab';
 
 /**
  * Marco común de todas las pantallas: cabecera con la marca y accesos, título opcional y pie.
@@ -89,10 +90,13 @@ export function SiteFrame({ title, subtitle, back, actions, width = 'page', chil
           Visiting from overseas?{' '}
           <a
             href="https://cruzroja.org.pa/donar/"
+            target="_blank"
             className="font-semibold text-ink underline underline-offset-2"
             rel="noopener noreferrer"
           >
             Donate to the Panamanian Red Cross
+            <ExternalLink aria-hidden className="ml-1 inline size-3.5 align-[-0.125em]" />
+            <NewTab label="opens in a new tab" />
           </a>
           .
         </p>
