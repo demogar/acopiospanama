@@ -1,7 +1,7 @@
 'use client';
 
 /*
- * Selector de ubicación en el mapa (Leaflet + teselas de OpenStreetMap). Se carga solo al pulsar
+ * Selector de ubicación en el mapa (Leaflet + teselas de `lib/map-tiles.ts`). Se carga solo al pulsar
  * «Elegir en el mapa». Tocar el mapa coloca el marcador; también se puede arrastrar. El marcador es
  * un divIcon (sin imágenes externas). Si las teselas no cargan, los otros métodos siguen funcionando.
  */
@@ -9,6 +9,7 @@ import 'leaflet/dist/leaflet.css';
 import { useEffect, useRef, useState } from 'react';
 import type * as Leaflet from 'leaflet';
 import { inPanama } from '@/lib/account-geo';
+import { tileSource } from '@/lib/map-tiles';
 
 const PANAMA: [number, number] = [8.45, -80.1];
 
@@ -44,9 +45,10 @@ export default function MapPicker({
       const start: [number, number] = lat !== null && lng !== null ? [lat, lng] : PANAMA;
       const map = L.map(el.current, { center: start, zoom: lat !== null ? 16 : 7, scrollWheelZoom: false });
       map.attributionControl.setPrefix('<a href="https://leafletjs.com">Leaflet</a>');
-      const tiles = L.tileLayer(`${tileHost}/{z}/{x}/{y}.png`, {
+      const source = tileSource(tileHost);
+      const tiles = L.tileLayer(source.url, {
         maxZoom: 19,
-        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        attribution: source.attribution,
         referrerPolicy: 'origin',
       });
       tiles.on('tileerror', () => {

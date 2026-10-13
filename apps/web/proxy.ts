@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { analyticsOrigin } from '@/lib/site';
+import { DEFAULT_TILE_HOST } from '@/lib/map-tiles';
 
 /**
  * CSP estricta con nonce por solicitud: solo se ejecutan los scripts de la propia app y el de la
@@ -36,7 +37,7 @@ export function proxy(request: NextRequest) {
 
 function mapTileOrigin(): string {
   try {
-    return new URL(process.env.MAP_TILE_HOST || 'https://tile.openstreetmap.org').origin;
+    return new URL(process.env.MAP_TILE_HOST || DEFAULT_TILE_HOST).origin;
   } catch {
     return '';
   }

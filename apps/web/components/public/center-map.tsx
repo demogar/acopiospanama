@@ -1,7 +1,7 @@
 'use client';
 
 /*
- * Mapa de centros con Leaflet y teselas de OpenStreetMap. Este módulo (y Leaflet con su CSS) solo se
+ * Mapa de centros con Leaflet y teselas claras (ver `lib/map-tiles.ts`). Este módulo (y Leaflet con su CSS) solo se
  * descarga cuando alguien pulsa «Ver mapa»: por defecto la página muestra la lista y ahorra datos.
  *
  * - Los centros que en pantalla quedarían encimados se agrupan en un círculo con el número; al acercar
@@ -20,6 +20,7 @@ import { ArrowLeft, Expand, MapPin, Minus, Navigation, Plus, Scan, Shrink, X } f
 import { buttonVariants, IconButton } from '@demogar/mola-ui';
 import { NewTab } from '@/components/ui/new-tab';
 import { groupMapPoints } from '@/lib/map-groups';
+import { tileSource } from '@/lib/map-tiles';
 import {
   centerTypeShort,
   directionsLinks,
@@ -171,11 +172,18 @@ export default function CenterMap({
         label = `${c.name}. ${TONE_LABEL[tone]}. Ver ficha`;
         root.className = 'acp-dot';
       } else {
-        size = g.length < 10 ? 40 : g.length < 100 ? 46 : 52;
+        // Grupos en tinta, todos del mismo tamaño; la burbuja roja dice cuántos tienen urgencias.
+        size = 44;
         const urgent = g.filter((p) => toneOf(p.c) === 'urgent').length;
         label = `${g.length} centros aquí${urgent ? `, ${urgent} con necesidades urgentes` : ''}. Acercar`;
         root.className = 'acp-count';
         root.textContent = String(g.length);
+        if (urgent) {
+          const badge = document.createElement('span');
+          badge.className = 'acp-badge';
+          badge.textContent = String(urgent);
+          root.append(badge);
+        }
       }
       const icon = L.divIcon({
         className: `acp-marker acp-${tone}${g.length > 1 ? ' acp-group' : ''}${isSelected ? ' is-selected' : ''}`,
@@ -184,7 +192,9 @@ export default function CenterMap({
         iconAnchor: [size / 2, size / 2],
       });
       const latlng = g.length === 1 ? L.latLng(g[0].c.lat, g[0].c.lng) : map.unproject([x, y], z);
-      const m = L.marker(latlng, { icon, keyboard: true, riseOnHover: true, zIndexOffset: isSelected ? 1000 : 0 });
+      // Lo urgente queda encima de los puntos chicos; lo seleccionado, encima de todo.
+      const zIndexOffset = isSelected ? 1000 : g.length === 1 && tone === 'urgent' ? 500 : 0;
+      const m = L.marker(latlng, { icon, keyboard: true, riseOnHover: true, zIndexOffset });
       const activate = () => {
         if (g.length === 1) setSelected({ kind: 'center', id: ids[0] });
         else openGroup(ids);
@@ -243,9 +253,10 @@ export default function CenterMap({
         maxBoundsViscosity: 0.8,
       });
       map.attributionControl.setPrefix('<a href="https://leafletjs.com">Leaflet</a>');
-      const tiles = L.tileLayer(`${tileHost}/{z}/{x}/{y}.png`, {
+      const source = tileSource(tileHost);
+      const tiles = L.tileLayer(source.url, {
         maxZoom: MAX_ZOOM,
-        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        attribution: source.attribution,
         // El documento usa «no-referrer»; el servicio de teselas pide saber desde qué sitio se usa. Solo se envía el origen.
         referrerPolicy: 'origin',
       });
@@ -544,11 +555,11 @@ export default function CenterMap({
         <li className="flex items-center gap-1.5">
           <span
             aria-hidden="true"
-            className="inline-grid size-5 place-items-center rounded-full font-bold text-[10px] text-ink shadow-[0_0_0_1px_var(--ink)]"
+            className="inline-grid size-5 place-items-center rounded-full bg-ink font-bold text-[10px] text-white"
           >
             5
           </span>
-          Varios centros: pulsa para acercar
+          Varios centros: pulsa para acercar (en rojo, cuántos son urgentes)
         </li>
       </ul>
       {tilesFailed && (

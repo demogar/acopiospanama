@@ -1,4 +1,5 @@
 import type { PublicCenter, PublicMeta } from './public-types';
+import { DEFAULT_TILE_HOST } from './map-tiles';
 
 /**
  * Lecturas públicas desde el servidor de Next (primer pintado sin esperar otra ida y vuelta,
@@ -41,6 +42,6 @@ export const getPublicCenter = (slug: string) =>
 
 /** Origen de las teselas del mapa (también se usa en la CSP de `proxy.ts`). */
 export function mapTileHost(): string {
-  const raw = process.env.MAP_TILE_HOST || 'https://tile.openstreetmap.org';
+  const raw = process.env.MAP_TILE_HOST || DEFAULT_TILE_HOST;
   return raw.replace(/\/+$/, '');
 }
