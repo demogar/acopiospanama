@@ -121,8 +121,8 @@ Las pruebas usan su propia base: `TEST_DATABASE_URL=postgresql://acopio:acopio@1
 ## Contribuir
 
 Es código abierto y construido en público. Cualquier ayuda suma: código, diseño, textos, pruebas en teléfonos
-reales y difusión. Lee [CONTRIBUTING.md](CONTRIBUTING.md). Cada PR corre la CI completa, y al fusionarse en
-`main` se despliega solo.
+reales y difusión. Lee [CONTRIBUTING.md](CONTRIBUTING.md). Cada PR corre la CI completa, y cada release fusionado
+en `main` se despliega solo.
 
 ## Licencia
 

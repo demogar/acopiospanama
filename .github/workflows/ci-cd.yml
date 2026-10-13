@@ -1,4 +1,6 @@
-# CI en cada pull request; al fusionar en main: imágenes a GHCR y despliegue en el VPS por SSH.
+# CI en cada pull request; al fusionar en main: imágenes a GHCR. Solo se despliega en el VPS (por SSH)
+# cuando lo fusionado es un release (el PR «chore(release): vX.Y.Z», que cambia la versión de package.json),
+# o a mano con «Run workflow».
 #
 # Seguridad para un repo abierto:
 #  - Los PR (también de forks) corren SIN secretos y con permisos de solo lectura.
@@ -153,10 +155,36 @@ jobs:
           # su rama: solo main la escribe y los PR la leen.
           cache-to: ${{ github.event_name == 'push' && format('type=gha,mode=max,scope={0}', matrix.name) || '' }}
 
+  release:
+    name: ¿Es un release?
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      desplegar: ${{ steps.check.outputs.desplegar }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 2
+      # Los merges son squash (un commit por PR): si la versión cambió respecto al commit anterior, es el
+      # PR de release-please. Lanzado a mano (workflow_dispatch) siempre despliega.
+      - id: check
+        run: |
+          if [ "$GITHUB_EVENT_NAME" = workflow_dispatch ]; then echo "desplegar=true" >> "$GITHUB_OUTPUT"; exit 0; fi
+          antes=$(git show HEAD^:package.json | node -p "JSON.parse(require('fs').readFileSync(0)).version")
+          ahora=$(node -p "require('./package.json').version")
+          if [ "$antes" != "$ahora" ]; then
+            echo "Release v$ahora (antes v$antes): se despliega."
+            echo "desplegar=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "::notice::No es un release (v$ahora): las imágenes se publicaron, pero no se despliega."
+            echo "desplegar=false" >> "$GITHUB_OUTPUT"
+          fi
+
   deploy:
     name: Desplegar en el VPS
-    needs: [api, web, lint, audit, images]
-    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: [api, web, lint, audit, images, release]
+    if: needs.release.outputs.desplegar == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     # Entorno con protección opcional (revisores obligatorios) en Settings › Environments.
