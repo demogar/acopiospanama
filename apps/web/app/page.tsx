@@ -46,8 +46,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
   });
 }
 
-export default async function Home({ searchParams }: Props) {
-  const { p, i, t } = await filters(searchParams);
+export default async function Home() {
   const [centers, meta] = await Promise.all([getPublicCenters(), getPublicMeta()]);
   return (
     <SiteFrame width="wide">
@@ -55,9 +54,6 @@ export default async function Home({ searchParams }: Props) {
       <PublicHome
         initialCenters={centers.ok ? centers.data : null}
         initialMeta={meta.ok ? meta.data : null}
-        initialProvince={p}
-        initialItem={i}
-        initialType={t}
         tileHost={mapTileHost()}
       />
     </SiteFrame>
