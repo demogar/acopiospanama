@@ -20,7 +20,7 @@ directorio **más confiable, más rápido y más fácil de usar en un teléfono 
    en el mensaje del commit al fusionar con _squash_ y de él sale la versión y el registro de cambios.
    La CI corre lint y formato, tipos, pruebas contra PostgreSQL, el build web, la auditoría de dependencias,
    CodeQL y el build de las imágenes Docker.
-5. Una persona mantenedora revisa. Al fusionar en `main` se publica y se despliega automáticamente.
+5. Una persona mantenedora revisa. Al fusionar en `main` entra en el siguiente release, que se despliega automáticamente al publicarse.
 
 Un cambio que rompe compatibilidad (API pública, formato de datos) lleva `!` en el título (`feat!: …`) o un pie
 `BREAKING CHANGE:` en la descripción.

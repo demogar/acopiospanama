@@ -5,8 +5,13 @@
 ```
 PR (fork o rama) ─▶ CI: tipos · pruebas con PostgreSQL · build web · npm audit · CodeQL · build Docker
                        (sin secretos; los PR de forks no pueden publicar ni desplegar)
-merge a main ─────▶ CI otra vez ─▶ imágenes a GHCR (latest + sha) ─▶ SSH al VPS: pull + up ─▶ /api/health
+merge a main ─────▶ CI otra vez ─▶ imágenes a GHCR (sha-…)
+merge del release ─▶ lo anterior ─▶ SSH al VPS: pull + up ─▶ /api/health ─▶ imágenes marcadas latest + vX.Y.Z
 ```
+
+Solo se despliega cuando lo fusionado es el PR de release-please («chore(release): vX.Y.Z», que cambia la
+versión de `package.json`). Los demás merges acumulan cambios en `main` hasta el siguiente release. Para
+desplegar `main` tal cual sin publicar versión (una emergencia), lanza _Actions › CI/CD › Run workflow_.
 
 El servidor nunca compila: solo descarga imágenes. Por eso convive bien con otras apps en un VPS pequeño.
 
