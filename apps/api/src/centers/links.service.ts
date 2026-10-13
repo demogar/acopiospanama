@@ -150,7 +150,7 @@ export class LinksService {
       await mail.send({
         to: m.email,
         subject: 'Alguien reportó uno de tus centros de acopio',
-        text: `Una persona reportó un problema con «${c.name}» en Acopio Panamá. Revisa que la información esté al día en ${this.config.appOrigin}/mis-centros\n\nSi varias personas lo reportan, el centro se marca o se oculta automáticamente.`,
+        text: `Una persona reportó un problema con «${c.name}» en Acopios Panamá. Revisa que la información esté al día en ${this.config.appOrigin}/mis-centros\n\nSi varias personas lo reportan, el centro se marca o se oculta automáticamente.`,
       });
     }
   }

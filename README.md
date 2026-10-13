@@ -2,7 +2,7 @@
 
 <a href="https://acopiospanama.com"><img src="docs/assets/logo.svg" alt="" width="88" height="88"></a>
 
-# Acopio Panamá
+# Acopios Panamá
 
 **Dónde llevar donaciones y qué necesitan hoy.**
 
@@ -30,7 +30,7 @@ creado por la comunidad tras el terremoto del 9 de octubre de 2026.
 > [Panamanian Red Cross](https://cruzroja.org.pa/donar/).
 
 <p align="center">
-  <a href="https://acopiospanama.com"><img src="docs/assets/captura.png" alt="Portada de Acopio Panamá: filtros por provincia, lista de centros con lo que necesitan y mapa con los centros urgentes resaltados" width="900"></a>
+  <a href="https://acopiospanama.com"><img src="docs/assets/captura.png" alt="Portada de Acopios Panamá: filtros por provincia, lista de centros con lo que necesitan y mapa con los centros urgentes resaltados" width="900"></a>
 </p>
 
 ## Qué hace

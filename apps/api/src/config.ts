@@ -16,7 +16,7 @@ const schema = z
     SECRET_KEY: z.string().min(43, 'SECRET_KEY debe tener al menos 32 bytes aleatorios (openssl rand -base64 48)'),
     MAIL_MODE: z.enum(['smtp', 'outbox']).default('smtp'),
     SMTP_URL: z.string().optional(),
-    MAIL_FROM: z.string().default('Acopio Panamá <no-responder@localhost>'),
+    MAIL_FROM: z.string().default('Acopios Panamá <no-responder@localhost>'),
     COOKIE_SECURE: bool.optional(),
     TRUST_PROXY: z.coerce.number().int().min(0).max(5).default(0),
     RESIDENT_IDLE_MINUTES: z.coerce

@@ -37,7 +37,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
     : 0;
   const head = count ? `${count} ${count === 1 ? 'lugar activo' : 'lugares activos'}` : what;
   const title = `${what} en ${where}`;
-  // La portada está en el mismo segmento que el layout raíz: la plantilla «%s · Acopio Panamá» no le llega.
+  // La portada está en el mismo segmento que el layout raíz: la plantilla «%s · Acopios Panamá» no le llega.
   return pageMeta({
     absoluteTitle: `${title} · ${SITE_NAME}`,
     ogTitle: title,

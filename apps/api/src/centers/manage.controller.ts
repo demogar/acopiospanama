@@ -456,7 +456,7 @@ export class ManageController {
         await this.mail.send({
           to: email,
           subject: 'Te invitaron a administrar un centro de acopio',
-          text: `Alguien que administra un centro de acopio en Acopio Panamá te invitó a ser co-responsable.\n\nPara ver la invitación y aceptarla (o rechazarla), entra en ${this.config.appOrigin}/mis-centros con este correo. Sin contraseñas.\n\nSi no esperabas esta invitación, ignora este correo: no tendrás ningún rol si no la aceptas.`,
+          text: `Alguien que administra un centro de acopio en Acopios Panamá te invitó a ser co-responsable.\n\nPara ver la invitación y aceptarla (o rechazarla), entra en ${this.config.appOrigin}/mis-centros con este correo. Sin contraseñas.\n\nSi no esperabas esta invitación, ignora este correo: no tendrás ningún rol si no la aceptas.`,
         });
       }
     }
@@ -542,7 +542,7 @@ export class ManageController {
         await this.mail.send({
           to: removed.email,
           subject: 'Ya no eres responsable de un centro de acopio',
-          text: `Otro responsable te quitó de un centro que administrabas en Acopio Panamá.\n\nSi crees que es un error o un abuso, usa «Reportar un problema» en la ficha del centro o responde a la moderación desde ${this.config.appOrigin}/como-funciona.`,
+          text: `Otro responsable te quitó de un centro que administrabas en Acopios Panamá.\n\nSi crees que es un error o un abuso, usa «Reportar un problema» en la ficha del centro o responde a la moderación desde ${this.config.appOrigin}/como-funciona.`,
         });
       }
     }

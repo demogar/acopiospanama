@@ -3,7 +3,7 @@
  * Sin dependencias de Node: también lo importa `proxy.ts`.
  */
 
-export const SITE_NAME = 'Acopio Panamá';
+export const SITE_NAME = 'Acopios Panamá';
 
 /** Origen público, sin barra final. En producción viene de APP_ORIGIN (ver deploy/.env.example). */
 export const SITE_URL = (process.env.APP_ORIGIN || 'https://acopiospanama.com').replace(/\/+$/, '');

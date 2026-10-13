@@ -1,4 +1,4 @@
--- Acopio Panamá — esquema inicial.
+-- Acopios Panamá — esquema inicial.
 -- Directorio nacional de centros de acopio, auto-mantenido por la comunidad:
 --  * cualquiera (con correo verificado) publica un centro y queda como responsable;
 --  * cualquiera confirma «sigue funcionando» o reporta problemas;

@@ -4,7 +4,7 @@ import { datesSentence, todayText } from '@/lib/public-schedule';
 import { getPublicCenter, getPublicMeta } from '@/lib/public-server';
 import { SITE_TAGLINE } from '@/lib/site';
 
-export const alt = 'Ficha del centro en Acopio Panamá';
+export const alt = 'Ficha del centro en Acopios Panamá';
 export const size = OG_SIZE;
 export const contentType = 'image/png';
 // Se dibuja al pedirla (datos vivos: necesidades y horario de hoy), nunca en la construcción.

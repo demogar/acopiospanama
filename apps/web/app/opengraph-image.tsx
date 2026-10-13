@@ -1,7 +1,7 @@
 import { ogImage, OG_SIZE } from '@/lib/og';
 import { SITE_TAGLINE } from '@/lib/site';
 
-export const alt = 'Acopio Panamá: dónde llevar donaciones y qué necesitan hoy';
+export const alt = 'Acopios Panamá: dónde llevar donaciones y qué necesitan hoy';
 export const size = OG_SIZE;
 export const contentType = 'image/png';
 
