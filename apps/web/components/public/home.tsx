@@ -3,6 +3,7 @@
 import { Component, useCallback, useDeferredValue, useEffect, useMemo, useState } from 'react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import { List, LocateFixed, Map as MapIcon, SlidersHorizontal, X } from 'lucide-react';
 import {
   Button,
@@ -30,6 +31,24 @@ const CenterMap = dynamic(() => import('./center-map'), {
 });
 
 const ALL = 'ALL';
+const KEY = /^[A-Z_]{2,40}$/;
+
+/** Filtros guardados en la URL: `p`, `i`, `t`, `q`, `abierto=1`, `vista=mapa` y `cerca=1`. */
+function readFilters(sp: URLSearchParams) {
+  const key = (k: string) => {
+    const v = sp.get(k);
+    return v && KEY.test(v) ? v : null;
+  };
+  return {
+    province: key('p'),
+    item: key('i'),
+    type: key('t'),
+    query: (sp.get('q') ?? '').trim().slice(0, 100) || null,
+    open: sp.get('abierto') === '1',
+    map: sp.get('vista') === 'mapa',
+    near: sp.get('cerca') === '1',
+  };
+}
 
 /** Los filtros se leen como botones, no como etiquetas: negrita y tinta plena, como en el diseño. */
 const CHIP = 'font-bold text-ink';
@@ -79,16 +98,10 @@ class MapBoundary extends Component<{ children: React.ReactNode; onRetry: () => 
 export function PublicHome({
   initialCenters,
   initialMeta,
-  initialProvince,
-  initialItem,
-  initialType,
   tileHost,
 }: {
   initialCenters: PublicCenter[] | null;
   initialMeta: PublicMeta | null;
-  initialProvince: string | null;
-  initialItem: string | null;
-  initialType: string | null;
   tileHost: string;
 }) {
   // Si el servidor ya trajo los datos, no se vuelven a pedir al abrir la página.
@@ -96,7 +109,13 @@ export function PublicHome({
   const metaQ = useApi<PublicMeta>(initialMeta ? null : '/public/meta');
   const centers = centersQ.data ?? initialCenters;
   const meta = metaQ.data ?? initialMeta;
+  const searchParams = useSearchParams();
 
+  // Los filtros iniciales salen de la URL del navegador, no de las props del servidor: al volver atrás, Next
+  // reutiliza la página en caché (la de antes de reflejar los filtros) y solo la URL los conserva.
+  const [initial] = useState(() => readFilters(new URLSearchParams(searchParams.toString())));
+  const { province: initialProvince, item: initialItem, type: initialType } = initial;
+  const { query: initialQuery, open: initialOpen, map: initialMap, near: initialNear } = initial;
   const [rawProvince, setProvince] = useState<string>(initialProvince ?? ALL);
   const [rawItem, setItem] = useState<string>(initialItem ?? ALL);
   const [rawCtype, setCtype] = useState<string>(initialType ?? ALL);
@@ -104,27 +123,36 @@ export function PublicHome({
   const province = meta && !meta.provinces[rawProvince] ? ALL : rawProvince;
   const item = meta && !meta.items[rawItem] ? ALL : rawItem;
   const ctype = meta && !(meta.centerTypes ?? CENTER_TYPES_FALLBACK)[rawCtype] ? ALL : rawCtype;
-  const [onlyOpen, setOnlyOpen] = useState(false);
+  const [onlyOpen, setOnlyOpen] = useState(initialOpen);
   const now = useNow();
-  const [query, setQuery] = useState('');
-  const [moreOpen, setMoreOpen] = useState((initialType ?? ALL) !== ALL);
+  const [query, setQuery] = useState(initialQuery ?? '');
+  const [moreOpen, setMoreOpen] = useState((initialType ?? ALL) !== ALL || !!initialQuery);
   const [geo, setGeo] = useState<Geo>({ state: 'off' });
-  const [showMap, setShowMap] = useState(false);
+  // «Cerca de mí» llegó en la URL y aún no se sabe si el navegador ya dio permiso.
+  const [nearPending, setNearPending] = useState(initialNear);
+  const [showMap, setShowMap] = useState(initialMap);
   const [mapKey, setMapKey] = useState(0);
+  const near = nearPending || geo.state === 'on' || geo.state === 'locating';
 
-  // Refleja provincia y artículo en la URL (no son datos personales). La ubicación y el texto, nunca.
+  // Refleja los filtros en la URL para que «atrás», recargar y compartir los conserven. Se reemplaza la
+  // entrada del historial (no se apila una por tecla). De la ubicación solo va la marca, nunca las coordenadas.
   useEffect(() => {
-    const url = new URL(window.location.href);
-    if (province !== ALL) url.searchParams.set('p', province);
-    else url.searchParams.delete('p');
-    if (item !== ALL) url.searchParams.set('i', item);
-    else url.searchParams.delete('i');
-    if (ctype !== ALL) url.searchParams.set('t', ctype);
-    else url.searchParams.delete('t');
-    const next = url.pathname + (url.searchParams.toString() ? `?${url.searchParams}` : '');
-    if (next !== window.location.pathname + window.location.search)
-      window.history.replaceState(window.history.state, '', next);
-  }, [province, item, ctype]);
+    const t = setTimeout(() => {
+      const url = new URL(window.location.href);
+      const set = (k: string, v: string | null) => (v ? url.searchParams.set(k, v) : url.searchParams.delete(k));
+      set('p', province !== ALL ? province : null);
+      set('i', item !== ALL ? item : null);
+      set('t', ctype !== ALL ? ctype : null);
+      set('q', query.trim() || null);
+      set('abierto', onlyOpen ? '1' : null);
+      set('cerca', near ? '1' : null);
+      set('vista', showMap ? 'mapa' : null);
+      const next = url.pathname + (url.searchParams.toString() ? `?${url.searchParams}` : '');
+      if (next !== window.location.pathname + window.location.search)
+        window.history.replaceState(window.history.state, '', next);
+    }, 300);
+    return () => clearTimeout(t);
+  }, [province, item, ctype, query, onlyOpen, near, showMap]);
 
   const locate = useCallback(() => {
     if (!('geolocation' in navigator)) {
@@ -145,6 +173,28 @@ export function PublicHome({
       { enableHighAccuracy: false, timeout: 15_000, maximumAge: 5 * 60_000 },
     );
   }, []);
+
+  // Al volver con «Cerca de mí» puesto, se ubica de nuevo solo si el navegador ya dio permiso: un enlace
+  // compartido no debe abrir el aviso de ubicación sin que la persona lo pida.
+  useEffect(() => {
+    if (!initialNear) return;
+    let cancelled = false;
+    const done = () => !cancelled && setNearPending(false);
+    if (!('geolocation' in navigator) || !navigator.permissions) {
+      done();
+      return;
+    }
+    navigator.permissions
+      .query({ name: 'geolocation' })
+      .then((p) => {
+        if (!cancelled && p.state === 'granted') locate();
+      })
+      .catch(() => {})
+      .finally(done);
+    return () => {
+      cancelled = true;
+    };
+  }, [initialNear, locate]);
 
   const origin = useMemo(() => (geo.state === 'on' ? { lat: geo.lat, lng: geo.lng } : null), [geo]);
 
