@@ -7,9 +7,19 @@ export const DEFAULT_TILE_HOST = 'https://tiles.stadiamaps.com/tiles/alidade_smo
 
 const OSM = '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>';
 
+/** Si el origen es de Stadia (por su dominio exacto, no por un texto dentro de la URL). */
+function isStadia(tileHost: string): boolean {
+  try {
+    const host = new URL(tileHost).hostname;
+    return host === 'stadiamaps.com' || host.endsWith('.stadiamaps.com');
+  } catch {
+    return false;
+  }
+}
+
 /** Plantilla de URL y atribución para `L.tileLayer`, según el origen configurado. */
 export function tileSource(tileHost: string): { url: string; attribution: string } {
-  if (tileHost.includes('stadiamaps.com')) {
+  if (isStadia(tileHost)) {
     // `{r}` pide la versión @2x en pantallas de alta densidad.
     return {
       url: `${tileHost}/{z}/{x}/{y}{r}.png`,
