@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.22.1](https://github.com/demogar/acopiospanama/compare/v0.22.0...v0.22.1) (2026-10-13)
+
+
+### Correcciones
+
+* **web:** el enlace a la Cruz Roja se abre en otra pestaña y lo indica ([#92](https://github.com/demogar/acopiospanama/issues/92)) ([6bef042](https://github.com/demogar/acopiospanama/commit/6bef0423432aeb01e9cac092134f4ec15a25ebe5))
+
 ## [0.22.0](https://github.com/demogar/acopiospanama/compare/v0.21.0...v0.22.0) (2026-10-13)
 
 
