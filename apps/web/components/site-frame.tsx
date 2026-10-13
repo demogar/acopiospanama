@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
+import { BrandMark } from './brand-mark';
 
 /**
  * Marco común de todas las pantallas: cabecera con la marca y accesos, título opcional y pie.
@@ -69,7 +70,7 @@ export function SiteFrame({ title, subtitle, back, actions, width = 'page', chil
             href="/"
             className="inline-flex min-h-11 items-center gap-2 font-ui text-lg font-bold text-ink no-underline"
           >
-            <span aria-hidden="true" className="inline-block size-3 bg-rojo" />
+            <BrandMark size={22} />
             Acopio Panamá
           </Link>
           <nav aria-label="Principal" className="-me-2 flex items-center gap-1">
@@ -82,6 +83,20 @@ export function SiteFrame({ title, subtitle, back, actions, width = 'page', chil
           </nav>
         </div>
       </header>
+      {/* Para quien visita desde fuera de Panamá y no puede llevar donaciones a un centro. */}
+      <aside aria-label="Donate from abroad" lang="en" className="border-b border-keyline bg-cloth-shade">
+        <p className={`${SITE} py-1.5 text-sm leading-snug text-ink-2`}>
+          Visiting from overseas?{' '}
+          <a
+            href="https://cruzroja.org.pa/donar/"
+            className="font-semibold text-ink underline underline-offset-2"
+            rel="noopener noreferrer"
+          >
+            Donate to the Panamanian Red Cross
+          </a>
+          .
+        </p>
+      </aside>
 
       {/* El contenido comparte el margen izquierdo de la cabecera; `max` solo limita el ancho de lectura. */}
       <main id="contenido" tabIndex={-1} className={`${SITE} flex-1 pb-12 pt-4 lg:pt-6 focus:outline-none`}>
@@ -112,7 +127,7 @@ export function SiteFrame({ title, subtitle, back, actions, width = 'page', chil
         <div className={`${SITE} flex flex-col gap-6 py-8 md:flex-row md:justify-between md:gap-12`}>
           <div className="max-w-prose">
             <p className="inline-flex items-center gap-2 font-ui text-base font-bold text-ink">
-              <span aria-hidden="true" className="inline-block size-3 bg-rojo" />
+              <BrandMark size={20} />
               Acopio Panamá
             </p>
             <p className="mt-2 leading-relaxed">

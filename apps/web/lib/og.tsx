@@ -1,6 +1,7 @@
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { ImageResponse } from 'next/og';
+import { BrandMark } from '@/components/brand-mark';
 import { SITE_HOST, SITE_NAME } from './site';
 
 /**
@@ -20,21 +21,9 @@ const C = {
   oro: '#edb01f',
 };
 
-/** Colores del favicon (`app/icon.svg`), para que todos los iconos sean iguales. */
-const MARK = { ink: '#1d1a16', rojo: '#c8102e', oro: '#f2b400' };
-
-/** La marca: cuadrados concéntricos, igual que `app/icon.svg` (32 × 32). */
+/** La marca, igual que `app/icon.svg` y la cabecera (ver `BrandMark`). */
 export function Mark({ size }: { size: number }) {
-  const u = size / 32;
-  return (
-    <div style={{ width: size, height: size, background: MARK.ink, display: 'flex', padding: 5 * u }}>
-      <div style={{ flexGrow: 1, background: MARK.rojo, display: 'flex', padding: 4 * u }}>
-        <div style={{ flexGrow: 1, background: MARK.oro, display: 'flex', padding: 4 * u }}>
-          <div style={{ flexGrow: 1, background: MARK.ink }} />
-        </div>
-      </div>
-    </div>
-  );
+  return <BrandMark size={size} />;
 }
 
 // Rutas literales desde `process.cwd()` (apps/web, también en el `standalone`): así Next las incluye en la traza.
