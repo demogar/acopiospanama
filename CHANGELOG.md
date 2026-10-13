@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.20.0](https://github.com/demogar/acopiospanama/compare/v0.19.0...v0.20.0) (2026-10-13)
+
+
+### Novedades
+
+* centros con fechas concretas (temporales vs. permanentes) ([#83](https://github.com/demogar/acopiospanama/issues/83)) ([18377ce](https://github.com/demogar/acopiospanama/commit/18377ce6fc4f0bc84aa424ee42694c5e398c1af8))
+
 ## [0.19.0](https://github.com/demogar/acopiospanama/compare/v0.18.0...v0.19.0) (2026-10-12)
 
 
