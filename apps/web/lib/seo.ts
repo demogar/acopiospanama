@@ -12,7 +12,7 @@ import type { PublicCenter, PublicMeta } from './public-types';
  *   export const metadata = pageMeta({ title: 'Privacidad', description: '…', path: '/privacidad' });
  */
 export function pageMeta(o: {
-  /** Título de la pestaña; el layout raíz añade « · Acopio Panamá». */
+  /** Título de la pestaña; el layout raíz añade « · Acopios Panamá». */
   title?: string;
   /** Título completo, sin plantilla (portada). */
   absoluteTitle?: string;

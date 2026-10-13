@@ -1,7 +1,7 @@
 blank_issues_enabled: false
 contact_links:
   - name: Un centro tiene información incorrecta o es una estafa
-    url: https://acopiopanama.org
+    url: https://acopiospanama.com
     about: Usa el botón «Reportar un problema» en la ficha del centro. Así la comunidad lo resuelve sola.
   - name: Reportar una vulnerabilidad
     url: https://github.com/demogar/acopiospanama/security/advisories/new

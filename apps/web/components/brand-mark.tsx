@@ -1,5 +1,5 @@
 /**
- * La marca de Acopio Panamá: un marcador de mapa con una caja dentro («aquí hay un centro de acopio»).
+ * La marca de Acopios Panamá: un marcador de mapa con una caja dentro («aquí hay un centro de acopio»).
  * Una sola definición (32 × 32) para la cabecera, el pie, el favicon (`app/icon.svg`) y las imágenes de `lib/og.tsx`.
  * Sin cruces ni «+»: no debe confundirse con el emblema protegido de la Cruz Roja.
  */

@@ -186,7 +186,7 @@ export class AuthService {
           to: email,
           subject: `Tu código de acceso: ${code}`,
           text: [
-            `Tu código para entrar a Acopio Panamá es: ${code}`,
+            `Tu código para entrar a Acopios Panamá es: ${code}`,
             '',
             'Vence en 10 minutos. Si pediste el código varias veces, es el mismo.',
             'Si no lo pediste, ignora este correo: sin el código nadie puede entrar. Nadie de la administración te pedirá este código.',
@@ -330,7 +330,7 @@ export class AuthService {
       .set({ totpSecretEnc: encrypt(this.keys.totpEnc, secret), totpLastStep: null })
       .where('id', '=', user.id)
       .execute();
-    const uri = authenticator.keyuri(user.email, 'Acopio Panamá', secret);
+    const uri = authenticator.keyuri(user.email, 'Acopios Panamá', secret);
     const qr = await QRCode.toDataURL(uri, { margin: 1, width: 240, errorCorrectionLevel: 'M' });
     return { secret, uri, qr };
   }

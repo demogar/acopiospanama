@@ -15,7 +15,7 @@ export function ContactBlock({
   const wa = center.contactWhatsapp
     ? whatsappLink(
         center.contactWhatsapp,
-        `Hola${center.contactName ? ` ${center.contactName}` : ''}, te escribo por «${center.name}», que vi en Acopio Panamá. ¿Siguen recibiendo donaciones hoy?`,
+        `Hola${center.contactName ? ` ${center.contactName}` : ''}, te escribo por «${center.name}», que vi en Acopios Panamá. ¿Siguen recibiendo donaciones hoy?`,
       )
     : null;
   if (!center.contactName && !center.contactPhone && !wa) return null;

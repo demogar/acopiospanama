@@ -279,11 +279,11 @@ export class ModerationController {
     await this.mail.send({
       to: email,
       subject: moderator
-        ? 'Ahora eres parte de la moderación de Acopio Panamá'
-        : 'Ya no eres parte de la moderación de Acopio Panamá',
+        ? 'Ahora eres parte de la moderación de Acopios Panamá'
+        : 'Ya no eres parte de la moderación de Acopios Panamá',
       text: moderator
-        ? `Te dieron acceso de moderación en Acopio Panamá. Entra en ${this.config.appOrigin}/entrar con este correo; la primera vez configurarás un segundo factor.\n\nLa comunidad mantiene el directorio: interviene solo ante estafas o abusos claros.`
-        : 'Se retiró tu acceso de moderación en Acopio Panamá. Gracias por tu ayuda.',
+        ? `Te dieron acceso de moderación en Acopios Panamá. Entra en ${this.config.appOrigin}/entrar con este correo; la primera vez configurarás un segundo factor.\n\nLa comunidad mantiene el directorio: interviene solo ante estafas o abusos claros.`
+        : 'Se retiró tu acceso de moderación en Acopios Panamá. Gracias por tu ayuda.',
     });
     await this.audit.log({
       actorId: a.user.id,

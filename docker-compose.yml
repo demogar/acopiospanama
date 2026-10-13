@@ -1,4 +1,4 @@
-# Acopio Panamá — producción con Docker Compose en un VPS.
+# Acopios Panamá — producción con Docker Compose en un VPS.
 #
 # Las imágenes se construyen en GitHub Actions y se publican en GHCR: el servidor NO compila
 # (así convive con otras apps en un VPS pequeño). Para construir localmente:

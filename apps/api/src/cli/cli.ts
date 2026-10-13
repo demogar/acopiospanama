@@ -3,7 +3,7 @@ import { parseArgs } from 'node:util';
 import { normalizeEmail } from '../common/crypto';
 import { createDb, migrate } from '../db/db';
 
-const HELP = `Acopio Panamá — línea de comandos
+const HELP = `Acopios Panamá — línea de comandos
 
   migrate                         Aplica migraciones pendientes.
   make-admin --email <correo>     Administrador (nombra moderadores; incluye moderación).

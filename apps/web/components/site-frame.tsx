@@ -71,7 +71,7 @@ export function SiteFrame({ title, subtitle, back, actions, width = 'page', chil
             className="inline-flex min-h-11 items-center gap-2 font-ui text-lg font-bold text-ink no-underline"
           >
             <BrandMark size={22} />
-            Acopio Panamá
+            Acopios Panamá
           </Link>
           <nav aria-label="Principal" className="-me-2 flex items-center gap-1">
             <Link href="/publicar" className={navLink}>
@@ -128,7 +128,7 @@ export function SiteFrame({ title, subtitle, back, actions, width = 'page', chil
           <div className="max-w-prose">
             <p className="inline-flex items-center gap-2 font-ui text-base font-bold text-ink">
               <BrandMark size={20} />
-              Acopio Panamá
+              Acopios Panamá
             </p>
             <p className="mt-2 leading-relaxed">
               Iniciativa comunitaria e independiente para la respuesta al terremoto del 9 de octubre de 2026. No es un

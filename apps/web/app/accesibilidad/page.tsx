@@ -7,7 +7,7 @@ import { pageMeta } from '@/lib/seo';
 export const metadata = pageMeta({
   title: 'Accesibilidad',
   description:
-    'Cómo está hecho Acopio Panamá para usarse con teclado, lector de pantalla, zoom o alto contraste, qué falta y cómo avisarnos.',
+    'Cómo está hecho Acopios Panamá para usarse con teclado, lector de pantalla, zoom o alto contraste, qué falta y cómo avisarnos.',
   path: '/accesibilidad',
 });
 
@@ -29,8 +29,8 @@ export default function Accesibilidad() {
         <section>
           <h2>Nuestro compromiso</h2>
           <p>
-            Acopio Panamá se construye para que cualquier persona pueda encontrar dónde llevar donaciones, también quien
-            usa un <strong>lector de pantalla</strong>, navega <strong>solo con el teclado</strong>, necesita{' '}
+            Acopios Panamá se construye para que cualquier persona pueda encontrar dónde llevar donaciones, también
+            quien usa un <strong>lector de pantalla</strong>, navega <strong>solo con el teclado</strong>, necesita{' '}
             <strong>letra grande</strong> o <strong>alto contraste</strong>, o tiene poca señal y un teléfono viejo. La
             meta es cumplir las <strong>Pautas de Accesibilidad para el Contenido Web (WCAG) 2.2, nivel AA</strong>.
           </p>
