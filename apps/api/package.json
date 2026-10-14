@@ -12,7 +12,7 @@
     "test": "rm -rf .test-dist && tsc -p tsconfig.json --outDir .test-dist && node --test --test-concurrency=1 '.test-dist/test/*.test.js'"
   },
   "dependencies": {
-    "@nestjs/common": "^11.2.7",
+    "@nestjs/common": "^12.1.2",
     "@nestjs/core": "^11.2.7",
     "@nestjs/platform-express": "^11.2.7",
     "@nestjs/schedule": "^6.1.3",
