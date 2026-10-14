@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.23.0](https://github.com/demogar/acopiospanama/compare/v0.22.1...v0.23.0) (2026-10-14)
+
+
+### Novedades
+
+* **web:** la franja para donar desde el extranjero también enlaza a Waved Foundation ([#94](https://github.com/demogar/acopiospanama/issues/94)) ([2aa59de](https://github.com/demogar/acopiospanama/commit/2aa59deb6c907fdabfdfc58aff1cb511e4a91453))
+
 ## [0.22.1](https://github.com/demogar/acopiospanama/compare/v0.22.0...v0.22.1) (2026-10-13)
 
 
