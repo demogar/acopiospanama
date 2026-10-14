@@ -87,14 +87,25 @@ export function SiteFrame({ title, subtitle, back, actions, width = 'page', chil
       {/* Para quien visita desde fuera de Panamá y no puede llevar donaciones a un centro. */}
       <aside aria-label="Donate from abroad" lang="en" className="border-b border-keyline bg-cloth-shade">
         <p className={`${SITE} py-1.5 text-sm leading-snug text-ink-2`}>
-          Visiting from overseas?{' '}
+          Visiting from overseas? Donate to the{' '}
           <a
             href="https://cruzroja.org.pa/donar/"
             target="_blank"
             className="font-semibold text-ink underline underline-offset-2"
             rel="noopener noreferrer"
           >
-            Donate to the Panamanian Red Cross
+            Panamanian Red Cross
+            <ExternalLink aria-hidden className="ml-1 inline size-3.5 align-[-0.125em]" />
+            <NewTab label="opens in a new tab" />
+          </a>{' '}
+          or{' '}
+          <a
+            href="https://gowaved.org/en/donations"
+            target="_blank"
+            className="font-semibold text-ink underline underline-offset-2"
+            rel="noopener noreferrer"
+          >
+            Waved Foundation
             <ExternalLink aria-hidden className="ml-1 inline size-3.5 align-[-0.125em]" />
             <NewTab label="opens in a new tab" />
           </a>
