@@ -27,7 +27,8 @@ creado por la comunidad tras el terremoto del 9 de octubre de 2026.
 
 > [!TIP]
 > **Helping from abroad?** You can donate online to the
-> [Panamanian Red Cross](https://cruzroja.org.pa/donar/).
+> [Panamanian Red Cross](https://cruzroja.org.pa/donar/) or the
+> [Waved Foundation](https://gowaved.org/en/donations).
 
 <p align="center">
   <a href="https://acopiospanama.com"><img src="docs/assets/captura.png" alt="Portada de Acopios Panamá: filtros por provincia, lista de centros con lo que necesitan y mapa con los centros urgentes resaltados" width="900"></a>
