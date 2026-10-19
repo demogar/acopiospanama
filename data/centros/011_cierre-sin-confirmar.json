@@ -1,0 +1,925 @@
+{
+  "date": "2026-10-19",
+  "close": [
+    {
+      "slug": "punto-de-acopio-club-leo-de-betania-betania",
+      "reason": "Acopio puntual 'hasta completar carga' para Ocú (11 oct); sin información posterior."
+    },
+    {
+      "slug": "hospital-cecilio-a-castillero-chitre",
+      "reason": "Llamado de emergencia del 10 oct; sin evidencia de que siga recibiendo donaciones."
+    },
+    {
+      "slug": "centro-de-visitantes-de-la-tortuga-marina-quebrada-de-piedra",
+      "reason": "Solo publicación del 11 oct; sin información posterior."
+    },
+    {
+      "slug": "estadio-roberto-flaco-bala-hernandez-las-tablas",
+      "reason": "Funciona como centro de acopio y distribución del Gobierno (nota del 12 oct), pero no hay evidencia reciente de que reciba donaciones del público."
+    },
+    {
+      "slug": "urbanizacion-san-antonio-las-torres-las-torres",
+      "reason": "Comunicado del 9 oct; sin información posterior."
+    },
+    {
+      "slug": "club-deportivo-jubasa-la-villa-de-los-santos-la-villa-de-los",
+      "reason": "Difundido el 10 oct; sin información posterior."
+    },
+    {
+      "slug": "hospital-regional-anita-moreno-la-villa-de-los-santos",
+      "reason": "Llamado urgente del 10 oct; sin evidencia de que siga recibiendo."
+    },
+    {
+      "slug": "hospital-joaquin-pablo-franco-sayas-las-tablas",
+      "reason": "Afiche del 10 oct; sin evidencia de que siga recibiendo."
+    },
+    {
+      "slug": "domo-del-parque-omar-san-francisco",
+      "reason": "El Despacho de la Primera Dama cerró el acopio del Parque Omar el domingo 18 oct a las 2:00 p. m.; desde el 19 oct reciben en Panamá Pacífico y Albrook."
+    },
+    {
+      "slug": "casa-club-activo-20-30-de-chitre-la-arena",
+      "reason": "Hay 1 confirmación de un visitante (18 oct), pero no encontré ninguna publicación o nota que lo respalde; solo el afiche del 10 oct."
+    },
+    {
+      "slug": "fastbox-coronado-coronado",
+      "reason": "Afiche de campaña del 12 oct; sin confirmación posterior de que siga activa."
+    },
+    {
+      "slug": "fastbox-costa-verde-costa-verde",
+      "reason": "Afiche de campaña del 12 oct; sin confirmación posterior de que siga activa."
+    },
+    {
+      "slug": "fastbox-san-francisco-san-francisco",
+      "reason": "Afiche de campaña del 12 oct; sin confirmación posterior de que siga activa."
+    },
+    {
+      "slug": "fastbox-vista-hermosa-vista-hermosa",
+      "reason": "Afiche de campaña del 12 oct; sin confirmación posterior de que siga activa."
+    },
+    {
+      "slug": "mbox-sport-center-don-bosco",
+      "reason": "Evento de un solo día (lunes 12 oct), ya pasado."
+    },
+    {
+      "slug": "hospital-regional-dr-luis-chicho-fabrega-san-antonio",
+      "reason": "Comunicado del 9 oct; sin información posterior."
+    },
+    {
+      "slug": "policlinica-dr-horacio-diaz-gomez-santiago-paritilla",
+      "reason": "Comunicado del 9 oct; sin información posterior."
+    },
+    {
+      "slug": "hospital-rafael-estevez-aguadulce-aguadulce",
+      "reason": "Llamado del 10 oct; sin información posterior."
+    },
+    {
+      "slug": "municipio-de-pedasi-pedasi",
+      "reason": "Afiche del 10 oct; sin información posterior."
+    },
+    {
+      "slug": "sociedad-panamena-de-pediatria-pueblo-nuevo",
+      "reason": "Afiche del 11 oct; sin información posterior."
+    },
+    {
+      "slug": "centro-de-acopio-mansa-furniture-marbella",
+      "reason": "Su reel indica que recibían donaciones hasta el sábado 17 de octubre y luego las entregarían en persona."
+    },
+    {
+      "slug": "parque-de-guarare-guarare",
+      "reason": "Actividad puntual de una promoción escolar (11 oct); sin información posterior."
+    },
+    {
+      "slug": "centro-de-acopio-movimiento-todo-chiriqui-san-mateo",
+      "reason": "Publicación del 10 oct; sin información posterior."
+    },
+    {
+      "slug": "centro-de-acopio-junta-comunal-de-sabanitas-sabanitas",
+      "reason": "Publicación del 10 oct; sin información posterior."
+    },
+    {
+      "slug": "baterias-los-hernandez-las-tablas",
+      "reason": "Publicación del 10 oct; sin información posterior."
+    },
+    {
+      "slug": "loving-dogs-clinica-veterinaria-el-carmen",
+      "reason": "Publicación del 11 oct; sin información posterior."
+    },
+    {
+      "slug": "centro-sagrado-corazon-alto-boquete",
+      "reason": "Publicación en X del 11 oct; sin información posterior."
+    },
+    {
+      "slug": "sociedad-espanola-de-beneficencia-de-panama-pueblo-nuevo",
+      "reason": "Publicación del 11 oct; sin información posterior."
+    },
+    {
+      "slug": "el-jardin-de-la-cuadra-parque-lefevre",
+      "reason": "Recibía el 12 oct y 'el resto de la semana' (hasta ~16 oct); sin información posterior."
+    },
+    {
+      "slug": "casa-hogar-el-buen-samaritano-juan-diaz",
+      "reason": "Única referencia del 9-11 de octubre; no hay publicaciones ni noticias posteriores al 12 de octubre que confirmen que sigue recibiendo."
+    },
+    {
+      "slug": "casa-club-de-kiwanis-panama-llanos-de-curundu",
+      "reason": "La publicación fuente solo remite al directorio de Ponte en Algo, sin fechas; no hay confirmación posterior al 12 de octubre."
+    },
+    {
+      "slug": "festideas-panama-betania",
+      "reason": "La publicación fuente solo remite al directorio de Ponte en Algo, sin fechas; no hay confirmación posterior al 12 de octubre."
+    },
+    {
+      "slug": "stylish-salon-spa-valau-beauty-supply-llano-bonito",
+      "reason": "Solo publicación del 11 de octubre (inicio 12 oct); no hay evidencia posterior de que siga recibiendo."
+    },
+    {
+      "slug": "centro-de-acopio-yajois-la-arena-la-arena",
+      "reason": "Única referencia del 9-11 de octubre; no hay publicaciones ni noticias posteriores al 12 de octubre que confirmen que sigue recibiendo."
+    },
+    {
+      "slug": "centro-de-acopio-westland-premium-outlets-juan-diaz",
+      "reason": "La publicación del 10 de octubre indica inicio el 11 sin fecha de cierre; no hay confirmación posterior al 12 de octubre."
+    },
+    {
+      "slug": "punto-de-acopio-municipal-de-ocu-ocu",
+      "reason": "Convocatoria puntual del domingo 11 de octubre; sin información posterior que confirme que sigue recibiendo."
+    },
+    {
+      "slug": "veterinaria-megavet-bella-vista",
+      "reason": "Única referencia del 9-11 de octubre; no hay publicaciones ni noticias posteriores al 12 de octubre que confirmen que sigue recibiendo."
+    },
+    {
+      "slug": "punto-de-acopio-parque-feuillet-parque-feuillet",
+      "reason": "Única referencia del 9-11 de octubre; no hay publicaciones ni noticias posteriores al 12 de octubre que confirmen que sigue recibiendo."
+    },
+    {
+      "slug": "siu-pet-grooming-parque-lefevre",
+      "reason": "Única referencia del 9-11 de octubre; no hay publicaciones ni noticias posteriores al 12 de octubre que confirmen que sigue recibiendo."
+    },
+    {
+      "slug": "yanna-pizzeria-cucina-san-francisco",
+      "reason": "Única referencia del 9-11 de octubre; no hay publicaciones ni noticias posteriores al 12 de octubre que confirmen que sigue recibiendo."
+    },
+    {
+      "slug": "cancha-de-san-vicente-de-bique-cerro-silvestre",
+      "reason": "Publicación de la Alcaldía de Arraiján del 10 de octubre con horario, sin fecha de cierre; en las publicaciones recientes del perfil (14-19 oct) no se ve confirmación del acopio."
+    },
+    {
+      "slug": "parque-central-de-veracruz-veracruz",
+      "reason": "Publicación de la Alcaldía de Arraiján del 10 de octubre con horario, sin fecha de cierre; en las publicaciones recientes del perfil (14-19 oct) no se ve confirmación del acopio."
+    },
+    {
+      "slug": "casa-cultural-de-vista-alegre-vista-alegre",
+      "reason": "Publicación de la Alcaldía de Arraiján del 10 de octubre con horario, sin fecha de cierre; en las publicaciones recientes del perfil (14-19 oct) no se ve confirmación del acopio."
+    },
+    {
+      "slug": "cancha-de-nuevo-arraijan-juan-d-arosemena",
+      "reason": "Publicación de la Alcaldía de Arraiján del 10 de octubre con horario, sin fecha de cierre; en las publicaciones recientes del perfil (14-19 oct) no se ve confirmación del acopio."
+    },
+    {
+      "slug": "sport-center-juan-d-arosemena",
+      "reason": "Publicación de la Alcaldía de Arraiján del 10 de octubre con horario, sin fecha de cierre; en las publicaciones recientes del perfil (14-19 oct) no se ve confirmación del acopio."
+    },
+    {
+      "slug": "parque-de-altos-del-tecal-vacamonte",
+      "reason": "Publicación de la Alcaldía de Arraiján del 10 de octubre con horario, sin fecha de cierre; en las publicaciones recientes del perfil (14-19 oct) no se ve confirmación del acopio."
+    },
+    {
+      "slug": "centro-de-acopio-alcaldia-de-los-pozos-las-minas",
+      "reason": "Única referencia del 9-11 de octubre; no hay publicaciones ni noticias posteriores al 12 de octubre que confirmen que sigue recibiendo."
+    },
+    {
+      "slug": "centro-de-acopio-parque-rufina-alfaro-la-villa-de-los-santos",
+      "reason": "Única referencia del 9-11 de octubre; no hay publicaciones ni noticias posteriores al 12 de octubre que confirmen que sigue recibiendo."
+    },
+    {
+      "slug": "agropecuaria-san-cristobal-la-chorrera",
+      "reason": "Única referencia del 9-11 de octubre; no hay publicaciones ni noticias posteriores al 12 de octubre que confirmen que sigue recibiendo."
+    },
+    {
+      "slug": "fonpets-san-francisco",
+      "reason": "Única referencia del 9-11 de octubre; no hay publicaciones ni noticias posteriores al 12 de octubre que confirmen que sigue recibiendo."
+    },
+    {
+      "slug": "cancha-municipal-de-las-minas-las-minas",
+      "reason": "Única referencia del 9-11 de octubre; no hay publicaciones ni noticias posteriores al 12 de octubre que confirmen que sigue recibiendo."
+    },
+    {
+      "slug": "centro-de-acopio-senafront-chepo-chepo",
+      "reason": "Única referencia del 9-11 de octubre; no hay publicaciones ni noticias posteriores al 12 de octubre que confirmen que sigue recibiendo."
+    },
+    {
+      "slug": "club-de-leones-la-concepcion",
+      "reason": "Única referencia del 9-11 de octubre; no hay publicaciones ni noticias posteriores al 12 de octubre que confirmen que sigue recibiendo."
+    },
+    {
+      "slug": "vieni-qua-pan-canal-plaza-albrook-albrook",
+      "reason": "Única referencia del 9-11 de octubre; no hay publicaciones ni noticias posteriores al 12 de octubre que confirmen que sigue recibiendo."
+    },
+    {
+      "slug": "vieni-qua-boulevard-costa-verde-costa-verde",
+      "reason": "Única referencia del 9-11 de octubre; no hay publicaciones ni noticias posteriores al 12 de octubre que confirmen que sigue recibiendo."
+    },
+    {
+      "slug": "mascostyle-veterinaria-spa-la-chorrera",
+      "reason": "Única referencia del 9-11 de octubre; no hay publicaciones ni noticias posteriores al 12 de octubre que confirmen que sigue recibiendo."
+    },
+    {
+      "slug": "pinas-lokas-sucursal-arraijan-town-center-burunga",
+      "reason": "Única referencia del 9-11 de octubre; no hay publicaciones ni noticias posteriores al 12 de octubre que confirmen que sigue recibiendo."
+    },
+    {
+      "slug": "centro-de-acopio-uip-betania",
+      "reason": "Única referencia del 9-11 de octubre; no hay publicaciones ni noticias posteriores al 12 de octubre que confirmen que sigue recibiendo."
+    },
+    {
+      "slug": "melo-pet-and-garden-sucursal-villa-lucre-juan-diaz",
+      "reason": "Solo hay la publicación original del 10-11/10 (Instagram no accesible); no se encontraron noticias ni posts posteriores al 12/10 que confirmen que sigue recibiendo. El acopio oficial del Parque Omar c"
+    },
+    {
+      "slug": "centro-optico-azuero-chiriqui-san-mateo",
+      "reason": "Solo hay la publicación original del 10-11/10 (Instagram no accesible); no se encontraron noticias ni posts posteriores al 12/10 que confirmen que sigue recibiendo. El acopio oficial del Parque Omar c"
+    },
+    {
+      "slug": "centro-de-ayuda-tolda-roja-el-supercentro-el-dorado-betania",
+      "reason": "Solo hay la publicación original del 10-11/10 (Instagram no accesible); no se encontraron noticias ni posts posteriores al 12/10 que confirmen que sigue recibiendo. El acopio oficial del Parque Omar c"
+    },
+    {
+      "slug": "centro-de-acopio-parque-de-la-calle-abajo-macaracas",
+      "reason": "Solo hay la publicación original del 10-11/10 (Instagram no accesible); no se encontraron noticias ni posts posteriores al 12/10 que confirmen que sigue recibiendo. El acopio oficial del Parque Omar c"
+    },
+    {
+      "slug": "colegio-bilingue-avila-panama-san-francisco",
+      "reason": "Campaña escolar anunciada para iniciar el 12/10; sin confirmación posterior."
+    },
+    {
+      "slug": "centro-familiar-cristiano-de-david-barrio-bolivar",
+      "reason": "Publicación del 10/10 dice \"hasta fecha indefinida\", pero no hay confirmación posterior al 12/10; Instagram no accesible."
+    },
+    {
+      "slug": "edificio-mateo-iturralde-colon",
+      "reason": "Solo hay la publicación original del 10-11/10 (Instagram no accesible); no se encontraron noticias ni posts posteriores al 12/10 que confirmen que sigue recibiendo. El acopio oficial del Parque Omar c"
+    },
+    {
+      "slug": "centro-regional-universitario-de-san-miguelito-crusam-san-mi",
+      "reason": "Solo hay la publicación original del 10-11/10 (Instagram no accesible); no se encontraron noticias ni posts posteriores al 12/10 que confirmen que sigue recibiendo. El acopio oficial del Parque Omar c"
+    },
+    {
+      "slug": "parroquia-san-agustin-villa-zaita",
+      "reason": "Solo hay la publicación original del 10-11/10 (Instagram no accesible); no se encontraron noticias ni posts posteriores al 12/10 que confirmen que sigue recibiendo. El acopio oficial del Parque Omar c"
+    },
+    {
+      "slug": "rey-albrook-panama",
+      "reason": "Solo hay la publicación original del 10-11/10 (Instagram no accesible); no se encontraron noticias ni posts posteriores al 12/10 que confirmen que sigue recibiendo. El acopio oficial del Parque Omar c"
+    },
+    {
+      "slug": "rey-calle-50-san-francisco",
+      "reason": "Solo hay la publicación original del 10-11/10 (Instagram no accesible); no se encontraron noticias ni posts posteriores al 12/10 que confirmen que sigue recibiendo. El acopio oficial del Parque Omar c"
+    },
+    {
+      "slug": "mr-precio-santiago-urbanizacion-verdun",
+      "reason": "Solo hay la publicación original del 10-11/10 (Instagram no accesible); no se encontraron noticias ni posts posteriores al 12/10 que confirmen que sigue recibiendo. El acopio oficial del Parque Omar c"
+    },
+    {
+      "slug": "sede-de-la-cruz-roja-panamena-comite-local-chitre-llano-boni",
+      "reason": "Solo publicación del 10/10; IFRC menciona evaluación de daños en Chitré, no acopio vigente. Sin confirmación posterior."
+    },
+    {
+      "slug": "hiper-rey-los-pueblos-los-pueblos",
+      "reason": "Solo hay la publicación original del 10-11/10 (Instagram no accesible); no se encontraron noticias ni posts posteriores al 12/10 que confirmen que sigue recibiendo. El acopio oficial del Parque Omar c"
+    },
+    {
+      "slug": "veterinaria-animal-health-barriada-san-vicente",
+      "reason": "Solo hay la publicación original del 10-11/10 (Instagram no accesible); no se encontraron noticias ni posts posteriores al 12/10 que confirmen que sigue recibiendo. El acopio oficial del Parque Omar c"
+    },
+    {
+      "slug": "alcaldia-de-san-miguelito-san-miguelito",
+      "reason": "Solo hay la publicación original del 10-11/10 (Instagram no accesible); no se encontraron noticias ni posts posteriores al 12/10 que confirmen que sigue recibiendo. El acopio oficial del Parque Omar c"
+    },
+    {
+      "slug": "adarys-beauty-salon-pedregal",
+      "reason": "Solo hay la publicación original del 10-11/10 (Instagram no accesible); no se encontraron noticias ni posts posteriores al 12/10 que confirmen que sigue recibiendo. El acopio oficial del Parque Omar c"
+    },
+    {
+      "slug": "junta-comunal-de-24-de-diciembre-24-de-diciembre",
+      "reason": "Solo hay la publicación original del 10-11/10 (Instagram no accesible); no se encontraron noticias ni posts posteriores al 12/10 que confirmen que sigue recibiendo. El acopio oficial del Parque Omar c"
+    },
+    {
+      "slug": "rey-centennial-panama",
+      "reason": "Solo hay la publicación original del 10-11/10 (Instagram no accesible); no se encontraron noticias ni posts posteriores al 12/10 que confirmen que sigue recibiendo. El acopio oficial del Parque Omar c"
+    },
+    {
+      "slug": "pacifica-salud-punta-pacifica-punta-pacifica",
+      "reason": "Solo hay la publicación original del 10-11/10 (Instagram no accesible); no se encontraron noticias ni posts posteriores al 12/10 que confirmen que sigue recibiendo. El acopio oficial del Parque Omar c"
+    },
+    {
+      "slug": "estacionamientos-financiera-central-de-creditos-calidonia",
+      "reason": "Recepción anunciada para el lunes 12/10 (fecha pasada); sin confirmación posterior."
+    },
+    {
+      "slug": "oficinas-de-tgs-travel-mi-condado",
+      "reason": "Solo hay la publicación original del 10-11/10 (Instagram no accesible); no se encontraron noticias ni posts posteriores al 12/10 que confirmen que sigue recibiendo. El acopio oficial del Parque Omar c"
+    },
+    {
+      "slug": "cooperativa-joaquina-h-de-torrijo-san-martin",
+      "reason": "Solo hay la publicación original del 10-11/10 (Instagram no accesible); no se encontraron noticias ni posts posteriores al 12/10 que confirmen que sigue recibiendo. El acopio oficial del Parque Omar c"
+    },
+    {
+      "slug": "oficinas-uncap-union-nacional-de-corredores-de-aduanas-de-pa",
+      "reason": "Solo hay la publicación original del 10-11/10 (Instagram no accesible); no se encontraron noticias ni posts posteriores al 12/10 que confirmen que sigue recibiendo. El acopio oficial del Parque Omar c"
+    },
+    {
+      "slug": "edificio-sede-de-la-administracion-zona-libre-de-colon-colon",
+      "reason": "Solo hay la publicación original del 10-11/10 (Instagram no accesible); no se encontraron noticias ni posts posteriores al 12/10 que confirmen que sigue recibiendo. El acopio oficial del Parque Omar c"
+    },
+    {
+      "slug": "casa-del-pueblo-de-aguadulce-aguadulce",
+      "reason": "Anunciado el 11/10; la Casa del Pueblo reportó daños por el sismo y no hay confirmación posterior al 12/10."
+    },
+    {
+      "slug": "centro-de-acopio-independiente-nexus-rescue-barriada-don-bos",
+      "reason": "Solo hay la publicación original del 10-11/10 (Instagram no accesible); no se encontraron noticias ni posts posteriores al 12/10 que confirmen que sigue recibiendo. El acopio oficial del Parque Omar c"
+    },
+    {
+      "slug": "pacifica-salud-costa-del-este-costa-del-este",
+      "reason": "Solo hay la publicación original del 10-11/10 (Instagram no accesible); no se encontraron noticias ni posts posteriores al 12/10 que confirmen que sigue recibiendo. El acopio oficial del Parque Omar c"
+    },
+    {
+      "slug": "edificio-de-la-administracion-del-canal-panama",
+      "reason": "Solo hay la publicación original del 10-11/10 (Instagram no accesible); no se encontraron noticias ni posts posteriores al 12/10 que confirmen que sigue recibiendo. El acopio oficial del Parque Omar c"
+    },
+    {
+      "slug": "asistencia-administrativa-de-panama-oeste-residencial-vista-",
+      "reason": "Campaña del Órgano Judicial anunciada el 10-11 oct desde el 12 oct; sin información posterior que confirme que sigue recibiendo."
+    },
+    {
+      "slug": "asistencia-administrativa-de-chiriqui-alto-verde",
+      "reason": "Campaña del Órgano Judicial anunciada el 10-11 oct desde el 12 oct; sin información posterior que confirme que sigue recibiendo."
+    },
+    {
+      "slug": "asistencia-administrativa-de-cocle-penonome",
+      "reason": "Campaña del Órgano Judicial anunciada el 10-11 oct desde el 12 oct; sin información posterior que confirme que sigue recibiendo."
+    },
+    {
+      "slug": "asistencia-administrativa-de-herrera-brisas-de-los-guayacane",
+      "reason": "Campaña del Órgano Judicial anunciada el 10-11 oct desde el 12 oct; sin información posterior que confirme que sigue recibiendo."
+    },
+    {
+      "slug": "asistencia-administrativa-de-los-santos-las-tablas",
+      "reason": "Campaña del Órgano Judicial anunciada el 10-11 oct desde el 12 oct; sin información posterior que confirme que sigue recibiendo."
+    },
+    {
+      "slug": "edificio-365-organo-judicial-ciudad-de-panama",
+      "reason": "Campaña del Órgano Judicial anunciada el 10-11 oct; sin confirmación posterior al 12 oct."
+    },
+    {
+      "slug": "centro-de-acopio-parque-de-la-palma-la-palma",
+      "reason": "Anunciado 'durante toda esta semana' (12-18 oct); el plazo ya venció y no hay información posterior."
+    },
+    {
+      "slug": "federacion-panamena-de-futbol-fpf-campo-lindbergh",
+      "reason": "Solo lunes y martes (12-13 oct); fechas pasadas."
+    },
+    {
+      "slug": "centro-de-acopio-utp-lobby-edificio-de-facilidades-estudiant",
+      "reason": "Publicación del 11 oct; sin evidencia de que siga recibiendo después del 12 oct."
+    },
+    {
+      "slug": "parlacen-panama-punto-de-acopio-bahia-honda-downtown",
+      "reason": "Recolección puntual de Ñeque Aventuras (11 oct); sin información posterior."
+    },
+    {
+      "slug": "cf-santidad-a-jehova-nuevo-arraijan",
+      "reason": "Solo del lunes 12 al miércoles 14 de octubre; fechas pasadas."
+    },
+    {
+      "slug": "restaurante-el-trapiche-san-francisco",
+      "reason": "Campaña de Fundación Rescate de Alimentos del 11 oct; sin información posterior."
+    },
+    {
+      "slug": "riesen-bella-vista",
+      "reason": "Campaña de Fundación Rescate de Alimentos del 11 oct; sin información posterior."
+    },
+    {
+      "slug": "la-cocina-de-sofy-san-francisco",
+      "reason": "Campaña de Fundación Rescate de Alimentos del 11 oct; sin información posterior."
+    },
+    {
+      "slug": "fonda-9-mercado-san-felipe-neri-san-felipe",
+      "reason": "Campaña de Fundación Rescate de Alimentos del 11 oct; sin información posterior."
+    },
+    {
+      "slug": "centro-de-acopio-fundasis-san-miguelito",
+      "reason": "Publicación del 11 oct; sin información posterior que confirme operación."
+    },
+    {
+      "slug": "centro-integral-de-parque-lefevre-parque-lefevre",
+      "reason": "Última referencia es del 13 oct (cursos suspendidos mientras sea acopio); nada que confirme operación al 16-19 oct."
+    },
+    {
+      "slug": "policia-de-chitre-villas-del-golf",
+      "reason": "Listado oficial del 11-12 oct; el 14 oct el acopio de Chitré aparece en el gimnasio del Colegio Papa Francisco, y el Gobierno concentró la recepción en Howard y Albrook desde el 19 oct."
+    },
+    {
+      "slug": "rey-sabanitas-sabanitas",
+      "reason": "Publicación del 10 oct; sin información posterior de Rey sobre recepción."
+    },
+    {
+      "slug": "junta-comunal-de-jaramillo-jaramillo",
+      "reason": "Anunciado desde el 12 oct; sin información posterior."
+    },
+    {
+      "slug": "clinica-orthopedics-plus-penonome",
+      "reason": "Anunciado desde el 12 oct; sin información posterior."
+    },
+    {
+      "slug": "agropetshop-vetcare-santiago",
+      "reason": "Recolección puntual anunciada para el lunes 12 oct; sin información posterior."
+    },
+    {
+      "slug": "restaurante-expreso-santeno-la-dona",
+      "reason": "Publicación del 10 oct; sin información posterior."
+    },
+    {
+      "slug": "centro-de-acopio-solidario-parque-de-barrio-vega-barrio-colo",
+      "reason": "Acopio comunitario desde el 10 oct; la prensa indicaba recolección hasta el domingo 11 y no hay confirmación posterior."
+    },
+    {
+      "slug": "hospital-aquilino-tejeira-penonome",
+      "reason": "Referencia del 11 oct; sin evidencia de que el hospital siga recibiendo donaciones."
+    },
+    {
+      "slug": "gimnasio-municipal-regulo-sanchez-arraijan",
+      "reason": "Listado el 10-12 oct (Crítica indicaba recolección hasta el domingo 11); sin confirmación posterior."
+    },
+    {
+      "slug": "junta-comunal-de-don-bosco-don-bosco",
+      "reason": "Solo aparece en una lista del 10 oct; sin información posterior."
+    },
+    {
+      "slug": "riba-smith-versalles-don-bosco",
+      "reason": "Anuncio de Riba Smith del 10 oct; sin confirmación posterior de que la sucursal siga recibiendo."
+    },
+    {
+      "slug": "gobernacion-de-panama-oeste-la-chorrera",
+      "reason": "Listada el 10-12 oct sin horario; sin confirmación posterior y la recepción oficial se concentró en Howard y Albrook desde el 19 oct."
+    },
+    {
+      "slug": "gobernacion-de-colon-barrio-norte",
+      "reason": "Solo aparece en lista de @Sumarse del 10 oct; el listado oficial de Telemetro (12 oct) no incluye la Gobernación de Colón y no hay información posterior."
+    },
+    {
+      "slug": "gobernacion-de-los-santos-las-tablas",
+      "reason": "El listado oficial de Telemetro (12 oct) ubica el acopio de Los Santos en el Estadio Flaco Bala Hernández, no en la Gobernación; sin confirmación posterior."
+    },
+    {
+      "slug": "gobernacion-de-herrera-chitre",
+      "reason": "El listado oficial de Telemetro (12 oct) ubica el acopio de Herrera en la Policía Nacional de Chitré, no en la Gobernación; sin confirmación posterior."
+    },
+    {
+      "slug": "pro-eco-azuero-pedasi-pedasi",
+      "reason": "Afiche del 10 oct sin lugar ni horario; no hay publicaciones recientes de Pro Eco Azuero sobre un acopio activo."
+    },
+    {
+      "slug": "clinica-sersalud-sona-sona",
+      "reason": "Afiche del 10 oct sin fecha de cierre; no se encontró ninguna confirmación posterior al 12 oct."
+    },
+    {
+      "slug": "super-99-montemadero-las-garzas",
+      "reason": "Solo un afiche compartido en X el 10 oct (X bloqueado); no hay noticias ni anuncios de Super 99 sobre el acopio después del 12 oct y no aparece en listados oficiales."
+    },
+    {
+      "slug": "super-99-san-lorenzo-alcalde-diaz",
+      "reason": "Solo un afiche compartido en X el 10 oct (X bloqueado); no hay noticias ni anuncios de Super 99 sobre el acopio después del 12 oct y no aparece en listados oficiales."
+    },
+    {
+      "slug": "super-99-transistmica-bethania",
+      "reason": "Solo un afiche compartido en X el 10 oct (X bloqueado); no hay noticias ni anuncios de Super 99 sobre el acopio después del 12 oct y no aparece en listados oficiales."
+    },
+    {
+      "slug": "super-99-calidonia-calidonia",
+      "reason": "Solo un afiche compartido en X el 10 oct (X bloqueado); no hay noticias ni anuncios de Super 99 sobre el acopio después del 12 oct y no aparece en listados oficiales."
+    },
+    {
+      "slug": "super-99-vista-hermosa-pueblo-nuevo",
+      "reason": "Solo un afiche compartido en X el 10 oct (X bloqueado); no hay noticias ni anuncios de Super 99 sobre el acopio después del 12 oct y no aparece en listados oficiales."
+    },
+    {
+      "slug": "super-99-balboa-parque-lefevre",
+      "reason": "Solo un afiche compartido en X el 10 oct (X bloqueado); no hay noticias ni anuncios de Super 99 sobre el acopio después del 12 oct y no aparece en listados oficiales."
+    },
+    {
+      "slug": "super-99-pedregal-pedregal",
+      "reason": "Solo un afiche compartido en X el 10 oct (X bloqueado); no hay noticias ni anuncios de Super 99 sobre el acopio después del 12 oct y no aparece en listados oficiales."
+    },
+    {
+      "slug": "super-99-el-faro-juan-diaz",
+      "reason": "Solo un afiche compartido en X el 10 oct (X bloqueado); no hay noticias ni anuncios de Super 99 sobre el acopio después del 12 oct y no aparece en listados oficiales."
+    },
+    {
+      "slug": "super-99-los-andes-mall-belisario-porras",
+      "reason": "Solo un afiche compartido en X el 10 oct (X bloqueado); no hay noticias ni anuncios de Super 99 sobre el acopio después del 12 oct y no aparece en listados oficiales."
+    },
+    {
+      "slug": "super-99-bethania-bethania",
+      "reason": "Solo un afiche compartido en X el 10 oct (X bloqueado); no hay noticias ni anuncios de Super 99 sobre el acopio después del 12 oct y no aparece en listados oficiales."
+    },
+    {
+      "slug": "super-99-megamall-24-de-diciembre",
+      "reason": "Solo un afiche compartido en X el 10 oct (X bloqueado); no hay noticias ni anuncios de Super 99 sobre el acopio después del 12 oct y no aparece en listados oficiales."
+    },
+    {
+      "slug": "super-99-villa-zaita-ernesto-cordoba-campos",
+      "reason": "Solo un afiche compartido en X el 10 oct (X bloqueado); no hay noticias ni anuncios de Super 99 sobre el acopio después del 12 oct y no aparece en listados oficiales."
+    },
+    {
+      "slug": "super-99-los-pueblos-juan-diaz",
+      "reason": "Solo un afiche compartido en X el 10 oct (X bloqueado); no hay noticias ni anuncios de Super 99 sobre el acopio después del 12 oct y no aparece en listados oficiales."
+    },
+    {
+      "slug": "super-99-las-mananitas-las-mananitas",
+      "reason": "Solo un afiche compartido en X el 10 oct (X bloqueado); no hay noticias ni anuncios de Super 99 sobre el acopio después del 12 oct y no aparece en listados oficiales."
+    },
+    {
+      "slug": "super-99-plaza-tocumen-don-bosco",
+      "reason": "Solo un afiche compartido en X el 10 oct (X bloqueado); no hay noticias ni anuncios de Super 99 sobre el acopio después del 12 oct y no aparece en listados oficiales."
+    },
+    {
+      "slug": "super-99-rio-abajo-rio-abajo",
+      "reason": "Solo un afiche compartido en X el 10 oct (X bloqueado); no hay noticias ni anuncios de Super 99 sobre el acopio después del 12 oct y no aparece en listados oficiales."
+    },
+    {
+      "slug": "super-99-la-dona-tocumen",
+      "reason": "Solo un afiche compartido en X el 10 oct (X bloqueado); no hay noticias ni anuncios de Super 99 sobre el acopio después del 12 oct y no aparece en listados oficiales."
+    },
+    {
+      "slug": "super-99-los-andes-belisario-porras",
+      "reason": "Solo un afiche compartido en X el 10 oct (X bloqueado); no hay noticias ni anuncios de Super 99 sobre el acopio después del 12 oct y no aparece en listados oficiales."
+    },
+    {
+      "slug": "super-99-albrook-mall-ancon",
+      "reason": "Solo un afiche compartido en X el 10 oct (X bloqueado); no hay noticias ni anuncios de Super 99 sobre el acopio después del 12 oct y no aparece en listados oficiales."
+    },
+    {
+      "slug": "super-99-la-cabima-alcalde-diaz",
+      "reason": "Solo un afiche compartido en X el 10 oct (X bloqueado); no hay noticias ni anuncios de Super 99 sobre el acopio después del 12 oct y no aparece en listados oficiales."
+    },
+    {
+      "slug": "super-99-chanis-parque-lefevre",
+      "reason": "Solo un afiche compartido en X el 10 oct (X bloqueado); no hay noticias ni anuncios de Super 99 sobre el acopio después del 12 oct y no aparece en listados oficiales."
+    },
+    {
+      "slug": "super-99-costa-del-este-juan-diaz",
+      "reason": "Solo un afiche compartido en X el 10 oct (X bloqueado); no hay noticias ni anuncios de Super 99 sobre el acopio después del 12 oct y no aparece en listados oficiales."
+    },
+    {
+      "slug": "super-99-el-dorado-bethania",
+      "reason": "Solo un afiche compartido en X el 10 oct (X bloqueado); no hay noticias ni anuncios de Super 99 sobre el acopio después del 12 oct y no aparece en listados oficiales."
+    },
+    {
+      "slug": "super-99-condado-del-rey-ancon",
+      "reason": "Solo un afiche compartido en X el 10 oct (X bloqueado); no hay noticias ni anuncios de Super 99 sobre el acopio después del 12 oct y no aparece en listados oficiales."
+    },
+    {
+      "slug": "super-99-san-francisco-san-francisco",
+      "reason": "Sin evidencia de que Super 99 reciba donaciones para el sismo después del 10 de octubre; solo un afiche en X del 10/10."
+    },
+    {
+      "slug": "super-99-via-porras-bella-vista",
+      "reason": "Sin evidencia de que Super 99 reciba donaciones para el sismo después del 10 de octubre; solo un afiche en X del 10/10."
+    },
+    {
+      "slug": "super-99-brisas-del-golf-rufina-alfaro",
+      "reason": "Sin evidencia de que Super 99 reciba donaciones para el sismo después del 10 de octubre; solo un afiche en X del 10/10."
+    },
+    {
+      "slug": "super-99-tumba-muerto-bethania",
+      "reason": "Sin evidencia de que Super 99 reciba donaciones para el sismo después del 10 de octubre; solo un afiche en X del 10/10."
+    },
+    {
+      "slug": "super-99-san-miguelito-victoriano-lorenzo",
+      "reason": "Sin evidencia de que Super 99 reciba donaciones para el sismo después del 10 de octubre; solo un afiche en X del 10/10."
+    },
+    {
+      "slug": "club-de-los-espanoles-de-la-barriada-barbarena-barriada-barb",
+      "reason": "Jornada puntual el 11/10 (mañana); sin información posterior."
+    },
+    {
+      "slug": "sede-moca-via-espana-panama",
+      "reason": "Solo un afiche en X del 10/10; no hay noticias posteriores de que MOCA siga recibiendo."
+    },
+    {
+      "slug": "centro-de-acopio-gobernacion-de-chiriqui-david",
+      "reason": "Telemetro la listó el 12/10, pero no hay confirmación posterior al 12/10; el acopio nacional pasó al Hub de Panamá Pacífico y Albrook el 19/10."
+    },
+    {
+      "slug": "municipio-de-santiago-santiago",
+      "reason": "El acopio de la Alcaldía de Santiago se extendió solo hasta el lunes 12/10 (Mapa del Terremoto); el edificio municipal sufrió colapso parcial."
+    },
+    {
+      "slug": "supermercado-xtra-la-loma-pueblo-nuevo-pueblo-nuevo",
+      "reason": "Carretillas solidarias de Xtra anunciadas el 11/10 sin fecha de cierre; no hay confirmación posterior al 12/10. Su aliado APEDE cerró la recepción el viernes 16/10."
+    },
+    {
+      "slug": "supermercado-xtra-parque-lefevre-parque-lefevre",
+      "reason": "Carretillas solidarias de Xtra anunciadas el 11/10 sin fecha de cierre; no hay confirmación posterior al 12/10. Su aliado APEDE cerró la recepción el viernes 16/10."
+    },
+    {
+      "slug": "super-xtra-de-penonome-penonome",
+      "reason": "Iniciativa de voluntarios anunciada el 10/10 (4-7 p. m.); sin información posterior."
+    },
+    {
+      "slug": "junta-comunal-de-betania-betania",
+      "reason": "Solo aparece en una lista de X del 10/10; sin información posterior."
+    },
+    {
+      "slug": "boquete-brewing-company-bajo-boquete",
+      "reason": "Anuncio único del 10/10 en X; sin información posterior."
+    },
+    {
+      "slug": "counter-de-flytrip-aeropuerto-marcos-a-gelabert-ancon-albroo",
+      "reason": "Anuncio único del 10/10 en X; sin información posterior."
+    },
+    {
+      "slug": "riba-smith-coronado-coronado",
+      "reason": "Riba Smith abrió puntos de donación el 10-12/10 (La Estrella, Entremés), pero no hay publicación posterior al 12/10 que confirme que sigan recibiendo; el acopio nacional se concentró en el Hub de Pana"
+    },
+    {
+      "slug": "riba-smith-market-plaza-la-chorrera-costa-verde",
+      "reason": "Riba Smith abrió puntos de donación el 10-12/10 (La Estrella, Entremés), pero no hay publicación posterior al 12/10 que confirme que sigan recibiendo; el acopio nacional se concentró en el Hub de Pana"
+    },
+    {
+      "slug": "riba-smith-panama-pacifico-veracruz-panama-pacifico",
+      "reason": "Riba Smith abrió puntos de donación el 10-12/10 (La Estrella, Entremés), pero no hay publicación posterior al 12/10 que confirme que sigan recibiendo; el acopio nacional se concentró en el Hub de Pana"
+    },
+    {
+      "slug": "riba-smith-villa-zaita-ernesto-cordoba-campos-villa-zaita",
+      "reason": "Riba Smith abrió puntos de donación el 10-12/10 (La Estrella, Entremés), pero no hay publicación posterior al 12/10 que confirme que sigan recibiendo; el acopio nacional se concentró en el Hub de Pana"
+    },
+    {
+      "slug": "riba-smith-la-siesta-tocumen-la-siesta",
+      "reason": "Riba Smith abrió puntos de donación el 10-12/10 (La Estrella, Entremés), pero no hay publicación posterior al 12/10 que confirme que sigan recibiendo; el acopio nacional se concentró en el Hub de Pana"
+    },
+    {
+      "slug": "riba-smith-albrook-ancon-albrook",
+      "reason": "Riba Smith abrió puntos de donación el 10-12/10 (La Estrella, Entremés), pero no hay publicación posterior al 12/10 que confirme que sigan recibiendo; el acopio nacional se concentró en el Hub de Pana"
+    },
+    {
+      "slug": "riba-smith-altaplaza-ancon-altaplaza",
+      "reason": "Riba Smith abrió puntos de donación el 10-12/10 (La Estrella, Entremés), pero no hay publicación posterior al 12/10 que confirme que sigan recibiendo; el acopio nacional se concentró en el Hub de Pana"
+    },
+    {
+      "slug": "riba-smith-brisas-del-golf-brisas-del-golf",
+      "reason": "Riba Smith abrió puntos de donación el 10-12/10 (La Estrella, Entremés), pero no hay publicación posterior al 12/10 que confirme que sigan recibiendo; el acopio nacional se concentró en el Hub de Pana"
+    },
+    {
+      "slug": "riba-smith-costa-del-este-costa-del-este",
+      "reason": "Riba Smith abrió puntos de donación el 10-12/10 (La Estrella, Entremés), pero no hay publicación posterior al 12/10 que confirme que sigan recibiendo; el acopio nacional se concentró en el Hub de Pana"
+    },
+    {
+      "slug": "riba-smith-multiplaza-san-francisco-punta-pacifica",
+      "reason": "Riba Smith abrió puntos de donación el 10-12/10 (La Estrella, Entremés), pero no hay publicación posterior al 12/10 que confirme que sigan recibiendo; el acopio nacional se concentró en el Hub de Pana"
+    },
+    {
+      "slug": "riba-smith-transistmica-betania",
+      "reason": "Riba Smith abrió puntos de donación el 10-12/10 (La Estrella, Entremés), pero no hay publicación posterior al 12/10 que confirme que sigan recibiendo; el acopio nacional se concentró en el Hub de Pana"
+    },
+    {
+      "slug": "riba-smith-bella-vista-bella-vista",
+      "reason": "Riba Smith abrió puntos de donación el 10-12/10 (La Estrella, Entremés), pero no hay publicación posterior al 12/10 que confirme que sigan recibiendo; el acopio nacional se concentró en el Hub de Pana"
+    },
+    {
+      "slug": "gobernacion-de-bocas-del-toro-bocas-del-toro",
+      "reason": "Solo aparece en una lista de X del 10/10; ningún reporte la confirma como acopio del sismo."
+    },
+    {
+      "slug": "gobernacion-de-cocle-penonome",
+      "reason": "El edificio de la Gobernación colapsó parcialmente; el gobernador trasladó el acopio al aeropuerto de Penonomé (10/10). Sin información posterior."
+    },
+    {
+      "slug": "gobernacion-de-veraguas-santiago",
+      "reason": "Última evidencia de donaciones llegando es del 15 oct; la nota del 16 oct solo habla de brigadas de distribución, no de recepción. La Gobernación de Chiriquí cerró el 16 oct. Sin confirmación de que s"
+    },
+    {
+      "slug": "gobernacion-de-la-provincia-de-panama-calidonia",
+      "reason": "Sin ninguna mención en prensa de un acopio en la Gobernación de Panamá; el punto nacional de la capital pasó de Parque Omar a Hub Panamá Pacífico y Albrook desde el 19 oct."
+    },
+    {
+      "slug": "supermercado-xtra-llano-largo-la-chorrera-llano-largo",
+      "reason": "Las carretillas solidarias de Xtra solo se reportan el 10-11 oct, sin fecha de cierre ni confirmación posterior de que sigan recibiendo."
+    },
+    {
+      "slug": "supermercado-xtra-calle-t1-sur-la-chorrera-la-chorrera",
+      "reason": "Las carretillas solidarias de Xtra solo se reportan el 10-11 oct, sin fecha de cierre ni confirmación posterior de que sigan recibiendo."
+    },
+    {
+      "slug": "supermercado-xtra-corredor-sur-las-mananitas-las-mananitas",
+      "reason": "Las carretillas solidarias de Xtra solo se reportan el 10-11 oct, sin fecha de cierre ni confirmación posterior de que sigan recibiendo."
+    },
+    {
+      "slug": "supermercado-xtra-torrijos-carter-belisario-frias",
+      "reason": "Las carretillas solidarias de Xtra solo se reportan el 10-11 oct, sin fecha de cierre ni confirmación posterior de que sigan recibiendo."
+    },
+    {
+      "slug": "supermercado-xtra-via-espana-obarrio-bella-vista",
+      "reason": "Las carretillas solidarias de Xtra solo se reportan el 10-11 oct, sin fecha de cierre ni confirmación posterior de que sigan recibiendo."
+    },
+    {
+      "slug": "supermercado-xtra-el-trebol-pacora-pacora",
+      "reason": "Las carretillas solidarias de Xtra solo se reportan el 10-11 oct, sin fecha de cierre ni confirmación posterior de que sigan recibiendo."
+    },
+    {
+      "slug": "supermercado-xtra-torti-torti",
+      "reason": "Las carretillas solidarias de Xtra solo se reportan el 10-11 oct, sin fecha de cierre ni confirmación posterior de que sigan recibiendo."
+    },
+    {
+      "slug": "supermercado-xtra-la-union-chilibre-chilibre",
+      "reason": "Las carretillas solidarias de Xtra solo se reportan el 10-11 oct, sin fecha de cierre ni confirmación posterior de que sigan recibiendo."
+    },
+    {
+      "slug": "supermercado-xtra-brisas-del-golf-rufina-alfaro",
+      "reason": "Las carretillas solidarias de Xtra solo se reportan el 10-11 oct, sin fecha de cierre ni confirmación posterior de que sigan recibiendo."
+    },
+    {
+      "slug": "supermercado-xtra-las-mananitas-las-mananitas",
+      "reason": "Las carretillas solidarias de Xtra solo se reportan el 10-11 oct, sin fecha de cierre ni confirmación posterior de que sigan recibiendo."
+    },
+    {
+      "slug": "supermercado-xtra-villa-carmen-capira-villa-carmen",
+      "reason": "Las carretillas solidarias de Xtra solo se reportan el 10-11 oct, sin fecha de cierre ni confirmación posterior de que sigan recibiendo."
+    },
+    {
+      "slug": "supermercado-xtra-san-isidro-omar-torrijos",
+      "reason": "Las carretillas solidarias de Xtra solo se reportan el 10-11 oct, sin fecha de cierre ni confirmación posterior de que sigan recibiendo."
+    },
+    {
+      "slug": "supermercado-xtra-el-chorrillo-el-chorrillo",
+      "reason": "Las carretillas solidarias de Xtra solo se reportan el 10-11 oct, sin fecha de cierre ni confirmación posterior de que sigan recibiendo."
+    },
+    {
+      "slug": "supermercado-xtra-altos-de-tatare-pacora-pacora",
+      "reason": "Las carretillas solidarias de Xtra solo se reportan el 10-11 oct, sin fecha de cierre ni confirmación posterior de que sigan recibiendo."
+    },
+    {
+      "slug": "supermercado-xtra-altos-de-villalobos-pedregal-pedregal",
+      "reason": "Las carretillas solidarias de Xtra solo se reportan el 10-11 oct, sin fecha de cierre ni confirmación posterior de que sigan recibiendo."
+    },
+    {
+      "slug": "supermercado-xtra-arraijan-arraijan",
+      "reason": "Las carretillas solidarias de Xtra solo se reportan el 10-11 oct, sin fecha de cierre ni confirmación posterior de que sigan recibiendo."
+    },
+    {
+      "slug": "supermercado-xtra-coronado-las-lajas",
+      "reason": "Las carretillas solidarias de Xtra solo se reportan el 10-11 oct, sin fecha de cierre ni confirmación posterior de que sigan recibiendo."
+    },
+    {
+      "slug": "supermercado-xtra-villa-unida-chilibre-chilibre",
+      "reason": "Las carretillas solidarias de Xtra solo se reportan el 10-11 oct, sin fecha de cierre ni confirmación posterior de que sigan recibiendo."
+    },
+    {
+      "slug": "supermercado-xtra-avenida-8a-norte-la-chorrera-la-chorrera",
+      "reason": "Las carretillas solidarias de Xtra solo se reportan el 10-11 oct, sin fecha de cierre ni confirmación posterior de que sigan recibiendo."
+    },
+    {
+      "slug": "supermercado-xtra-los-laureles-la-chorrera-la-chorrera",
+      "reason": "Las carretillas solidarias de Xtra solo se reportan el 10-11 oct, sin fecha de cierre ni confirmación posterior de que sigan recibiendo."
+    },
+    {
+      "slug": "supermercado-xtra-albrook-ancon",
+      "reason": "Las carretillas solidarias de Xtra solo se reportan el 10-11 oct, sin fecha de cierre ni confirmación posterior de que sigan recibiendo."
+    },
+    {
+      "slug": "supermercado-xtra-altos-del-lago-tocumen-tocumen",
+      "reason": "Las carretillas solidarias de Xtra solo se reportan el 10-11 oct, sin fecha de cierre ni confirmación posterior de que sigan recibiendo."
+    },
+    {
+      "slug": "supermercado-xtra-victoriano-lorenzo-victoriano-lorenzo",
+      "reason": "Las carretillas solidarias de Xtra solo se reportan el 10-11 oct, sin fecha de cierre ni confirmación posterior de que sigan recibiendo."
+    },
+    {
+      "slug": "supermercado-xtra-chepo-chepo",
+      "reason": "Las carretillas solidarias de Xtra solo se reportan el 10-11 oct, sin fecha de cierre ni confirmación posterior de que sigan recibiendo."
+    },
+    {
+      "slug": "supermercado-xtra-boca-la-caja-san-francisco",
+      "reason": "Las carretillas solidarias de Xtra solo se reportan el 10-11 oct, sin fecha de cierre ni confirmación posterior de que sigan recibiendo."
+    },
+    {
+      "slug": "supermercado-xtra-calidonia-calidonia",
+      "reason": "Las carretillas solidarias de Xtra solo se reportan el 10-11 oct, sin fecha de cierre ni confirmación posterior de que sigan recibiendo."
+    },
+    {
+      "slug": "supermercado-xtra-carretera-panamericana-la-chorrera-la-chor",
+      "reason": "Campaña de 'carretillas solidarias' anunciada el 10-11 oct sin fecha de cierre; no hay publicación posterior al 12 oct que confirme que siga activa."
+    },
+    {
+      "slug": "supermercado-xtra-villa-lucre-jose-domingo-espinar",
+      "reason": "Campaña de 'carretillas solidarias' anunciada el 10-11 oct sin fecha de cierre; no hay publicación posterior al 12 oct que confirme que siga activa."
+    },
+    {
+      "slug": "supermercado-xtra-via-panama-norte-ernesto-cordoba-campos",
+      "reason": "Campaña de 'carretillas solidarias' anunciada el 10-11 oct sin fecha de cierre; no hay publicación posterior al 12 oct que confirme que siga activa."
+    },
+    {
+      "slug": "supermercado-xtra-tinajita-belisario-porras",
+      "reason": "Campaña de 'carretillas solidarias' anunciada el 10-11 oct sin fecha de cierre; no hay publicación posterior al 12 oct que confirme que siga activa."
+    },
+    {
+      "slug": "supermercado-xtra-burunga-burunga",
+      "reason": "Campaña de 'carretillas solidarias' anunciada el 10-11 oct sin fecha de cierre; no hay publicación posterior al 12 oct que confirme que siga activa."
+    },
+    {
+      "slug": "supermercado-xtra-pan-de-azucar-amelia-denis-de-icaza",
+      "reason": "Campaña de 'carretillas solidarias' anunciada el 10-11 oct sin fecha de cierre; no hay publicación posterior al 12 oct que confirme que siga activa."
+    },
+    {
+      "slug": "supermercado-xtra-rio-abajo-feria-xtra-rio-abajo",
+      "reason": "Campaña de 'carretillas solidarias' anunciada el 10-11 oct sin fecha de cierre; no hay publicación posterior al 12 oct que confirme que siga activa."
+    },
+    {
+      "slug": "supermercado-xtra-ojo-de-agua-belisario-porras",
+      "reason": "Campaña de 'carretillas solidarias' anunciada el 10-11 oct sin fecha de cierre; no hay publicación posterior al 12 oct que confirme que siga activa."
+    },
+    {
+      "slug": "supermercado-xtra-betania-via-ricardo-j-alfaro-betania",
+      "reason": "Campaña de 'carretillas solidarias' anunciada el 10-11 oct sin fecha de cierre; no hay publicación posterior al 12 oct que confirme que siga activa."
+    },
+    {
+      "slug": "supermercado-xtra-ciudad-radial-juan-diaz",
+      "reason": "Campaña de 'carretillas solidarias' anunciada el 10-11 oct sin fecha de cierre; no hay publicación posterior al 12 oct que confirme que siga activa."
+    },
+    {
+      "slug": "supermercado-xtra-el-coco-la-chorrera-el-coco",
+      "reason": "Campaña de 'carretillas solidarias' anunciada el 10-11 oct sin fecha de cierre; no hay publicación posterior al 12 oct que confirme que siga activa."
+    },
+    {
+      "slug": "supermercado-xtra-vista-alegre-vista-alegre",
+      "reason": "Campaña de 'carretillas solidarias' anunciada el 10-11 oct sin fecha de cierre; no hay publicación posterior al 12 oct que confirme que siga activa."
+    },
+    {
+      "slug": "supermercado-xtra-monte-rico-24-de-diciembre-24-de-diciembre",
+      "reason": "Campaña de 'carretillas solidarias' anunciada el 10-11 oct sin fecha de cierre; no hay publicación posterior al 12 oct que confirme que siga activa."
+    },
+    {
+      "slug": "supermercado-xtra-don-bosco-don-bosco",
+      "reason": "Campaña de 'carretillas solidarias' anunciada el 10-11 oct sin fecha de cierre; no hay publicación posterior al 12 oct que confirme que siga activa."
+    },
+    {
+      "slug": "supermercado-xtra-san-pedro-juan-diaz-juan-diaz",
+      "reason": "Campaña de 'carretillas solidarias' anunciada el 10-11 oct sin fecha de cierre; no hay publicación posterior al 12 oct que confirme que siga activa."
+    },
+    {
+      "slug": "supermercado-xtra-el-cangrejo-bella-vista",
+      "reason": "Campaña de 'carretillas solidarias' anunciada el 10-11 oct sin fecha de cierre; no hay publicación posterior al 12 oct que confirme que siga activa."
+    },
+    {
+      "slug": "parque-municipal-tomas-alberto-clavel-canazas-canazas",
+      "reason": "Evento de un solo día (sábado 10 de octubre); fecha pasada."
+    },
+    {
+      "slug": "parque-union-chitre-chitre",
+      "reason": "Evento puntual del sábado 10 de octubre; fecha pasada y sin información posterior."
+    },
+    {
+      "slug": "parque-juan-demostenes-arosemena-santiago-santiago",
+      "reason": "Evento puntual del sábado 10 de octubre; fecha pasada y sin información posterior."
+    },
+    {
+      "slug": "parque-simon-bolivar-la-villa-de-los-santos-la-villa-de-los-",
+      "reason": "Solo hay un afiche del 10 oct sin horario; no se encontró información posterior al 12 oct."
+    },
+    {
+      "slug": "coe-del-sinaproc-en-aguadulce-aguadulce",
+      "reason": "Mencionado el 10-12 oct (Telemetro pedía confirmar disponibilidad); no hay confirmación posterior."
+    },
+    {
+      "slug": "alcaldia-de-panama-edificio-hatillo-calidonia",
+      "reason": "Anunciado solo para el sábado 10 y domingo 11 de octubre; sin evidencia de que siga recibiendo."
+    },
+    {
+      "slug": "camara-de-comercio-de-colon-acopio-de-la-zona-libre-colon",
+      "reason": "Anunciado el 10 oct sin fecha de cierre; no se encontró información posterior."
+    },
+    {
+      "slug": "estacion-n-7-de-bomberos-aeropuerto-de-penonome-penonome",
+      "reason": "Listado el 10-12 oct; sin confirmación posterior al 12 oct."
+    },
+    {
+      "slug": "defensoria-del-pueblo-sede-principal-pueblo-nuevo",
+      "reason": "La Defensoría dijo el 11 oct que el acopio seguiría 'durante toda la semana' (hasta ~17 oct); sin confirmación de que siga hoy."
+    },
+    {
+      "slug": "estadio-olmedo-sole-las-tablas",
+      "reason": "Habilitado por Pandeportes el 10 oct; no hay información posterior al 12 oct."
+    },
+    {
+      "slug": "plaza-terronal-antiguo-local-de-lumicentro-david",
+      "reason": "Solo la nota de Retén Chiriquí del 10 oct; sin información posterior."
+    },
+    {
+      "slug": "casa-club-activo-20-30-panama-san-francisco",
+      "reason": "Solo un post de Instagram del 11 oct; sin información posterior."
+    }
+  ]
+}

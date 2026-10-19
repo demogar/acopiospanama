@@ -6,6 +6,7 @@ import { after, before, describe, it } from 'node:test';
 import { sql } from 'kysely';
 import { z } from 'zod';
 import { BATCH_FILE, findBatchesDir, importBatches } from '../src/cli/import-batches';
+import { closeBatchSchema, isCloseBatch } from '../src/cli/close-centers';
 import { entrySchema } from '../src/cli/import-centers';
 import { CentersService, checkDates } from '../src/centers/centers.service';
 import { parse } from '../src/common/http';
@@ -25,7 +26,12 @@ describe('lotes de data/centros', () => {
     const centers = env.app.get(CentersService);
     for (const f of readdirSync(dir).filter((f) => f.endsWith('.json'))) {
       assert.match(f, BATCH_FILE, `${f}: debe llamarse NNN_nombre.json para aplicarse`);
-      const entries = parse(z.array(entrySchema).min(1), JSON.parse(readFileSync(join(dir, f), 'utf8')));
+      const data = JSON.parse(readFileSync(join(dir, f), 'utf8'));
+      if (isCloseBatch(data)) {
+        parse(closeBatchSchema, data);
+        continue;
+      }
+      const entries = parse(z.array(entrySchema).min(1), data);
       for (const e of entries) {
         centers.validateNoMoney(e, e.needs);
         checkDates(e);
@@ -68,6 +74,46 @@ describe('lotes de data/centros', () => {
     await assert.rejects(importBatches(env.app, { email: 'lotes@x.test', dir }));
     const { rows } = await sql`SELECT 1 FROM center_batches WHERE name = '001_dinero.json'`.execute(env.db);
     assert.equal(rows.length, 0);
+  });
+
+  it('un lote de cierre cierra los centros que siguen en manos de quien los cargó', async () => {
+    const dir = mkdtempSync(join(tmpdir(), 'lotes-'));
+    writeFileSync(join(dir, '001_altas.json'), JSON.stringify([entry('Centro F'), entry('Centro G')]));
+    await importBatches(env.app, { email: 'lotes@x.test', dir });
+    const slugs = await sql<{
+      name: string;
+      slug: string;
+    }>`SELECT name, slug FROM centers WHERE name IN ('Centro F', 'Centro G')`.execute(env.db);
+    const slug = (n: string) => slugs.rows.find((r) => r.name === n)!.slug;
+    // Una organización reclamó el G: ese no se toca.
+    await sql`INSERT INTO users (email) VALUES ('org@x.test')`.execute(env.db);
+    await sql`INSERT INTO center_managers (center_id, user_id, accepted_at)
+      SELECT c.id, u.id, now() FROM centers c, users u WHERE c.slug = ${slug('Centro G')} AND u.email = 'org@x.test'`.execute(
+      env.db,
+    );
+
+    writeFileSync(
+      join(dir, '002_cierre.json'),
+      JSON.stringify({
+        date: '2026-10-19',
+        close: [
+          { slug: slug('Centro F'), reason: 'Sin noticias desde el anuncio' },
+          { slug: slug('Centro G'), reason: 'Sin noticias desde el anuncio' },
+          { slug: 'no-existe', reason: 'Sin noticias desde el anuncio' },
+        ],
+      }),
+    );
+    const [r] = await importBatches(env.app, { email: 'lotes@x.test', dir });
+    assert.deepEqual(r.closed, [slug('Centro F')]);
+    assert.equal(r.skipped.length, 2);
+    const { rows } = await sql<{
+      name: string;
+      status: string;
+    }>`SELECT name, status FROM centers WHERE name IN ('Centro F', 'Centro G') ORDER BY name`.execute(env.db);
+    assert.deepEqual(
+      rows.map((x) => x.status),
+      ['CLOSED', 'PUBLISHED'],
+    );
   });
 
   it('sin CENTROS_EMAIL no arranca si hay lotes pendientes', async () => {

@@ -1,9 +1,10 @@
-import { existsSync, readdirSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import type { INestApplicationContext } from '@nestjs/common';
 import { sql } from 'kysely';
 import { DATABASE } from '../common/core.module';
 import type { DB } from '../db/db';
+import { closeCenters, isCloseBatch } from './close-centers';
 import { importCenters } from './import-centers';
 
 /** Nombre de un lote: `NNN_descripcion.json`, como las migraciones. Se aplican en orden. */
@@ -20,11 +21,11 @@ export function findBatchesDir(): string {
   throw new Error('No se encontró la carpeta data/centros');
 }
 
-export type BatchResult = { name: string; created: string[]; skipped: string[] };
+export type BatchResult = { name: string; created: string[]; closed: string[]; skipped: string[] };
 
 /**
- * Importa los lotes de centros que aún no se han aplicado, en orden, y anota cada uno en
- * `center_batches`. Lo ejecuta la API al arrancar, tras las migraciones, con un candado consultivo
+ * Aplica los lotes de centros que aún no se han aplicado, en orden, y anota cada uno en
+ * `center_batches`. Un lote es de alta (`[...]`, centros nuevos) o de cierre (`{ close: [...] }`). Lo ejecuta la API al arrancar, tras las migraciones, con un candado consultivo
  * para que dos contenedores no importen a la vez. Un lote que falla no se anota: se reintenta en el
  * siguiente arranque, y los centros que ya alcanzó a crear se saltan por nombre.
  */
@@ -49,9 +50,17 @@ export async function importBatches(
         throw new Error(`Hay lotes de centros pendientes (${pending.join(', ')}) y falta CENTROS_EMAIL`);
       }
       for (const name of pending) {
-        const r = await importCenters(ctx, { email: opts.email!, file: join(dir, name) });
+        const file = join(dir, name);
+        if (isCloseBatch(JSON.parse(readFileSync(file, 'utf8')))) {
+          const r = await closeCenters(ctx, { email: opts.email!, file });
+          await sql`INSERT INTO center_batches (name) VALUES (${name})`.execute(conn);
+          results.push({ name, created: [], ...r });
+          log(`lote aplicado: ${name} (${r.closed.length} cerrado(s), ${r.skipped.length} saltado(s))`);
+          continue;
+        }
+        const r = await importCenters(ctx, { email: opts.email!, file });
         await sql`INSERT INTO center_batches (name) VALUES (${name})`.execute(conn);
-        results.push({ name, ...r });
+        results.push({ name, closed: [], ...r });
         log(`lote aplicado: ${name} (${r.created.length} nuevo(s), ${r.skipped.length} ya existían)`);
       }
     } finally {
