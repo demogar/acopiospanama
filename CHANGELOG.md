@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.24.0](https://github.com/demogar/acopiospanama/compare/v0.23.0...v0.24.0) (2026-10-19)
+
+
+### Novedades
+
+* **data:** cerrar los centros que no podemos confirmar abiertos (230) ([#99](https://github.com/demogar/acopiospanama/issues/99)) ([c6a4d7a](https://github.com/demogar/acopiospanama/commit/c6a4d7aba06123bb48970583dea351b9dffb43c7))
+* **data:** punto de donaciones de Corprensa (16 al 30 de octubre) ([#101](https://github.com/demogar/acopiospanama/issues/101)) ([aca8ed7](https://github.com/demogar/acopiospanama/commit/aca8ed7fea45c991475a04b2ddd2ffd6448206ea))
+
 ## [0.23.0](https://github.com/demogar/acopiospanama/compare/v0.22.1...v0.23.0) (2026-10-14)
 
 
