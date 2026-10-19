@@ -1,0 +1,40 @@
+[
+  {
+    "name": "Corprensa (La Prensa)",
+    "centerType": "ACOPIO",
+    "organizerType": "EMPRESA",
+    "organizerName": "Corprensa (La Prensa y Mi Diario)",
+    "province": "PANAMA",
+    "district": "Panamá",
+    "community": "Pueblo Nuevo",
+    "address": "Entrada principal de Corprensa, Avenida 12 de Octubre, Hato Pintado",
+    "lat": 9.0111261,
+    "lng": -79.5100623,
+    "schedule": {
+      "MON": { "open": "08:30", "close": "16:00" },
+      "TUE": { "open": "08:30", "close": "16:00" },
+      "WED": { "open": "08:30", "close": "16:00" },
+      "THU": { "open": "08:30", "close": "16:00" },
+      "FRI": { "open": "08:30", "close": "16:00" },
+      "SAT": { "open": "08:30", "close": "12:00" }
+    },
+    "hoursNote": "Del 16 al 30 de octubre: lunes a viernes de 8:30 a. m. a 4:00 p. m. y sábados hasta el mediodía.",
+    "availableFrom": "2026-10-16",
+    "availableUntil": "2026-10-30",
+    "notes": "Campaña de La Prensa para las familias afectadas por el terremoto; el diario coordina la entrega de lo recolectado. Se entrega en persona en la entrada principal.",
+    "needs": [
+      { "item": "BEDDING", "level": "NEEDED", "note": "Colchonetas" },
+      { "item": "TARPS", "level": "NEEDED", "note": "Carpas" },
+      { "item": "WATER", "level": "NEEDED", "note": "Agua potable" },
+      { "item": "HYGIENE", "level": "NEEDED", "note": "Toallas sanitarias" },
+      { "item": "BABY", "level": "NEEDED", "note": "Pañales" },
+      { "item": "FOOD", "level": "NEEDED", "note": "Alimentos no perecederos" },
+      { "item": "FIRST_AID", "level": "NEEDED", "note": "Botiquines de primeros auxilios" }
+    ],
+    "source": {
+      "title": "Mi Diario",
+      "url": "https://www.midiario.com/nacionales/como-ayudar-a-los-afectados-por-el-sismo-corprensa-habilita-punto-de-donaciones/",
+      "date": "2026-10-17"
+    }
+  }
+]
