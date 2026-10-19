@@ -39,6 +39,6 @@
     "@types/qrcode": "^1.5.6",
     "@types/supertest": "^7.2.1",
     "supertest": "^7.3.1",
-    "typescript": "5.9"
+    "typescript": "7.0"
   }
 }
