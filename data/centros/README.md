@@ -34,6 +34,18 @@ Cada lote se aplica una sola vez.
 - Los centros que ya existen (mismo nombre) se saltan, así que un lote que falló a medias se reintenta en el
   siguiente arranque sin duplicar nada.
 
+## Lotes de cierre
+
+Para cerrar centros cargados que ya no podemos dar por abiertos (el anuncio era de unos días, no hay noticias
+nuevas…), el lote es un objeto en vez de una lista:
+
+```json
+{ "date": "2026-10-19", "close": [{ "slug": "centro-ejemplo-david", "reason": "Solo recibía el 12 de octubre" }] }
+```
+
+Se cierran, no se retiran: el responsable puede abrirlos de nuevo desde «Mis centros». Se saltan los que ya no
+están publicados y los que una organización reclamó (tiene otro responsable) o su responsable confirmó.
+
 A mano, por si hace falta (en el servidor, desde `/opt/acopiospanama`):
 
 ```bash
