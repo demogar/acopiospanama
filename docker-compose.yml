@@ -6,6 +6,8 @@
 #
 # Solo `caddy` publica puertos (80/443), termina TLS y reenvía todo a `web:3000`.
 # API y base de datos son internas. Variables: ver deploy/.env.example.
+# Otras apps del servidor comparten este Caddy: dejan su bloque en `sitios/` y unen su web a la
+# red `proxy` (ver «Convivir con otra app» en docs/DESPLIEGUE.md).
 # Los límites de CPU/memoria evitan que un pico afecte a otras apps del servidor.
 
 x-hardening: &hardening
@@ -105,12 +107,20 @@ services:
       DOMAIN: ${DOMAIN:?Define DOMAIN (el dominio sin https://)}
     volumes:
       - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+      # Bloques de otras apps del servidor. Viven fuera del repo para que un despliegue no los pise.
+      - ./sitios:/etc/caddy/sitios:ro
       - caddy_data:/data
       - caddy_config:/config
+    networks: [default, proxy]
     logging:
       driver: json-file
       options: { max-size: '10m', max-file: '3' }
     mem_limit: 128m
+
+networks:
+  # Red solo entre Caddy y las webs de otras apps; nuestra API y la base de datos no están en ella.
+  proxy:
+    name: proxy
 
 volumes:
   pgdata:

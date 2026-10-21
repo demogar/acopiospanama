@@ -25,3 +25,6 @@ www.{$DOMAIN} {
 		lb_try_interval 250ms
 	}
 }
+
+# Otras apps del servidor: un archivo por app en /opt/acopiospanama/sitios/ (ver docs/DESPLIEGUE.md).
+import /etc/caddy/sitios/*.caddy

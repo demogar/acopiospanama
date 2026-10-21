@@ -11,6 +11,7 @@ out/
 !apps/api/.env.example
 apps/api/.env.development
 backups/
+sitios/
 *.log
 .DS_Store
 coverage/
