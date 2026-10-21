@@ -67,6 +67,7 @@ Todo esto ya está aplicado en `demogar/acopiospanama`; se documenta para poder 
    - `docker-compose.yml` y `deploy/Caddyfile`, `deploy/desplegar.sh`: copias del repo, el job las refresca en cada despliegue.
    - `.env`: copia `deploy/.env.example` y complétalo (`openssl rand -hex 32` para los secretos). Modo 600.
    - `backups/`: volcados cifrados diarios.
+   - `sitios/`: bloques de Caddy de otras apps del servidor (ver «Convivir con otra app»). Puede estar vacía.
 3. Firewall: `ufw` deja 22 con límite de intentos y 80/443 solo desde los rangos de Cloudflare. Como Docker
    publica puertos saltándose `ufw`, la misma lista está en la cadena `DOCKER-USER` de iptables.
 4. Primera vez, antes de que exista una imagen en GHCR, se puede construir en el servidor:
@@ -131,8 +132,16 @@ con un token personal de solo lectura (`read:packages`) o vuelve a lanzar el wor
 
 - El compose limita cada servicio: API y web, 384 MB y 0,75 CPU cada una; PostgreSQL, 256 MB; Caddy, 128 MB.
   En total son ~1,1 GB como máximo, así que caben junto a otra app.
-- Otra app necesitaría su propio compose y su propia base de datos; si también quiere 80/443, comparte este
-  Caddy (añade su bloque al `Caddyfile` y únela a la red) en vez de levantar otro proxy.
+- Otra app lleva su propio compose y su propia base de datos. Si también quiere 80/443, comparte este Caddy en
+  vez de levantar otro proxy:
+  1. Une su servicio web a la red `proxy` (la crea este compose; en el de la otra app, `external: true`) con un
+     alias propio, p. ej. `otra-web`. Esa red solo la comparten Caddy y las webs: nuestra API y la base de datos
+     no están en ella.
+  2. Deja su bloque en `/opt/acopiospanama/sitios/<app>.caddy` (fuera del repo: un despliegue no lo pisa) y
+     recarga: `docker compose exec caddy caddy reload --config /etc/caddy/Caddyfile`. Hereda la confianza en los
+     rangos de Cloudflare, así que con Cloudflare delante esa app también cuenta 2 proxies.
+  3. Un error en ese bloque hace fallar la recarga de Caddy en el siguiente despliegue: valídalo antes con
+     `docker compose exec caddy caddy validate --config /etc/caddy/Caddyfile`.
 - La lista pública se cachea 30 s en la API y se sirve con `Cache-Control: public`. Cloudflare absorbe los picos.
 - El mapa usa las teselas de Stadia Maps («Alidade Smooth»). Stadia autoriza por dominio, sin clave: registra el
   dominio de producción en su panel (cuenta gratuita para proyectos sin fines de lucro) o el mapa no cargará. Para
